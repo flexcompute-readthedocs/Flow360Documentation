@@ -30,14 +30,14 @@ After the simulation is completed, a “bet_forces_v2.csv” file is created for
 .. math::
    :label: defBETForce
    
-   \text{Force}_\text{non-dimensional} = \frac{\text{Force}_\text{physical}\text{(SI=N/m)}}{\rho_\infty C_\infty^2 L_{gridUnit}^2}
+   \text{Force}_\text{non-dimensional} = \frac{\text{Force}_\text{physical}\text{(SI=N)}}{\rho_\infty C_\infty^2 L_{gridUnit}^2}
 
 The non-dimensional moment is defined as
 
 .. math::
    :label: defBETMoment
 
-   \text{Moment}_\text{non-dimensional} = \frac{\text{Moment}_\text{physical}\text{(SI=N)}}{\rho_\infty C_\infty^2 L_{gridUnit}^3},
+   \text{Moment}_\text{non-dimensional} = \frac{\text{Moment}_\text{physical}\text{(SI=N$\cdot$m)}}{\rho_\infty C_\infty^2 L_{gridUnit}^3},
    
 where the moment center is the :code:`centerOfRotation` of each disk, defined in :ref:`BETDisks <betDisksInputParameters>` of Flow360.json. 
 
