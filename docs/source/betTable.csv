@@ -1,0 +1,18 @@
+Option@ Default@ Description
+centerOfRotation@ Empty@ [3-array] center of the Blade Element Theory (BET) disk
+axisOfRotation@ Empty@ [3-array] rotational axis of the BET disk
+numberOfBlades@ Empty@ [int] number of blades to model
+radius@ Empty@ [float] non-dimensional radius of the rotor disk, = :math:`\text{Radius}_\text{dimensional}/L_{gridUnit}`
+omega@ Empty@ [float] non-dimensional rotating speed, radians/nondim-unit-time, = :math:`\Omega*L_{gridUnit}/C_\infty`, where the SI unit of :math:`\Omega` is rad/s.
+chordRef@ Empty@ [float] non-dimensional reference chord used to compute sectional blade loadings.
+nLoadingNodes@ Empty@ [float] Number of nodes used to compute the sectional thrust and torque coeffcient :math:`C_t` and :math:`C_q`, defined in :ref:`betDiskLoadingNote`. Recomended value is 20.
+thickness@ Empty@ [float] non-dimensional thickness of the BET disk. Should be less than the thickness of the refined region of the disk mesh.
+bladeLineChord@ 0.0@ [float] non-dimensional chord to use if performing an unsteady blade-line (as opposed to steady blade-disk) simulation. Recomended value is 1-2x the physical mean aerodynamic chord (MAC) of the blade for blade line analysis. Default of 0.0 indicates to run blade-disk analysis instead of blade-line.
+initialBladeDirection@ Empty@ [3-array]. Orientation of the first blade in the blade-line model. Must be specified if performing blade-line analysis.
+twists@ Empty@ [list(dict)] A list of dictionary entries specifying the twist in degrees as a function of radial location. Entries in the list must already be sorted by radius. Example entry in the list would be {"radius" : 5.2, "twist" : 32.5}.
+chords@ Empty@ [list(dict)] A list of dictionary entries specifying the blade chord as a function of the radial location. Entries in the list must already be sorted by radius. Example entry in the list would be {"radius" : 5.2, "chord" : 12.0}.
+sectionalPolars@ Empty@ [list(dict)] A list of dictionaries for every radial location specified in *sectionalRadiuses*. Each dict has two entries, "liftCoeffs" and "dragCoeffs", both of which have the same data storage format: 3D arrays (implemented as nested lists). The first index of the array corresponds to the *MachNumbers* of the specified polar data. The second index of the array corresponds to the *ReynoldsNumbers* of the polar data. The third index corresponds to the *alphas*. The value specifies the lift or drag coefficient, respectively.
+sectionalRadiuses@ Empty@ [list(float)] A list of the radial locations at which :math:`C_l` and :math:`C_d` are specified in *sectionalPolars*
+alphas@ Empty@ [list(float)] alphas associated with airfoil polars provided in *sectionalPolars* in degrees.
+MachNumbers@ Empty@ [list(float)] Mach numbers associated with airfoil polars provided in *sectionalPolars*.
+ReynoldsNumbers@ Empty@ [list(float)] Reynolds numbers associated with the airfoil polars provided in *sectionalPolars*.

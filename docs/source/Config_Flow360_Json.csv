@@ -1,0 +1,100 @@
+Type,Options,Default,Description
+geometry,refArea,1,The reference area of the geometry
+,momentCenter,"[0.0, 0.0, 0.0]","The x, y, z moment center of the geometry in grid units"
+,momentLength,"[1.0, 1.0, 1.0]","The x, y, z moment reference lengths"
+runControl,restart,FALSE,the solutions are initialized from restarting files or not
+,startAlphaControlPseudoStep,-1,pseudo step at which to start targetCL control. -1 is no trim control. (steady only)
+,targetCL,-1,The desired trim CL to achieve (assocated with startAlphaControlPseudoStep)
+freestream,Reynolds,Not required if muRef exists,"Nondimensional Reynolds number.  Reynolds number should be computed based on the reference length in grid units.  For example, if you have a mesh with a MAC of 100 in grid units and want to simulate a physical Reynolds number of 1M, then you should set Reynolds = 100,000."
+,muRef,Not required if Reynolds exists,refererence mu(non-dimenstional) in our solver
+,Mach,REQUIRED,"The Mach number, the ratio of freestream speed to the speed of sound."
+,MachRef,Required if Mach == 0,"The reference Mach number to compute the mu, CL/CD, coefficients, etc..."
+,Temperature,REQUIRED,The reference temperature in Kelvin.
+,alphaAngle,REQUIRED,The angle of attack in degrees
+,betaAngle,REQUIRED,The side slip angle in degrees
+boundaries,YOUR_FIRST_BOUNDARY_ID: type,YOUR_BOUNDARY_TYPE,"List of boundary conditions. The current supported boundaries are: SlipWall (used for symmetry), NoSlipWall, Freestream, SubsonicOutflowPressure, SubsonicOutflowMach,  SubsonicInflow,SubsonicOutflowPressure, MassOutflow, MassInflow"
+,YOUR_SECOND_BOUNDARY_ID: type,YOUR_BOUNDARY_TYPE,
+volumeOutput,outputFormat,paraview,"""paraview"" or ""tecplot"""
+,animationFrequency,-1,Frequency at which volume output is saved. -1 is at end of simulation
+,startAverageIntegrationStep,0,Sub-iteration or time-step to start averaging forces/moments
+,computeTimeAverages,FALSE,Whether or not to compute time-averaged quantities
+,primitiveVars,TRUE,"Outputs rho, u, v, w, p"
+,vorticity,FALSE,Vorticity
+,residualNavierStokes,FALSE,5 components of the N-S residual
+,residualTurbulence,FALSE,nuHat
+,T,FALSE,Temperature
+,s,FALSE,Entropy
+,Cp,TRUE,Coefficient of pressure
+,mut,TRUE,Turbulent viscosity
+,nuHat,TRUE,nuHat
+,mutRatio,FALSE,mut/mu_inf
+,Mach,TRUE,Mach number
+,VelocityRelative,FALSE,velocity in rotating frame
+,qcriterion,FALSE,Q criterion 
+,gradW,FALSE,Gradient of W
+surfaceOutput,outputFormat,paraview,"""paraview"" or ""tecplot"""
+,animationFrequency,-1,Frequency at which surface output is saved. -1 is at end of simulation
+,primitiveVars,FALSE,"rho, u, v, w, p"
+,Cp,FALSE,Coefficient of pressure
+,Cf,FALSE,Skin friction coefficient
+,CfVec,FALSE,Viscous stress coefficient vector
+,yPlus,FALSE,y+
+,wallDistance,FALSE,Wall Distance
+,Mach,FALSE,Mach number
+,nodeForcesPerUnitArea,FALSE,node forces per unit area
+,residualSA,FALSE,Spalart-Allmaras residual magnitude
+sliceOutput,outputFormat,paraview,"""paraview"" or ""tecplot"""
+,animationFrequency,-1,Frequency at which slice output is saved. -1 is at end of simulation
+,primitiveVars,TRUE,"Outputs rho, u, v, w, p"
+,vorticity,FALSE,Vorticity
+,residualNavierStokes,FALSE,Residual components for Navier-stokes equations
+,residualTurbulence,FALSE,Residual magnitude of turbulence equations
+,T,FALSE,Temperature
+,s,FALSE,Entropy
+,Cp,FALSE,Coefficient of pressure
+,mut,FALSE,Turbulent viscosity
+,mutRatio,FALSE,mut/mu_inf
+,Mach,TRUE,Mach number
+,gradW,FALSE,gradient of W
+,slices,[],List of slices to save after the solver has finished
+,sliceName,,string
+,sliceNormal,,"[x, y, z]"
+,sliceOrigin,,"[x, y, z]"
+navierStokesSolver,absoluteTolerance,1.00E-10,"Tolerance for the NS residual, below which the solver goes to the next physical step"
+,relativeTolerance,1.00E-02,"tolerance to the ratio of residual of current pseudoStep to the initial residual, below which the solver goes to the next physical step"
+,CFLMultiplier,1,"factor to the CFL definitions defined in ""timeStepping"" section"
+,linearIterations,30,Number of linear solver iterations
+,kappaMUSCL,-1,"Kappa for the MUSCL scheme, range from [-1, 1], with 1 being unstable."
+,updateJacobianFrequency,4,Frequency at which the jacobian is updated.
+,equationEvalFrequency,1,Frequency at which to update the NS equation in loosely-coupled simulations
+,maxForceJacUpdatePhysicalSteps,0,"whin which physical steps, the jacobian matrix is updated every pseudo step"
+,orderOfAccuracy,2,order of accuracy in space
+,extraDissipation,0,add more dissipation to the NS solver
+,limitVelocity,FALSE,limiter for velocity
+,limitPressureDensity,FALSE,limiter for pressure and density
+,viscousWaveSpeedScale,0,"Scales the wave speed acording to a viscous flux. 0.0 is no speed correction, with larger values providing a larger viscous wave speed correction."
+turbulenceModelSolver,modelType,SpalartAllmaras,Only SA supported at this point
+,absoluteTolerance,1.00E-08,"Tolerance for the SA residual, below which the solver goes to the next physical step"
+,relativeTolerance,1.00E-02,"tolerance to the ratio of residual of current pseudoStep to the initial residual, below which the solver goes to the next physical step"
+,linearIterations,20,Number of linear iterations for the SA linear system
+,updateJacobianFrequency,4,Frequency at which to update the Jacobian
+,equationEvalFrequency,4,Frequency at which to evaluate the turbulence equation in loosely-coupled simulations
+,kappaMUSCL,-1,"Kappa for the muscle scheme, range from [-1, 1] with 1 being unstable."
+,rotationCorrection,FALSE,SARC model
+,orderOfAccuracy,2,order of accuracy in space
+,maxForceJacUpdatePhysicalSteps,0,"whin which physical steps, the jacobian matrix is updated every pseudo step"
+,DDES,FALSE,_true_ Enables DDES simulation
+initialCondition,type,"""freestream""","use the flow conditions defined in freestream section to set initial condition.
+could be ""freestream"" or ""expression"""
+timeStepping,maxPhysicalSteps,1,maximum physical steps
+,timeStepSize,"""inf""","time step size in physical step marching, ""inf"" means steady solver"
+,maxPseudoSteps,2000,maximum pseudo steps within one physical step
+,CFL-> initial,5,initial CFL for solving pseudo time step
+,CFL->final,200,final CFL for solving pseudo time step
+,CFL->rampSteps,40,number of steps before reaching the final CFL within 1 physical step
+slidingInterfaces (list),stationaryPatches,Empty,a list of static patch names of an interface
+,rotatingPatches,Empty,a list of dynamic patch names of an interface
+,omega,Empty,"non-dimensional rotating speed, rad/nondim-unit-time"
+,centerOfRotation,Empty,"a 3D array, representing the origin of rotation, e.g. [0,0,0]"
+,axisOfRotation,Empty,"a 3D array, representing the rotation axis, e.g. [0,0,1]"
+,volumeName,Empty,"a list of dynamic volume names related to the above {omega, centerOfRotation, axisOfRotation}"

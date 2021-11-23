@@ -1,0 +1,7 @@
+Type,Options,Default,Note
+boundaries,noSlipWalls,[],"list of names of boundary patches, e.g. [2,3,7] (for .ugrid), [""blk-1/wall1"",""blk-2/wall2""] (for .cgns)"
+slidingInterfaces,,[],list of pairs of sliding interfaces
+,stationaryPatches,[],"list of names of stationary boundary patches, e.g. [""stationaryField/interface""]"
+,rotatingPatches,[],"list of names of dynamic boundary patches, e.g. [""rotatingField/interface""]"
+,axisOfRotation,[],"axis of rotation, e.g. [0,0,-1]"
+,centerOfRotation,[],"center of rotation, e.g. [0,0,0]"
