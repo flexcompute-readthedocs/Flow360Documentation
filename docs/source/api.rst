@@ -57,6 +57,10 @@ Flow360Mesh.json
    |                   | centerOfRotation  | []      | center of rotation, e.g. [0,0,0]                                                                        |
    +-------------------+-------------------+---------+---------------------------------------------------------------------------------------------------------+
 
+.. warning::
+
+   "slidingInterfaces" can be only used for multi-block meshes.
+
 .. _Flow360json:
 
 Flow360.json
