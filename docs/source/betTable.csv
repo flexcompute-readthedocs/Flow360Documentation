@@ -1,4 +1,4 @@
-Option@ Default@ Description
+Options@ Default@ Description
 centerOfRotation@ Empty@ [3-array] center of the Blade Element Theory (BET) disk
 axisOfRotation@ Empty@ [3-array] rotational axis of the BET disk
 numberOfBlades@ Empty@ [int] number of blades to model
