@@ -1,0 +1,9 @@
+Options@ Default@ Description
+DarcyCoefficient@ REQUIRED@ [3-array] Darcy cofficient of the porous media model which determines the scaling of the viscous loss term. The 3 values define the coeffiicent for each of the 3 axes defined by the reference frame of the volume zone.
+ForchheimerCoefficient@ REQUIRED@ [3-array] Forchheimer coefficient of the porous media model which determines the scaling of the inertial loss term.
+volumeZone@ REQUIRED@ Dictionary defining the properties of the region of the grid where the porous media model is applied.
+volumeZone->zoneType@ REQUIRED@ Type/Shape of volume zone. Possible values: "box"
+volumeZone->center@ REQUIRED@ [3-array] For "zoneType": "box", it is the center point of the box
+volumeZone->axes@ REQUIRED@ [[3-array], [3-array]] For "zoneType": "box", it is 2 axes which define the x and y directions of the box. Also, used to define the reference frame of the volume zone.
+volumeZone->lengths@ REQUIRED@ [3-array] For "zoneType": "box", it is the length of the box in each of the x, y, z directions
+volumeZone->windowingLengths@ [0.02*lengths[0], 0.02*lengths[1], 0.02*lengths[2]]@ [3-array] For "zoneType": "box", it is the total length of the box in each of the x, y, z directions for which a window function is applied on the edges.
