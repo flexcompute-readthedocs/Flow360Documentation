@@ -83,7 +83,7 @@ turbulenceModelSolver,modelType,SpalartAllmaras,Only SA supported at this point
 ,rotationCorrection,FALSE,SARC model
 ,orderOfAccuracy,2,order of accuracy in space
 ,maxForceJacUpdatePhysicalSteps,0,"whin which physical steps, the jacobian matrix is updated every pseudo step"
-,DDES,FALSE,_true_ Enables DDES simulation
+,DDES,FALSE,_true_ Enables Delayed Detached Eddy Simulation
 initialCondition,type,"""freestream""","use the flow conditions defined in freestream section to set initial condition.
 could be ""freestream"" or ""expression"""
 timeStepping,maxPhysicalSteps,1,maximum physical steps

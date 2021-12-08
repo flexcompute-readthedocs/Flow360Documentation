@@ -425,7 +425,8 @@ turbulenceModelSolver
    +--------------------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------+
    | maxForceJacUpdatePhysicalSteps |        0        | When which physical steps, the jacobian matrix is updated every pseudo step                                                               |
    +--------------------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------+
-   | DDES                           |      FALSE      | _true_ enables Delayed Detached Eddy Simulation. Only supported for SpalartAllmaras model                                                 |
+   | DDES                           |      FALSE      | "true" enables Delayed Detached Eddy Simulation. Supported for both SpalartAllmaras and kOmegaSST turbulence models,                      |
+   |                                |                 | with and without AmplificationFactorTransport transition model enabled                                                                    |
    +--------------------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 
 transitionModelSolver
