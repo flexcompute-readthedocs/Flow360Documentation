@@ -12,10 +12,11 @@ Equations
 - Steady and unsteady viscous flows.
 - Coupled stationary and rotating domains.
 - Reynolds-Averaged Navier-Stokes.
-- Detached Eddy Simulation.
+- Delayed Detached Eddy Simulation.
 - Laminar-Turbulent Transition model.
 - :ref:`Blade Element Theory model <bladeElementTheory>`.
 - Actuator Disk model.
+- Porous Media model.
 
 Turbulence Models
 -----------------
