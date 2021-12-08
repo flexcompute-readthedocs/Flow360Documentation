@@ -116,35 +116,11 @@ runControl
 freestream
 ----------
 
-.. table::
-   :widths: 25 25 50
-
-   +----------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | Options              |              Default              | Description                                                                                                        |
-   +======================+===================================+====================================================================================================================+
-   |                      |                                   | Non-dimensional Reynolds number based on grid unit, = :math:`\frac{\rho_\infty U_\infty L_{gridUnit}}{\mu_\infty}`.|
-   | Reynolds             |   Not required if muRef exists    | For example, for a mesh with phyiscal length 1.5m represented by 1500 grid units (i.e. mesh is in mm),             | 
-   |                      |                                   | the :math:`L_{gridUnit}` in the numerator is 0.001m.                                                               |
-   +----------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | muRef                | Not required if Reynolds exists   | The refererence dynamic viscosity (non-dimenstional) in our solver,                                                |
-   |                      |                                   | = :math:`\frac{\mu_\infty}{\rho_\infty C_\infty L_{gridUnit}}`                                                     |
-   +----------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | Mach                 |              REQUIRED             | The Mach number, the ratio of freestream speed to the speed of sound.                                              |
-   +----------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | MachRef              |       Required if Mach == 0       | The reference Mach number to compute the mu, CL/CD, coefficients, etc..., = :math:`U_{ref}/C_\infty`.              |
-   |                      |                                   | Its default value is "freestream/Mach"                                                                             |
-   +----------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | Temperature          |              REQUIRED             | The reference temperature in Kelvin. -1 means globally constant viscosity                                          |
-   +----------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | alphaAngle           |              REQUIRED             | The angle of attack in degrees                                                                                     |
-   +----------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | betaAngle            |              REQUIRED             | The side slip angle in degrees                                                                                     |
-   +----------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | turbulentViscosity   |              1.0                  | The multiplicative factor for the freestream turbulent viscosity for the turbulence model                          |
-   +----------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | turbulenceIntensity  |              0.0                  | The turbulence intensity in the freestream in percent. If greater than zero, activates the transition model.       |
-   |                      |                                   | A value of 0.5 in this field means turbulenceIntensity=0.5 %.                                                      |
-   +----------------------+-----------------------------------+--------------------------------------------------------------------------------------------------------------------+
+.. csv-table::
+   :file: ./freestreamTable.csv
+   :widths: 20, 20, 70
+   :header-rows: 1
+   :delim: @
 
 boundaries
 ----------
@@ -461,7 +437,7 @@ transitionModelSolver
    +--------------------------------+------------------------------+------------------------------------------------------------------------------------------------------------------------------+
    | Options                        |     Default                  | Description                                                                                                                  |
    +================================+==============================+==============================================================================================================================+
-   | modelType                      | AmplificationFactorTransport | Transition model type can be: "AmplificationFactorTransport"                                                                 |
+   | modelType                      |       None                   | Transition model type can either be: "None" (disabled) or "AmplificationFactorTransport" (enabled)                           |
    +--------------------------------+------------------------------+------------------------------------------------------------------------------------------------------------------------------+
    | absoluteTolerance              |     1.00E-07                 | Tolerance for the transition model residual, below which the solver goes to the next physical step                           |
    +--------------------------------+------------------------------+------------------------------------------------------------------------------------------------------------------------------+
