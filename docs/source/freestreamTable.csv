@@ -7,5 +7,3 @@ Temperature@ REQUIRED@ The reference temperature in Kelvin. -1 means globally co
 alphaAngle@ REQUIRED@ The angle of attack in degrees.
 betaAngle@ REQUIRED@ The side slip angle in degrees.
 turbulentViscosityRatio@ DEPENDS@ The ratio between the freestream turbulent viscosity and freestream laminar viscosity. This value is used by the turbulence models to determine the reference values for solution variables for freestream boundary conditions and also to set the initial condition. For SpalartAllmaras turbulence model, the default value is :math:`0.210438` if transition is not used and :math:`2.794\times10^{-7}` if transition model is used. For kOmegaSST, the default value is 0.01.
-turbulenceIntensity@ 0.1@ The turbulence intensity in the freestream in percent. This value is only used by the transition model as a scalar quantity and is not transported. If a value of 0.5 is specified here, it means that turbulenceIntensity=0.5 %.
-
