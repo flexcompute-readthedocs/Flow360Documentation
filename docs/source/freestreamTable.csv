@@ -2,7 +2,7 @@ Options@ Default@ Description
 Reynolds@ Not required if muRef exists@ For example, for a mesh with phyiscal length 1.5m represented by 1500 grid units (i.e. mesh is in mm), the :math:`L_{gridUnit}` in the numerator is 0.001m.
 muRef@ Not required if Reynolds exists@ The refererence dynamic viscosity (non-dimenstional) in our solver, = :math:`\frac{\mu_\infty}{\rho_\infty C_\infty L_{gridUnit}}`
 Mach@ REQUIRED@ The Mach number, the ratio of freestream speed to the speed of sound.
-MachRef@ Required if Mach == 0@ The reference Mach number to compute CL, CD, CFx, CFy, CFz, CMz, CMy, CMz, etc..., = :math:`U_{ref}/C_\infty`. Its default value is "freestream/Mach".
+MachRef@ Required if Mach == 0@ The reference Mach number to compute nondimensional quantities, e.g. CL, CD, CFx, CFy, CFz, CMz, CMy, CMz, etc..., = :math:`U_{ref}/C_\infty`. Its default value is "freestream"->"Mach".
 Temperature@ REQUIRED@ The reference temperature in Kelvin. -1 means globally constant viscosity.
 alphaAngle@ REQUIRED@ The angle of attack in degrees.
 betaAngle@ REQUIRED@ The side slip angle in degrees.
