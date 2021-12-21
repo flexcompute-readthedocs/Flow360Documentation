@@ -1,0 +1,15 @@
+{   
+    "sources": [                                                                 
+        {                                                                        
+            "size": [4, 4, 2],                                                                                                              
+            "axisOfRotation": [ 0, 0, 1 ],               
+            "angleOfRotation": 45,                                               
+            "center": [2, 0, 0],                 
+            "spacing": 0.05                                               
+        }                                                                                                                                                 
+    ],                                                                                                                                                      
+    "volume": {                                                                  
+        "firstLayerThickness": 1e-3,                                             
+        "TRexGrowthRate": 1.2                                                    
+    }                                                                            
+}                   

@@ -1,0 +1,11 @@
+{
+    "maxEdgeLength": 0.1, 
+    "curvatureResolutionAngle": 15,
+    "growthRate": 1.2, 
+    "faces": {
+        "mysphere": {
+                "maxEdgeLength": 0.05,
+                "adapt": false
+        }
+    }
+}

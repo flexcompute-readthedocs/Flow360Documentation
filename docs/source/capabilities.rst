@@ -10,4 +10,5 @@ Capabilities
     :maxdepth: 2
 
     capabilityDetails/overview
+    capabilityDetails/automatedMeshing
     capabilityDetails/bladeElementTheory
