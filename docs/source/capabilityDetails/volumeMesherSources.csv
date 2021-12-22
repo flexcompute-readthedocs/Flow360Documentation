@@ -1,0 +1,9 @@
+Option@ Type@ Default@ Example@ Description
+type@ [“box”, “cylinder”]@ “box”@ “box”@ Type of source. Supported box and cylinder. Cylinder’s axis is along the z-direction.
+size@ 3-array@ REQUIRED@ [5, 5, 5]@ For type: box. Refinement zone size in x, y and z directions.
+radius@ float@ REQUIRED@ 5@ For type: cylinder. Radius of the cylinder.
+lengthZ@ float@ REQUIRED@ 5@ For type: cylinder. Length of the cylinder. Cylinder’s axis is along the z-direction.
+spacing@ float@ REQUIRED@ 0.1@ Cell spacing applied in the refinement zone.
+center@ 3-array@ REQUIRED@ [0, 0, 0]@ Position of geometrical center of the primitive, i.e., box or cylinder.
+axisOfRotation@ 3-array@ @ [0, 1, 0]@ Axis of rotation for rotation transform of the primitive (box or cylinder). Requires angleOfRotation.
+angleOfRotation@ float@ @ 90@ The angle of rotation (in degrees) for rotation transform of the primitive (box or cylinder). Requires axisOfRotation.

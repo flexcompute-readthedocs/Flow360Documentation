@@ -1,0 +1,6 @@
+Option@ Type@ Default@ Example@ Description
+maxEdgeLength@ float@ REQUIRED@ 0.1@ Maximum length of element edge.
+curvatureResolutionAngle@ float@ REQUIRED@ 15@ Maximum angular deviation in degrees. If the angle between the normal line segment and the normal to the underlying geometry curve at a grid point is larger than the specified angle, a new grid point will be added in the middle of the segment.
+growthRate@ float@ REQUIRED@ 1.2@ Growth rate of layers being grown from edges
+edges@ dict@ {}@ @ <edgeName>: {...} sets parameters for the edge named <edgeName>. The edge must be labelled in ESP (\*.csm file). For details see :ref:`here<JSON surface mesher edges>`.
+faces@ dict@ {}@ @ <faceName>\: {...} sets parameters for the face named <faceName>. The face must be labelled in ESP (\*.csm file). For details see :ref:`here<JSON surface mesher faces>`.
