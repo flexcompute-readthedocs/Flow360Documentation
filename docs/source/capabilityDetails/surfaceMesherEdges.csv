@@ -1,0 +1,2 @@
+Option@ Type@ Default@ Example@ Description
+<edgeName>-> firstLayerThickness@ float@ REQUIRED@ 1e-3@ First layer thickness of the anisotropic surface cells growing along the orthogonal direction to the edge named <edgeName>. See :numref:`fig1_surfMesh_edges`.
