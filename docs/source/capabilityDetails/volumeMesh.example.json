@@ -1,7 +1,7 @@
 {   
     "sources": [                                                                 
         {                                                                        
-            "size": [4, 4, 2],                                                                                                              
+            "size": [4, 3, 2],                                                                                                              
             "axisOfRotation": [ 0, 0, 1 ],               
             "angleOfRotation": 45,                                               
             "center": [2, 0, 0],                 
