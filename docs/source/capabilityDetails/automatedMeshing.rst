@@ -177,11 +177,11 @@ Example\:
 
     "faces": {                         
         "rightWing": {           
-            "maxEdgeLength": 0.08,  
+            "maxEdgeLength": 0.05,  
             "adapt": false          
         },                       
         "fuselage": {            
-            "maxEdgeLength": 0.08,  
+            "maxEdgeLength": 0.05,  
             "adapt": false          
         }                        
     }  
@@ -215,20 +215,20 @@ Example\:
 
    "sources": [                                                                                                                                                                                                                                                                                                            
     {                                                                                                                                                                                                                                                                                                           
-        "size": [2, 2, 0.5],                                                                                                                                                                                                                                                                                       
+        "size": [4, 3, 2],
+        "center": [2, 0, 0],                                                                                                                                                                                                                                                                                       
+        "spacing": 0.05,                                                                                                                                                                                                                                                                                    
         "axisOfRotation": [ 0, 0, 1 ],                                                                                                                                                                                                                                                                             
-        "angleOfRotation": 45,                                                                                                                                                                                                                                                                                     
-        "center": [1, 1, 1],                                                                                                                                                                                                                                                                                       
-        "spacing": 0.1                                                                                                                                                                                                                                                                                             
+        "angleOfRotation": 45                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
     },                                                                                                                                                                                                                                                                                                          
     {                                                                                                                                                                                                                                                                                                           
         "type": "cylinder",                                                                                                                                                                                                                                                                                        
-        "radius": 0.75,                                                                                                                                                                                                                                                                                            
-        "lengthZ": 11,                                                                                                                                                                                                                                                                                             
-        "spacing": 0.2,                                                                                                                                                                                                                                                                                            
+        "radius": 4,                                                                                                                                                                                                                                                                                            
+        "lengthZ": 5,
+        "center": [5, 0, 0],
+        "spacing": 0.05,                                                                                                                                                                                                                                                                                            
         "axisOfRotation": [0, 1, 0],                                                                                                                                                                                                                                                                               
-        "angleOfRotation": 90,                                                                                                                                                                                                                                                                                     
-        "center":[5, 0, 0]                                                                                                                                                                                                                                                                                        
+        "angleOfRotation": 90                                                                                                                                                                                                                                                                                                                                                            
     }]                                                                                                                                                                                                                                                                                                          
    
 
@@ -249,12 +249,12 @@ Example\:
 
    "actuatorDisks": [                                
     {                               
-        "innerRadius": 0.0,            
-        "outerRadius": 2,              
-        "thickness": 0.42,             
-        "axisThrust": [-1, 0, 0],      
-        "center": [3.6, 0, 0],         
-        "spacingAxial": 0.03,          
-        "spacingRadial": 0.09,         
-        "spacingCircumferential": 0.09 
+        "innerRadius": 0,            
+        "outerRadius": 10,              
+        "thickness": 0.5,             
+        "axisThrust": [1, 0, 0],      
+        "center": [0, 0, 0],         
+        "spacingAxial": 0.01,          
+        "spacingRadial": 0.03,         
+        "spacingCircumferential": 0.03 
     }] 

@@ -4,8 +4,8 @@
     "growthRate": 1.2, 
     "faces": {
         "mysphere": {
-                "maxEdgeLength": 0.05,
-                "adapt": false
+            "maxEdgeLength": 0.05,
+            "adapt": false
         }
     }
 }
