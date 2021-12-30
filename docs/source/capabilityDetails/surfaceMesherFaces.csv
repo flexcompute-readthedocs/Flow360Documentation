@@ -1,3 +1,3 @@
 Option@ Type@ Default@ Example@ Description
-<faceName>-> maxEdgeLength@ float@ REQUIRED@ 1e-3@ Maximum length of element edge for the face named <faceName>.
+<faceName>-> maxEdgeLength@ float@ REQUIRED@ 0.05@ Maximum length of element edge for the face named <faceName>.
 <faceName>-> adapt@ boolean@ REQUIRED@ FALSE@ Turn on/off the extra refinement based on surface proximity. [This argument will be removed in the next release and the proximity refinement will be automatically decided.]
