@@ -19,13 +19,13 @@ Equations
 ---------
 
 - Steady and unsteady viscous flows.
-- Coupled stationary and rotating domains.
+- :ref:`Coupled stationary and rotating domains. <slidingInterfacesParameters>`
 - :ref:`Reynolds-Averaged Navier-Stokes. <turbulenceModelSolverParameters>`
 - :ref:`Detached Eddy Simulation. <turbulenceModelSolverParameters>`
 - :ref:`Laminar-Turbulent Transition model. <transitionModelSolverParameters>`
 - :ref:`Blade Element Theory model <bladeElementTheory>`
 - :ref:`Actuator Disk model. <actuatorDisksParameters>`
-- Porous Media model.
+- :ref:`Porous Media model. <porousMediaParameters>`
 
 
 Turbulence Models
