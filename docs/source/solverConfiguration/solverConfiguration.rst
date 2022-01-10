@@ -1,37 +1,5 @@
-.. _api:
-.. currentmodule:: flow360client
-
-*************
-API Reference
-*************
-
-Installing Flow360 Client
-*************************
-
-The Flow360 client can be installed (and updated) from PyPI.  Make sure you have the Python setuptools.  If not, sudo apt-get install python3-setuptools.
-
-.. code-block:: python
-
-    pip3 install flow360client
-    pip3 install --upgrade flow360client
-
-Sign in with you Account and Password
-*************************************
-
-An account can be created at https://client.flexcompute.com/app/signup.
-
-.. code-block:: python
-
-        python3
-        >>> import flow360client
-        enter your email registered at flexcompute:********@gmail.com
-        Password: ***********
-        Do you want to keep logged in on this machine ([Y]es / [N]o)Y
-
-Once you have installed the Flow360 client and signed into it, you can run your first case using the ONERA M6 Wing tutorial in the `Quick Start <quickstart.rst>`_ section of this document.
-
-Configuration Parameters
-************************
+Solver Configuration
+********************
 
 The current Mesh processor and Solver input configuration parameters for Flow360 are:
 
@@ -121,6 +89,8 @@ freestream
    :widths: 20, 20, 70
    :header-rows: 1
    :delim: @
+
+.. _boundariesParameters:
 
 boundaries
 ----------
@@ -396,6 +366,8 @@ navierStokesSolver
    | viscousWaveSpeedScale          |     0    | Scales the wave speed according to a viscous flux. 0.0 is no speed correction, with larger values providing a larger viscous wave speed correction. |
    +--------------------------------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
 
+.. _turbulenceModelSolverParameters:
+
 turbulenceModelSolver
 ---------------------
 
@@ -428,6 +400,8 @@ turbulenceModelSolver
    | DDES                           |      FALSE      | "true" enables Delayed Detached Eddy Simulation. Supported for both SpalartAllmaras and kOmegaSST turbulence models,                      |
    |                                |                 | with and without AmplificationFactorTransport transition model enabled                                                                    |
    +--------------------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. _transitionModelSolverParameters:
 
 transitionModelSolver
 ---------------------
@@ -498,7 +472,14 @@ timeStepping
    +------------------+---------+----------------------------------------------------------------------+
    | CFL->rampSteps   |    40   | Number of steps before reaching the final CFL within 1 physical step |
    +------------------+---------+----------------------------------------------------------------------+
- 
+
+
+.. note::
+
+   The :code:`timeStepSize` is in solver units (non-dimensional), where time-scale is mesh unit divided by freestream speed of sound. So a time of :code:`timeStepSize=1` means the time it takes for sound to travel 1 mesh unit at freestream.
+
+
+
 slidingInterfaces (list)
 ------------------------
 
@@ -527,6 +508,8 @@ slidingInterfaces (list)
    +-------------------+---------+-----------------------------------------------------------------------------------------------+
    | volumeName        |  Empty  | a list of dynamic volume names related to the above {omega, centerOfRotation, axisOfRotation} |
    +-------------------+---------+-----------------------------------------------------------------------------------------------+
+
+.. _actuatorDisksParameters:
 
 actuatorDisks (list)
 --------------------

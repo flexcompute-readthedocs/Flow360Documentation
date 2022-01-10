@@ -9,6 +9,6 @@ Capabilities
 .. toctree::
     :maxdepth: 2
 
-    capabilityDetails/overview
-    capabilityDetails/automatedMeshing
-    capabilityDetails/bladeElementTheory
+    overview
+    automatedMeshing
+    bladeElementTheory
