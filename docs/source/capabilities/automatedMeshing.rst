@@ -33,6 +33,8 @@ which will create a sphere of radius = 1 at (0, 0, 0). The face of the sphere wi
    Engineering Sketch Pad view of the geometry.
 
 
+.. _ESPtoSurfaceMeshSection:
+
 Surface Meshing
 ===============
 
@@ -68,6 +70,8 @@ Outputs\:
 - :code:`surfaceMeshId`
 
 For a full description of config.json for surface mesher see :ref:`here.<JSON surface mesher>`
+
+.. _SurfaceToVolumeMeshSection:
 
 Volume Meshing
 ==============
