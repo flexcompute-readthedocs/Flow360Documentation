@@ -478,7 +478,7 @@ timeStepping
 
    The :code:`timeStepSize` is in solver units (non-dimensional), where time-scale is mesh unit divided by freestream speed of sound. So a time of :code:`timeStepSize=1` means the time it takes for sound to travel 1 mesh unit at freestream.
 
-
+.. _slidingInterfacesParameters:
 
 slidingInterfaces (list)
 ------------------------
@@ -546,6 +546,8 @@ BETDisks (list)
    :widths: 20, 10, 70
    :header-rows: 1
    :delim: @
+
+.. _porousMediaParameters:
 
 porousMedia (list)
 --------------------
