@@ -12,6 +12,11 @@ Overview
 Manual Meshing
 --------------
 
+.. toctree::
+    :maxdepth: 2
+
+    manualMeshing
+
 Automated Meshing
 -----------------
 
