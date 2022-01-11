@@ -10,5 +10,4 @@ Capabilities
     :maxdepth: 2
 
     overview
-    automatedMeshing
     bladeElementTheory

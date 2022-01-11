@@ -15,4 +15,7 @@ Manual Meshing
 Automated Meshing
 -----------------
 
+.. toctree::
+    :maxdepth: 2
 
+    automatedMeshing
