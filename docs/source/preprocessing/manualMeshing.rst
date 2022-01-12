@@ -192,7 +192,7 @@ Surface
 Sizing
 ^^^^^^
 
-The following spreadsheet provides guidance for specifying element lengths for the surface mesh. Node spacing, and resulting element sizing, typically is handled along edges bounding surface patches. As such, this spreadsheet provides guidance based on common features (LE, TE) found in traditional aircraft that should be defined by bounding edges. Maximum cell sizes are also provided at the component level and are applicable to interior surface element sizing.
+The following table provides guidance for specifying element lengths for the surface mesh. Node spacing, and resulting element sizing, typically is handled along edges bounding surface patches. As such, this table provides guidance based on common features (LE, TE) found in traditional aircraft that should be defined by bounding edges. Maximum cell sizes are also provided at the component level and are applicable to interior surface element sizing.
 
 .. csv-table::
     :file: ./meshGuidelines.csv
