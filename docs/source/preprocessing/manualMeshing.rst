@@ -92,8 +92,10 @@ Volume
 
     -   Multiple fluid domains are allowable but should create a continuous flowfield
     -   Interfaces between domains **must** be conformal
+
         -   Overset mesh is not currently supported in Flow360
         -   If domain motion is intended see "Rotational interfaces" above
+
     -   Nearfield domains (geometry enclosures) should be generated with max element size consistent with that of the surface mesh, target isotropic volume elements
     -   Farfield domains (flowfield enclosures) should increase mesh size away from geometry at a growth rate (GR) of roughly :math:`1.2` to a maximum consistent with farfield boundary surface mesh
 
@@ -162,15 +164,15 @@ Flow360
     -   Boundaries **must** be exported as “Elements_t” type, which contains connectivity information necessary in Flow360
     -   The CGNS tree structure should be of the form base > block > boundary
 
-        -   Multiple blocks (domains) should be at the same level, 2:sup:`nd`
-        -   Multiple boundaries (no-slip walls) should be at the same level, 3:sup:`rd`, within their respective blocks
+        -   Multiple blocks (domains) should be at the same level, 2\ :sup:`nd`\
+        -   Multiple boundaries (no-slip walls) should be at the same level, 3\ :sup:`rd`\ , within their respective blocks
         -   Block interfaces should be split so that one interface is contained within each adjacent block
 
     -   A Flow360Mesh.json file is preferable to define no-slip boundaries
     -   Boundary names will be strings for CGNS meshes
 
-        -   If multi-block mesh, format must be <block-name>/<boundary-name>
-        -   If tri and quad elements are present, exported format may be tri_<boundary-name> and quad_<boundary-name>, both must be specified in Flow360Mesh.json file
+        -   If multi-block mesh, format will be <block-name>/<boundary-name>
+        -   If tri and quad elements are present, the exported format may be tri_<boundary-name> and quad_<boundary-name>, both need to be specified in Flow360Mesh.json file
 
     -   CGNS meshes are appropriate for multi-block motion
 
@@ -194,8 +196,10 @@ The following spreadsheet provides guidance for specifying element lengths for t
 .. csv-table::
     :file: ./meshGuidelines.csv
     :header-rows: 1
+    :widths: "auto"
 
 Definitions:
+
 -   MAC = mean aerodynamic chord (from primary aerodynamic surface)
 -   D = effective diameter (max width for fuselage, disk diameter for rotor)
 -   L = total length (nose-tail for fuselage, largest length otherwise)
@@ -207,8 +211,8 @@ Definitions:
 Directions:
 
 1.  Consider the applicable geometry (components and features) of the working model
-2.	Add (copy-paste) rows as needed to include comparable geometry not initially defined, this may include scenarios where features vary significantly within a given component or multiple components of similar type exist
-3.	Measure reference geometry directly or copy from specification material and input **using the same units present in the working model**
+2.	Add comparable geometry not defined here, this may include scenarios where features vary significantly within a given component or multiple components of similar type exist
+3.	Measure reference geometry directly or copy from specification material and calculate node spacings **using the same units present in the working model**
 4.	Apply the resulting node spacing in model, noting that the smaller of two value should be utilized where conflicts arise
 
 .. note::
