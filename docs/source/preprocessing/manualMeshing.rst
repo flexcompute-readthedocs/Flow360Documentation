@@ -181,6 +181,8 @@ Flow360
 Targets
 =======
 
+Recommendations for surface/volume mesh sizing and quality metrics are provided here. These are *target* values and should not be considered absolute requirements. Additional consideration is often required when complex flow and geometric features impose restrictions during mesh generation.
+
 Surface
 -------
 
@@ -188,6 +190,19 @@ Sizing
 ^^^^^^
 
 The following spreadsheet provides guidance for specifying element lengths for the surface mesh. Node spacing, and resulting element sizing, typically is handled along edges bounding surface patches. As such, this spreadsheet provides guidance based on common features (LE, TE) found in traditional aircraft that should be defined by bounding edges. Maximum cell sizes are also provided at the component level and are applicable to interior surface element sizing.
+
+.. csv-table::
+    :file: ./meshGuidelines.csv
+    :header-rows: 1
+
+Definitions:
+-   MAC = mean aerodynamic chord (from primary aerodynamic surface)
+-   D = effective diameter (max width for fuselage, disk diameter for rotor)
+-   L = total length (nose-tail for fuselage, largest length otherwise)
+-   c = local chord length (component chord for flap, tip chord for wing)
+-   b = local span length (semi-span for wing, component span for flap)
+-   t = thickness (trailing edge for wing, fore-aft distance for rotor disk)
+
 
 Directions:
 
@@ -204,7 +219,7 @@ Quality
 
 Quality metrics reported vary by meshing software utilized, surface/volume element type, and the intended export type specified by the user. As such, the following quality metrics are general and may need to be modified for review in various meshing software.
 
--   :math:`\text{Max included angle} < 160\circ` (measure of skewness)
+-   :math:`\text{Max included angle} < 160^{\circ}` (measure of skewness)
 
     -   A highly skewed element will likely have a single large interior angle
     -   Problematic elements are typically found between parallel edges with dissimilar node spacing/distributions and between edges that join tangentially
@@ -223,6 +238,7 @@ Quality metrics reported vary by meshing software utilized, surface/volume eleme
     -   Modify node spacing along neighboring edges to match at intersections
 
 -   Additional checks:
+
     -   Intersecting elements = element faces pass through one another
     -   Distance from geometry = nodes are not located on underlying geometry
     -   Missing elements = surface mesh failed to generate or gaps remain (not watertight)
@@ -248,5 +264,6 @@ Volume mesh quality metrics also vary widely. The following are general metrics 
     -   Refine surface mesh underlying stopped layers to allow for more isotropic volume elements
 
 -   Additional checks:
+
     -   Intersecting elements = element faces pass through one another
     -   Negative volume = degenerate elements that fold/twist back on themselves
