@@ -197,7 +197,7 @@ The following spreadsheet provides guidance for specifying element lengths for t
 .. csv-table::
     :file: ./meshGuidelines.csv
     :header-rows: 1
-    :widths: "auto"
+    :widths: 10 10 10 10 60
 
 Definitions:
 
