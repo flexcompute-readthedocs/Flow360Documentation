@@ -1,5 +1,8 @@
 .. _manualMeshing:
 
+Manual Meshing
+**************
+
 Overview
 ========
 
@@ -128,6 +131,8 @@ Volume
         -   Apply :math:`maxSurfaceElementLength \cdot \sqrt{3}` sizing for refinement regions near surfaces
         -   Larger refinement regions can be extended further downstream, while still enclosing smaller regions, with incrementally larger sizing applied
 
+.. _manualMeshingFlow360Section:
+
 Flow360
 -------
 
@@ -141,16 +146,16 @@ Flow360
 -   Flow360 accepts CGNS or UGRID mesh formats, typically exported from meshing software
 
     -   CGNS single- and multi-block (multiple fluid domains) are allowable
-    -   UGRID (AFRL3) big-\  (\ *.b8.ugrid) and little-\  (\ *.lb8.ugrid) endianness are allowable
+    -   UGRID (AFRL3) big-\  (\*.b8.ugrid) and little-\  (\*.lb8.ugrid) endianness are allowable
 
         -   Endianness **must** be specified during upload to Flow360 if not defined via mesh filename
 
-    -   *.gz or *.bz2 compressions are allowable
+    -   \*.gz or \*.bz2 compressions are allowable
     -   Mesh filename cannot have spaces
 
 -   UGRID considerations:
 
-    -   UGRID exports with an associated *.mapbc file may be used for no-slip wall boundary definition
+    -   UGRID exports with an associated \*.mapbc file may be used for no-slip wall boundary definition
 
         -   See flow360client.noSlipWallsFromMapbc() in :ref:`Python API Reference<api>`
 
