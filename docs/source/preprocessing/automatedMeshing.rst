@@ -6,13 +6,13 @@ Automated Meshing
 Overview
 ========
 
-Flow360 offers automated meshing, from CAD geometry through a surface mesh to volume mesh. The supported CAD format is \*.csm file which is Engineering Sketch Pad (EPS) format. The generated volume format is CGNS.
+Flow360 offers automated meshing, from CAD geometry to a surface mesh and finally to a volume mesh. The supported CAD format is \*.csm file which is Engineering Sketch Pad (EPS) format. The generated volume format is CGNS.
 
 Geometry
 ========
 
 The Engineering Sketch Pad is a solid-modeling, feature-based, web-enabled system for building parametric geometry. It can be downloaded from `ESP's website <https://acdl.mit.edu/ESP/>`_.
-The geometry in ESP is described in text \*.csm file containing all CAD instructions. See csm example\:
+The geometry in ESP is described in a text \*.csm file containing all CAD instructions. See csm example\:
 
 .. code-block::
 
@@ -38,7 +38,7 @@ which will create a sphere of radius = 1 at (0, 0, 0). The face of the sphere wi
 Surface Meshing
 ===============
 
-The surface mesher takes geometry file and configuration JSON file as input parameters and generates surface mesh. The meshing configuration file (or dict in python), also called surfaceMesh.json, contains information such as maximum element edge length, curvature resolution angle or growth rate of 2D layers. See JSON example:
+The surface mesher takes the geometry file and configuration JSON file as input parameters and generates a surface mesh. The meshing configuration file (or dict in python), also called surfaceMesh.json, contains information such as maximum element edge length, curvature resolution angle or growth rate of 2D layers. See JSON example:
 
 .. literalinclude:: surfaceMesh.example.json
     :language: JSON
@@ -76,9 +76,9 @@ For a full description of config.json for surface mesher see :ref:`here.<JSON su
 Volume Meshing
 ==============
 
-The volume mesher takes :code:`surfaceMeshId` and config JSON as arguments and generates CGNS mesh suitable for Flow360 solver. The JSON configuration file (or dict in python) specifies first layer thickness, growth rate, sizes and location of refinement zones (sources) and actuator disks. All geometry from ESP is treated as a no-slip wall therefore prism layers will be grown of geometry surfaces. 
+The volume mesher takes a :code:`surfaceMeshId` and config JSON as arguments and generates a CGNS mesh suitable for the Flow360 solver. The JSON configuration file (or dict in python) specifies the first layer thickness, growth rate, sizes and location of refinement zones (sources) and actuator disks. All geometry from ESP is treated as a no-slip wall therefore prism layers will be grown off geometry surfaces. 
 
-Farfield will be created automatically\: 
+The farfield will be created automatically\: 
 
 - semi-spherical if the geometry is bounded by :code:`y=0` plane. The :code:`y=0` plane will be set as a symmetry plane boundary condition.  
 - spherical otherwise.

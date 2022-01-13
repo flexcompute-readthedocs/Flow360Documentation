@@ -30,7 +30,10 @@ flow360client module
 .. py:function:: NewCaseListWithPhase(meshId, config, caseName=None, tags=[], priority='high', parentId=None, phaseCount=1)
    :module: flow360client
 
-   Submits a sequence of cases from mesh Id, where each case consists of <physical time steps>/<phaseCount> and each case is forked from previous one, except for the first one.
+   Submits a sequence of cases sharing the same meshId, where each case forks from the previous one.
+   The maxPhysicalStep is split equally among the list of cases. This capability should only be used for
+   conducting a long unsteady simulation to avoid running a single case for long time. For example, if the
+   maxPhysicalStep is 1000 and phaseCount=2, the above API submits 2 cases with maxPhysicalStep=500 for each.
    
    :param meshId: Mesh Id of format xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
    :type meshId: str
@@ -144,6 +147,52 @@ flow360client module
    :rtype: http response
    
 
+.. py:function:: DownloadResultsFile(caseId, src, target=None)
+   :module: flow360client.case
+
+   For a given caseId downloads a result file. The following files can be downloaded through this function:
+   
+       * `surfaces.tar.gz` - surface data of the case, for visualisation or postprocessing
+       * `volumes.tar.gz` - volumetric data of the case, for visualisation or postprocessing
+       * `nonlinear_residual_v2.csv`- nonlinear residuals. The header of the file is ``physical_step, pseudo_step, <equation>...``
+       * `linear_residual_v2.csv` - linear residuals. The header of the file is ``physical_step, pseudo_step, 0_NavierStokes_linearIterations, <equation>..., 0_<turbulence model>_linearIterations, <equation>...``
+       * `cfl_v2.csv` - cfl number. The header of the file is ``physical_step, pseudo_step, <equation>...``
+       * `minmax_state_v2.csv` - min and max state of the case. Contains minimum value of pressure, minimum value of density, and maximum value of velocity magnitude, with respective locations. The header of the file is ``physical_step, pseudo_step, min_rho, min_rho_x, min_rho_y, min_rho_z, min_p, min_p_x, min_p_y, min_p_z, max_umag, max_umag_x, max_umag_y, max_umag_z``
+       * `surface_forces_v2.csv` - all surface forces splited by boundary (no-slip wall surfaces). The header of the file is ``physical_step, pseudo_step, <name>_CL, <name>_CD, <name>_CFx, <name>_CFy, <name>_CFz, <name>_CMx, <name>_CMy, <name>_CMz, <name>_CLPressure, <name>_CDPressure, <name>_CFxPressure, <name>_CFyPressure, <name>_CFzPressure, <name>_CMxPressure, <name>_CMyPressure, <name>_CMzPressure, <name>_CLViscous, <name>_CDViscous, <name>_CFxViscous, <name>_CFyViscous, <name>_CFzViscous, <name>_CMxViscous, <name>_CMyViscous, <name>_CMzViscous, <name>_HeatTransfer``, where ``name`` is the name of the no-slip wall surface.
+       * `total_forces_v2.csv` - total forces of the case integrated over all no-slip walls. The header of the file is ``physical_step, pseudo_step, CL, CD, CFx, CFy, CFz, CMx, CMy, CMz, CLPressure, CDPressure, CFxPressure, CFyPressure, CFzPressure, CMxPressure, CMyPressure, CMzPressure, CLViscous, CDViscous, CFxViscous, CFyViscous, CFzViscous, CMxViscous, CMyViscous, CMzViscous, HeatTransfer``
+       * `bet_forces_v2.csv` - forces from BET model. The header of the file is ``physical_step, pseudo_step, Disk<i>_Force_x, Disk<i>_Force_y, Disk<i>_Force_z, Disk<i>_Moment_x, Disk<i>_Moment_y, Disk<i>_Moment_z, Disk<i>_Blade<b>_R<j>_Radius, Disk<i>_Blade<b>_R<j>_ThrustCoeff, Disk<i>_Blade<b>_R<j>_TorqueCoeff``, where ``i`` is an index of BET disk, ``b`` is an index of the blade, and ``j`` is an index of the loading node.
+       * `actuatorDisk_output_v2.csv` - output of actuatorDisk model. The header of the file is ``physical_step, pseudo_step, Disk<i>_Power``, where ``i`` is an index of the actuator disk.
+   
+   :param caseId: Case Id of format xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+   :type caseId: str
+   :param src: Filename to be downloaded.
+   :type src: str
+   :param target: Filename to be used to save the file locally. If not provided the local filename will be the same as src, by default None
+   :type target: str, optional
+   
+
+.. py:function:: DownloadSurfaceResults(caseId, fileName=None)
+   :module: flow360client.case
+
+   Downloads surface results for a give caseId.
+   
+   :param caseId: Case Id of format xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+   :type caseId: str
+   :param fileName: Filename to be used to save the file. Must end with '.tar.gz'. If not provided, the file will be saved as 'surfaces.tar.gz', by default None
+   :type fileName: str, optional
+   
+
+.. py:function:: DownloadVolumetricResults(caseId, fileName=None)
+   :module: flow360client.case
+
+   Downloads volumetric results for a give caseId.
+   
+   :param caseId: Case Id of format xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+   :type caseId: str
+   :param fileName: Filename to be used to save the file locally. Must end with '.tar.gz'. If not provided, the file will be saved as 'volumes.tar.gz', by default None
+   :type fileName: str, optional
+   
+
 .. py:function:: GetCaseInfo(caseId)
    :module: flow360client.case
 
@@ -156,8 +205,101 @@ flow360client module
    :rtype: http response
    
 
-.. py:module:: flow360client.casehelper
+.. py:function:: GetCaseLinearResidual(caseId)
+   :module: flow360client.case
 
+   Gets solver linear residuals for a given caseId
+   
+   :param caseId: Case Id of format xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+   :type caseId: str
+   
+   :returns: Returns dict consisting linear residuals for all the equations. The format is the following (for a case with SpalartAllmaras turbulence model):
+   
+             .. code-block::
+   
+                 {
+                     'physical_step':                        [...],
+                     'pseudo_step':                          [...],
+                     '0_NavierStokes_linearIterations':      [...],
+                     '0_cont':                               [...],
+                     '1_momx':                               [...],
+                     '2_momy':                               [...],
+                     '3_momz':                               [...],
+                     '4_energ':                              [...],
+                     '5_SpalartAllmaras_linearIterations':   [...],
+                     '5_nuHat':                              [...]
+                 }
+   :rtype: dict
+   
+
+.. py:function:: GetCaseResidual(caseId)
+   :module: flow360client.case
+
+   Gets solver nonlinear residuals for a given caseId
+   
+   :param caseId: Case Id of format xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+   :type caseId: str
+   
+   :returns: Returns dict consisting nonlinear residuals for all the equations. The format is the following:
+   
+             .. code-block::
+   
+                 {
+                     'physical_step': [...],
+                     'pseudo_step':   [...],
+                     '0_cont':        [...],
+                     '1_momx':        [...],
+                     '2_momy':        [...],
+                     '3_momz':        [...],
+                     '4_energ':       [...],
+                     '5_nuHat':       [...]
+                 }
+   :rtype: dict
+   
+
+.. py:function:: GetCaseTotalForces(caseId)
+   :module: flow360client.case
+
+   For a given caseId gets the case's total forces
+   
+   :param caseId: Case Id of format xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+   :type caseId: str
+   
+   :returns: Returns a dict consisting total forces in the following format:
+   
+             .. code-block::
+   
+                 {
+                     'physical_step':    [...],
+                     'pseudo_step':      [...],
+                     'CL':               [...],
+                     'CD':               [...],
+                     'CFx':              [...],
+                     'CFy':              [...],
+                     'CFz':              [...],
+                     'CMx':              [...],
+                     'CMy':              [...],
+                     'CMz':              [...],
+                     'CLPressure':       [...],
+                     'CDPressure':       [...],
+                     'CFxPressure':      [...],
+                     'CFyPressure':      [...],
+                     'CFzPressure':      [...],
+                     'CMxPressure':      [...],
+                     'CMyPressure':      [...],
+                     'CMzPressure':      [...],
+                     'CLViscous':        [...],
+                     'CDViscous':        [...],
+                     'CFxViscous':       [...],
+                     'CFyViscous':       [...],
+                     'CFzViscous':       [...],
+                     'CMxViscous':       [...],
+                     'CMyViscous':       [...],
+                     'CMzViscous':       [...],
+                     'HeatTransfer':     [...]
+                 }
+   :rtype: dict
+   
 
 .. py:module:: flow360client.mesh
 
@@ -198,9 +340,6 @@ flow360client module
    :rtype: list
    
 
-.. py:module:: flow360client.studio
-
-
 .. py:module:: flow360client.surfaceMesh
 
 
@@ -239,6 +378,3 @@ flow360client module
    :returns: List of surface meshes
    :rtype: list
    
-
-.. py:module:: flow360client.task
-
