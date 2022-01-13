@@ -176,7 +176,7 @@ Flow360
     -   A Flow360Mesh.json file is preferable to define no-slip boundaries
     -   Boundary names will be strings for CGNS meshes
 
-        -   If multi-block mesh, format will be <block-name>/<boundary-name>
+        -   Flow360Mesh.json boundary definition format will be <block-name>/<boundary-name>
         -   If tri and quad elements are present, the exported format may be tri_<boundary-name> and quad_<boundary-name>, both need to be specified in Flow360Mesh.json file
 
     -   CGNS meshes are appropriate for multi-block motion
