@@ -24,7 +24,7 @@ Questions to ask oneself:
 
 -   Where are large gradients (boundary layers, tip vortices, shocks, transition) expected in the flowfield?
 -   What regions of the model (wing, control surface, wake) are most important to the desired results?
--   What are the operating conditions (Mach, altitude, attitude, rotation rates) and are they expected to vary?
+-   What are the operating conditions (Mach, altitude, :math:`\alpha`, :math:`\beta`, :math:`\Omega`) and are they expected to vary?
 -   What balance of accuracy (flow physics captured) versus speed (solver wall-time) is desired?
 
 Recommendations
@@ -37,7 +37,7 @@ See the following section, :ref:`Targets<Targets>`, for element sizing and quali
 Surface
 -------
 
--   Triangular (tri) and quadrilateral (quad) elements are allowable, all tri is preferable
+-   Triangular (tri) and quadrilateral (quad) elements are allowable
 
     -   Elements **must** be first-order
 
@@ -70,7 +70,7 @@ Surface
 
     -   On flat, circular surfaces nodes **must** be positioned on concentric rings
     -   On cylindrical surfaces extruding the outer circular edge/nodes with consistent spacing is preferable, target element size for isotropic elements
-    -   Should be roughly :math:`\text{3-5%}` larger than diameter of rotating geometry and roughly :math:`10%` larger than max height (axis of rotation direction) of rotating geometry
+    -   Should be roughly :math:`\text{3-5%}` larger than diameter of rotating geometry and roughly :math:`\text{10%}` larger than max height (axis of rotation direction) of rotating geometry
     -   Generating rotational interface meshes via scripting is often required, the FlexCompute team can aid in providing code and/or mesh for merging into future models
 
 -   Geometry:
@@ -136,7 +136,7 @@ Volume
 Flow360
 -------
 
--   Boundary conditions (BCs) should be specified as the mesh is generated
+-   :ref:`Boundary conditions<boundariesParameters>` (BCs) should be specified as the mesh is generated
 
     -   Different components of the model (fuselage, wing) should be separated logically to allow for analysis of respective influences on the overall results
     -   All surface mesh and rotating interfaces should be defined as no-slip wall BCs
@@ -165,7 +165,7 @@ Flow360
 
 -   CGNS considerations:
 
-    -   CGNS mesh should be export as an HDF5 file type
+    -   CGNS mesh should be exported as an HDF5 file type
     -   Boundaries **must** be exported as “Elements_t” type, which contains connectivity information necessary in Flow360
     -   The CGNS tree structure should be of the form base > block > boundary
 
