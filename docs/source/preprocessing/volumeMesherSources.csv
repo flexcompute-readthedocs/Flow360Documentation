@@ -1,5 +1,5 @@
 Option@ Type@ Default@ Example@ Description
-type@ [“box”, “cylinder”]@ “box”@ “box”@ Type of source. Supported box and cylinder. Cylinder’s axis is along the z-direction.
+type@ [“box”, “cylinder”]@ “box”@ “box”@ Type of source. Supported source shapes: box and cylinder. Cylinder’s axis is along the z-direction.
 size@ 3-array@ REQUIRED@ [4, 3, 2]@ For type: box. Refinement zone size in x, y and z directions.
 radius@ float@ REQUIRED@ 4@ For type: cylinder. Radius of the cylinder.
 lengthZ@ float@ REQUIRED@ 5@ For type: cylinder. Length of the cylinder. Cylinder’s axis is along the z-direction.
