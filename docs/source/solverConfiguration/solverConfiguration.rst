@@ -405,6 +405,11 @@ turbulenceModelSolver
 
 transitionModelSolver
 ---------------------
+The laminar to turbulence transition model supported by Flow360 is the 2019b version of the Amplification Factor Transport Model created by James Coder, University of Tennessee.
+This models adds two additional equations to the flow solver in order to solve for the amplification factor and intermittency flow quantities.
+More details about the model can be found at: https://turbmodels.larc.nasa.gov/aft_transition_3eqn.html.
+Below are a list of configuration parameters for the transition model.
+Either Ncrit or turbulenceIntensityPercent can be used to tune the location of transition from laminar to turbulent flow.
 
 .. table::
    :widths: 25 15 60
@@ -551,6 +556,10 @@ BETDisks (list)
 
 porousMedia (list)
 --------------------
+The porous media model supported by Flow360 is the Darcy-Forchheimer model which has two coefficients: Darcy coefficient for viscous losses and Forchheimer coefficient for inertial losses.
+The model acts by adding a sink term to the momentum equations.
+More details about the model can be found at https://openfoamwiki.net/index.php/DarcyForchheimer.
+Below are a list of configuration parameters for the porous media model.
 
 .. csv-table::
    :file: ./porousTable.csv
