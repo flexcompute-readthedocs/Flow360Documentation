@@ -1,0 +1,27 @@
+﻿Component,Feature,Reference,Criteria,Source
+**Global**,,,,**general guidance**
+,Max,D,1%∙D,
+,Min,MAC,1%∙MAC,
+**Fuselage**,,,,**HLPW4 (Mesh C)**
+,Max,MAC,1%∙MAC,
+,Nose,D,TBD,
+,Empennage,D,TBD,
+,Root,b,0.1%∙b,spanwise spacing (at juncture)
+**Wing**,,,,**HLPW4 (Mesh C)**
+,Max,MAC,1%∙MAC,
+,LE,c,0.1%∙c,chordwise spacing
+,,c,1%∙c,spanwise spacing (AR=10)
+,TE,t,25%∙t,chordwise spacing (4x elem across blunt TE)
+,,t,250%∙t,spanwise spacing (AR=10)
+,Root/Tip,b,0.1%∙b,spanwise spacing (at juncture or tip)
+**Rotor**,,,,**mimic HLPW4 (Mesh C)**
+,Max,D,1%∙D/2,
+,LE,c,0.1%∙c,chordwise spacing
+,,c,1%∙c,spanwise spacing (AR=10)
+,TE,t,25%∙t,chordwise spacing (4x elem across blunt TE)
+,,t,250%∙t,spanwise spacing (AR=10)
+,Root/Tip,D,0.1%∙D/2,spanwise spacing (at juncture or tip)
+**Cylinder**,,,,**general guidance**
+,Max,D,10%∙D,
+,Tip,D,1%∙pi∙D,min element size along circumference (target 100 cells)
+,Length,L,1%∙L,max element size along axial length
