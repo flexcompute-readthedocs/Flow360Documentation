@@ -5,5 +5,5 @@ Publications
 .. toctree::
     
     webinar
-    whitePaper
+    papers
 
