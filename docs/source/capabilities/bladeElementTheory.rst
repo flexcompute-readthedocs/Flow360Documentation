@@ -93,3 +93,10 @@ BET Visualization
 
 An additional option :code:`betMetrics` in :ref:`volumeOutput <volumeOutputInputParameters>` is available to visualize the BET related quantities.
 
+
+.. raw:: html
+
+    <div style="position: relative; padding-bottom: 20px; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/sIQk0sguKmI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
