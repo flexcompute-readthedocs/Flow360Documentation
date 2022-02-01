@@ -110,7 +110,7 @@ boundaries
    |                         |   }                                                                        |                                                                                  |
    +-------------------------+----------------------------------------------------------------------------+----------------------------------------------------------------------------------+
    | NoSlipWall              | .. code-block:: json                                                       | Sets no-slip wall condition. Optionally, a tangential velocity can be prescribed |
-   |                         |                                                                            | on the wall using the keyword "Velocity".                                        |
+   |                         |                                                                            | on the wall using the keyword "Velocity". An example: :ref:`noSlipWall_velocity` |
    |                         |    "boundary_name" :                                                       |                                                                                  |
    |                         |    {                                                                       |                                                                                  |
    |                         |     "type" : "NoSlipWall",                                                 |                                                                                  |  
@@ -188,6 +188,7 @@ boundaries
    +-------------------------+----------------------------------------------------------------------------+----------------------------------------------------------------------------------+
 
 *Note: "expression" is an expression with "x", "y", "z" as independent variables.*
+*An example of NoSlipWall boundary with prescribed velocity
 
 .. _volumeOutputInputParameters:
 
@@ -568,3 +569,15 @@ Below are a list of configuration parameters for the porous media model.
    :widths: 30, 15, 70
    :header-rows: 1
    :delim: @
+
+.. _examples_Flow360json:
+
+Examples of Flow360.json
+========================
+
+.. _noSlipWall_velocity:
+
+1. a NoSlipWall boundary with a prescribed velocity
+.. literalinclude:: sampleJsons/noSlipWall_velocity.json
+   :linenos:
+
