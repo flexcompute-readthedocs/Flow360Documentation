@@ -1,0 +1,4 @@
+"boundary_name":{
+    "type":"NoSlipWall",
+    "Velocity":["0","0.1*x+exp(y)+z^2","cos(0.2*x*pi)+sqrt(z^2+1)"]
+}
