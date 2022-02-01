@@ -110,7 +110,7 @@ boundaries
    |                         |   }                                                                        |                                                                                  |
    +-------------------------+----------------------------------------------------------------------------+----------------------------------------------------------------------------------+
    | NoSlipWall              | .. code-block:: json                                                       | Sets no-slip wall condition. Optionally, a tangential velocity can be prescribed |
-   |                         |                                                                            | on the wall using the keyword "Velocity". An example: :ref:`NoSlipWall with velocity <noSlipWall_velocity>` |
+   |                         |                                                                            | on the wall using the keyword "Velocity". An example: :ref:`sample <wall_vel>`   |
    |                         |    "boundary_name" :                                                       |                                                                                  |
    |                         |    {                                                                       |                                                                                  |
    |                         |     "type" : "NoSlipWall",                                                 |                                                                                  |  
@@ -575,7 +575,7 @@ Below are a list of configuration parameters for the porous media model.
 Examples of Flow360.json
 ========================
 
-.. _noSlipWall_velocity:
+.. _wall_vel:
 
 1. a NoSlipWall boundary with a prescribed velocity
 
