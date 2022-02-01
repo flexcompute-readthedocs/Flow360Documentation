@@ -110,7 +110,7 @@ boundaries
    |                         |   }                                                                        |                                                                                  |
    +-------------------------+----------------------------------------------------------------------------+----------------------------------------------------------------------------------+
    | NoSlipWall              | .. code-block:: json                                                       | Sets no-slip wall condition. Optionally, a tangential velocity can be prescribed |
-   |                         |                                                                            | on the wall using the keyword "Velocity". An example: :ref:`noSlipWall_velocity` |
+   |                         |                                                                            | on the wall using the keyword "Velocity". An example: :ref:`NoSlipWall with velocity <noSlipWall_velocity>` |
    |                         |    "boundary_name" :                                                       |                                                                                  |
    |                         |    {                                                                       |                                                                                  |
    |                         |     "type" : "NoSlipWall",                                                 |                                                                                  |  
