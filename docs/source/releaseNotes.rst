@@ -1,8 +1,8 @@
-ReleaseNotes
-============
+Release Notes
+*************
 
 
-.. toctree::
- 
-    releaseNotes/release-21.4.1.0
+
+.. include:: releaseNotes/release-21.4.1.0.rst
+
 
