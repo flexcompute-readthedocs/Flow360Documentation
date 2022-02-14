@@ -37,7 +37,7 @@ surfaceOutput,outputFormat,paraview,"""paraview"" or ""tecplot"""
 ,primitiveVars,FALSE,"rho, u, v, w, p"
 ,Cp,FALSE,Coefficient of pressure
 ,Cf,FALSE,Skin friction coefficient
-,CfVec,FALSE,Viscous stress coefficient vector
+,CfVec,FALSE,Skin friction coefficient vector
 ,yPlus,FALSE,y+
 ,wallDistance,FALSE,Wall Distance
 ,Mach,FALSE,Mach number
