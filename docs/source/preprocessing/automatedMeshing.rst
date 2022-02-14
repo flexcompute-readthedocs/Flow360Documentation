@@ -11,7 +11,7 @@ Flow360 offers automated meshing, from CAD geometry to a surface mesh and finall
 Geometry
 ========
 
-The Engineering Sketch Pad is a solid-modeling, feature-based, web-enabled system for building parametric geometry. It can be downloaded from `ESP's website <https://acdl.mit.edu/ESP/>`_.
+The Engineering Sketch Pad is a solid-modeling, feature-based, web-enabled system for building parametric geometry. It can be downloaded from `ESP's website <https://acdl.mit.edu/ESP/>`_. Please check out pre-builts, you don't need to compile software from source
 The geometry in ESP is described in a text \*.csm file containing all CAD instructions. See csm example\:
 
 .. code-block::
