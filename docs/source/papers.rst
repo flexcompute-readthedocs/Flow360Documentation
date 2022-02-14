@@ -28,8 +28,9 @@ in forward flight and (2) helicopter hovering mode, where the fundamental limita
 Xrotor could cause a catastrophic design failure. A major cause for this is the tip vortex of the preceding
 blade.
 
-`Runda Ji, Feilin Jia, Philippe Spalart, Zongfu Yu and Qiqi Wang, 2022 Rotor5: Rotor analysis under 5 hours using ultra-fast and high-fidelity CFD simulation and automatic meshing <https://simcloud-public-1.s3.amazonaws.com/publications/Rotor5_arXiv.pdf?download=false>`_
+`Full Paper <https://simcloud-public-1.s3.amazonaws.com/publications/Rotor5_arXiv.pdf?download=false>`_
 
+`Slides <https://simcloud-public-1.s3.amazonaws.com/publications/Rotor5_VFS_Presentation.pdf?download=false>`_
 
 
 Assessment of Detached Eddy Simulation and Sliding Mesh Interface in Predicting Tiltrotor Performance in Helicopter and Airplane Modes
