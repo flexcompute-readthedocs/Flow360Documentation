@@ -55,7 +55,7 @@ c. And by using the meshJson object:
    import json
    meshJson = json.load(open('/path/to/Flow360Mesh.json'))
 
-The `Flow360Mesh.json <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/om6/Flow360Mesh.json?content_disposition=attachment>`_ file for this tutorial has the following contents:
+The `Flow360Mesh.json <https://simcloud-public-1.s3.amazonaws.com/om6/Flow360Mesh.json?content_disposition=attachment>`_ file for this tutorial has the following contents:
 
 .. code-block:: python
 
@@ -66,7 +66,7 @@ The `Flow360Mesh.json <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/
        }
    }
 
-Download the mesh file from `here <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/om6/wing_tetra.1.lb8.ugrid>`_.  
+Download the mesh file from `here <https://simcloud-public-1.s3.amazonaws.com/om6/wing_tetra.1.lb8.ugrid>`_.  
 If using options (a) and (b), use the following command to upload your mesh:
 
 .. code-block:: python
@@ -105,7 +105,7 @@ Replace the mesh_Id with your mesh's ID.
 Run a Case
 ^^^^^^^^^^
 
-The `Flow360.json <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/om6/Flow360.json?content_disposition=attachment>`_ file for this case has the following contents.  A full dictionary of configuration parameters for the JSON input file can be found :ref:`here <Flow360json>`.
+The `Flow360.json <https://simcloud-public-1.s3.amazonaws.com/om6/Flow360.json?content_disposition=attachment>`_ file for this case has the following contents.  A full dictionary of configuration parameters for the JSON input file can be found :ref:`here <Flow360json>`.
 
 .. literalinclude:: files/Flow360_om6.json
    :linenos:

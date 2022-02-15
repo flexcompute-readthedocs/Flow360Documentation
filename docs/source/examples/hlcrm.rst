@@ -36,7 +36,7 @@ The problem considers the flow around the HL-CRM at angles of attack |agr| = 8 |
 Mesh
 ----
 
-Grids have been developed and provided by the workshop to enable a fair comparison across a variety of solvers.  Flow360 supports mesh files formats in AFLR3 and CGNS, or their .gz or .bz2 compressions.  For the purpose of this case study we will use ugrid mesh file, which is of the AFLR3 format.  A medium-resolution mesh, with mixed hexahedral, tetrahedral, prism, and pyramid elements and with about 27M nodes, can be downloaded from `here <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/hlpw3/Woeber_Pointwise_HLCRM_FullGap_HexPrismPyrTets_Medium.b8.ugrid.gz>`_.  The file is already compressed in a .gz format.  Also, download the .mapbc file, to specify the solid wall (no-slip) boundaries, from `here <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/hlpw3/Woeber_Pointwise_HLCRM_FullGap_HexPrismPyrTets_Medium.mapbc?content_disposition=attachment>`_.  Meshes of other resolutions can also be downloaded from `here <https://hiliftpw-ftp.larc.nasa.gov/HiLiftPW3/HL-CRM_Grids/Committee_Grids/B2-HLCRM_UnstrPrismTet_PW/FullGap/AFLR3/>`_.
+Grids have been developed and provided by the workshop to enable a fair comparison across a variety of solvers.  Flow360 supports mesh files formats in AFLR3 and CGNS, or their .gz or .bz2 compressions.  For the purpose of this case study we will use ugrid mesh file, which is of the AFLR3 format.  A medium-resolution mesh, with mixed hexahedral, tetrahedral, prism, and pyramid elements and with about 27M nodes, can be downloaded from `here <https://simcloud-public-1.s3.amazonaws.com/hlpw3/Woeber_Pointwise_HLCRM_FullGap_HexPrismPyrTets_Medium.b8.ugrid.gz>`_.  The file is already compressed in a .gz format.  Also, download the .mapbc file, to specify the solid wall (no-slip) boundaries, from `here <https://simcloud-public-1.s3.amazonaws.com/hlpw3/Woeber_Pointwise_HLCRM_FullGap_HexPrismPyrTets_Medium.mapbc?content_disposition=attachment>`_.  Meshes of other resolutions can also be downloaded from `here <https://hiliftpw-ftp.larc.nasa.gov/HiLiftPW3/HL-CRM_Grids/Committee_Grids/B2-HLCRM_UnstrPrismTet_PW/FullGap/AFLR3/>`_.
 
 .. figure:: figures/Mesh_medium.png
    :align: center
@@ -49,14 +49,14 @@ Setup and Solution
 Upload the Mesh File
 ^^^^^^^^^^^^^^^^^^^^
 
-Now that the `mesh <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/hlpw3/Woeber_Pointwise_HLCRM_FullGap_HexPrismPyrTets_Medium.b8.ugrid.gz>`_ has been downloaded, it can be uploaded to the Flow360 cloud. We will do this using the Python API. Open the Python API and import the Flow360 client.
+Now that the `mesh <https://simcloud-public-1.s3.amazonaws.com/hlpw3/Woeber_Pointwise_HLCRM_FullGap_HexPrismPyrTets_Medium.b8.ugrid.gz>`_ has been downloaded, it can be uploaded to the Flow360 cloud. We will do this using the Python API. Open the Python API and import the Flow360 client.
 
 .. code-block:: python
    
    python3
    import flow360client
 
-Before we upload the mesh, we need to specify our no-slip boundary conditions. We will do this using the .mapbc file (downloaded from `here <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/hlpw3/Woeber_Pointwise_HLCRM_FullGap_HexPrismPyrTets_Medium.mapbc?content_disposition=attachment>`_). Make sure the boundary names in your .mapbc file do not have any spaces, otherwise the python code will not parse it. To specify the no-slip boundaries, use the following command line:
+Before we upload the mesh, we need to specify our no-slip boundary conditions. We will do this using the .mapbc file (downloaded from `here <https://simcloud-public-1.s3.amazonaws.com/hlpw3/Woeber_Pointwise_HLCRM_FullGap_HexPrismPyrTets_Medium.mapbc?content_disposition=attachment>`_). Make sure the boundary names in your .mapbc file do not have any spaces, otherwise the python code will not parse it. To specify the no-slip boundaries, use the following command line:
 
 .. code-block:: python
 
@@ -64,7 +64,7 @@ Before we upload the mesh, we need to specify our no-slip boundary conditions. W
 
 Replace the file path with your own .mapbc file's path.
 
-You can also specify the no-slip boundary conditions using the JSON mesh configuration files (download Flow360Mesh.json file form `here <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/hlpw3/Flow360Mesh.json?content_disposition=attachment>`_).  Use the following commands to do so:
+You can also specify the no-slip boundary conditions using the JSON mesh configuration files (download Flow360Mesh.json file form `here <https://simcloud-public-1.s3.amazonaws.com/hlpw3/Flow360Mesh.json?content_disposition=attachment>`_).  Use the following commands to do so:
 
 .. code-block:: python
 
@@ -114,7 +114,7 @@ To run a case, first prepare a JSON input file, either manually or by using the 
    python3 /path/to/flow360/flow360client/fun3d_to_flow360.py 
    /path/to/fun3d.nml/path/to/hlcrm.mapbc /output/path/for/Flow360.json
 
-The Flow360.json configuration file for this case (|agr| = 16 |deg|) can be downloaded from `here <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/hlpw3/Flow360.json?content_disposition=attachment>`_.  Be sure to change the flow and solver parameters in JSON configuration file for other cases (e.g. |agr| = 8 |deg|).  A full description of the flow configuration parameters can be found :ref:`here <Flow360json>`.  The case can be submitted using the following command line:
+The Flow360.json configuration file for this case (|agr| = 16 |deg|) can be downloaded from `here <https://simcloud-public-1.s3.amazonaws.com/hlpw3/Flow360.json?content_disposition=attachment>`_.  Be sure to change the flow and solver parameters in JSON configuration file for other cases (e.g. |agr| = 8 |deg|).  A full description of the flow configuration parameters can be found :ref:`here <Flow360json>`.  The case can be submitted using the following command line:
 
 .. code-block:: python
 
@@ -159,7 +159,7 @@ Finally, you can download the surface forces by their component names using the 
 
    flow360client.case.GetCaseSurfaceForcesByNames(caseId, <list of boundaryNames>)
 
-Replace the caseId with your own case's ID and <list of boundaryNames> with names of the boundaries. There is a `script <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/dpw4/downloadAll.py?content_disposition=attachment>`_ to download all of the above stuff by: :code:`python3 downloadAll.py caseId`.
+Replace the caseId with your own case's ID and <list of boundaryNames> with names of the boundaries. There is a `script <https://simcloud-public-1.s3.amazonaws.com/dpw4/downloadAll.py?content_disposition=attachment>`_ to download all of the above stuff by: :code:`python3 downloadAll.py caseId`.
 
 Grid Convergence
 ----------------

@@ -57,8 +57,8 @@ Upload the Mesh File
 
 The first thing you need to do is to upload the mesh file and the mesh configuration file to Flow360 cloud. These files can be obtained from here:
 
-- Mesh file: `mesh <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/dpw4/nasa_crm_pointwise_ds_0.001_medium_11.3M.cgns>`_ 
-- Mesh configuration file: `Flow360Mesh.json <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/dpw4/Flow360Mesh.json?content_disposition=attachment>`_ 
+- Mesh file: `mesh <https://simcloud-public-1.s3.amazonaws.com/dpw4/nasa_crm_pointwise_ds_0.001_medium_11.3M.cgns>`_ 
+- Mesh configuration file: `Flow360Mesh.json <https://simcloud-public-1.s3.amazonaws.com/dpw4/Flow360Mesh.json?content_disposition=attachment>`_ 
   
 We will do this step-by-step using the Python API.  Open your Python interpreter and import the Flow360 client, json module and read the configuration of mesh.
 
@@ -85,7 +85,7 @@ Replace the file paths in meshJson and NewMesh with your own file paths.  Mesh n
 Run the Case
 ^^^^^^^^^^^^
 
-To run a case, first download the the configuration file, named Flow360.json, of the CFD solver from `here <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/dpw4/Flow360.json?content_disposition=attachment>`_.  This file has been configured to run for this medium-resolution mesh.  If you decide to run a case with another mesh or flow condition, the configuration parameters need to be adjusted accordingly.  A detailed description of the configuration parameters can be found in our :ref:`API Reference <Flow360json>` section.  The case can be submitted using the following command:
+To run a case, first download the the configuration file, named Flow360.json, of the CFD solver from `here <https://simcloud-public-1.s3.amazonaws.com/dpw4/Flow360.json?content_disposition=attachment>`_.  This file has been configured to run for this medium-resolution mesh.  If you decide to run a case with another mesh or flow condition, the configuration parameters need to be adjusted accordingly.  A detailed description of the configuration parameters can be found in our :ref:`API Reference <Flow360json>` section.  The case can be submitted using the following command:
 
 .. code-block:: python
 
@@ -130,7 +130,7 @@ Finally, you can download the surface forces by their component names using the 
 
    flow360client.case.GetCaseSurfaceForcesByNames(caseId, <list of boundaryNames>)
 
-Replace the caseId with your own case's ID and <list of boundaryNames> with names of the boundaries. There is a `script <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/dpw4/downloadAll.py?content_disposition=attachment>`_ to download all of the above stuff by: :code:`python3 downloadAll.py caseId`.
+Replace the caseId with your own case's ID and <list of boundaryNames> with names of the boundaries. There is a `script <https://simcloud-public-1.s3.amazonaws.com/dpw4/downloadAll.py?content_disposition=attachment>`_ to download all of the above stuff by: :code:`python3 downloadAll.py caseId`.
 
 Grid Convergence
 ----------------

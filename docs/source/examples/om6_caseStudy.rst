@@ -35,16 +35,16 @@ Setup and Solution
 
 The 8M-node mesh file, and its corresponding mesh and case configuration files can be downloaded via the following links:
 
-- Mesh file: `wing_tetra.8M.lb8.ugrid <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/om6_8M/wing_tetra.8M.lb8.ugrid>`_
-- Mesh configuration file: `Flow360Mesh.json <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/om6_8M/Flow360Mesh.json>`_
-- Case configuration file: `Flow360.json <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/om6_8M/Flow360.json>`_
+- Mesh file: `wing_tetra.8M.lb8.ugrid <https://simcloud-public-1.s3.amazonaws.com/om6_8M/wing_tetra.8M.lb8.ugrid>`_
+- Mesh configuration file: `Flow360Mesh.json <https://simcloud-public-1.s3.amazonaws.com/om6_8M/Flow360Mesh.json>`_
+- Case configuration file: `Flow360.json <https://simcloud-public-1.s3.amazonaws.com/om6_8M/Flow360.json>`_
 
 For detailed instructions to upload a mesh, run a case and download the results for an ONERA M6 Wing, please refer to the :ref:`Quick Start <quickstart>` section of this documentation - these details will not be covered in this case study.
 
 Grid Convergence
 ----------------
 
-The grid convergence of the 8M-node mesh in this case study has been done by comparing the coefficients of total lift, total drag, pressure drag, skin friction drag and pitching moment obtained from Flow360 with `solutions provided by various other solvers <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/om6_8M/combined_forces_pitchmom_maxmut.dat>`_.   This grid convergence is presented in :numref:`fig2_om6_caseStudy`, and the mesh statistics for the coarse, medium, fine and extra  fine grids are presented in :numref:`tab1_om6_caseStudy`.
+The grid convergence of the 8M-node mesh in this case study has been done by comparing the coefficients of total lift, total drag, pressure drag, skin friction drag and pitching moment obtained from Flow360 with `solutions provided by various other solvers <https://simcloud-public-1.s3.amazonaws.com/om6_8M/combined_forces_pitchmom_maxmut.dat>`_.   This grid convergence is presented in :numref:`fig2_om6_caseStudy`, and the mesh statistics for the coarse, medium, fine and extra  fine grids are presented in :numref:`tab1_om6_caseStudy`.
 
 .. _tab1_om6_caseStudy:
 .. table:: Mesh Statistics for different grid sizes
@@ -74,7 +74,7 @@ The discrepancy between the left and right plots in :numref:`fig2_om6_caseStudy`
 Results
 -------
 
-The presence of these shock waves are particularly noticeable in :numref:`fig3_om6_caseStudy` and :numref:`fig4_om6_caseStudy`, where the Viscous stress coefficient along x-direction and Coefficient of pressure are plotted over various y-normal slices of the wing and compared with `FUN3D <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/om6_8M/FUN3D_OM6_A3p06_CPCF.dat>`_ results.
+The presence of these shock waves are particularly noticeable in :numref:`fig3_om6_caseStudy` and :numref:`fig4_om6_caseStudy`, where the Viscous stress coefficient along x-direction and Coefficient of pressure are plotted over various y-normal slices of the wing and compared with `FUN3D <https://simcloud-public-1.s3.amazonaws.com/om6_8M/FUN3D_OM6_A3p06_CPCF.dat>`_ results.
 
 .. _fig3_om6_caseStudy:
 

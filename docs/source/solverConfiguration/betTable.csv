@@ -13,7 +13,7 @@ initialBladeDirection@ Empty@ [3-array]. Orientation of the first blade in the b
 twists@ Empty@ [list(dict)] A list of dictionary entries specifying the twist in degrees as a function of radial location. Entries in the list must already be sorted by radius. Example entry in the list would be {"radius" : 5.2, "twist" : 32.5}.
 chords@ Empty@ [list(dict)] A list of dictionary entries specifying the blade chord as a function of the radial location. Entries in the list must already be sorted by radius. Example entry in the list would be {"radius" : 5.2, "chord" : 12.0}.
 sectionalPolars@ Empty@ [list(dict)] A list of dictionaries for every radial location specified in *sectionalRadiuses*. Each dict has two entries, "liftCoeffs" and "dragCoeffs", both of which have the same data storage format: 3D arrays (implemented as nested lists). The first index of the array corresponds to the *MachNumbers* of the specified polar data. The second index of the array corresponds to the *ReynoldsNumbers* of the polar data. The third index corresponds to the *alphas*. The value specifies the lift or drag coefficient, respectively.
-sectionalRadiuses@ Empty@ [list(float)] A list of the radial locations at which :math:`C_l` and :math:`C_d` are specified in *sectionalPolars*
+sectionalRadiuses@ Empty@ [list(float)] A list of the radial locations in grid units at which :math:`C_l` and :math:`C_d` are specified in *sectionalPolars*
 alphas@ Empty@ [list(float)] alphas associated with airfoil polars provided in *sectionalPolars* in degrees.
 MachNumbers@ Empty@ [list(float)] Mach numbers associated with airfoil polars provided in *sectionalPolars*.
 ReynoldsNumbers@ Empty@ [list(float)] Reynolds numbers associated with the airfoil polars provided in *sectionalPolars*.

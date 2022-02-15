@@ -34,7 +34,7 @@ To upload a mesh file, under the Mesh tab click on Upload Mesh File icon as disp
 .. image:: figures_OM6_Tutorial/UploadMesh.png
    :align: center
 
-This will open a window.  You need to upload two files here.  The first is the mesh.  Download an example mesh of  M6 Wing `here <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/om6/wing_tetra.1.lb8.ugrid>`_.  The second is the mesh configure json.  Download one `here <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/om6/Flow360Mesh.json?content_disposition=attachment>`_.  When uploading the mesh, be sure to set the Endianness to 'little endian' for this tutorial.  More information on endianness can be found `here <https://en.wikipedia.org/wiki/Endianness>`_.  (**Note**: Mesh Name and Tags are optional.)  Then click submit to upload and process your mesh. You can see the status of the mesh under the **Status** tab.
+This will open a window.  You need to upload two files here.  The first is the mesh.  Download an example mesh of  M6 Wing `here <https://simcloud-public-1.s3.amazonaws.com/om6/wing_tetra.1.lb8.ugrid>`_.  The second is the mesh configure json.  Download one `here <https://simcloud-public-1.s3.amazonaws.com/om6/Flow360Mesh.json?content_disposition=attachment>`_.  When uploading the mesh, be sure to set the Endianness to 'little endian' for this tutorial.  More information on endianness can be found `here <https://en.wikipedia.org/wiki/Endianness>`_.  (**Note**: Mesh Name and Tags are optional.)  Then click submit to upload and process your mesh. You can see the status of the mesh under the **Status** tab.
 
 **Step 2. Launch a CFD Case:**
 
@@ -44,7 +44,7 @@ You do not have to wait for your mesh to be processed. Once your mesh is uploade
    :scale: 70%
    :align: center
 
-Once you click the airplane icon, another window will pop up to give you an option to choose a corresponding `Flow360.json <https://flow360-resources.s3-us-gov-east-1.amazonaws.com/om6/Flow360.json?content_disposition=attachment>`_ configuration file for your case. A full dictionary of configuration parameters for the JSON input file can be found :ref:`here <Flow360json>`.  You may also provide a Case Name and Tags. Hit Submit to run your case.  Once the case is submitted, you can check the case status by clicking the **Case** tab.
+Once you click the airplane icon, another window will pop up to give you an option to choose a corresponding `Flow360.json <https://simcloud-public-1.s3.amazonaws.com/om6/Flow360.json?content_disposition=attachment>`_ configuration file for your case. A full dictionary of configuration parameters for the JSON input file can be found :ref:`here <Flow360json>`.  You may also provide a Case Name and Tags. Hit Submit to run your case.  Once the case is submitted, you can check the case status by clicking the **Case** tab.
 
 .. image:: figures_OM6_Tutorial/CaseStatus.png
    :align: center
