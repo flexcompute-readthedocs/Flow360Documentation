@@ -50,7 +50,7 @@ The surface mesh is created by submitting a geometry file and JSON file using :c
 .. code-block:: python
 
     import flow360client
-    surfaceMeshId = flow360client.NewSurfaceMeshFromGeometry("path/to/geometry.csm", "surfaceMesh.json", surfaceMeshName="my_surface_mesh")
+    surfaceMeshId = flow360client.NewSurfaceMeshFromGeometry("path/to/geometry.csm", "surfaceMesh.json", surfaceMeshName="my_surface_mesh", solverVersion='release-21.4.1.0')
 
 The above code will create a surface mesh of geometry using :code:`"maxEdgeLength": 0.05` on a surface labelled as `mysphere`, see line 4 of the \*.csm file.
 
@@ -72,6 +72,10 @@ Outputs\:
 - :code:`surfaceMeshId`
 
 For a full description of config.json for surface mesher see :ref:`here.<JSON surface mesher>`
+
+.. note::
+    When using web interface make sure to select version during New Surface Mesh upload
+
 
 .. _SurfaceToVolumeMeshSection:
 
@@ -118,6 +122,7 @@ Outputs\:
 
 
 For a full description of config.json for volume mesher see :ref:`here.<JSON volume mesher>`
+
 
 .. _JSON surface mesher:
 
