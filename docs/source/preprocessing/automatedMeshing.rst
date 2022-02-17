@@ -48,7 +48,7 @@ The surface mesh is created by submitting a geometry file and JSON file using :c
 .. code-block:: python
 
     import flow360client
-    surfaceMeshId = flow360client.NewSurfaceMeshFromGeometry("path/to/geometry.csm", "surfaceMesh.json", surfaceMeshName="my_surface_mesh")
+    surfaceMeshId = flow360client.NewSurfaceMeshFromGeometry("path/to/geometry.csm", "surfaceMesh.json", surfaceMeshName="my_surface_mesh", solverVersion='release-21.4.1.0')
 
 The above code will create a surface mesh of geometry using :code:`"maxEdgeLength": 0.05` on a surface labelled as `mysphere`, see line 4 of the \*.csm file.
 
@@ -71,6 +71,10 @@ Outputs\:
 
 For a full description of config.json for surface mesher see :ref:`here.<JSON surface mesher>`
 
+.. note::
+    When using web interface make sure to select version during New Surface Mesh upload
+
+
 .. _SurfaceToVolumeMeshSection:
 
 Volume Meshing
@@ -92,7 +96,7 @@ The volume mesh is created by :code:`NewMeshFromSurface()` function using :code:
 
 .. code-block:: python
 
-    volumeMeshId = flow360client.NewMeshFromSurface(surfaceMeshId, "volumeMesh.json", meshName="my_volume_mesh")
+    volumeMeshId = flow360client.NewMeshFromSurface(surfaceMeshId, "volumeMesh.json", meshName="my_volume_mesh",  solverVersion='release-21.4.1.0')
 
 The above code will create a volume mesh out of the surface mesh. The refinement zone (source) of size=4x3x2 will be placed with its centre at (2,0,0). Additionally, it will be rotated by 45 degrees around the [0,0,1] axis. Spacing of 0.05 will be applied in this zone.
 
@@ -116,6 +120,9 @@ Outputs\:
 
 
 For a full description of config.json for volume mesher see :ref:`here.<JSON volume mesher>`
+
+.. note::
+    When using web interface make sure to select version when creating New Volume Mesh from Surface Mesh
 
 .. _JSON surface mesher:
 
