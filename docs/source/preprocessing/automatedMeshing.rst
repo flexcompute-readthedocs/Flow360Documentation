@@ -96,7 +96,7 @@ The volume mesh is created by :code:`NewMeshFromSurface()` function using :code:
 
 .. code-block:: python
 
-    volumeMeshId = flow360client.NewMeshFromSurface(surfaceMeshId, "volumeMesh.json", meshName="my_volume_mesh",  solverVersion='release-21.4.1.0')
+    volumeMeshId = flow360client.NewMeshFromSurface(surfaceMeshId, "volumeMesh.json", meshName="my_volume_mesh")
 
 The above code will create a volume mesh out of the surface mesh. The refinement zone (source) of size=4x3x2 will be placed with its centre at (2,0,0). Additionally, it will be rotated by 45 degrees around the [0,0,1] axis. Spacing of 0.05 will be applied in this zone.
 
