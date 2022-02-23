@@ -9,4 +9,5 @@ Case Studies
    examples/hlcrm
    examples/dpw4
    examples/om6_caseStudy
+   examples/xv15_BETDisk
 
