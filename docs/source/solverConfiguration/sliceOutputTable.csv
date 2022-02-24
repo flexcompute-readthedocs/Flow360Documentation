@@ -1,0 +1,16 @@
+Options@ Default@ Description
+outputFormat@ paraview@ \"paraview\" or \"tecplot\"
+animationFrequency@ -1@ Frequency (in number of physical time steps) at which slice output is saved. -1 is at end of simulation
+primitiveVars@ TRUE@ Outputs rho, u, v, w, p
+vorticity@ FALSE@ Vorticity
+T@ FALSE@ Temperature
+s@ FALSE@ Entropy
+Cp@ FALSE@ Coefficient of pressure
+mut@ FALSE@ Turbulent viscosity
+mutRatio@ FALSE@ :math:`mut/mu_\infty`
+Mach@ TRUE@ Mach number
+gradW@ FALSE@ gradient of W
+slices@ []@ List of slices to save after the solver has finished
+sliceName@@ string
+sliceNormal@@ [x, y, z]
+sliceOrigin@@ [x, y, z]

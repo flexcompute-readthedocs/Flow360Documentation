@@ -1,0 +1,13 @@
+Options@  Default@ Description
+outputFormat@ paraview@ \"paraview\" or \"tecplot\"
+animationFrequency@    -1@ Frequency (in number of physical time steps) at which surface output is saved. -1 is at end of simulation
+primitiveVars@   FALSE@ rho, u, v, w, p
+Cp@   FALSE@ Coefficient of pressure
+Cf@   FALSE@ Skin friction coefficient
+heatFlux@   FALSE@ Heat Flux
+CfVec@   FALSE@ Viscous stress coefficient vector. For example, :math:`C_{f_{Vec}}[3]=\frac{\tau_{wall}[3]}{\frac{1}{2}\rho_\infty U_{ref}^2}`. The :math:`\tau_{wall}` is the vector of viscous stress on the wall.
+yPlus@   FALSE@ y+
+wallDistance@   FALSE@ Wall Distance
+Mach@   FALSE@ Mach number
+nodeForcesPerUnitArea@   FALSE@ :math:`nodeForcesPerUnitArea=\frac{\tau_{wall}[3]-(p-p_\infty)*normal[3]}{\rho_\infty C_\infty^2}`, where the :math:`normal[3]` is the unit normal vector pointing from solid to fluid.
+residualSA@   FALSE@ Spalart-Allmaras residual magnitude
