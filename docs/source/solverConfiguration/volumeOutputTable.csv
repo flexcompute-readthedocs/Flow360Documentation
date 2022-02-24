@@ -1,0 +1,26 @@
+Options@ Default@ Description
+outputFormat@ paraview@ \"paraview\" or \"tecplot\"
+animationFrequency@ -1@ Frequency (in number of physical time steps) at which volume output is saved. -1 is at end of simulation
+startAverageIntegrationStep@ 0@ Sub-iteration or time-step to start averaging forces/moments
+computeTimeAverages@ FALSE@ Whether or not to compute time-averaged quantities
+primitiveVars@ TRUE@ Outputs rho, u, v, w, p
+vorticity@ FALSE@ Vorticity
+residualNavierStokes@ FALSE@ 5 components of the N-S residual
+residualTurbulence@ FALSE@ Residual for the turbulence model
+residualTransition@ FALSE@ Residual for the transition model
+solutionTurbulence@ FALSE@ Solution for the turbulence model
+solutionTransition@ FALSE@ Solution for the transition model
+T@ FALSE@ Temperature
+s@ FALSE@ Entropy
+Cp@ TRUE@ Coefficient of pressure. :math:`C_p=(\frac{p-p_\infty}{\frac{1}{2}\rho_\infty{U_{ref}}^2})`.
+mut@ TRUE@ Turbulent viscosity
+nuHat@ TRUE@ nuHat
+kOmega@ FALSE@ k and omega when using kOmegaSST model
+mutRatio@ FALSE@ :math:`\mu_t/{\mu_\infty}`
+Mach@ TRUE@ Mach number
+VelocityRelative@ FALSE@ velocity in rotating frame
+qcriterion@ FALSE@ Q criterion
+gradW@ FALSE@ Gradient of W
+wallDistance@ FALSE@ wall distance
+wallDistanceDir@ FALSE@ wall distance direction
+betMetrics@ FALSE@ 8 quantities related to BET solvers: velocityX, velocityY and velocityZ in rotating reference frame, alpha angle, Cf in axial direction, Cf in circumferential direction, tip loss factor, local solidity multiplied by integration weight

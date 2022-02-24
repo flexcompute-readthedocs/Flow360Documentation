@@ -76,8 +76,6 @@ runControl
    +-----------------------------+---------+--------------------------------------------------------------------------------------+
    | Options                     | Default | Description                                                                          |
    +=============================+=========+======================================================================================+
-   | restart                     |  FALSE  | the solutions are initialized from restarting files or not (no need to set by users) |
-   +-----------------------------+---------+--------------------------------------------------------------------------------------+
    | startAlphaControlPseudoStep |    -1   | pseudo step at which to start targetCL control. -1 is no trim control. (steady only) |
    +-----------------------------+---------+--------------------------------------------------------------------------------------+
    | targetCL                    |    -1   | The desired trim CL to achieve (assocated with startAlphaControlPseudoStep)          |
@@ -255,6 +253,13 @@ volumeOutput
    |                             |          | tip loss factor, local solidity multiplied by integration weight                     |
    +-----------------------------+----------+--------------------------------------------------------------------------------------+
 
+.. csv-table::
+   :file: ./volumeOutputTable.csv
+   :widths: 25 10 65
+   :header-rows: 1
+   :delim: @
+
+
 surfaceOutput
 -------------
 
@@ -292,6 +297,13 @@ surfaceOutput
    +-----------------------+----------+--------------------------------------------------------------------------------+
    | residualSA            |   FALSE  | Spalart-Allmaras residual magnitude                                            |
    +-----------------------+----------+--------------------------------------------------------------------------------+
+
+.. csv-table::
+   :file: ./surfaceOutputTable.csv
+   :widths: 25 10 65
+   :header-rows: 1
+   :delim: @
+
 
 sliceOutput
 -----------
@@ -332,6 +344,13 @@ sliceOutput
    +----------------------+----------+------------------------------------------------------------------------+
    |          sliceOrigin |          | [x, y, z]                                                              |
    +----------------------+----------+------------------------------------------------------------------------+
+
+.. csv-table::
+   :file: ./sliceOutputTable.csv
+   :widths: 25 10 65
+   :header-rows: 1
+   :delim: @
+
 
 navierStokesSolver
 ------------------
@@ -480,6 +499,12 @@ timeStepping
    +------------------+---------+----------------------------------------------------------------------+
    | CFL->rampSteps   |    40   | Number of steps before reaching the final CFL within 1 physical step |
    +------------------+---------+----------------------------------------------------------------------+
+
+.. csv-table::
+   :file: ./timeSteppingTable.csv
+   :widths: 25 10 65
+   :header-rows: 1
+   :delim: @
 
 
 .. note::
