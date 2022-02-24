@@ -17,4 +17,4 @@ sectionalRadiuses@ Empty@ [list(float)] A list of the radial locations in grid u
 alphas@ Empty@ [list(float)] alphas associated with airfoil polars provided in *sectionalPolars* in degrees.
 MachNumbers@ Empty@ [list(float)] Mach numbers associated with airfoil polars provided in *sectionalPolars*.
 ReynoldsNumbers@ Empty@ [list(float)] Reynolds numbers associated with the airfoil polars provided in *sectionalPolars*.
-tipGap@ "inf"@ [float] non-dimensional distance between blade tip and peripharal structures. It affects the tip loss effect.
+tipGap@ "inf"@ [float] non-dimensional distance between blade tip and peripharal structures. It affects the tip loss effect. tipGap=0 means there is no tip loss.
