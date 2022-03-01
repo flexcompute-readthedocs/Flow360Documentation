@@ -1,0 +1,14 @@
+[
+    {
+        "radius": 20,
+        "chord": 15
+    },
+    {
+        "radius": 60,
+        "chord": 10
+    },
+    {
+        "radius": 150,
+        "chord": 10
+    }
+]
