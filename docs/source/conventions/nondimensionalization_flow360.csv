@@ -1,0 +1,12 @@
+Property@ Reference value for non-dimen.@ Examples in Flow360
+Length@ :math:`L_\text{gridUnit}`@ geometry->{omentCenter, momentLength}, actuatorDisks->thickness, BETDisks->{radius, chordRef, thickness, bladeLineChord, chords, sectionalRadiuses}, {volumeOutput, surfaceOutput}->wallDistance
+Area@ :math:`L_\text{gridUnit}^2`@ geometry->refArea 
+Density@ :math:`\rho_\infty`@ {surfaceOutput, volumeOutput}->primitiveVars
+Velocity@ :math:`C_\infty` @ {surfaceOutput, volumeOutput}->primitiveVars
+Pressure@ :math:`\rho_\infty C_\infty^2`@ {surfaceOutput, volumeOutput}->primitiveVars, surfaceOutput->nodeForcesPerUnitArea
+Temperature@ :math:`T_\infty`@ volumeOutput->T 
+Dynamic viscosity@ :math:`\rho_\infty C_\infty L_\infty`@ freestream->muRef
+Angular speed@ :math:`C_\infty/L_\text{gridUnit}`@ slidingInterfaces->omegaRadians, BETDisks->omega
+Force@ :math:`\rho_\infty C_\infty^2 L_\text{gridUnit}^2`@ force in :ref:`BET output <betDiskLoadingNote>`
+Moment@ :math:`\rho_\infty C_\infty^2 L_\text{gridUnit}^3`@ moment in :ref:`BET output <betDiskLoadingNote>`
+Time@ :math:`L_\text{gridUnit}/C_\infty`@ TimeStepping->timeStepSize

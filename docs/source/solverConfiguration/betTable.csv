@@ -1,10 +1,10 @@
 Options@ Default@ Description
-rotationDirectionRule@ "rightHand"@ [string] the rule for rotation direction and thrust direction, "rightHand" or "leftHand"
+rotationDirectionRule@ "rightHand"@ [string] the rule for rotation direction and thrust direction, "rightHand" or "leftHand". A detailed explanation and some examples are shown at :ref:`bet_input`.
 centerOfRotation@ Empty@ [3-array] center of the Blade Element Theory (BET) disk
 axisOfRotation@ Empty@ [3-array] rotational axis of the BET disk
 numberOfBlades@ Empty@ [int] number of blades to model
 radius@ Empty@ [float] non-dimensional radius of the rotor disk, = :math:`\text{Radius}_\text{dimensional}/L_{gridUnit}`
-omega@ Empty@ [float] non-dimensional rotating speed, radians/nondim-unit-time, = :math:`\Omega*L_{gridUnit}/C_\infty`, where the SI unit of :math:`\Omega` is rad/s.
+omega@ Empty@ [float] non-dimensional rotating speed, radians/nondim-unit-time, = :math:`\Omega*L_{gridUnit}/C_\infty`, where the SI unit of :math:`\Omega` is rad/s. An example can be found at the case study :ref:`XV15 BET <BET_XV15_hovering_caseStudy>`
 chordRef@ Empty@ [float] non-dimensional reference chord used to compute sectional blade loadings.
 nLoadingNodes@ Empty@ [float] Number of nodes used to compute the sectional thrust and torque coeffcient :math:`C_t` and :math:`C_q`, defined in :ref:`betDiskLoadingNote`. Recomended value is 20.
 thickness@ Empty@ [float] non-dimensional thickness of the BET disk. Should be less than the thickness of the refined region of the disk mesh.

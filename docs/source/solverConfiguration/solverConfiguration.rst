@@ -34,7 +34,7 @@ Flow360Mesh.json
 .. _Flow360json:
 
 Flow360.json
-============
+==============
 
 Some commonly used symbols in Flow360.json:
 
@@ -48,7 +48,7 @@ Some commonly used symbols in Flow360.json:
   dynamic viscosity of freestream
 :math:`p_\infty` (SI unit = :math:`N/m^2`)
   static pressure of freestream
-:math:`U_\text{ref}` (SI unit = :math:`m/s`)
+:math:`U_\text{ref} \triangleq \text{MachRef}\times C_\infty` (SI unit = :math:`m/s`)
   reference velocity
 
 geometry
@@ -185,8 +185,9 @@ boundaries
    |                         |    }                                                                       |                                                                                  |
    +-------------------------+----------------------------------------------------------------------------+----------------------------------------------------------------------------------+
 
-*Note: "expression" is an expression with "x", "y", "z" as independent variables.*
-*An example of NoSlipWall boundary with prescribed velocity
+.. note::
+
+   Note: "expression" is an expression with "x", "y", "z" as independent variables. An example of NoSlipWall boundary with prescribed velocity is :ref:`NoSlipWall with velocity <wall_vel>`.
 
 .. _volumeOutputInputParameters:
 
@@ -199,6 +200,7 @@ volumeOutput
    :header-rows: 1
    :delim: @
 
+.. _surfaceOutputInputParameters:
 
 surfaceOutput
 -------------
@@ -209,6 +211,7 @@ surfaceOutput
    :header-rows: 1
    :delim: @
 
+.. _sliceOutputInputParameters:
 
 sliceOutput
 -----------
@@ -419,6 +422,8 @@ actuatorDisks (list)
 
 BETDisks (list)
 --------------------
+
+A introduction of blade element theory model in Flow360 is available at :ref:`BET solver <bladeElementTheory>`. A case study on XV-15 rotor based on steady blade element disk model is available at :ref:`BET case study <XV15BETDisk_caseStudy>`.
 
 .. csv-table::
    :file: ./betTable.csv

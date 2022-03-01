@@ -18,6 +18,158 @@ Based on Blade Element Theory, Flow360 provides 2 related solvers, which can be 
 
 In the :ref:`BETDisks <betDisksInputParameters>` section of the Flow360.json, except the :code:`bladeLineChord` and :code:`initialBladeDirection`, other parameters are necessary for both solvers.
 
+.. _bet_input:
+
+BET input
+-----------
+
+.. note::
+   
+   In the BETDisks section, all input quantities are non-dimensional, except the :code:`twists` and :code:`alphas` (both in degree). The convention for non-dimensionalization in Flow360 can be found at :ref:`nondimensionalization_Flow360`. 
+
+Some input parameters related with BET solver in Flow360 are explained:
+
+1. **radius**. Any grid points enclosed by the cylinder defined by "radius", "center" and "axisOfRotation" will have aerodynamic forces imposed according to blade element theory.
+
+2. **rotationDirectionRule**: :code:`leftHand` or :code:`rightHand`. It depends on design of the rotor blades: whether the blades follow curl left or right hand rule to generate positive thrust. Let your curling fingers of the right hand follow the direction the imaginary blades are rotating, if your thumb points to the thrust direction, the "rotationDirectionRule" is :code:`rightHand`. Similarly, let your curling fingers of the left hand follow the direction the imaginary blades are rotating, if your thumb points to the thrust direction, the "rotationDirectionRule" is :code:`leftHand`. By default, it is :code:`rightHand`.
+3. **axisOfRotation**: It is the direction of your thumb (thrust) described in "rotationDirectionRule".
+4. **omega**: The non-dimensional rotating speed. It should be positive in most cases, which means the leading edge moves in front and the rotation direction of the blades in BET simulations is consistent with the curling fingers described in "rotationDirectionRule" to generate positive thrust. A negative "omega" means the blades rotate in a reverse direction, where the trailing edge moves in front. 
+
+The following 4 pictures give some examples of different rotationDirectionRule and axisOfRotation with **positive omega**. The curved arrow follows the same direction in which rotor spins. The straight arrow points to the direction of thrust.
+
+.. container:: twocol
+
+   .. container:: leftside
+
+      .. code-block:: JSON
+
+         "rotationDirectionRule":"leftHand",
+         "axisOfRotation":[0,0,1],
+         "omega": 0.3
+
+   .. container:: rightside
+      
+      .. figure:: ../examples/figures_BET_Tutorial/leftHand_thrust_z+.svg
+         :width: 66%
+         :align: center
+
+-------------------------------------------------------------
+
+.. container:: twocol
+
+   .. container:: leftside
+
+      .. code-block:: JSON
+
+         "rotationDirectionRule":"leftHand",
+         "axisOfRotation":[0,0,-1],
+         "omega": 0.5
+
+   .. container:: rightside
+      
+      .. figure:: ../examples/figures_BET_Tutorial/leftHand_thrust_z-.svg
+         :width: 66%
+         :align: center
+
+-------------------------------------------------------------
+
+.. container:: twocol
+
+   .. container:: leftside
+
+      .. code-block:: JSON
+
+         "rotationDirectionRule":"rightHand",
+         "axisOfRotation":[0,0,1],
+         "omega": 0.5
+
+   .. container:: rightside
+      
+      .. figure:: ../examples/figures_BET_Tutorial/rightHand_thrust_z+.svg
+         :width: 66%
+         :align: center
+
+-------------------------------------------------------------
+
+.. container:: twocol
+
+   .. container:: leftside
+
+      .. code-block:: JSON
+
+         "rotationDirectionRule":"rightHand",
+         "axisOfRotation":[0,0,-1],
+         "omega": 0.5
+
+   .. container:: rightside
+      
+      .. figure:: ../examples/figures_BET_Tutorial/rightHand_thrust_z-.svg
+         :width: 66%
+         :align: center
+
+-----------------------------------------------------------------
+
+.. note::
+
+   In the above 4 examples, if the omega is negative, the rotor rotates in the opposite direction of what is shown.
+
+5. **chords** and **twists**: The sampled radial distribution of chord length and twist angle. The "twist" affects the local angle of attack. The "chords" affects the amount of lift and drag imposed on the blade (or fluid). For a radial location where chord=0, there is no lift or drag imposed. It should be noted that for any radial location within the given sampling range, the chord or twist is linearly interpolated between its two neighboring sampled data points. For any radial location beyond the given sampling range, the chord or twist is set to be the nearest sampled chord or twist, i.e. constant extrapolation. Here are 3 examples of the given "chords" and the corresponding radial distribution of chord length:
+
+.. rst-class:: left2
+
+   5.1. The root of blade starts at r=20 with chord length=15. The chord shrinks to 10 linearly up to r=60. The chord keeps as 10 for the rest of blade. In this setting, the chord=0 for r in [0,20], there is no aerodynamic lift and drag imposed no matter what the twist angle it has, so this setting fits the rotor without hub.
+
+.. container:: twocol
+
+   .. container:: leftside
+
+      .. literalinclude:: ./BET_chords_1.json
+         :language: JSON
+
+   .. container:: rightside
+      
+      .. figure:: ./chords_distribution_1.svg
+         :scale: 49%
+         :align: center
+
+.. rst-class:: left2
+
+   5.2. The root of blade starts at r=0 with chord=0. The chord expands to 15 linearly up to r=20, then shrinks to 10 linearly up to r=60. The chord keeps as 10 for the rest of blade. This setting could be used for a mesh with the geometry of hub. Because the chord length changes gradually near the root region, there won't be tip vortices in root region.
+
+.. container:: twocol
+
+   .. container:: leftside
+
+      .. literalinclude:: ./BET_chords_2.json
+         :language: JSON
+
+   .. container:: rightside
+
+      .. figure:: ./chords_distribution_2.svg
+         :scale: 49%
+         :align: center
+
+.. rst-class:: left2
+   
+   5.3. This is an exmpale of wrong setting of chords, because the chord length at r=0 is not 0, so the local solidity is infinity, which is not realistic.
+
+.. container:: twocol
+
+   .. container:: leftside
+
+      .. literalinclude:: ./BET_chords_3.json
+         :language: JSON
+
+   .. container:: rightside
+
+      .. figure:: ./chords_distribution_3.svg
+         :scale: 49%
+         :align: center
+
+.. note::
+
+   The number of sampling data points in :code:`chords` and :code:`twists` doesn't have to be the same. They are served as sampled data for interpolation of chord length and twist angle respectively and separately. 
+
 .. _betDiskLoadingNote: 
 
 BET Loading Output
@@ -41,27 +193,31 @@ The non-dimensional moment is defined as
    
 where the moment center is the :code:`centerOfRotation` of each disk, defined in :ref:`BETDisks <betDisksInputParameters>` of Flow360.json. 
 
-2. Sectional thrust coefficient :math:`C_t` and sectional torque coefficient :math:`C_q` on each blade at several radial locations, represented by "Disk[diskID]_Blade[bladeID]_R[radialID]" with suffix "_Radius", "_ThrustCoeff" and "_TorqueCoeff". The number of radial locations is specified in :code:`nLoadingNodes`. 
+.. note::
+
+   The above Force and Moment values mean the force and moment acted on **solid**. If you want to know the force and moment acted on **fluid**, just add a negative sign in front of it. 
+
+2. Sectional thrust coefficient :math:`C_t` and sectional torque coefficient :math:`C_q` on each blade at several radial locations, represented by "Disk[diskID]_Blade[bladeID]_R[radialID]" with suffix "_Radius" (non-dimensional), "_ThrustCoeff" and "_TorqueCoeff". The number of radial locations is specified in :code:`nLoadingNodes`. 
    
 The definition of :math:`C_t` is
 
 .. math::
    :label: defBETCt
 
-   C_t\bigl(r\bigr)=\frac{\text{Thrust per unit blade length (SI=N/m)}}{\frac{1}{2}\rho_{\infty}\left((\Omega r)^2\right)\text{chord}_{\text{ref}}}\cdot\frac{r}{R}
+   C_t\bigl(r\bigr)=\frac{\text{Thrust per unit blade span (SI=N/m)}}{\frac{1}{2}\rho_{\infty}\left((\Omega r)^2\right)\text{chord}_{\text{ref}}}\cdot\frac{r}{R}
 
 The definition of :math:`C_q` is
 
 .. math::
    :label: defBETCq
 
-   C_q\bigl(r\bigr)=\frac{\text{Torque per unit blade length (SI=N)}}{\frac{1}{2}\rho_{\infty}\left((\Omega r)^2\right)\text{chord}_{\text{ref}}R}\cdot\frac{r}{R}
+   C_q\bigl(r\bigr)=\frac{\text{Torque per unit blade span (SI=N)}}{\frac{1}{2}\rho_{\infty}\left((\Omega r)^2\right)\text{chord}_{\text{ref}}R}\cdot\frac{r}{R}
 
-where :math:`r` is the distance between the node to the axis of rotation. :math:`\text{chord}_\text{ref}` is the dimensional refererence chord length. :math:`R` is the radius of the rotor disk. 
+where :math:`r` is the dimensional distance between the node to the axis of rotation. :math:`\text{chord}_\text{ref}` is the dimensional refererence chord length. :math:`R` is the dimensional radius of the rotor disk. 
 
-.. note::
+.. important::
 
-   All the quantities in the right hand side of :eq:`defBETForce`, :eq:`defBETMoment`, :eq:`defBETCt` and :eq:`defBETCq` are **dimensional**, which are different from the **non-dimensional** values in :ref:`betDisksInputParameters` of Flow360.json.
+   All the quantities in the right hand side of :eq:`defBETForce`, :eq:`defBETMoment`, :eq:`defBETCt` and :eq:`defBETCq` are **dimensional**, which are different from the **non-dimensional** values in :ref:`betDisksInputParameters` of Flow360.json. For example, at the first disk's first blade's first radial location :math:`r=\text{Disk0_Blade0_R0_Radius}\times L_\text{gridUnit}`. The conventions for non-dimensionalization in Flow360 can be found at :ref:`nondimensionalization_Flow360`.
 
 .. warning::
    For simulations of the steady blade disk solver, the resulting :math:`C_t` and :math:`C_q` are only saved on the first blade, named by "Blade0". They are written as all zeros for other blades, because all the blades have the same sectional loadings in steady blade disk simulations. For the unsteady blade line solver, each blade has its own :math:`C_t` and :math:`C_q` values. 
