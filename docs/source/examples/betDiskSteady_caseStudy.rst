@@ -240,7 +240,7 @@ Assume we want to calculate the sectional thrust and torque at the first disk's 
    
    &\text{Torque per unit blade span}_\text{Disk0_Blade_R1} = C_q\times\frac{1}{2}\rho_\infty\times\Omega^2 r^2 \text{chrod}_\text{ref} R\times R/r
 
-To show a closer comparison between high fidelity full-rotor unsteady simulation and BET Disk steady simulation, the physical sectional thrust, of :math:`\theta_{75}=10^o` case as an example, on a blade per unit span is shown in Fig. x. 
+To show a closer comparison between high fidelity full-rotor unsteady simulation and BET Disk steady simulation, the physical sectional thrust, of :math:`\theta_{75}=10^o` case as an example, on a blade per unit span is shown below
 
 .. container::
 
