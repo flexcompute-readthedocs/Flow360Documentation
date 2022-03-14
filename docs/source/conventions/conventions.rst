@@ -13,7 +13,7 @@ In Flow360, most input and output variables are non-dimensional. The non-dimensi
 
    \text{non-dimensional variable} = \frac{\text{dimensional variable}}{\text{reference value}}
 
-Theoretically speaking, the reference values for non-dimensionalization can be arbitrary as long as the resulting equations are identical to the original ones, but in practice, the reference values are usually selected based on some typical parameters of problems and flow chracteristics to avoid confusion. The following list shows some commonly used non-dimensional variables in both input configuration files and output files:
+Theoretically, the reference values for non-dimensionalization can be arbitrary as long as the resulting equations are identical to the original ones, but in practice, the reference values are usually selected based on some typical parameters of problems and flow characteristics to avoid confusion. The following list shows some commonly used non-dimensional variables in both input configuration files and output files:
 
 .. _tab_nondimensionalization_flow360:
 .. csv-table:: Reference values for non-dimensionalization in Flow360
@@ -32,4 +32,34 @@ Besides the above non-dimensional quantities, there are also many **coefficients
    It should be noted that the reference velocity :math:`U_\text{ref}` used to calculate the :math:`C_p, C_f, C_D, C_L` can be set via "freestream/Mach" or "freestream/MachRef" by users. Its definition can be found in :ref:`case configuration <Flow360json>`. It is not the same as the reference velocity (:math:`C_\infty`) for non-dimensionalization in :numref:`tab_nondimensionalization_flow360`.
 
 It should also be noted that the "freestream/Reynolds" is based on the given reference velocity :math:`U_\text{ref}` and :math:`L_\text{gridUnit}`.
+
+.. _FAQ_input_nondim_quantity:
+
+FAQ on non-dimensionalization of input parameters:
+====================================================
+
+How do I set the non-dimensional time step "timeStepSize"?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The definition of "timeStepSize" can be found at :ref:`timeStepping <table_timeStepping>`. Assume the physical time step size is 2 seconds, speed of sound of freestream is 340 m/s and grid unit is 1 feet, so the :math:`\text{timeStepSize}= \frac{2 \text{ s} \times 340\text{ m/s}}{0.3048 \text{ m}}=2230.971128608`.
+
+How do I set non-dimensional rotating speed "omegaRadians" with a given RPM?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The RPM determines the angular speed, and the non-dimensional "omegaRadians" can be calculated by dimensional angular speed from :ref:`slidingInterfacesParameters`. Assume the RPM = 800, speed of sound of freestream is 340 m/s and grid unit is 1 millimeter, so :math:`\text{omegaRadians}=\Omega\times L_\text{gridUnit}/C_\infty=\frac{800\times 2\pi}{60\text{ s}}\times\frac{0.001 \text{ m}}{340\text{ m/s}}=0.00024639942`.
+
+.. _FAQ_output_nondim_quantity:
+
+FAQ on translating non-dimensional outputs:
+====================================================
+
+In the Tecplot/Paraview visualization files, how can I translate the "velocityX" into m/s?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Because the reference value of velocity is :math:`C_\infty` from :numref:`tab_nondimensionalization_flow360`, the dimensional velocity in X direction can be obtained by multiplying the "velocityX" with speed of sound of freestream. Assume the freestream's speed of sound is 340 m/s and "velocityX" is 0.6 in the Paraview/Tecplot file, the dimensional velocity in X direction is :math:`340 \text{ m/s} \times 0.6 = 204 \text{ m/s}`.
+
+In the Tecplot/Paraview visualization files, how can I translate the pressure "p" into Pascal?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The reference value of pressure is :math:`\rho_\infty C_\infty^2` from :numref:`tab_nondimensionalization_flow360`. Assume the freestream's speed of sound is 340 m/s, freestream density is 1.225 :math:`\text{kg/m^3}` and "p" is 0.65 in the Paraview/Tecplot file, the dimensional pressure is :math:`0.65\times 1.225\, kg/m^3\times 340^2\, m^2/s^2=92046.5\,Pascal`.
 

@@ -71,5 +71,18 @@ To delete a case:
 
    >>> flow360client.case.DeleteCase('')
 
-*Caution*: You won't be able to recover your deleted cases or mesh files including its results after your deletion.
+.. danger::
+
+   You won't be able to recover your deleted cases or mesh files including its results after your deletion.
+
+How should I set the non-dimensional quantities in case configuration file?
+----------------------------------------------------------------------------------
+
+See :ref:`FAQ on non-dimensionalization of input parameters <FAQ_input_nondim_quantity>`.
+
+How can I translate the non-dimensional quantities of output to dimensional quantities?
+-----------------------------------------------------------------------------------------
+
+see :ref:`FAQ on translating non-dimensional outputs <FAQ_output_nondim_quantity>`.
+
 
