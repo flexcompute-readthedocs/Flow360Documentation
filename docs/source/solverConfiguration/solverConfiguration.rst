@@ -36,7 +36,7 @@ Flow360Mesh.json
 Flow360.json
 ==============
 
-Some commonly used symbols in Flow360.json:
+Most input quantities in case configuration file Flow360.json is dimensionless. The convention of non-dimentionalization in Flow360 can be found at :ref:`Non-dimensionalization <nondimensionalization_Flow360>`. Some commonly used variables in the table below:
 
 :math:`L_{gridUnit}` (SI unit = :math:`m`)
   physical length represented by unit length in the given mesh file, e.g. if your grid is in feet, :math:`L_{gridUnit}=1 \text{ feet}=0.3048 \text{ meter}`; if your grid is in millimeter, :math:`L_{gridUnit}=1 \text{ millimeter}=0.001 \text{ meter}`.
