@@ -16,7 +16,7 @@ Based on Blade Element Theory, Flow360 provides 2 related solvers, which can be 
 
    To use the unsteady blade line solver, :code:`bladeLineChord` has to be a positive value and :code:`initialBladeDirection` also needs to be set.
 
-In the :ref:`BETDisks <betDisksInputParameters>` section of the Flow360.json, except the :code:`bladeLineChord` and :code:`initialBladeDirection`, other parameters are necessary for both solvers.
+In the :ref:`BETDisks <betDisksInputParameters>` section of the Flow360.json, except the :code:`bladeLineChord` and :code:`initialBladeDirection`, other parameters are necessary for both solvers. A case study on XV-15 rotor using blade element theory can be found at :ref:`XV15 BET Disk <XV15BETDisk_caseStudy>`.
 
 .. _bet_input:
 
