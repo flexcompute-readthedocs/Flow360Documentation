@@ -29,7 +29,7 @@ BET input
 
 Some input parameters related with BET solver in Flow360 are explained:
 
-1. **radius**. Any grid points enclosed by the cylinder defined by "radius", "center" and "axisOfRotation" will have aerodynamic forces imposed according to blade element theory.
+1. **radius**. All grid points enclosed by the cylinder defined by "radius", "center" and "axisOfRotation" will have aerodynamic forces imposed according to blade element theory.
 
 2. **rotationDirectionRule**: :code:`leftHand` or :code:`rightHand`. It depends on design of the rotor blades: whether the blades follow curl left or right hand rule to generate positive thrust. Let your curling fingers of the right hand follow the direction the imaginary blades are rotating, if your thumb points to the thrust direction, the "rotationDirectionRule" is :code:`rightHand`. Similarly, let your curling fingers of the left hand follow the direction the imaginary blades are rotating, if your thumb points to the thrust direction, the "rotationDirectionRule" is :code:`leftHand`. By default, it is :code:`rightHand`.
 3. **axisOfRotation**: It is the direction of your thumb (thrust) described in "rotationDirectionRule".
@@ -256,3 +256,6 @@ An additional option :code:`betMetrics` in :ref:`volumeOutput <volumeOutputInput
         <iframe width="560" height="315" src="https://www.youtube.com/embed/sIQk0sguKmI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
+.. note::
+
+   A case study about XV-15 rotor using steady BET Disk solver can be found at :ref:`XV15 BET Disk case <XV15BETDisk_caseStudy>`.

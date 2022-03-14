@@ -62,7 +62,7 @@ More information about the geometry and the high-fidelity detached eddy simulati
 
 `Feilin Jia, John Moore and Qiqi Wang, 2022 Assessment of Detached Eddy Simulation and Sliding Mesh Interface in Predicting Tiltrotor Performance in Helicopter and Airplane Modes <https://arxiv.org/pdf/2201.11560.pdf>`_
 
-In this case study, the steady Navier-Stokes solver coupled with the Blade Element Theory Disk method is used to simulation the XV-15 rotor blades under two flight conditions: helicopter hovering mode and airplane mode. Compared to the high fidelity unsteady simulations with full rotor geometry in the above paper, the mesh of BET Disk solver is much coarser. The mesh used in the current case study contains 592K nodes. A overview of a slice of the mesh is shown below
+In this case study, the steady Navier-Stokes solver coupled with the Blade Element Theory Disk method is used to simulate the XV-15 rotor blades under two flight conditions: helicopter hovering mode and airplane mode. Compared to the high fidelity unsteady simulations with full rotor geometry in the above paper, the mesh of BET Disk solver is much coarser. The mesh used in the current case study contains 592K nodes. A overview of a slice of the mesh is shown below
 
 .. container::
 
@@ -86,7 +86,7 @@ In this case study, the steady Navier-Stokes solver coupled with the Blade Eleme
 
    Overview of volume mesh used in BET Disk simulations of XV-15 rotor, successively zooming in from top left->top right->bottom left->bottom right. 
 
-Before the simulation sections, the freestream quantities are shown below because these quantites are useful to setup the non-dimensional variables in case configuration and translate the non-dimensional output variabled into dimensional values. More information on non-dimensionalization in Flow360 can be found at :ref:`nondimensionalization_Flow360`. The grid unit :math:`L_{gridUnit}=1\,\text{inch}=0.0254\,\text{meter}` in the above mesh. In this case study, the freestream is in sea level standard, shown in :numref:`tab_air_isa`
+The freestream quantities are shown below as these quantities are needed to setup the non-dimensional variables in case configuration and translate the non-dimensional output variables into dimensional values. More information on non-dimensionalization in Flow360 can be found at :ref:`nondimensionalization_Flow360`. The grid unit :math:`L_{gridUnit}=1\,\text{inch}=0.0254\,\text{meter}` in the above mesh. In this case study, the freestream is in sea level standard, shown in :numref:`tab_air_isa`
 
 .. _tab_air_isa:
 .. csv-table:: Sea-level air properties
@@ -105,7 +105,7 @@ Before the simulation sections, the freestream quantities are shown below becaus
 Helicopter Hovering Mode
 ---------------------------
 
-In helicopter hovering mode, there is no freestream velocity. Five blade collective angles are considered in the current study: :math:`0^o, 3^o, 5^o, 10^o, 13^o` at :math:`r/R=0.75`, corresponding to low, medium and high disk loadings. The flow conditions are:
+In helicopter hovering mode, the freestream velocity is zero. Five blade collective angles are considered in the current study: :math:`0^o, 3^o, 5^o, 10^o, 13^o` at :math:`r/R=0.75`, corresponding to low, medium and high disk loadings. The flow conditions are:
 
 * Tip Mach Number, defined as :math:`U_\text{tip}/C_{\infty}`, is 0.69, so :math:`U_\text{tip}=0.69C_\infty`.
 * Reynolds Number (based on reference chord (14 inch) and blade tip speed) = :math:`4.95\times 10^6`.
@@ -113,7 +113,7 @@ In helicopter hovering mode, there is no freestream velocity. Five blade collect
 
 Here are some points to setup the case configuration file:
 
-1. :code:`freestream/Mach` is set to 0, because there is no freestream velocity in hovering mode.
+1. :code:`freestream/Mach` is set to 0, because freestream velocity is zero.
 2. :code:`freestream/MachRef` has to be a non-zero number because the above "Mach" is 0. This value could be arbirary theoretically, but we let it equal to the tip Mach number (0.69) for conveniece.
 3. Either :code:`freestream/Reynolds` or :code:`freestream/muRef` should be given to set a proper freestream viscosity. Both options are explained below:
    
@@ -185,7 +185,7 @@ After setting up the case configuration file, the case is raedy to submit. The 5
 
 For detailed instructions to upload a mesh, run a case and download the results, please refer to the :ref:`Quick Start <quickstart>` section of this documentation - these details will not be covered in this case study.
 
-Some tips on setting the input quantities related with BET can be found at :ref:`bet_input`. One thing needs to be noted that in the high fidelity DES of XV-15 rotor blades, there is no hub, so to match the model in high fidelity simulations, the chord length in :math:`r<0.09R` should be 0 in BET simulations. Therefore, in the case configuration file, the chord length is set to 0 right before the first cross section (:math:`r=0.09R`). This setting leads to the radial distribution similar to "chords_distribution_1" shown in :ref:`bet_input`. The forces and moments related to the BET Disk is saved at "bet_forces_v2.csv". A detailed description on this file can be found at :ref:`betDiskLoadingNote`. Here we will convert the non-dimensional values in the above csv file to dimensional values:
+Some tips on setting the input quantities related to BET can be found at :ref:`bet_input`. One thing needs to be noted that in the high fidelity DES of XV-15 rotor blades, there is no hub, so to match the model in high fidelity simulations, the chord length in :math:`r<0.09R` should be 0 in BET simulations. Therefore, in the case configuration file, the chord length is set to 0 right before the first cross section (:math:`r=0.09R`). This setting leads to the radial distribution similar to "chords_distribution_1" shown in :ref:`bet_input`. The forces and moments related to the BET Disk are saved to "bet_forces_v2.csv". A detailed description on this file can be found at :ref:`betDiskLoadingNote`. Here we will convert the non-dimensional values in the above csv file to dimensional values:
 
 1. thrust and torque. Because the axial direction of the rotor is in Z axis, the thrust is saved as "Disk0_Force_z" and the torque is saved as "Disk0_Moment_z" in the .csv file. The dimensional thrust and torque can be calculated by :eq:`defBETForce` and :eq:`defBETMoment`:
 
