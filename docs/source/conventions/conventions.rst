@@ -74,10 +74,10 @@ FAQ on translating non-dimensional outputs:
 In the Tecplot/Paraview visualization files, how can I translate the "velocityX" into m/s?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Because the reference value of velocity is :math:`C_\infty` from :numref:`tab_nondimensionalization_flow360`, the dimensional velocity in X direction can be obtained by multiplying the "velocityX" with speed of sound of freestream. Assume the freestream's speed of sound is 340 m/s and "velocityX" is 0.6 in the Paraview/Tecplot file, the dimensional velocity in X direction is :math:`340 \text{ m/s} \times 0.6 = 204 \text{ m/s}`.
+Because the reference value of velocity is :math:`C_\infty` from :numref:`tab_nondimensionalization_flow360`, the dimensional velocity in X direction can be obtained by multiplying the "velocityX" with speed of sound of freestream. Assume the speed of sound in the freestream is 340 m/s and "velocityX" is 0.6 in the Paraview/Tecplot file, the dimensional velocity in X direction is :math:`340 \text{ m/s} \times 0.6 = 204 \text{ m/s}`.
 
 In the Tecplot/Paraview visualization files, how can I translate the pressure "p" into Pascal?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The reference value of pressure is :math:`\rho_\infty C_\infty^2` from :numref:`tab_nondimensionalization_flow360`. Assume the freestream's speed of sound is 340 m/s, freestream density is 1.225 :math:`kg/m^3` and "p" is 0.65 in the Paraview/Tecplot file, the dimensional pressure is :math:`0.65\times 1.225\, kg/m^3\times 340^2\, m^2/s^2=92046.5\,Pascal`.
+The reference value of pressure is :math:`\rho_\infty C_\infty^2` from :numref:`tab_nondimensionalization_flow360`. Assume the speed of sound in the freestream is 340 m/s, freestream density is 1.225 :math:`kg/m^3` and "p" is 0.65 in the Paraview/Tecplot file, the dimensional pressure is :math:`0.65\times 1.225\, kg/m^3\times 340^2\, m^2/s^2=92046.5\,Pascal`.
 
