@@ -86,7 +86,7 @@ In this case study, the steady Navier-Stokes solver coupled with the Blade Eleme
 
    Overview of volume mesh used in BET Disk simulations of XV-15 rotor, successively zooming in from top left->top right->bottom left->bottom right. 
 
-The freestream quantities are shown below as these quantities are needed to setup the non-dimensional variables in case configuration and translate the non-dimensional output variables into dimensional values. More information on non-dimensionalization in Flow360 can be found at :ref:`nondimensionalization_Flow360`. The grid unit :math:`L_{gridUnit}=1\,\text{inch}=0.0254\,\text{meter}` in the above mesh. In this case study, the freestream is in sea level standard, shown in :numref:`tab_air_isa`
+The freestream quantities are shown below as these quantities are needed to set up the non-dimensional variables in case configuration and translate the non-dimensional output variables into dimensional values. More information on non-dimensionalization in Flow360 can be found at :ref:`nondimensionalization_Flow360`. The grid unit :math:`L_{gridUnit}=1\,\text{inch}=0.0254\,\text{meter}` in the above mesh. In this case study, the freestream is in sea level standard, shown in :numref:`tab_air_isa`
 
 .. _tab_air_isa:
 .. csv-table:: Sea-level air properties
@@ -111,10 +111,10 @@ In helicopter hovering mode, the freestream velocity is zero. Five blade collect
 * Reynolds Number (based on reference chord (14 inch) and blade tip speed) = :math:`4.95\times 10^6`.
 * Reference Temperature = 288.15 K.
 
-Here are some points to setup the case configuration file:
+Here are some points to set up the case configuration file:
 
 1. :code:`freestream/Mach` is set to 0, because freestream velocity is zero.
-2. :code:`freestream/MachRef` has to be a non-zero number because the above "Mach" is 0. This value could be arbirary theoretically, but we let it equal to the tip Mach number (0.69) for conveniece.
+2. :code:`freestream/MachRef` has to be a non-zero number because the above "Mach" is 0. This value could be arbitrary theoretically, but we let it equal to the tip Mach number (0.69) for conveniece.
 3. Either :code:`freestream/Reynolds` or :code:`freestream/muRef` should be given to set a proper freestream viscosity. Both options are explained below:
    
    * **Option 1**: set :code:`freestream/Reynolds`. The :code:`freestream/Reynolds` is based on grid unit as reference length, thus it is mesh dependent. It's definition is :math:`\rho_\infty U_\text{ref} L_\text{gridUnit}/{\mu_\infty}`. In the case description, we know the Reynolds number based on tip speed and reference chord is :math:`4.95\times 10^6`, so
@@ -169,7 +169,7 @@ Because we know :math:`\Omega=\frac{U_\text{tip}}{\text{Radius}}`,
 
 Therefore, the "BETDisks/omega" is 0.0046
 
-After setting up the case configuration file, the case is raedy to submit. The 592K-node mesh file, and its corresponding mesh and case configuration files can be downloaded via the following links:
+After setting up the case configuration file, the case is ready to submit. The 592K-node mesh file, and its corresponding mesh and case configuration files can be downloaded via the following links:
 
 * Mesh file: `XV15_BETDisk_R150_592K.lb8.ugrid <https://simcloud-public-1.s3.amazonaws.com/XV15_BETDisk/XV15_BETDisk_R150_592K.lb8.ugrid>`_
 * Mesh configuration file: `Flow360Mesh.json <https://simcloud-public-1.s3.amazonaws.com/XV15_BETDisk/Flow360Mesh.json>`_
@@ -181,9 +181,9 @@ After setting up the case configuration file, the case is raedy to submit. The 5
 
 .. note::
 
-   The only difference between the above 5 case configuration files is the :code:`BETDisks/twists` distribution.
+   The only difference between the configuration files of the above 5 cases is the :code:`BETDisks/twists` distribution.
 
-For detailed instructions to upload a mesh, run a case and download the results, please refer to the :ref:`Quick Start <quickstart>` section of this documentation - these details will not be covered in this case study.
+For detailed instructions on how to upload a mesh, run a case and download the results, please refer to the :ref:`Quick Start <quickstart>` section of this documentation - these details will not be covered in this case study.
 
 Some tips on setting the input quantities related to BET can be found at :ref:`bet_input`. One thing needs to be noted that in the high fidelity DES of XV-15 rotor blades, there is no hub, so to match the model in high fidelity simulations, the chord length in :math:`r<0.09R` should be 0 in BET simulations. Therefore, in the case configuration file, the chord length is set to 0 right before the first cross section (:math:`r=0.09R`). This setting leads to the radial distribution similar to "chords_distribution_1" shown in :ref:`bet_input`. The forces and moments related to the BET Disk are saved to "bet_forces_v2.csv". A detailed description on this file can be found at :ref:`betDiskLoadingNote`. Here we will convert the non-dimensional values in the above csv file to dimensional values:
 
