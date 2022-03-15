@@ -9,7 +9,7 @@ The Flow360 client can be installed (and updated) from PyPI.  Make sure you have
     pip3 install --upgrade flow360client
 
 Sign in with your Account and Password
-*************************************
+**************************************
 
 An account can be created at https://client.flexcompute.com/app/signup.
 
