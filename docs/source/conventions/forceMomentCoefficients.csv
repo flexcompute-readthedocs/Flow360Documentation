@@ -1,0 +1,9 @@
+Property@ Definition
+CL@ :math:`\text{Lift}/\frac{1}{2}\rho_\infty U_\text{ref}^2 A_\text{ref}`
+CD@ :math:`\text{Drag}/\frac{1}{2}\rho_\infty U_\text{ref}^2 A_\text{ref}`
+CFx@ :math:`\text{Force}_x/\frac{1}{2}\rho_\infty U_\text{ref}^2 A_\text{ref}`
+CFy@ :math:`\text{Force}_y/\frac{1}{2}\rho_\infty U_\text{ref}^2 A_\text{ref}`
+CFz@ :math:`\text{Force}_z/\frac{1}{2}\rho_\infty U_\text{ref}^2 A_\text{ref}`
+CMx@ :math:`\text{Moment}_x/\frac{1}{2}\rho_\infty U_\text{ref}^2 A_\text{ref} L_\text{Moment}\left[0\right]`
+CMy@ :math:`\text{Moment}_y/\frac{1}{2}\rho_\infty U_\text{ref}^2 A_\text{ref} L_\text{Moment}\left[1\right]`
+CMz@ :math:`\text{Moment}_z/\frac{1}{2}\rho_\infty U_\text{ref}^2 A_\text{ref} L_\text{Moment}\left[2\right]`
