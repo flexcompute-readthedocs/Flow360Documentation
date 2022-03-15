@@ -33,6 +33,24 @@ Besides the above non-dimensional quantities, there are also many **coefficients
 
 It should also be noted that the "freestream/Reynolds" is based on the given reference velocity :math:`U_\text{ref}` and :math:`L_\text{gridUnit}`.
 
+.. _ForceMomentCoeff_Flow360:
+
+Force Coefficients and Moment Coefficients
+===========================================
+
+The force coefficients and moment coefficients exported by Flow360 are listed in :numref:`tab_forceMomentCoefficients_flow360`. These coefficients are shown in "Forces" tab of each case in Flow360 web portal. These coefficients can also be fetched by :code:`flow360client.case.GetCaseTotalForces(caseId)`. 
+
+.. _tab_forceMomentCoefficients_flow360:
+.. csv-table:: Force coefficients and Moment coefficents exported by Flow360
+   :file: ./forceMomentCoefficients.csv
+   :widths: 10,50
+   :header-rows: 1
+   :delim: @
+
+.. note::
+   
+   In the above table, all quantities in "Definition" column are dimensional. :math:`U_\text{ref}` is calculated by :math:`\text{"freestream/MachRef"}\times C_\infty`. The :math:`A_\text{ref}` is equal to :math:`\text{"geometry/refArea"}\times L_\text{gridUnit}^2`. The array :math:`L_\text{Moment}` is equal to "geometry/momentLength".
+
 .. _FAQ_input_nondim_quantity:
 
 FAQ on non-dimensionalization of input parameters:

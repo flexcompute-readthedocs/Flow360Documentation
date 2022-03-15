@@ -3,7 +3,7 @@
 # -- Project information
 
 project = 'Flow360 Documentation'
-copyright = '2021, Flexcompute Inc'
+copyright = '2022, Flexcompute Inc'
 author = 'Flexcompute Inc'
 
 #release = 'release-21.3.3.0'
