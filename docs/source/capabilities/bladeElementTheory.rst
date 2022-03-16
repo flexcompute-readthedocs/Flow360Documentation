@@ -213,7 +213,7 @@ The definition of :math:`C_q` is
 
    C_q\bigl(r\bigr)=\frac{\text{Torque per unit blade span (SI=N)}}{\frac{1}{2}\rho_{\infty}\left((\Omega r)^2\right)\text{chord}_{\text{ref}}R}\cdot\frac{r}{R}
 
-where :math:`r` is the dimensional distance between the node to the axis of rotation. :math:`\text{chord}_\text{ref}` is the dimensional refererence chord length. :math:`R` is the dimensional radius of the rotor disk. 
+where :math:`r` is the dimensional distance between the node to the axis of rotation. :math:`\text{chord}_\text{ref}` is the dimensional reference chord length. :math:`R` is the dimensional radius of the rotor disk. 
 
 .. important::
 
