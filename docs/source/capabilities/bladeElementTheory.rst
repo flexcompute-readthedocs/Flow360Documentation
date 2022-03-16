@@ -16,7 +16,7 @@ Based on Blade Element Theory, Flow360 provides 2 related solvers, which can be 
 
    To use the unsteady blade line solver, :code:`bladeLineChord` has to be a positive value and :code:`initialBladeDirection` also needs to be set.
 
-In the :ref:`BETDisks <betDisksInputParameters>` section of the Flow360.json, except the :code:`bladeLineChord` and :code:`initialBladeDirection`, other parameters are necessary for both solvers. A case study on XV-15 rotor using blade element theory can be found at :ref:`XV15 BET Disk <XV15BETDisk_caseStudy>`.
+In the :ref:`BETDisks <betDisksInputParameters>` section of the Flow360.json, except the :code:`bladeLineChord` and :code:`initialBladeDirection`, other parameters are necessary for both solvers. A case study on the XV-15 rotor using blade element theory can be found at :ref:`XV15 BET Disk <XV15BETDisk_caseStudy>`.
 
 .. _bet_input:
 
@@ -25,13 +25,29 @@ BET input
 
 .. note::
    
-   In the BETDisks section, all input quantities are non-dimensional, except the :code:`twists` and :code:`alphas` (both in degree). The convention for non-dimensionalization in Flow360 can be found at :ref:`nondimensionalization_Flow360`. 
+   #. In the BETDisks section, all input quantities are non-dimensional, except the :code:`twists` and :code:`alphas` (both in degrees). The convention for non-dimensionalization in Flow360 can be found at :ref:`nondimensionalization_Flow360`. 
+   #. For users of XROTOR and DFDC, we have a translator script that will convert the XROTOR/DFDC inputs in Flow360 BET inputs.
 
-Some input parameters related with BET solver in Flow360 are explained:
+Some input parameters related to BET solver in Flow360 are explained:
 
-1. **radius**. All grid points enclosed by the cylinder defined by "radius", "center" and "axisOfRotation" will have aerodynamic forces imposed according to blade element theory.
+1. **radius**. All grid points enclosed by the cylinder defined by "radius", "center" and "axisOfRotation" will have aerodynamic forces imposed on them according to blade element theory.
 
-2. **rotationDirectionRule**: :code:`leftHand` or :code:`rightHand`. It depends on design of the rotor blades: whether the blades follow curl left or right hand rule to generate positive thrust. Let your curling fingers of the right hand follow the direction the imaginary blades are rotating, if your thumb points to the thrust direction, the "rotationDirectionRule" is :code:`rightHand`. Similarly, let your curling fingers of the left hand follow the direction the imaginary blades are rotating, if your thumb points to the thrust direction, the "rotationDirectionRule" is :code:`leftHand`. By default, it is :code:`rightHand`.
+2. **rotationDirectionRule**: :code:`leftHand` or :code:`rightHand`. It depends on the design of the rotor blades: whether the blades follow curl left hand rule or the curl right hand rule to generate positive thrust. The following 2 figures show the curl left hand rule and curl right hand rule. The fingers follow the spinning of the blades and the thumb points to the thrust direction. By default, it is :code:`rightHand`.
+
+.. container:: twocol
+
+   .. container:: leftside
+      
+      .. figure:: ../examples/figures_BET_Tutorial/left_hand_rule.svg
+         :width: 80%
+         :align: center
+
+   .. container:: rightside
+      
+      .. figure:: ../examples/figures_BET_Tutorial/right_hand_rule.svg
+         :width: 80%
+         :align: center
+
 3. **axisOfRotation**: It is the direction of your thumb (thrust) described in "rotationDirectionRule".
 4. **omega**: The non-dimensional rotating speed. It should be positive in most cases, which means the leading edge moves in front and the rotation direction of the blades in BET simulations is consistent with the curling fingers described in "rotationDirectionRule" to generate positive thrust. A negative "omega" means the blades rotate in a reverse direction, where the trailing edge moves in front. 
 
@@ -258,4 +274,4 @@ An additional option :code:`betMetrics` in :ref:`volumeOutput <volumeOutputInput
 
 .. note::
 
-   A case study about XV-15 rotor using steady BET Disk solver can be found at :ref:`XV15 BET Disk case <XV15BETDisk_caseStudy>`.
+   A case study about the XV-15 rotor using steady BET Disk solver can be found at :ref:`XV15 BET Disk case <XV15BETDisk_caseStudy>`.
