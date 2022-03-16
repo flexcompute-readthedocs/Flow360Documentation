@@ -16,7 +16,7 @@ Highlights
 Introduction
 -------------
 
-The development of XV-15 titlrotor was launched by the NASA Ames Research Center and Bell Helicopters in the late 1960s and early 1970s and it has become the foundation of many VTOL aircrafts today. Unlike typical helicopter rotors, tiltrotor blades demand a compromised design to operate efficiently in both helicopter and propeller modes, so the blades of XV-15 tiltrotor have high twist and solidity, along with small rotor radius. In this case study, we will apply our Blade Element Theory Model based solver in Flow360 to evaluate the performance of XV-15 rotor in both helicopter hovering mode and airplane mode.
+The development of XV-15 tiltrotor was launched by the NASA Ames Research Center and Bell Helicopters in the late 1960s and early 1970s and it has become the foundation of many VTOL aircrafts today. Unlike typical helicopter rotors, tiltrotor blades demand a compromised design to operate efficiently in both helicopter and propeller modes, so the blades of XV-15 tiltrotor have high twist and solidity, along with small rotor radius. In this case study, we will apply our Blade Element Theory Model based solver in Flow360 to evaluate the performance of XV-15 rotor in both helicopter hovering mode and airplane mode.
 
 .. _fig_XV15_landing:
 
@@ -62,7 +62,7 @@ More information about the geometry and the high-fidelity detached eddy simulati
 
 `Feilin Jia, John Moore and Qiqi Wang, 2022 Assessment of Detached Eddy Simulation and Sliding Mesh Interface in Predicting Tiltrotor Performance in Helicopter and Airplane Modes <https://arxiv.org/pdf/2201.11560.pdf>`_
 
-In this case study, the steady Navier-Stokes solver coupled with the Blade Element Theory Disk method is used to simulate the XV-15 rotor blades under two flight conditions: helicopter hovering mode and airplane mode. Compared to the high fidelity unsteady simulations with full rotor geometry in the above paper, the mesh of BET Disk solver is much coarser. The mesh used in the current case study contains 592K nodes. A overview of a slice of the mesh is shown below
+In this case study, the steady Navier-Stokes solver coupled with the Blade Element Theory Disk method is used to simulate the XV-15 rotor blades under two flight conditions: helicopter hovering mode and airplane mode. Compared to the high fidelity unsteady simulations with full rotor geometry in the above paper, the mesh of BET Disk solver is much coarser. The mesh used in the current case study contains 592K nodes. An overview of a slice of the mesh is shown below
 
 .. container::
 
@@ -86,7 +86,7 @@ In this case study, the steady Navier-Stokes solver coupled with the Blade Eleme
 
    Overview of volume mesh used in BET Disk simulations of XV-15 rotor, successively zooming in from top left->top right->bottom left->bottom right. 
 
-The freestream quantities are shown below as these quantities are needed to set up the non-dimensional variables in case configuration and translate the non-dimensional output variables into dimensional values. More information on non-dimensionalization in Flow360 can be found at :ref:`nondimensionalization_Flow360`. The grid unit :math:`L_{gridUnit}=1\,\text{inch}=0.0254\,\text{meter}` in the above mesh. In this case study, the freestream is in sea level standard, shown in :numref:`tab_air_isa`
+The freestream quantities are shown below. These quantities are needed to set up the non-dimensional variables in case configuration and translate the non-dimensional output variables into dimensional values. More information on non-dimensionalization in Flow360 can be found at :ref:`nondimensionalization_Flow360`. The grid unit :math:`L_{gridUnit}=1\,\text{inch}=0.0254\,\text{meter}` in the above mesh. In this case study, the freestream conditions are set to standard sea level values as shown in :numref:`tab_air_isa`
 
 .. _tab_air_isa:
 .. csv-table:: Sea-level air properties
@@ -114,7 +114,7 @@ In helicopter hovering mode, the freestream velocity is zero. Five blade collect
 Here are some points to set up the case configuration file:
 
 1. :code:`freestream/Mach` is set to 0, because freestream velocity is zero.
-2. :code:`freestream/MachRef` has to be a non-zero number because the above "Mach" is 0. This value could be arbitrary theoretically, but we let it equal to the tip Mach number (0.69) for conveniece.
+2. :code:`freestream/MachRef` has to be a non-zero number because the above "Mach" is 0. This value could be arbitrary theoretically, but we let it equal to the tip Mach number (0.69) for convenience.
 3. Either :code:`freestream/Reynolds` or :code:`freestream/muRef` should be given to set a proper freestream viscosity. Both options are explained below:
    
    * **Option 1**: set :code:`freestream/Reynolds`. The :code:`freestream/Reynolds` is based on grid unit as reference length, thus it is mesh dependent. It's definition is :math:`\rho_\infty U_\text{ref} L_\text{gridUnit}/{\mu_\infty}`. In the case description, we know the Reynolds number based on tip speed and reference chord is :math:`4.95\times 10^6`, so
@@ -142,7 +142,7 @@ Therefore, the "freestream/Reynolds" is :math:`3.3536\times10^5`
 
       \text{freestream/muRef} = \frac{\mu_\infty}{\rho_\infty C_\infty L_\text{gridUnit}}
 
-In the current case, we already know the Reynolds number (based on tip velocity and reference chord) in :eq:`hoverReynoldsChord`, so the "freestream/muRef" is expressed as 
+If you already know the Reynolds number then you could use the following equation to get the “freestream/muRef":
 
    .. math::
       :label: muRefEq
@@ -185,7 +185,7 @@ After setting up the case configuration file, the case is ready to submit. The 5
 
 For detailed instructions on how to upload a mesh, run a case and download the results, please refer to the :ref:`Quick Start <quickstart>` section of this documentation - these details will not be covered in this case study.
 
-Some tips on setting the input quantities related to BET can be found at :ref:`bet_input`. One thing needs to be noted that in the high fidelity DES of XV-15 rotor blades, there is no hub, so to match the model in high fidelity simulations, the chord length in :math:`r<0.09R` should be 0 in BET simulations. Therefore, in the case configuration file, the chord length is set to 0 right before the first cross section (:math:`r=0.09R`). This setting leads to the radial distribution similar to "chords_distribution_1" shown in :ref:`bet_input`. The forces and moments related to the BET Disk are saved to "bet_forces_v2.csv". A detailed description on this file can be found at :ref:`betDiskLoadingNote`. Here we will convert the non-dimensional values in the above csv file to dimensional values:
+Some tips on setting the input quantities related to BET can be found at :ref:`bet_input`. Please note that in the high fidelity detached eddy simulation of XV-15 rotor blades in `our paper <https://arxiv.org/pdf/2201.11560.pdf>`_, there is no hub, so to match the model in the high fidelity simulations, the chord length in :math:`r<0.09R` should be 0 in BET simulations. Therefore, in the case configuration file, the chord length is set to 0 right before the first cross section (:math:`r=0.09R`). This setting leads to the radial distribution similar to "chords_distribution_1" shown in :ref:`bet_input`. The forces and moments related to the BET Disk are saved to "bet_forces_v2.csv". A detailed description on this file can be found at :ref:`betDiskLoadingNote`. Here we will convert the non-dimensional values in the above csv file to dimensional values:
 
 1. thrust and torque. Because the axial direction of the rotor is in Z axis, the thrust is saved as "Disk0_Force_z" and the torque is saved as "Disk0_Moment_z" in the .csv file. The dimensional thrust and torque can be calculated by :eq:`defBETForce` and :eq:`defBETMoment`:
 
@@ -219,7 +219,7 @@ The convergence history of dimensional thrust and torque using steady BET Disk s
 
    Loading convergence of BET Disk simulation in hovering helicopter mode at various pitch angles.
 
-2. sectional thrust and torque. In the "bet_forces_v2.csv" file, the sectional thrust coefficient is provided. Here will show the process to convert the nondimensional Ct into physical dimension, i.e. sectional thrust per unit span in SI. so the dimensional quantities in Eq. Y and Eq. Z to compute dimensional sectional thrust:
+2. sectional thrust and torque. In the "bet_forces_v2.csv" file, the sectional thrust coefficient is provided. Here we will show the process to convert the non-dimensional Ct into its physical dimension, i.e. sectional thrust per unit span in SI. so the dimensional quantities in :eq:`defBETCt` and :eq:`defBETCq` to compute dimensional sectional thrust:
 
 * Radius of rotor disk :math:`R = 150\times L_{gridUnit} = 3.81\,\text{meter}`
 * rotating angular speed :math:`\Omega = V_{tip}/R = Mach_{tip}*C_{\infty}/R = 61.6237\, \text{rad/second}`
@@ -256,9 +256,9 @@ To show a closer comparison between high fidelity full-rotor unsteady simulation
 
    Sectional thrust distribution and history of total thrust in hovering mode, :math:`\theta_{75}=10^o`.
 
-The biggest difference between high fidelity simulation and BET Disk simulation is near the tip region, where blade-vortex interaction is strong. The flow around tip can be highly dimensional, making BET Disk locally inaccurate. This normally happens at hovering or near-hovering conditions. From the total thrust of the three blades, compared to the Flow360 high fidelity unsteady simulation, the thrust predicted by BET Disk has ~8% difference, so it could be useful in preliminary design.
+The biggest difference between high fidelity simulation and BET Disk simulation is near the tip region, where blade-vortex interaction is strong. The flow around the tip can be highly dimensional, making BET Disk locally inaccurate. This normally happens at hovering or near-hovering conditions. From the total thrust of the three blades, compared to the Flow360 high fidelity unsteady simulation, the thrust predicted by BET Disk is ~8% different. This level of accuracy makes the BET Disk a useful tool in the preliminary design stages. 
 
-To provide a overview of the propeller efficiency in hovering mode, the thrust coefficient, torque coefficient and figure of merit defined in :eq:`CT_CQ_definition` are calculated and compared with several experimental data and numerical prediction of high-fidelity DES simulations:
+To provide an overview of the propeller efficiency in hovering mode, the thrust coefficient, torque coefficient and figure of merit defined in :eq:`CT_CQ_definition` are calculated and compared with several experimental data and numerical prediction of high-fidelity DES simulations:
 
 .. math::
    :label: CT_CQ_definition
@@ -291,10 +291,10 @@ Airplane Mode
 In airplane mode, four blade collective angles are considered: :math:`26^o, 27^o, 28^o, 28.8^o` at :math:`r/R=0.75`. The flow conditions are:
 
 * Tip Mach Number = 0.54.
-* Reynolds Number (based on reference chord and tip speed, with no account for the advance velocity) = :math:`4.5\times 10^6`.
+* Reynolds Number (based on reference chord and tip speed, with no account for the inflow velocity) = :math:`4.5\times 10^6`.
 * Reference chord = 14 inch.
 * Reference Temperature= 288.15 K.
-* Advance ratio = 0.337
+* Advance ratio (defined as tip speed over inflow speed) = 0.337
 
 The mesh file and mesh configuration file is the same as the files in previous helicopter hovering mode. The case configuration files are different:
 
@@ -303,7 +303,7 @@ The mesh file and mesh configuration file is the same as the files in previous h
 * Case configuration file for :math:`\theta_{75}=28^o`: `Flow360_airplane_pitch28.json <https://simcloud-public-1.s3.amazonaws.com/XV15_BETDisk/Flow360_airplane_pitch28.json>`_
 * Case configuration file for :math:`\theta_{75}=28.8^o`: `Flow360_airplane_pitch28.8.json <https://simcloud-public-1.s3.amazonaws.com/XV15_BETDisk/Flow360_airplane_pitch28.8.json>`_
 
-The convergence history of thrust coefficient and torque coefficient using the steady BET Disk solver is shown below
+The convergence history of the thrust coefficient and torque coefficient using the steady BET Disk solver is shown below
 
 .. container::
 
