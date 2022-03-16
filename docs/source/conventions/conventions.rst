@@ -49,7 +49,7 @@ The force coefficients and moment coefficients exported by Flow360 are listed in
 
 .. note::
    
-   In the above table, all quantities in "Definition" column are dimensional. :math:`U_\text{ref}` is calculated by :math:`\text{"freestream/MachRef"}\times C_\infty`. The :math:`A_\text{ref}` is equal to :math:`\text{"geometry/refArea"}\times L_\text{gridUnit}^2`. The array :math:`L_\text{Moment}` is equal to "geometry/momentLength".
+   In the above table, all quantities in "Definition" column are dimensional. :math:`U_\text{ref}` is calculated by :math:`\text{"freestream/MachRef"}\times C_\infty`. The :math:`A_\text{ref}` is equal to :math:`\text{"geometry/refArea"}\times L_\text{gridUnit}^2`. The array :math:`L_\text{Moment}` is equal to :math:`\text{"geometry/momentLength"}\times L_\text{gridUnit}`.
 
 .. _FAQ_input_nondim_quantity:
 
