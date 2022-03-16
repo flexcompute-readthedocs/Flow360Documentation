@@ -98,7 +98,7 @@ The freestream quantities are shown below as these quantities are needed to set 
 
 .. caution::
    
-   In some simulations, the freestream is not treated to be in sea level standard on purpose. For example, in the "case 1a" from `3rd AIAA CFD High Lift Prediction Workshop <https://hiliftpw.larc.nasa.gov/Workshop3/testcases.html>`_, the viscosity of the freestream is adjusted to analyze the full-scale geometry at wind tunnel conditions, so please set the freestream properities based on your requirements. 
+   In some simulations, the freestream is not treated to be in sea level standard on purpose. For example, in the "case 1a" from `3rd AIAA CFD High Lift Prediction Workshop <https://hiliftpw.larc.nasa.gov/Workshop3/testcases.html>`_, the viscosity of the freestream is adjusted to analyze the full-scale geometry at wind tunnel conditions, so please set the freestream properties based on your requirements. 
 
 .. _BET_XV15_hovering_caseStudy:
 
