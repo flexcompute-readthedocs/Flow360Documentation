@@ -17,4 +17,4 @@ sectionalRadiuses@ Empty@ [list(float)] A list of the radial locations in grid u
 alphas@ Empty@ [list(float)] alphas associated with airfoil polars provided in *sectionalPolars* in degrees.
 MachNumbers@ Empty@ [list(float)] Mach numbers associated with airfoil polars provided in *sectionalPolars*.
 ReynoldsNumbers@ Empty@ [list(float)] Reynolds numbers associated with the airfoil polars provided in *sectionalPolars*.
-tipGap@ "inf"@ [float] non-dimensional distance between blade tip and peripharal structures. It affects the tip loss effect. tipGap=0 means there is no tip loss.
+tipGap@ "inf"@ [float] non-dimensional distance between blade tip and peripharal structures, e.g. duct, shroud, cowling, nacelle, etc. The peripharal structures must be effective at reducing blade tip vortices. This parameter affects the tip loss effect. Being close to a fuselage or to another blade does not affect this parameter, because they won't reduce tip loss evidently. tipGap=0 means there is no tip loss. It is :math:`\infty` (default) for open propellers. An example with finite tipGap is `ducted fan <https://en.wikipedia.org/wiki/Ducted_fan>`_.
