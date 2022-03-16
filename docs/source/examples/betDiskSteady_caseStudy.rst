@@ -113,61 +113,61 @@ In helicopter hovering mode, the freestream velocity is zero. Five blade collect
 
 Here are some points to set up the case configuration file:
 
-1. :code:`freestream/Mach` is set to 0, because freestream velocity is zero.
-2. :code:`freestream/MachRef` has to be a non-zero number because the above "Mach" is 0. This value could be arbitrary theoretically, but we let it equal to the tip Mach number (0.69) for convenience.
-3. Either :code:`freestream/Reynolds` or :code:`freestream/muRef` should be given to set a proper freestream viscosity. Both options are explained below:
+1. :code:`freestream::Mach` is set to 0, because freestream velocity is zero.
+2. :code:`freestream::MachRef` has to be a non-zero number because the above "Mach" is 0. This value could be arbitrary theoretically, but we let it equal to the tip Mach number (0.69) for convenience.
+3. Either :code:`freestream::Reynolds` or :code:`freestream::muRef` should be given to set a proper freestream viscosity. Both options are explained below:
    
-   * **Option 1**: set :code:`freestream/Reynolds`. The :code:`freestream/Reynolds` is based on grid unit as reference length, thus it is mesh dependent. It's definition is :math:`\rho_\infty U_\text{ref} L_\text{gridUnit}/{\mu_\infty}`. In the case description, we know the Reynolds number based on tip speed and reference chord is :math:`4.95\times 10^6`, so
+   * **Option 1**: set :code:`freestream::Reynolds`. The :code:`freestream::Reynolds` is based on grid unit as reference length, thus it is mesh dependent. It's definition is :math:`\rho_\infty U_\text{ref} L_\text{gridUnit}/{\mu_\infty}`. In the case description, we know the Reynolds number based on tip speed and reference chord is :math:`4.95\times 10^6`, so
 
    .. math::
       :label: hoverReynoldsChord
 
       \frac{\rho_\infty U_\text{tip} \text{chord}_\text{ref}}{\mu_\infty} = \frac{\rho_\infty \left(0.69 C_\infty\right) \text{chord}_\text{ref}}{\mu_\infty} = 4.95\times 10^6
    
-then the "freestream/Reynolds" is calculated:
+then the "freestream::Reynolds" is calculated:
 
    .. math::
       :label: hoverReynoldsGridUnit
 
-      \text{freestream/Reynolds}&=\frac{\rho_\infty U_\text{ref} L_\text{gridUnit}}{\mu_\infty} = \frac{\rho_\infty\cdot \text{MachRef} \cdot C_\infty L_\text{gridUnit}}{\mu_\infty} \\
+      \text{freestream::Reynolds}&=\frac{\rho_\infty U_\text{ref} L_\text{gridUnit}}{\mu_\infty} = \frac{\rho_\infty\cdot \text{MachRef} \cdot C_\infty L_\text{gridUnit}}{\mu_\infty} \\
       &=\frac{\rho_\infty \left(0.69 C_\infty\right) \text{chord}_\text{ref}}{\mu_\infty}\times\frac{\text{MachRef}}{0.69}\times\frac{L_\text{gridUnit}}{\text{chord}_\text{ref}} \\
       &= 4.95\times 10^6 \times \frac{0.69}{0.69}\times \frac{1\, \text{inch}}{14\, \text{inch}} = 3.3536\times10^5
 
-Therefore, the "freestream/Reynolds" is :math:`3.3536\times10^5`
+Therefore, the "freestream::Reynolds" is :math:`3.3536\times10^5`
 
-   * **Option 2**: set "freestream/muRef". The "muRef" here is a non-dimensional quantity. The "muRef" here is mesh dependent, because it depends on :math:`L_{gridUnit}`. Its definition is
+   * **Option 2**: set "freestream::muRef". The "muRef" here is a non-dimensional quantity. The "muRef" here is mesh dependent, because it depends on :math:`L_{gridUnit}`. Its definition is
 
    .. math::
       :label: muRefDef
 
-      \text{freestream/muRef} = \frac{\mu_\infty}{\rho_\infty C_\infty L_\text{gridUnit}}
+      \text{freestream::muRef} = \frac{\mu_\infty}{\rho_\infty C_\infty L_\text{gridUnit}}
 
-If you already know the Reynolds number then you could use the following equation to get the “freestream/muRef":
+If you already know the Reynolds number then you could use the following equation to get the “freestream::muRef":
 
    .. math::
       :label: muRefEq
 
-      \text{freestream/muRef} &= \frac{\rho_\infty U_\text{tip}\text{Chord}_\text{ref}/Re}{\rho_\infty C_\infty L_\text{gridUnit}} =\frac{\rho_\infty \left(0.69 C_\infty\right) \text{14 inch}}{\rho_\infty C_\infty \text{1 inch} \cdot 4.95\times10^6}  \\
+      \text{freestream::muRef} &= \frac{\rho_\infty U_\text{tip}\text{Chord}_\text{ref}/Re}{\rho_\infty C_\infty L_\text{gridUnit}} =\frac{\rho_\infty \left(0.69 C_\infty\right) \text{14 inch}}{\rho_\infty C_\infty \text{1 inch} \cdot 4.95\times10^6}  \\
       &=\frac{0.69\cdot \text{14 inch}}{\text{1 inch} \cdot 4.95\times 10^6} = 1.95152\times10^{-6} 
      
-Therefore, the "freestream/muRef" is :math:`1.95152\times10^{-6}`
+Therefore, the "freestream::muRef" is :math:`1.95152\times10^{-6}`
 
-4. "BETDisks/omega". This is the non-dimensional angular speed of the rotor blades. Its definition is
+4. "BETDisks::omega". This is the non-dimensional angular speed of the rotor blades. Its definition is
 
    .. math::
       :label: BETDisk_omega_def
 
-      \text{BETDisks/omega} = \Omega\cdot\frac{L_\text{gridUnit}}{C_\infty}
+      \text{BETDisks::omega} = \Omega\cdot\frac{L_\text{gridUnit}}{C_\infty}
 
 Because we know :math:`\Omega=\frac{U_\text{tip}}{\text{Radius}}`,
 
    .. math::
       :label: BETDisk_omega_calc
 
-      \text{BETDisks/omega} &= \frac{U_\text{tip}}{\text{Radius}}\cdot\frac{L_\text{gridUnit}}{C_\infty} = \frac{0.69C_\infty\cdot \text{1 inch}}{\text{150 inch} \cdot C_\infty}\\
+      \text{BETDisks::omega} &= \frac{U_\text{tip}}{\text{Radius}}\cdot\frac{L_\text{gridUnit}}{C_\infty} = \frac{0.69C_\infty\cdot \text{1 inch}}{\text{150 inch} \cdot C_\infty}\\
       &= 0.69/150 = 0.0046
 
-Therefore, the "BETDisks/omega" is 0.0046
+Therefore, the "BETDisks::omega" is 0.0046
 
 After setting up the case configuration file, the case is ready to submit. The 592K-node mesh file, and its corresponding mesh and case configuration files can be downloaded via the following links:
 
@@ -283,7 +283,7 @@ where :math:`R` is rotor disk radius and :math:`A` is rotor disk area, i.e. :mat
    
    .. rst-class:: center1
 
-   Comparison on thrust/torque coefficient and figure of merit in hovering mode at various pitch angles.
+   Comparison on thrust and torque coefficient and figure of merit in hovering mode at various pitch angles.
 
 Airplane Mode
 ---------------
