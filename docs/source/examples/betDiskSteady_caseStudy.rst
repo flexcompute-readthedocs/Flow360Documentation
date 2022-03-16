@@ -296,7 +296,7 @@ In airplane mode, four blade collective angles are considered: :math:`26^o, 27^o
 * Reference Temperature= 288.15 K.
 * Advance ratio (defined as tip speed over inflow speed) = 0.337
 
-The mesh file and mesh configuration file is the same as the files in previous helicopter hovering mode. The case configuration files are different:
+The mesh file and mesh configuration file are the same as the files in previous helicopter hovering mode. The case configuration files are different:
 
 * Case configuration file for :math:`\theta_{75}=26^o`: `Flow360_airplane_pitch26.json <https://simcloud-public-1.s3.amazonaws.com/XV15_BETDisk/Flow360_airplane_pitch26.json>`_
 * Case configuration file for :math:`\theta_{75}=27^o`: `Flow360_airplane_pitch27.json <https://simcloud-public-1.s3.amazonaws.com/XV15_BETDisk/Flow360_airplane_pitch27.json>`_
@@ -317,9 +317,10 @@ The convergence history of the thrust coefficient and torque coefficient using t
    
    .. rst-class:: center1
 
-   Convergence history of thrust coefficeint and torque coefficient in airplane mode at various pitch angles.
+   Convergence history of thrust coefficient and torque coefficient in airplane mode at various pitch angles.
 
-Similar to the helicopter hovering mode, the physical sectional thrust, of :math:`\theta_{75}=26^o` case as an example, on a blade per unit span and the total force compared to the high fidelity simulation is shown below
+As an example, similar to the helicopter hovering mode shown above, the physical sectional thrust for the :math:`\theta_{75}=26^o` case is shown below. We have comparisons to the high fidelity DES simulation both on a blade per unit span basis and for the total force. Please note the non-zero origin of the Y axis on the right plot of total force. 
+   Similar to the helicopter hovering mode, the physica sectional thrust, of :math:`\theta_{75}=26^o` case as an example, on a blade per unit span and the total force compared to the high fidelity simulation is shown below
 
 .. container::
 
@@ -336,7 +337,7 @@ Similar to the helicopter hovering mode, the physical sectional thrust, of :math
    Sectional thrust distribution and thrust history in airplane mode at :math:`\theta_{75}=26^o`.
 
 
-To provide a overview of power efficiency in airplane mode at various pitching angles, the figure below shows the comparison of the thrust coefficient, torque coefficient and propeller propulsive efficiency, defined in :eq:`propulsive_efficiency_eta`, between BET Disk and high fidelity simulations.
+To provide an overview of power efficiency in airplane mode at various pitching angles, the figure below shows the comparison of the thrust coefficient, torque coefficient and propeller propulsive efficiency, defined in :eq:`propulsive_efficiency_eta`, between BET Disk and high fidelity simulations.
 
 .. math::
    :label: propulsive_efficiency_eta
