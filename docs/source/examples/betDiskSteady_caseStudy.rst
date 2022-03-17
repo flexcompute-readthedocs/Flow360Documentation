@@ -294,7 +294,7 @@ In airplane mode, four blade collective angles are considered: :math:`26^o, 27^o
 * Reynolds Number (based on reference chord and tip speed, with no account for the inflow velocity) = :math:`4.5\times 10^6`.
 * Reference chord = 14 inch.
 * Reference Temperature= 288.15 K.
-* Advance ratio (defined as tip speed over inflow speed) = 0.337
+* Advance ratio (defined as inflow speed over tip speed) = 0.337
 
 The mesh file and mesh configuration file are the same as the files in previous helicopter hovering mode. The case configuration files are different:
 
