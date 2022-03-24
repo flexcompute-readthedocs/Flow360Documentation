@@ -390,7 +390,10 @@ slidingInterfaces (list)
    +-------------------+---------+-----------------------------------------------------------------------------------------------+
    | axisOfRotation    |  Empty  | a 3D array, representing the rotation axis, e.g. [0,0,1]                                      |
    +-------------------+---------+-----------------------------------------------------------------------------------------------+
-   | volumeName        |  Empty  | a list of dynamic volume names related to the above {omega, centerOfRotation, axisOfRotation} |
+   | volumeName        |  Empty  | a list of dynamic volume zones related to the above {omega, centerOfRotation, axisOfRotation} |
+   +-------------------+---------+-----------------------------------------------------------------------------------------------+
+   | parentVolumeName  |  Empty  | name of the volume zone that the rotating reference frame is contained in,                    |
+   |                   |         | used to compute the acceleration in the nested rotating reference frame                       |
    +-------------------+---------+-----------------------------------------------------------------------------------------------+
 
 .. _actuatorDisksParameters:
