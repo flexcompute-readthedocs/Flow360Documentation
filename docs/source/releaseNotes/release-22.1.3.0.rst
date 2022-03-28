@@ -49,7 +49,7 @@ Here is the flow360client on PyPI\: https://pypi.org/project/flow360client/
 
 *New features*
 
-1. Added a case configuration json generator
+1. Added a case configuration json generator: :py:meth:`flow360client.generator.case.generateCaseJson()`
 
 *Resolved issues*
 

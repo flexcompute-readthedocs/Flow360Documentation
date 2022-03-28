@@ -100,7 +100,7 @@ flow360client module
    :rtype: str
    
 
-.. py:function:: NewSurfaceMeshFromGeometry(fileName, geometryToSurfaceMeshJson, meshName=None, tags=[], solverVersion=None)
+.. py:function:: NewSurfaceMeshFromGeometry(fileName, geometryToSurfaceMeshJson, surfaceMeshName=None, tags=[], solverVersion=None)
    :module: flow360client
 
    Creates new surface mesh from geometry.
@@ -109,8 +109,8 @@ flow360client module
    :type fileName: path (str)
    :param geometryToSurfaceMeshJson: Flow360GeometryToSurfaceMesh.json parameters for the surface mesher. It can be path to the json file or python dict.
    :type geometryToSurfaceMeshJson: path (str) or dict
-   :param meshName: Surface mesh name, by default None
-   :type meshName: str, optional
+   :param surfaceMeshName: Surface mesh name, by default None
+   :type surfaceMeshName: str, optional
    :param tags: List of surface mesh tags, by default []
    :type tags: list, optional
    :param solverVersion: Solver version to be used for surface mesh, volume mesh and cases created from this mesh. If not provided, the latest will be used, by default None
@@ -130,6 +130,28 @@ flow360client module
    
    :returns: List of no-slip walls.
    :rtype: list
+   
+
+.. py:module:: flow360client.generator.case
+
+
+.. py:function:: generateCaseJson()
+   :module: flow360client.generator.case
+
+   Interactive command-line generator for Flow360Case.json with explanation. Walks through following configuration sections:
+   
+       * geometry
+       * freestream
+       * boundaries
+       * slidingInterfaces
+       * timeStepping
+       * navierStokesSolver
+       * turbulenceModelSolver
+       * volumeOutput
+       * surfaceOutput
+   
+   :returns: Returns Flow360Case.json - a simulation configuration file
+   :rtype: json (dict)
    
 
 .. py:module:: flow360client.case
