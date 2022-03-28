@@ -3,6 +3,8 @@
 release-22.1.3.0
 ================
 
+Released: 29th March 2022
+
 A new version of Flow360, release-22.1.3.0, has been deployed. Any
 new submissions of mesh will use this new version by default. Any
 cases based on previously submitted meshes or forked from submitted
@@ -57,3 +59,5 @@ Web UI
 ------
 
 *New features*
+
+1. Added an interactive case configuration json generator.
