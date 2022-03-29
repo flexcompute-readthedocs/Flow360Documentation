@@ -5,7 +5,7 @@ Density@ :math:`\rho_\infty`@ {surfaceOutput, volumeOutput}->primitiveVars
 Velocity@ :math:`C_\infty` @ {surfaceOutput, volumeOutput}->primitiveVars
 Pressure@ :math:`\rho_\infty C_\infty^2`@ {surfaceOutput, volumeOutput}->primitiveVars, surfaceOutput->nodeForcesPerUnitArea
 Temperature@ :math:`T_\infty`@ volumeOutput->T 
-Dynamic viscosity@ :math:`\rho_\infty C_\infty L_\infty`@ freestream->muRef
+Dynamic viscosity@ :math:`\rho_\infty C_\infty L_\text{gridUnit}`@ freestream->muRef
 Angular speed@ :math:`C_\infty/L_\text{gridUnit}`@ slidingInterfaces->omegaRadians, BETDisks->omega
 Force@ :math:`\rho_\infty C_\infty^2 L_\text{gridUnit}^2`@ force in :ref:`BET output <betDiskLoadingNote>`
 Moment@ :math:`\rho_\infty C_\infty^2 L_\text{gridUnit}^3`@ moment in :ref:`BET output <betDiskLoadingNote>`
