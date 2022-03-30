@@ -1,5 +1,5 @@
 Options@ Default@ Description
-maxPhysicalSteps@ 1@ Maximum physical steps 
+physicalSteps@ 1@ Number of physical steps. \"maxPhysicalSteps\" is also supported
 timeStepSize@ \"inf\"@ Nondimensional time step size in physical step marching, it is calculated as :math:`\frac{\Delta t_{physical} C_\infty}{L_{gridUnit}}`, where the :math:`\Delta t_{physical}` is the physical time (in seconds) step size. "inf" means steady solver.
 maxPseudoSteps@ 2000@ Maximum pseudo steps within one physical step 
 CFL->initial@ 5@ Initial CFL for solving pseudo time step 
