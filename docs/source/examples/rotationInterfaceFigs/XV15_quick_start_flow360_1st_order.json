@@ -47,7 +47,7 @@
         "linearIterations" : 35,
         "kappaMUSCL" : -1.0,
         "orderOfAccuracy" : 1,
-        "updateJacobianFrequency" : 1,
+        "updateJacobianFrequency" : 4,
         "equationEvalFrequency" : 1
     },
     "turbulenceModelSolver" : {
@@ -58,7 +58,7 @@
         "kappaMUSCL" : -1.0,
         "DDES" : true,
         "orderOfAccuracy" : 1,
-        "updateJacobianFrequency" : 1,
+        "updateJacobianFrequency" : 4,
         "equationEvalFrequency" : 1,
         "rotationCorrection" : true
     },

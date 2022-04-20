@@ -16,7 +16,7 @@ The `XV15 tiltotor airplane <https://en.wikipedia.org/wiki/Bell_XV-15>`__ is a c
 Basic description of setup
 --------------------------
 
-In order to run a rotating geometry we need to set up a mesh with two blocks, an inner “rotational volume” and an outer “stationary volume”. The interface between those two volumes needs to be a rotational geometry, ie sphere/cylinder/etc...
+In order to run a rotating geometry we need to set up a mesh with two blocks, an inner “rotational volume” and an outer “stationary volume”. The interface between those two volumes needs to be a solid of revolution, ie sphere/cylinder/etc...
 
 .. figure:: rotationInterfaceFigs/rotInterfaceView.png
     :width: 600px
@@ -39,7 +39,7 @@ In order to run a rotating geometry we need to set up a mesh with two blocks, an
 
         body fitted cylinder blocks inside a larger nearfield domain
 
-Please note that it is possible, just like in the figure above, to set up blocks within blocks within blocks to simulate for example a rotating propeller with blades that pitch as they rotate (i.e. a helicopter\'s cyclical ). We could also put many rotating blocks inside the stationary farfield block to simulate multiple rotors
+Please note that it is possible, just like in the figure above, to set up nested rotational interfaces to simulate for example a rotating propeller with blades that pitch as they rotate (i.e. a helicopter\'s cyclical ). We could also put many rotating blocks inside the stationary farfield block to simulate multiple rotors
 
 Rotation interface
 ~~~~~~~~~~~~~~~~~~
@@ -184,7 +184,7 @@ IF you look at the Flow360.json files you will see something like:
 This dictates whether the code will run using 1st or 2nd order interpolation in space
 algorithms. 1st order accuracy is much faster and much more robust.
 
-For time accurate runs where we have rotating components we recommend to first run 1 revolution using first order "orderOfAccuracy" to help establish the flow. Then follow that with however many revolutions are needed for the flow to properly establish itself and for the forces to stabilize. Please note that if you have some parts of your vehicle downstream of your propellers it may take many revolutions for the propellers' wash to migrate down to whatever is downstream.
+For time accurate runs where we have rotating components we recommend to first run 1 revolution using first order "orderOfAccuracy" to help establish the flow. Then follow that with however many 2nd order accurate revolutions are needed for the flow to properly establish itself and for the forces to stabilize. Please note that if you have some parts of your vehicle downstream of your propellers it may take many revolutions for the propeller's wake to reach the downstream geometry components. If that is the case you could run a first set of 2nd order accurate revolutions with a larger time step to help the flow establish itself quicker and then do a more precise, better converged, 2nd order run with smaller time steps to get more accurate forces. 
 
 The process we recommend is to launch a first order case then fork that case which will use the flowfield of the first order's run solution as input to the 2nd order run. You can also fork the 2nd order case into another 2nd order run if you want to let the simulation go for more revolutions, or maybe change the timestep or number of subiterations etc...
 
@@ -290,4 +290,4 @@ The forces also seem to have stabilized after running for 6 revolutions
 
     2nd order run's force history plot showing good stabilization of the forces.
 
-Congratulations. You have now run your first propeller using a rotational interfacea in Flow360.
+Congratulations. You have now run your first propeller using a rotational interface in Flow360.
