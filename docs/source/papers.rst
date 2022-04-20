@@ -7,6 +7,7 @@ The White Paper for Flow360 can be found `here <https://www.flexcompute.com/asse
 
 
 
+.. _rotor5Paper:
 
 Rotor5: Rotor analysis under 5 hours using ultra-fast and high-fidelity CFD simulation and automatic meshing
 ============================================================================================================
@@ -32,6 +33,7 @@ blade.
 
 `Slides <https://simcloud-public-1.s3.amazonaws.com/publications/Rotor5_VFS_Presentation.pdf?download=false>`_
 
+.. _DESXV15:
 
 Assessment of Detached Eddy Simulation and Sliding Mesh Interface in Predicting Tiltrotor Performance in Helicopter and Airplane Modes
 ======================================================================================================================================
@@ -48,7 +50,7 @@ This paper presents numerical investigation on performance and flow field of the
 `Feilin Jia, John Moore and Qiqi Wang, 2022 Assessment of Detached Eddy Simulation and Sliding Mesh Interface in Predicting Tiltrotor Performance in Helicopter and Airplane Modes <https://arxiv.org/pdf/2201.11560.pdf>`_
 
 
-
+.. _aeroParametricAdpative:
 
 Aerodynamic Risk Assessment using Parametric, Three-Dimensional Unstructured, High-Fidelity CFD and Adaptive Sampling
 =====================================================================================================================
@@ -64,15 +66,3 @@ We demonstrate an adaptive sampling approach for computing the probability of a 
 
 
 `Runda Ji and Qiqi Wang, 2021 Aerodynamic Risk Assessment using Parametric, Three-Dimensional Unstructured, High-Fidelity CFD and Adaptive Sampling <https://arxiv.org/pdf/2109.03335.pdf>`_
-
-
-
-
-
-
-
-
-
-
-
-
