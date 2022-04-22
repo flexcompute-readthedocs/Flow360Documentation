@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.2. Blade Element Theory Model &mdash; Flow360 Documentation  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/bugfix.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/logo.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Preprocessing" href="../preprocessing/preprocessing.html" />
+    <link rel="prev" title="2.1. Overview" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Flow360 Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">1. Quick Start</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="capabilities.html">2. Capabilities</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">2.1. Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.2. Blade Element Theory Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">2.2.1. Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bet-input">2.2.2. BET input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bet-loading-output">2.2.3. BET Loading Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bet-visualization">2.2.4. BET Visualization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../preprocessing/preprocessing.html">3. Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solverConfiguration/solverConfiguration.html">4. Solver Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../postprocessing/postprocessing.html">5. Postprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pythonAPI/api.html">6. Python API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">7. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">8. Case Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions/conventions.html">9. Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../publications.html">10. Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releaseNotes.html">11. Release Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Flow360 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="capabilities.html"><span class="section-number">2. </span>Capabilities</a> &raquo;</li>
+      <li><span class="section-number">2.2. </span>Blade Element Theory Model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/capabilities/bladeElementTheory.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="blade-element-theory-model">
+<span id="bladeelementtheory"></span><h1><span class="section-number">2.2. </span>Blade Element Theory Model<a class="headerlink" href="#blade-element-theory-model" title="Permalink to this headline"></a></h1>
+<section id="overview">
+<h2><span class="section-number">2.2.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p>Based on Blade Element Theory, Flow360 provides 2 related solvers, which can be configured in <a class="reference internal" href="../solverConfiguration/solverConfiguration.html#betdisksinputparameters"><span class="std std-ref">BETDisks</span></a> section of Flow360.json:</p>
+<ul>
+<li><p>Steady blade disk solver</p>
+<blockquote>
+<div><p>To use the steady blade disk solver, the <code class="code docutils literal notranslate"><span class="pre">bladeLineChord</span></code> needs to be set as 0, which is its default value if omitted.</p>
+</div></blockquote>
+</li>
+<li><p>Unsteady blade line solver</p>
+<blockquote>
+<div><p>To use the unsteady blade line solver, <code class="code docutils literal notranslate"><span class="pre">bladeLineChord</span></code> has to be a positive value and <code class="code docutils literal notranslate"><span class="pre">initialBladeDirection</span></code> also needs to be set.</p>
+</div></blockquote>
+</li>
+</ul>
+<p>In the <a class="reference internal" href="../solverConfiguration/solverConfiguration.html#betdisksinputparameters"><span class="std std-ref">BETDisks</span></a> section of the Flow360.json, except the <code class="code docutils literal notranslate"><span class="pre">bladeLineChord</span></code> and <code class="code docutils literal notranslate"><span class="pre">initialBladeDirection</span></code>, other parameters are necessary for both solvers. A case study on the XV-15 rotor using blade element theory can be found at <a class="reference internal" href="../examples/betDiskSteady_caseStudy.html#xv15betdisk-casestudy"><span class="std std-ref">XV15 BET Disk</span></a>.</p>
+</section>
+<section id="bet-input">
+<span id="id1"></span><h2><span class="section-number">2.2.2. </span>BET input<a class="headerlink" href="#bet-input" title="Permalink to this headline"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic simple">
+<li><p>In the BETDisks section, all input quantities are non-dimensional, except the <code class="code docutils literal notranslate"><span class="pre">twists</span></code> and <code class="code docutils literal notranslate"><span class="pre">alphas</span></code> (both in degrees). The convention for non-dimensionalization in Flow360 can be found at <a class="reference internal" href="../conventions/conventions.html#nondimensionalization-flow360"><span class="std std-ref">Non-dimensionalization in Flow360</span></a>.</p></li>
+<li><p>For users of XROTOR and DFDC, we have a translator script that will convert the XROTOR/DFDC inputs in Flow360 BET inputs.</p></li>
+</ol>
+</div>
+<p>Some input parameters related to BET solver in Flow360 are explained:</p>
+<ol class="arabic simple">
+<li><p><strong>radius</strong>. All grid points enclosed by the cylinder defined by “radius”, “center” and “axisOfRotation” will have aerodynamic forces imposed on them according to blade element theory.</p></li>
+<li><p><strong>rotationDirectionRule</strong>: <code class="code docutils literal notranslate"><span class="pre">leftHand</span></code> or <code class="code docutils literal notranslate"><span class="pre">rightHand</span></code>. It depends on the design of the rotor blades: whether the blades follow curl left hand rule or the curl right hand rule to generate positive thrust. The following 2 figures show the curl left hand rule and curl right hand rule. The fingers follow the spinning of the blades and the thumb points to the thrust direction. By default, it is <code class="code docutils literal notranslate"><span class="pre">rightHand</span></code>.</p></li>
+</ol>
+<div class="twocol docutils container">
+<div class="leftside docutils container">
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/left_hand_rule.svg"><img alt="../_images/left_hand_rule.svg" src="../_images/left_hand_rule.svg" width="80%" /></a>
+</figure>
+</div>
+<div class="rightside docutils container">
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/right_hand_rule.svg"><img alt="../_images/right_hand_rule.svg" src="../_images/right_hand_rule.svg" width="80%" /></a>
+</figure>
+</div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>axisOfRotation</strong>: It is the direction of your thumb (thrust) described in “rotationDirectionRule”.</p></li>
+<li><p><strong>omega</strong>: The non-dimensional rotating speed. It should be positive in most cases, which means the leading edge moves in front and the rotation direction of the blades in BET simulations is consistent with the curling fingers described in “rotationDirectionRule” to generate positive thrust. A negative “omega” means the blades rotate in a reverse direction, where the trailing edge moves in front.</p></li>
+</ol>
+<p>The following 4 pictures give some examples of different rotationDirectionRule and axisOfRotation with <strong>positive omega</strong>. The curved arrow follows the same direction in which rotor spins. The straight arrow points to the direction of thrust.</p>
+<div class="twocol docutils container">
+<div class="leftside docutils container">
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;rotationDirectionRule&quot;</span><span class="p">:</span><span class="s2">&quot;leftHand&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="nt">&quot;axisOfRotation&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="w"></span>
+<span class="nt">&quot;omega&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="rightside docutils container">
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/leftHand_thrust_z+.svg"><img alt="../_images/leftHand_thrust_z+.svg" src="../_images/leftHand_thrust_z+.svg" width="66%" /></a>
+</figure>
+</div>
+</div>
+<hr class="docutils" />
+<div class="twocol docutils container">
+<div class="leftside docutils container">
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;rotationDirectionRule&quot;</span><span class="p">:</span><span class="s2">&quot;leftHand&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="nt">&quot;axisOfRotation&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">-1</span><span class="p">],</span><span class="w"></span>
+<span class="nt">&quot;omega&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="rightside docutils container">
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/leftHand_thrust_z-.svg"><img alt="../_images/leftHand_thrust_z-.svg" src="../_images/leftHand_thrust_z-.svg" width="66%" /></a>
+</figure>
+</div>
+</div>
+<hr class="docutils" />
+<div class="twocol docutils container">
+<div class="leftside docutils container">
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;rotationDirectionRule&quot;</span><span class="p">:</span><span class="s2">&quot;rightHand&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="nt">&quot;axisOfRotation&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="w"></span>
+<span class="nt">&quot;omega&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="rightside docutils container">
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/rightHand_thrust_z+.svg"><img alt="../_images/rightHand_thrust_z+.svg" src="../_images/rightHand_thrust_z+.svg" width="66%" /></a>
+</figure>
+</div>
+</div>
+<hr class="docutils" />
+<div class="twocol docutils container">
+<div class="leftside docutils container">
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;rotationDirectionRule&quot;</span><span class="p">:</span><span class="s2">&quot;rightHand&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="nt">&quot;axisOfRotation&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">-1</span><span class="p">],</span><span class="w"></span>
+<span class="nt">&quot;omega&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="rightside docutils container">
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/rightHand_thrust_z-.svg"><img alt="../_images/rightHand_thrust_z-.svg" src="../_images/rightHand_thrust_z-.svg" width="66%" /></a>
+</figure>
+</div>
+</div>
+<hr class="docutils" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the above 4 examples, if the omega is negative, the rotor rotates in the opposite direction of what is shown.</p>
+</div>
+<ol class="arabic simple" start="5">
+<li><p><strong>chords</strong> and <strong>twists</strong>: The sampled radial distribution of chord length and twist angle. The “twist” affects the local angle of attack. The “chords” affects the amount of lift and drag imposed on the blade (or fluid). For a radial location where chord=0, there is no lift or drag imposed. It should be noted that for any radial location within the given sampling range, the chord or twist is linearly interpolated between its two neighboring sampled data points. For any radial location beyond the given sampling range, the chord or twist is set to be the nearest sampled chord or twist, i.e. constant extrapolation. Here are 3 examples of the given “chords” and the corresponding radial distribution of chord length:</p></li>
+</ol>
+<p class="left2">5.1. The root of blade starts at r=20 with chord length=15. The chord shrinks to 10 linearly up to r=60. The chord keeps as 10 for the rest of blade. In this setting, the chord=0 for r in [0,20], there is no aerodynamic lift and drag imposed no matter what the twist angle it has, so this setting fits the rotor without hub.</p>
+<div class="twocol docutils container">
+<div class="leftside docutils container">
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;radius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">19.9999</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;chord&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;radius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;chord&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;radius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;chord&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;radius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;chord&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="rightside docutils container">
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/chords_distribution_1.svg"><img alt="../_images/chords_distribution_1.svg" height="2709" src="../_images/chords_distribution_1.svg" width="3612" /></a>
+</figure>
+</div>
+</div>
+<p class="left2">5.2. The root of blade starts at r=0 with chord=0. The chord expands to 15 linearly up to r=20, then shrinks to 10 linearly up to r=60. The chord keeps as 10 for the rest of blade. This setting could be used for a mesh with the geometry of hub. Because the chord length changes gradually near the root region, there won’t be tip vortices in root region.</p>
+<div class="twocol docutils container">
+<div class="leftside docutils container">
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;radius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;chord&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;radius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;chord&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;radius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;chord&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;radius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;chord&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="rightside docutils container">
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/chords_distribution_2.svg"><img alt="../_images/chords_distribution_2.svg" height="2709" src="../_images/chords_distribution_2.svg" width="3612" /></a>
+</figure>
+</div>
+</div>
+<p class="left2">5.3. This is an exmpale of wrong setting of chords, because the chord length at r=0 is not 0, so the local solidity is infinity, which is not realistic.</p>
+<div class="twocol docutils container">
+<div class="leftside docutils container">
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;radius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;chord&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;radius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;chord&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;radius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;chord&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="rightside docutils container">
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/chords_distribution_3.svg"><img alt="../_images/chords_distribution_3.svg" height="2709" src="../_images/chords_distribution_3.svg" width="3612" /></a>
+</figure>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The number of sampling data points in <code class="code docutils literal notranslate"><span class="pre">chords</span></code> and <code class="code docutils literal notranslate"><span class="pre">twists</span></code> doesn’t have to be the same. They are served as sampled data for interpolation of chord length and twist angle respectively and separately.</p>
+</div>
+</section>
+<section id="bet-loading-output">
+<span id="betdiskloadingnote"></span><h2><span class="section-number">2.2.3. </span>BET Loading Output<a class="headerlink" href="#bet-loading-output" title="Permalink to this headline"></a></h2>
+<p>After the simulation is completed, a “bet_forces_v2.csv” file is created for the case, which contains the time history of the following quantities:</p>
+<ol class="arabic simple">
+<li><p>Integrated x-, y-, z-component of non-dimensional forces and non-dimensional moments acted on each disk, represented by “Disk[diskID]_Force_x,_y,_z” and “Disk[diskID]_Moment_x,_y,_z” in the “bet_forces_v2.csv file” respectively. The non-dimensional force is defined as</p></li>
+</ol>
+<div class="math notranslate nohighlight" id="equation-defbetforce">
+<span class="eqno">(2.2.1)<a class="headerlink" href="#equation-defbetforce" title="Permalink to this equation"></a></span>\[\text{Force}_\text{non-dimensional} = \frac{\text{Force}_\text{physical}\text{(SI=N)}}{\rho_\infty C_\infty^2 L_{gridUnit}^2}\]</div>
+<p>The non-dimensional moment is defined as</p>
+<div class="math notranslate nohighlight" id="equation-defbetmoment">
+<span class="eqno">(2.2.2)<a class="headerlink" href="#equation-defbetmoment" title="Permalink to this equation"></a></span>\[\text{Moment}_\text{non-dimensional} = \frac{\text{Moment}_\text{physical}\text{(SI=N$\cdot$m)}}{\rho_\infty C_\infty^2 L_{gridUnit}^3},\]</div>
+<p>where the moment center is the <code class="code docutils literal notranslate"><span class="pre">centerOfRotation</span></code> of each disk, defined in <a class="reference internal" href="../solverConfiguration/solverConfiguration.html#betdisksinputparameters"><span class="std std-ref">BETDisks</span></a> of Flow360.json.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The above Force and Moment values mean the force and moment acted on <strong>solid</strong>. If you want to know the force and moment acted on <strong>fluid</strong>, just add a negative sign in front of it.</p>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Sectional thrust coefficient <span class="math notranslate nohighlight">\(C_t\)</span> and sectional torque coefficient <span class="math notranslate nohighlight">\(C_q\)</span> on each blade at several radial locations, represented by “Disk[diskID]_Blade[bladeID]_R[radialID]” with suffix “_Radius” (non-dimensional), “_ThrustCoeff” and “_TorqueCoeff”. The number of radial locations is specified in <code class="code docutils literal notranslate"><span class="pre">nLoadingNodes</span></code>.</p></li>
+</ol>
+<p>The definition of <span class="math notranslate nohighlight">\(C_t\)</span> is</p>
+<div class="math notranslate nohighlight" id="equation-defbetct">
+<span class="eqno">(2.2.3)<a class="headerlink" href="#equation-defbetct" title="Permalink to this equation"></a></span>\[C_t\bigl(r\bigr)=\frac{\text{Thrust per unit blade span (SI=N/m)}}{\frac{1}{2}\rho_{\infty}\left((\Omega r)^2\right)\text{chord}_{\text{ref}}}\cdot\frac{r}{R}\]</div>
+<p>The definition of <span class="math notranslate nohighlight">\(C_q\)</span> is</p>
+<div class="math notranslate nohighlight" id="equation-defbetcq">
+<span class="eqno">(2.2.4)<a class="headerlink" href="#equation-defbetcq" title="Permalink to this equation"></a></span>\[C_q\bigl(r\bigr)=\frac{\text{Torque per unit blade span (SI=N)}}{\frac{1}{2}\rho_{\infty}\left((\Omega r)^2\right)\text{chord}_{\text{ref}}R}\cdot\frac{r}{R}\]</div>
+<p>where <span class="math notranslate nohighlight">\(r\)</span> is the dimensional distance between the node to the axis of rotation. <span class="math notranslate nohighlight">\(\text{chord}_\text{ref}\)</span> is the dimensional reference chord length. <span class="math notranslate nohighlight">\(R\)</span> is the dimensional radius of the rotor disk.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>All the quantities in the right hand side of <a class="reference internal" href="#equation-defbetforce">Eq.(2.2.1)</a>, <a class="reference internal" href="#equation-defbetmoment">Eq.(2.2.2)</a>, <a class="reference internal" href="#equation-defbetct">Eq.(2.2.3)</a> and <a class="reference internal" href="#equation-defbetcq">Eq.(2.2.4)</a> are <strong>dimensional</strong>, which are different from the <strong>non-dimensional</strong> values in <a class="reference internal" href="../solverConfiguration/solverConfiguration.html#betdisksinputparameters"><span class="std std-ref">BETDisks (list)</span></a> of Flow360.json. For example, at the first disk’s first blade’s first radial location <span class="math notranslate nohighlight">\(r=\text{Disk0_Blade0_R0_Radius}\times L_\text{gridUnit}\)</span>. The conventions for non-dimensionalization in Flow360 can be found at <a class="reference internal" href="../conventions/conventions.html#nondimensionalization-flow360"><span class="std std-ref">Non-dimensionalization in Flow360</span></a>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For simulations of the steady blade disk solver, the resulting <span class="math notranslate nohighlight">\(C_t\)</span> and <span class="math notranslate nohighlight">\(C_q\)</span> are only saved on the first blade, named by “Blade0”. They are written as all zeros for other blades, because all the blades have the same sectional loadings in steady blade disk simulations. For the unsteady blade line solver, each blade has its own <span class="math notranslate nohighlight">\(C_t\)</span> and <span class="math notranslate nohighlight">\(C_q\)</span> values.</p>
+</div>
+<p>Here is an example of the header of a “bet_forces_v2.csv” file from a simulation containing two BET disks (assume <code class="code docutils literal notranslate"><span class="pre">nLoadingNodes</span></code> = 20, <code class="code docutils literal notranslate"><span class="pre">numberOfBlades</span></code> = 3 for each disk):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">physical_step</span><span class="p">,</span> <span class="n">pseudo_step</span><span class="p">,</span>
+<span class="n">Disk0_Force_x</span><span class="p">,</span> <span class="n">Disk0_Force_y</span><span class="p">,</span> <span class="n">Disk0_Force_z</span><span class="p">,</span> <span class="n">Disk0_Moment_x</span><span class="p">,</span> <span class="n">Disk0_Moment_y</span><span class="p">,</span> <span class="n">Disk0_Moment_z</span><span class="p">,</span>
+<span class="n">Disk0_Blade0_R0_Radius</span><span class="p">,</span> <span class="n">Disk0_Blade0_R0_ThrustCoeff</span><span class="p">,</span> <span class="n">Disk0_Blade0_R0_TorqueCoeff</span><span class="p">,</span>
+<span class="n">Disk0_Blade0_R1_Radius</span><span class="p">,</span> <span class="n">Disk0_Blade0_R1_ThrustCoeff</span><span class="p">,</span> <span class="n">Disk0_Blade0_R1_TorqueCoeff</span><span class="p">,</span>
+<span class="o">...</span>
+<span class="n">Disk0_Blade0_R19_Radius</span><span class="p">,</span> <span class="n">Disk0_Blade0_R19_ThrustCoeff</span><span class="p">,</span> <span class="n">Disk0_Blade0_R19_TorqueCoeff</span><span class="p">,</span>
+<span class="n">Disk0_Blade1_R0_Radius</span><span class="p">,</span> <span class="n">Disk0_Blade1_R0_ThrustCoeff</span><span class="p">,</span> <span class="n">Disk0_Blade1_R0_TorqueCoeff</span><span class="p">,</span>
+<span class="n">Disk0_Blade1_R1_Radius</span><span class="p">,</span> <span class="n">Disk0_Blade1_R1_ThrustCoeff</span><span class="p">,</span> <span class="n">Disk0_Blade1_R1_TorqueCoeff</span><span class="p">,</span>
+<span class="o">...</span>
+<span class="n">Disk0_Blade1_R19_Radius</span><span class="p">,</span> <span class="n">Disk0_Blade1_R19_ThrustCoeff</span><span class="p">,</span> <span class="n">Disk0_Blade1_R19_TorqueCoeff</span><span class="p">,</span>
+<span class="n">Disk0_Blade2_R0_Radius</span><span class="p">,</span> <span class="n">Disk0_Blade2_R0_ThrustCoeff</span><span class="p">,</span> <span class="n">Disk0_Blade2_R0_TorqueCoeff</span><span class="p">,</span>
+<span class="n">Disk0_Blade2_R1_Radius</span><span class="p">,</span> <span class="n">Disk0_Blade2_R1_ThrustCoeff</span><span class="p">,</span> <span class="n">Disk0_Blade2_R1_TorqueCoeff</span><span class="p">,</span>
+<span class="o">...</span>
+<span class="n">Disk0_Blade2_R19_Radius</span><span class="p">,</span> <span class="n">Disk0_Blade2_R19_ThrustCoeff</span><span class="p">,</span> <span class="n">Disk0_Blade2_R19_TorqueCoeff</span><span class="p">,</span>
+<span class="n">Disk1_Force_x</span><span class="p">,</span> <span class="n">Disk1_Force_y</span><span class="p">,</span> <span class="n">Disk1_Force_z</span><span class="p">,</span> <span class="n">Disk1_Moment_x</span><span class="p">,</span> <span class="n">Disk1_Moment_y</span><span class="p">,</span> <span class="n">Disk1_Moment_z</span><span class="p">,</span>
+<span class="o">...</span>
+<span class="o">...</span>
+<span class="o">...</span>
+<span class="n">Disk1_Blade2_R19_Radius</span><span class="p">,</span> <span class="n">Disk1_Blade2_R19_ThrustCoeff</span><span class="p">,</span> <span class="n">Disk1_Blade2_R19_TorqueCoeff</span>
+</pre></div>
+</div>
+</section>
+<section id="bet-visualization">
+<h2><span class="section-number">2.2.4. </span>BET Visualization<a class="headerlink" href="#bet-visualization" title="Permalink to this headline"></a></h2>
+<p>An additional option <code class="code docutils literal notranslate"><span class="pre">betMetrics</span></code> in <a class="reference internal" href="../solverConfiguration/solverConfiguration.html#volumeoutputinputparameters"><span class="std std-ref">volumeOutput</span></a> is available to visualize the BET related quantities.</p>
+<div style="position: relative; padding-bottom: 20px; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/sIQk0sguKmI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A case study about the XV-15 rotor using steady BET Disk solver can be found at <a class="reference internal" href="../examples/betDiskSteady_caseStudy.html#xv15betdisk-casestudy"><span class="std std-ref">XV15 BET Disk case</span></a>.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="overview.html" class="btn btn-neutral float-left" title="2.1. Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../preprocessing/preprocessing.html" class="btn btn-neutral float-right" title="3. Preprocessing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Flexcompute Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.3. Run CFD on a propeller using a Rotation interface &mdash; Flow360 Documentation  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/bugfix.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/logo.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Capabilities" href="../capabilities/capabilities.html" />
+    <link rel="prev" title="1.2. Run CFD using Python API: An example of ONERA M6 Wing" href="om6_wing_pyAPI.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Flow360 Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../quickstart.html">1. Quick Start</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="om6_wing_webUI.html">1.1. Run CFD using Web UI: An example of ONERA M6 Wing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="om6_wing_pyAPI.html">1.2. Run CFD using Python API: An example of ONERA M6 Wing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.3. Run CFD on a propeller using a Rotation interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#quick-start-using-the-xv-15-geometry">1.3.1. Quick Start using the XV 15 geometry.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basic-description-of-setup">1.3.2. Basic description of setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">1.3.2.1. Rotation interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-an-interface-regions-with-concentric-mesh-rings">1.3.2.2. Creating an interface regions with concentric mesh rings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#xv15-example-setup">1.3.3. XV15 Example setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#defining-a-mesh-json-file">1.3.3.1. Defining a Mesh.json file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#uploading-your-mesh">1.3.3.2. Uploading your mesh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defining-a-flow360-json-file">1.3.3.3. Defining a Flow360.json file.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#st-vs-2nd-order-cfd-runs">1.3.3.4. 1st vs 2nd order CFD runs:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#case-input-conditions">1.3.3.5. Case input conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#case-running">1.3.3.6. Case running</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capabilities/capabilities.html">2. Capabilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preprocessing/preprocessing.html">3. Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solverConfiguration/solverConfiguration.html">4. Solver Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../postprocessing/postprocessing.html">5. Postprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pythonAPI/api.html">6. Python API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">7. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">8. Case Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions/conventions.html">9. Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../publications.html">10. Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releaseNotes.html">11. Release Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Flow360 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../quickstart.html"><span class="section-number">1. </span>Quick Start</a> &raquo;</li>
+      <li><span class="section-number">1.3. </span>Run CFD on a propeller using a Rotation interface</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/rotation_interface.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<span class="target" id="rotation-interface"></span><section id="run-cfd-on-a-propeller-using-a-rotation-interface">
+<h1><span class="section-number">1.3. </span>Run CFD on a propeller using a Rotation interface<a class="headerlink" href="#run-cfd-on-a-propeller-using-a-rotation-interface" title="Permalink to this headline"></a></h1>
+<section id="quick-start-using-the-xv-15-geometry">
+<h2><span class="section-number">1.3.1. </span>Quick Start using the XV 15 geometry.<a class="headerlink" href="#quick-start-using-the-xv-15-geometry" title="Permalink to this headline"></a></h2>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Bell_XV-15">XV15 tiltotor airplane</a> is a commonly used test bed for propeller validation work. As you can see from the following papers, we have done extensive validation work on that geometry. We will now use it to show you how to analyze a propeller-type geometry using a sliding mesh interface. :</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../papers.html#rotor5paper"><span class="std std-ref">Rotor5: Rotor analysis under 5 hours using ultra-fast and high-fidelity CFD simulation and automatic meshing</span></a></p></li>
+<li><p><a class="reference internal" href="../papers.html#desxv15"><span class="std std-ref">Assessment of Detached Eddy Simulation and Sliding Mesh Interface in Predicting Tiltrotor Performance in Helicopter and Airplane Modes</span></a></p></li>
+</ul>
+</section>
+<section id="basic-description-of-setup">
+<h2><span class="section-number">1.3.2. </span>Basic description of setup<a class="headerlink" href="#basic-description-of-setup" title="Permalink to this headline"></a></h2>
+<p>In order to run a rotating geometry we need to set up a mesh with two blocks, an inner “rotational volume” and an outer “stationary volume”. The interface between those two volumes needs to be a solid of revolution, ie sphere/cylinder/etc…</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/rotInterfaceView.png"><img alt="Inner block enclosing the XV15 3 bladed prop" src="../_images/rotInterfaceView.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.3.1 </span><span class="caption-text">Inner block enclosing the XV15 3 bladed prop</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../_images/farfieldView.png"><img alt="Farfield volume enclosing Inner block" src="../_images/farfieldView.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.3.2 </span><span class="caption-text">Farfield volume enclosing Inner block</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="../_images/fig4.png"><img alt="body fitted cylinder blocks inside a larger nearfield domain" src="../_images/fig4.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.3.3 </span><span class="caption-text">body fitted cylinder blocks inside a larger nearfield domain</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Please note that it is possible, just like in the figure above, to set up nested rotational interfaces to simulate for example a rotating propeller with blades that pitch as they rotate (i.e. a helicopter's cyclical ). We could also put many rotating blocks inside the stationary farfield block to simulate multiple rotors</p>
+<section id="id1">
+<h3><span class="section-number">1.3.2.1. </span>Rotation interface<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<p>The rotation interface needs to be a body of revolution (sphere, cylinder etc…) which encloses the entire rotor blades. The grid points on the rotation interface can not be arbitrary. It is mandatory that they form a set of concentric rings.</p>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="../_images/notConcentricMod.png"><img alt="Non concentric mesh on rotation interface" src="../_images/notConcentricMod.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.3.4 </span><span class="caption-text">Non concentric circle mesh on rotation interface</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The grid points on the rotation interface shown in the figure above do not satisfy that requirement. Certain points deviate slightly from the perfect concentric circle.</p>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="../_images/concentric.png"><img alt="concentric mesh on rotation interface" src="../_images/concentric.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.3.5 </span><span class="caption-text">Concentric circle mesh on rotation interface</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>This figure shows a slightly different grid that does satisfy that requirement. Notice how all the nodes are on concentric circles.
+The reason for that requirement is that it greatly speeds up the interpolation process. Since this interpolation happens twice for every interface node (inner and outer domain) and for every pseudo timestep, already knowing where the neighbors are without having to run a search algorithm every time to find the closest node is very efficient.</p>
+</section>
+<section id="creating-an-interface-regions-with-concentric-mesh-rings">
+<h3><span class="section-number">1.3.2.2. </span>Creating an interface regions with concentric mesh rings<a class="headerlink" href="#creating-an-interface-regions-with-concentric-mesh-rings" title="Permalink to this headline"></a></h3>
+<p>For this case study we will provide the mesh. But for your own cases, knowing that we have this concentric mesh requirement, the easiest way to create the meshes for the interface regions is to do it programmatically. We have a lot of scripts to generate various body of revolution interface shapes that will allow you to generate an interface region no matter what your geometry. Just contact us and we will help you get setup with the scripts you need.</p>
+<p>For plain cylindrical or spherical interfaces we have some pre-generated interfaces in CGNS format ready for you to download from <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/rotationInterface/CGNS_rotation_interfaces.tgz">this link</a>.
+You will notice that they come in various height to radius ratio as well as various resolutions. You will need to choose the version that best fits your needs and then rotate/scale the imported mesh to align the interface around your geometry.</p>
+</section>
+</section>
+<section id="xv15-example-setup">
+<h2><span class="section-number">1.3.3. </span>XV15 Example setup<a class="headerlink" href="#xv15-example-setup" title="Permalink to this headline"></a></h2>
+<p>We will now show you how to run an XV15 propeller</p>
+<p>First, the rotor has a 150” (inches)  radius and the blades have a chord of roughly 11”. For simplicity’s sake we will use the SI system and convert that to 3.81meters radius and 0.279meter chord.</p>
+<p>A complete <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/xv15/XV15_Hover_ascent_coarse.cgns">CGNS mesh is available here</a> along with its associated <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/xv15/XV15_quick_start_mesh.json">Mesh.json file</a></p>
+<p>if you are comfortable with the CGNS format you can run the “cgnslist” command which will show you that the <strong>XV15_Hover_ascent_coarse.cgns</strong> file contains the following blocks and boundaries</p>
+<p><em>farField</em></p>
+<p>    <em>farField/farField</em></p>
+<p>    <em>farField/rotationInterface</em></p>
+<p><em>innerRotating</em></p>
+<p>    <em>innerRotating/blade</em></p>
+<p>    <em>innerRotating/rotationInterface</em></p>
+<p>This shows us that we have two mesh regions (<em>farField</em> and <em>innerRotating</em>). Inside <em>innerRotating</em> we have some <em>blades</em> and as a part or <em>farField</em> we have the <em>farField</em> boundaries.</p>
+<section id="defining-a-mesh-json-file">
+<span id="defmeshjson"></span><h3><span class="section-number">1.3.3.1. </span>Defining a Mesh.json file<a class="headerlink" href="#defining-a-mesh-json-file" title="Permalink to this headline"></a></h3>
+<p>The Mesh.json file contains the information the mesh preprocessor needs
+in order to perform its job.
+We need to give it the information as to which domains are the
+“NoSlipWalls” and which are the “rotationInterfaces” along with some key
+rotation interface geometry information, namely the rotation axis vector and the center of rotation.</p>
+<p>You do NOT need to give it any “FarField”, “SlipWall” domain
+informations.</p>
+<p>In our case our XV15_quick_start_mesh.json file looks like:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;boundaries&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;noSlipWalls&quot;</span><span class="o">:</span> <span class="p">[</span>
+          <span class="s2">&quot;innerRotating/blade&quot;</span><span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;slidingInterfaces&quot;</span> <span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">&quot;stationaryPatches&quot;</span> <span class="o">:</span> <span class="p">[</span><span class="s2">&quot;farField/rotationInterface&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;rotatingPatches&quot;</span> <span class="o">:</span> <span class="p">[</span><span class="s2">&quot;innerRotating/rotationInterface&quot;</span><span class="p">],</span>
+          <span class="s2">&quot;axisOfRotation&quot;</span> <span class="o">:</span> <span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="o">-</span><span class="mf">1</span><span class="p">],</span>
+          <span class="s2">&quot;centerOfRotation&quot;</span> <span class="o">:</span> <span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">]</span>
+      <span class="p">}</span>
+  <span class="p">]</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="uploading-your-mesh">
+<h3><span class="section-number">1.3.3.2. </span>Uploading your mesh<a class="headerlink" href="#uploading-your-mesh" title="Permalink to this headline"></a></h3>
+<p>Now that you have the <strong>XV15_Hover_ascent_coarse.cgns</strong> mesh file and its associated <strong>XV15_quick_start_mesh.json</strong> mesh preprocessor input file you can upload
+your mesh either using the API or by using
+the web UI</p>
+</section>
+<section id="defining-a-flow360-json-file">
+<h3><span class="section-number">1.3.3.3. </span>Defining a Flow360.json file.<a class="headerlink" href="#defining-a-flow360-json-file" title="Permalink to this headline"></a></h3>
+<p>Once your mesh has been uploaded, the last step before launching a run is to create a Flow360.json file with all the information
+needed by Flow360 to run your case.</p>
+<p>For this example we have provided you with two different Flow360 json input files. Please download the one for the <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/xv15/XV15_quick_start_flow360_1st.json">initial 1st order run</a> and the other for the <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/xv15/XV15_quick_start_flow360_2nd.json">final 2nd order runs</a>. More on 1st order vs 2nd order <a class="reference internal" href="#st2ndorder"><span class="std std-ref">below</span></a></p>
+<p>For this case, our Flow360 input json files have 11 sections</p>
+<ul class="simple">
+<li><p>“geometry”</p></li>
+<li><p>“runControl”</p></li>
+<li><p>“volumeOutput”</p></li>
+<li><p>“surfaceOutput”</p></li>
+<li><p>“sliceOutput”</p></li>
+<li><p>“navierStokesSolver”</p></li>
+<li><p>“turbulenceModelSolver”</p></li>
+<li><p>“freestream”</p></li>
+<li><p>“boundaries”</p></li>
+<li><p>“slidingInterfaces”</p></li>
+<li><p>“timeStepping”</p></li>
+</ul>
+<p>Most of those categories are self evident and won’t be discussed here,
+just take a look at the downloaded json files or go to our documentation page on <a class="reference internal" href="../solverConfiguration/solverConfiguration.html#flow360meshjson"><span class="std std-ref">solver configuration</span></a>  to see what each sections does. Or for a more detailed description on how to setup your Flow360.json file for your configuration
+please see our dedicated <a class="reference internal" href="../examples.html#examples"><span class="std std-ref">Case Studies</span></a></p>
+</section>
+<section id="st-vs-2nd-order-cfd-runs">
+<span id="st2ndorder"></span><h3><span class="section-number">1.3.3.4. </span>1st vs 2nd order CFD runs:<a class="headerlink" href="#st-vs-2nd-order-cfd-runs" title="Permalink to this headline"></a></h3>
+<p>IF you look at the Flow360.json files you will see something like:</p>
+<p>“navierStokesSolver” : {</p>
+<p>“orderOfAccuracy” : 1 or 2 }</p>
+<p>“turbulenceModelSolver” : {</p>
+<p>“orderOfAccuracy” : 1 or 2 }</p>
+<p>This dictates whether the code will run using 1st or 2nd order interpolation in space
+algorithms. 1st order accuracy is much faster and much more robust.</p>
+<p>For time accurate runs where we have rotating components we recommend to first run 1 revolution using first order “orderOfAccuracy” to help establish the flow. Then follow that with however many 2nd order accurate revolutions are needed for the flow to properly establish itself and for the forces to stabilize. Please note that if you have some parts of your vehicle downstream of your propellers it may take many revolutions for the propeller’s wake to reach the downstream geometry components. If that is the case you could run a first set of 2nd order accurate revolutions with a larger time step to help the flow establish itself quicker and then do a more precise, better converged, 2nd order run with smaller time steps to get more accurate forces. This is easily done in Flow360 through our “fork” function that launches a new job using the flow solution of the parent job as the initial condition to the forked child job.</p>
+<p>Also, for 1st order we recommend using the following “timeStepping” values:</p>
+<ul class="simple">
+<li><p>max Pseudo Steps =12</p></li>
+<li><p>CFL initial=1</p></li>
+<li><p>CFL final = 1000</p></li>
+<li><p>rampSteps= 10 (i.e. rampSteps is 2 steps less then maxPseudoSteps)</p></li>
+</ul>
+<p>for 2nd order we recommend using the following “timeStepping” values:</p>
+<ul class="simple">
+<li><p>max Pseudo Steps =35</p></li>
+<li><p>CFL initial=1</p></li>
+<li><p>CFL final = 1e7</p></li>
+<li><p>rampSteps= 33 (i.e. rampSteps is 2 steps less then maxPseudoSteps)</p></li>
+</ul>
+<p>These are just guidelines to get your started and will most likely need to be revised for your specific cases.</p>
+</section>
+<section id="case-input-conditions">
+<h3><span class="section-number">1.3.3.5. </span>Case input conditions<a class="headerlink" href="#case-input-conditions" title="Permalink to this headline"></a></h3>
+<p>For our case we have the following input conditions:</p>
+<ul class="simple">
+<li><p>5m/s inflow speed</p></li>
+<li><p>600 RPM</p></li>
+<li><p>speed of sound = 340.2 m/s</p></li>
+<li><p>Rho = 1.225 kg/m<sup>3</sup></p></li>
+<li><p>Alpha = -90 ° which means the air coming down from above, i.e. an ascent case.</p></li>
+</ul>
+<p>other key values are :</p>
+<ul class="simple">
+<li><p>The reference Mach value is arbitrarily set to the Tip mach number for the blades.</p></li>
+<li><p>For the 1st order run we will do 1 revolution at 6 ° per time step. Hence the “maxPhysicalSteps” : 60 value (60*6 ° =360 ° )</p></li>
+<li><p>for the 2nd order run we will do 5 revolutions at 3 ° per time step.</p></li>
+</ul>
+<p>Using the Non-dimensionalization equations described in the  <a class="reference internal" href="../conventions/conventions.html#nondimensionalization-flow360"><span class="std std-ref">conventions</span></a>  part of the documentation we get the following flow conditions and timeStepping values in our 1st order Flow360.json file.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>    <span class="s2">&quot;freestream&quot;</span> <span class="o">:</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;muRef&quot;</span> <span class="o">:</span> <span class="mf">4.29279e-08</span><span class="p">,</span>
+        <span class="s2">&quot;Mach&quot;</span> <span class="o">:</span> <span class="mf">1.46972e-02</span><span class="p">,</span>
+        <span class="s2">&quot;MachRef&quot;</span> <span class="o">:</span> <span class="mf">0.70</span><span class="p">,</span>
+        <span class="s2">&quot;Temperature&quot;</span> <span class="o">:</span> <span class="mf">288.15</span><span class="p">,</span>
+        <span class="s2">&quot;alphaAngle&quot;</span> <span class="o">:</span> <span class="o">-</span><span class="mf">90.0</span><span class="p">,</span>
+        <span class="s2">&quot;betaAngle&quot;</span> <span class="o">:</span> <span class="mf">0.0</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;boundaries&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;farField/farField&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;Freestream&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;farField/rotationInterface&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;SlidingInterface&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;innerRotating/rotationInterface&quot;</span> <span class="o">:</span>   <span class="p">{</span> <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;SlidingInterface&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;innerRotating/blade&quot;</span> <span class="o">:</span>   <span class="p">{</span> <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;NoSlipWall&quot;</span> <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;slidingInterfaces&quot;</span> <span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;stationaryPatches&quot;</span> <span class="o">:</span> <span class="p">[</span><span class="s2">&quot;farField/rotationInterface&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;rotatingPatches&quot;</span> <span class="o">:</span> <span class="p">[</span><span class="s2">&quot;innerRotating/rotationInterface&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;axisOfRotation&quot;</span> <span class="o">:</span> <span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="o">-</span><span class="mf">1</span><span class="p">],</span>
+        <span class="s2">&quot;centerOfRotation&quot;</span> <span class="o">:</span> <span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">],</span>
+        <span class="s2">&quot;omega&quot;</span> <span class="o">:</span> <span class="mf">1.84691e-01</span><span class="p">,</span>
+        <span class="s2">&quot;volumeName&quot;</span> <span class="o">:</span> <span class="p">[</span><span class="s2">&quot;innerRotating&quot;</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;timeStepping&quot;</span> <span class="o">:</span> <span class="p">{</span>
+              <span class="s2">&quot;timeStepSize&quot;</span> <span class="o">:</span> <span class="mf">5.67000e-01</span><span class="p">,</span>
+              <span class="s2">&quot;maxPhysicalSteps&quot;</span> <span class="o">:</span> <span class="mf">60</span><span class="p">,</span>
+              <span class="s2">&quot;maxPseudoSteps&quot;</span> <span class="o">:</span> <span class="mf">12</span><span class="p">,</span>
+        <span class="s2">&quot;CFL&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;initial&quot;</span> <span class="o">:</span> <span class="mf">1</span><span class="p">,</span>
+            <span class="s2">&quot;final&quot;</span> <span class="o">:</span> <span class="mf">1000</span><span class="p">,</span>
+            <span class="s2">&quot;rampSteps&quot;</span> <span class="o">:</span> <span class="mf">10</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="case-running">
+<h3><span class="section-number">1.3.3.6. </span>Case running<a class="headerlink" href="#case-running" title="Permalink to this headline"></a></h3>
+<p>The first order case should finish in less then a minute on this fairly coarse 915K node mesh.</p>
+<p>The second order run takes about 3.5 to 4 minutes to run its 5 revolutions. Please note that at the end of the 2nd order run you will have done 6 revolutions (1 for the 1st order run and 5 for the 2nd order run).</p>
+<p>For a time accurate case to be considered well converged we like to have at least 2 orders of magnitude in the residuals within each time step.</p>
+<figure class="align-center" id="id7">
+<a class="reference internal image-reference" href="../_images/residuals_convergence.png"><img alt="convergence of residuals" src="../_images/residuals_convergence.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.3.6 </span><span class="caption-text">2nd order convergence plot showing more then 2 orders of magnitude decrease in the residuals for each subiterations.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The forces also seem to have stabilized after running for 6 revolutions</p>
+<figure class="align-center" id="id8">
+<a class="reference internal image-reference" href="../_images/force_convergence.png"><img alt="convergence of forces" src="../_images/force_convergence.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.3.7 </span><span class="caption-text">2nd order run’s force history plot showing good stabilization of the forces.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Congratulations. You have now run your first propeller using a rotational interface in Flow360.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="om6_wing_pyAPI.html" class="btn btn-neutral float-left" title="1.2. Run CFD using Python API: An example of ONERA M6 Wing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../capabilities/capabilities.html" class="btn btn-neutral float-right" title="2. Capabilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Flexcompute Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

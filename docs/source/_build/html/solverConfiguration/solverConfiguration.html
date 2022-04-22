@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. Solver Configuration &mdash; Flow360 Documentation  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/bugfix.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/logo.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Postprocessing" href="../postprocessing/postprocessing.html" />
+    <link rel="prev" title="3.2. Automated Meshing" href="../preprocessing/automatedMeshing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Flow360 Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">1. Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../capabilities/capabilities.html">2. Capabilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preprocessing/preprocessing.html">3. Preprocessing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Solver Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#flow360mesh-json">4.1. Flow360Mesh.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flow360-json">4.2. Flow360.json</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#geometry">4.2.1. geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#runcontrol">4.2.2. runControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freestream">4.2.3. freestream</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#boundaries">4.2.4. boundaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#volumeoutput">4.2.5. volumeOutput</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#surfaceoutput">4.2.6. surfaceOutput</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sliceoutput">4.2.7. sliceOutput</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#navierstokessolver">4.2.8. navierStokesSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#turbulencemodelsolver">4.2.9. turbulenceModelSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transitionmodelsolver">4.2.10. transitionModelSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initialcondition">4.2.11. initialCondition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#timestepping">4.2.12. timeStepping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#slidinginterfaces-list">4.2.13. slidingInterfaces (list)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#actuatordisks-list">4.2.14. actuatorDisks (list)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#betdisks-list">4.2.15. BETDisks (list)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#porousmedia-list">4.2.16. porousMedia (list)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#examples-of-flow360-json">4.3. Examples of Flow360.json</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../postprocessing/postprocessing.html">5. Postprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pythonAPI/api.html">6. Python API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">7. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">8. Case Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions/conventions.html">9. Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../publications.html">10. Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releaseNotes.html">11. Release Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Flow360 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><span class="section-number">4. </span>Solver Configuration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/solverConfiguration/solverConfiguration.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="solver-configuration">
+<h1><span class="section-number">4. </span>Solver Configuration<a class="headerlink" href="#solver-configuration" title="Permalink to this headline"></a></h1>
+<p>The current Mesh processor and Solver input configuration parameters for Flow360 are:</p>
+<section id="flow360mesh-json">
+<span id="flow360meshjson"></span><h2><span class="section-number">4.1. </span>Flow360Mesh.json<a class="headerlink" href="#flow360mesh-json" title="Permalink to this headline"></a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 24%" />
+<col style="width: 51%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Options</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>boundaries</p></td>
+<td><p>noSlipWalls</p></td>
+<td><p>[]</p></td>
+<td><p>list of names of boundary patches, e.g. [2,3,7] (for .ugrid), [“blk-1/wall1”,”blk-2/wall2”] (for .cgns)</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="5"><p>slidingInterfaces</p></td>
+<td></td>
+<td><p>[]</p></td>
+<td><p>list of pairs of sliding interfaces</p></td>
+</tr>
+<tr class="row-even"><td><p>stationaryPatches</p></td>
+<td><p>[]</p></td>
+<td><p>list of names of stationary boundary patches, e.g. [“stationaryField/interface”]</p></td>
+</tr>
+<tr class="row-odd"><td><p>rotatingPatches</p></td>
+<td><p>[]</p></td>
+<td><p>list of names of dynamic boundary patches, e.g. [“rotatingField/interface”]</p></td>
+</tr>
+<tr class="row-even"><td><p>axisOfRotation</p></td>
+<td><p>[]</p></td>
+<td><p>axis of rotation, e.g. [0,0,-1]</p></td>
+</tr>
+<tr class="row-odd"><td><p>centerOfRotation</p></td>
+<td><p>[]</p></td>
+<td><p>center of rotation, e.g. [0,0,0]</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>“slidingInterfaces” can be only used for multi-block meshes.</p>
+</div>
+</section>
+<section id="flow360-json">
+<span id="flow360json"></span><h2><span class="section-number">4.2. </span>Flow360.json<a class="headerlink" href="#flow360-json" title="Permalink to this headline"></a></h2>
+<p>Most input quantities in case configuration file Flow360.json is dimensionless. The convention of non-dimentionalization in Flow360 can be found at <a class="reference internal" href="../conventions/conventions.html#nondimensionalization-flow360"><span class="std std-ref">Non-dimensionalization</span></a>. Some commonly used variables in the table below:</p>
+<dl class="simple">
+<dt><span class="math notranslate nohighlight">\(L_{gridUnit}\)</span> (SI unit = <span class="math notranslate nohighlight">\(m\)</span>)</dt><dd><p>physical length represented by unit length in the given mesh file, e.g. if your grid is in feet, <span class="math notranslate nohighlight">\(L_{gridUnit}=1 \text{ feet}=0.3048 \text{ meter}\)</span>; if your grid is in millimeter, <span class="math notranslate nohighlight">\(L_{gridUnit}=1 \text{ millimeter}=0.001 \text{ meter}\)</span>.</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(C_\infty\)</span> (SI unit = <span class="math notranslate nohighlight">\(m/s\)</span>)</dt><dd><p>speed of sound of freestream</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(\rho_\infty\)</span> (SI unit = <span class="math notranslate nohighlight">\(kg/m^3\)</span>)</dt><dd><p>density of freestream</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(\mu_\infty\)</span> (SI unit = <span class="math notranslate nohighlight">\(N \cdot s/m^2\)</span>)</dt><dd><p>dynamic viscosity of freestream</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(p_\infty\)</span> (SI unit = <span class="math notranslate nohighlight">\(N/m^2\)</span>)</dt><dd><p>static pressure of freestream</p>
+</dd>
+<dt><span class="math notranslate nohighlight">\(U_\text{ref} \triangleq \text{MachRef}\times C_\infty\)</span> (SI unit = <span class="math notranslate nohighlight">\(m/s\)</span>)</dt><dd><p>reference velocity</p>
+</dd>
+</dl>
+<section id="geometry">
+<h3><span class="section-number">4.2.1. </span>geometry<a class="headerlink" href="#geometry" title="Permalink to this headline"></a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>refArea</p></td>
+<td><p>1</p></td>
+<td><p>The reference area of the geometry</p></td>
+</tr>
+<tr class="row-odd"><td><p>momentCenter</p></td>
+<td><p>[0.0, 0.0, 0.0]</p></td>
+<td><p>The x, y, z moment center of the geometry in grid units</p></td>
+</tr>
+<tr class="row-even"><td><p>momentLength</p></td>
+<td><p>[1.0, 1.0, 1.0]</p></td>
+<td><p>The x, y, z moment reference lengths</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="runcontrol">
+<h3><span class="section-number">4.2.2. </span>runControl<a class="headerlink" href="#runcontrol" title="Permalink to this headline"></a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>startAlphaControlPseudoStep</p></td>
+<td><p>-1</p></td>
+<td><p>pseudo step at which to start targetCL control. -1 is no trim control. (steady only)</p></td>
+</tr>
+<tr class="row-odd"><td><p>targetCL</p></td>
+<td><p>-1</p></td>
+<td><p>The desired trim CL to achieve (assocated with startAlphaControlPseudoStep)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="freestream">
+<h3><span class="section-number">4.2.3. </span>freestream<a class="headerlink" href="#freestream" title="Permalink to this headline"></a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 64%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Reynolds</p></td>
+<td><p>Not required if muRef exists</p></td>
+<td><p>The Reynolds number (non-dimenstional) in our solver, = <span class="math notranslate nohighlight">\(\frac{\rho_\infty U_{ref} L_{gridUnit}}{\mu_\infty}\)</span>. For example, for a mesh with phyiscal length 1.5m represented by 1500 grid units (i.e. mesh is in mm), the <span class="math notranslate nohighlight">\(L_{gridUnit}\)</span> in the numerator is 0.001m.</p></td>
+</tr>
+<tr class="row-odd"><td><p>muRef</p></td>
+<td><p>Not required if Reynolds exists</p></td>
+<td><p>The refererence dynamic viscosity (non-dimenstional) in our solver, = <span class="math notranslate nohighlight">\(\frac{\mu_\infty}{\rho_\infty C_\infty L_{gridUnit}}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Mach</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>The Mach number, the ratio of freestream speed to the speed of sound.</p></td>
+</tr>
+<tr class="row-odd"><td><p>MachRef</p></td>
+<td><p>Required if Mach == 0</p></td>
+<td><p>The reference Mach number to compute nondimensional quantities, e.g. CL, CD, CFx, CFy, CFz, CMz, CMy, CMz, etc…, = <span class="math notranslate nohighlight">\(U_{ref}/C_\infty\)</span>. Its default value is “freestream”-&gt;”Mach”.</p></td>
+</tr>
+<tr class="row-even"><td><p>Temperature</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>The reference temperature in Kelvin. -1 means globally constant viscosity.</p></td>
+</tr>
+<tr class="row-odd"><td><p>alphaAngle</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>The angle of attack in degrees.</p></td>
+</tr>
+<tr class="row-even"><td><p>betaAngle</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>The side slip angle in degrees.</p></td>
+</tr>
+<tr class="row-odd"><td><p>turbulentViscosityRatio</p></td>
+<td><p>DEPENDS</p></td>
+<td><p>The ratio between the freestream turbulent viscosity and freestream laminar viscosity. This value is used by the turbulence models to determine the reference values for solution variables for freestream boundary conditions and also to set the initial condition. For SpalartAllmaras turbulence model, the default value is <span class="math notranslate nohighlight">\(0.210438\)</span> if transition is not used and <span class="math notranslate nohighlight">\(2.794\times10^{-7}\)</span> if transition model is used. For kOmegaSST, the default value is 0.01.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="boundaries">
+<span id="boundariesparameters"></span><h3><span class="section-number">4.2.4. </span>boundaries<a class="headerlink" href="#boundaries" title="Permalink to this headline"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 42%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SlipWall</p></td>
+<td><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;boundary_name&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SlipWall&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</td>
+<td><p>Slip wall condition.  Also used for symmetry.</p></td>
+</tr>
+<tr class="row-odd"><td><p>NoSlipWall</p></td>
+<td><div class="highlight-json notranslate"><div class="highlight"><pre><span></span>&quot;boundary_name&quot; :
+{
+ &quot;type&quot; : &quot;NoSlipWall&quot;,
+ &quot;Velocity&quot;: [
+  float or &quot;expression&quot; (default: 0),
+  float or &quot;expression&quot; (default: 0),
+  float or &quot;expression&quot; (default: 0)]
+}
+</pre></div>
+</div>
+</td>
+<td><p>Sets no-slip wall condition. Optionally, a tangential velocity can be prescribed
+on the wall using the keyword “Velocity”. An example: <a class="reference internal" href="#wall-vel"><span class="std std-ref">sample</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>IsothermalWall</p></td>
+<td><div class="highlight-json notranslate"><div class="highlight"><pre><span></span>&quot;boundary_name&quot; :
+{
+ &quot;type&quot; : &quot;IsothermalWall&quot;,
+ &quot;Temperature&quot;:
+  float or &quot;expression&quot; (REQUIRED),
+ &quot;Velocity&quot;: [
+  float or &quot;expression&quot; (default: 0),
+  float or &quot;expression&quot; (default: 0),
+  float or &quot;expression&quot; (default: 0)]
+}
+</pre></div>
+</div>
+</td>
+<td><p>Isothermal wall boundary condition. “Temperature” is specified in Kelvin.
+Optionally a tangential velocity can be presribed on the wall using the keyword
+“Velocity”.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Freestream</p></td>
+<td><div class="highlight-json notranslate"><div class="highlight"><pre><span></span>&quot;boundary_name&quot; :
+{
+ &quot;type&quot; : &quot;Freestream&quot;,
+ &quot;Velocity&quot;: [
+  float or &quot;expression&quot; (default: freestream),
+  float or &quot;expression&quot; (default: freestream),
+  float or &quot;expression&quot; (default: freestream)]
+}
+</pre></div>
+</div>
+</td>
+<td><p>External freestream condition. Optionally, an expression for each of the velocity
+components can be specified using the keyword “Velocity”.</p></td>
+</tr>
+<tr class="row-even"><td><p>SubsonicOutflowPressure</p></td>
+<td><div class="highlight-json notranslate"><div class="highlight"><pre><span></span>&quot;boundary_name&quot; :
+{
+ &quot;type&quot; : &quot;SubsonicOutflowPressure&quot;,
+ &quot;staticPressureRatio&quot; : float
+}
+</pre></div>
+</div>
+</td>
+<td><p>Subsonic outflow, enforced through static pressure ratio.</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubsonicOutflowMach</p></td>
+<td><div class="highlight-json notranslate"><div class="highlight"><pre><span></span>&quot;boundary_name&quot; :
+{
+ &quot;type&quot; : &quot;SubsonicOutflowMach&quot;,
+ &quot;MachNumber&quot; : float
+}
+</pre></div>
+</div>
+</td>
+<td><p>Static pressure outflow boundary condition set via a specified subsonic Mach
+number.</p></td>
+</tr>
+<tr class="row-even"><td><p>SubsonicInflow</p></td>
+<td><div class="highlight-json notranslate"><div class="highlight"><pre><span></span>&quot;boundary_name&quot; :
+{
+ &quot;type&quot; : &quot;SubsonicInflow&quot;,
+ &quot;totalPressureRatio&quot; : float,
+ &quot;totalTemperatureRatio&quot; : float,
+ &quot;rampSteps&quot; : Integer
+}
+</pre></div>
+</div>
+</td>
+<td><p>Subsonic inflow (enforced via total pressure ratio and total temperature ratio)
+for nozzle or tunnel plenum.</p></td>
+</tr>
+<tr class="row-odd"><td><p>MassOutflow</p></td>
+<td><div class="highlight-json notranslate"><div class="highlight"><pre><span></span>&quot;boundary_name&quot; :
+{
+ &quot;type&quot; : &quot;MassOutflow&quot;,
+ &quot;massFlowRate&quot; : float
+}
+</pre></div>
+</div>
+</td>
+<td><p>Specification of massflow out of the control volume.</p></td>
+</tr>
+<tr class="row-even"><td><p>MassInflow</p></td>
+<td><div class="highlight-json notranslate"><div class="highlight"><pre><span></span>&quot;boundary_name&quot; :
+{
+ &quot;type&quot; : &quot;MassInflow&quot;,
+ &quot;massFlowRate&quot; : float
+}
+</pre></div>
+</div>
+</td>
+<td><p>Specification of massflow into the control volume.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note: “expression” is an expression with “x”, “y”, “z” as independent variables. An example of NoSlipWall boundary with prescribed velocity is <a class="reference internal" href="#wall-vel"><span class="std std-ref">NoSlipWall with velocity</span></a>.</p>
+</div>
+</section>
+<section id="volumeoutput">
+<span id="volumeoutputinputparameters"></span><h3><span class="section-number">4.2.5. </span>volumeOutput<a class="headerlink" href="#volumeoutput" title="Permalink to this headline"></a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>outputFormat</p></td>
+<td><p>paraview</p></td>
+<td><p>&quot;paraview&quot; or &quot;tecplot&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>animationFrequency</p></td>
+<td><p>-1</p></td>
+<td><p>Frequency (in number of physical time steps) at which volume output is saved. -1 is at end of simulation</p></td>
+</tr>
+<tr class="row-even"><td><p>startAverageIntegrationStep</p></td>
+<td><p>0</p></td>
+<td><p>Physical time step to start averaging forces/moments, only if computeTimeAverages is True. Fields that can be averaged: primitiveVars, vorticity, T, s, Cp, mut, Mach, qcriterion</p></td>
+</tr>
+<tr class="row-odd"><td><p>computeTimeAverages</p></td>
+<td><p>FALSE</p></td>
+<td><p>Whether or not to compute time-averaged quantities</p></td>
+</tr>
+<tr class="row-even"><td><p>primitiveVars</p></td>
+<td><p>TRUE</p></td>
+<td><p>Outputs rho, u, v, w, p</p></td>
+</tr>
+<tr class="row-odd"><td><p>vorticity</p></td>
+<td><p>FALSE</p></td>
+<td><p>Vorticity</p></td>
+</tr>
+<tr class="row-even"><td><p>residualNavierStokes</p></td>
+<td><p>FALSE</p></td>
+<td><p>5 components of the N-S residual</p></td>
+</tr>
+<tr class="row-odd"><td><p>residualTurbulence</p></td>
+<td><p>FALSE</p></td>
+<td><p>Residual for the turbulence model</p></td>
+</tr>
+<tr class="row-even"><td><p>residualTransition</p></td>
+<td><p>FALSE</p></td>
+<td><p>Residual for the transition model</p></td>
+</tr>
+<tr class="row-odd"><td><p>solutionTurbulence</p></td>
+<td><p>FALSE</p></td>
+<td><p>Solution for the turbulence model</p></td>
+</tr>
+<tr class="row-even"><td><p>solutionTransition</p></td>
+<td><p>FALSE</p></td>
+<td><p>Solution for the transition model</p></td>
+</tr>
+<tr class="row-odd"><td><p>T</p></td>
+<td><p>FALSE</p></td>
+<td><p>Temperature</p></td>
+</tr>
+<tr class="row-even"><td><p>s</p></td>
+<td><p>FALSE</p></td>
+<td><p>Entropy</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cp</p></td>
+<td><p>TRUE</p></td>
+<td><p>Coefficient of pressure. <span class="math notranslate nohighlight">\(C_p=(\frac{p-p_\infty}{\frac{1}{2}\rho_\infty{U_{ref}}^2})\)</span>.</p></td>
+</tr>
+<tr class="row-even"><td><p>mut</p></td>
+<td><p>TRUE</p></td>
+<td><p>Turbulent viscosity</p></td>
+</tr>
+<tr class="row-odd"><td><p>nuHat</p></td>
+<td><p>TRUE</p></td>
+<td><p>nuHat</p></td>
+</tr>
+<tr class="row-even"><td><p>kOmega</p></td>
+<td><p>FALSE</p></td>
+<td><p>k and omega when using kOmegaSST model</p></td>
+</tr>
+<tr class="row-odd"><td><p>mutRatio</p></td>
+<td><p>FALSE</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mu_t/{\mu_\infty}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Mach</p></td>
+<td><p>TRUE</p></td>
+<td><p>Mach number</p></td>
+</tr>
+<tr class="row-odd"><td><p>VelocityRelative</p></td>
+<td><p>FALSE</p></td>
+<td><p>velocity in rotating frame</p></td>
+</tr>
+<tr class="row-even"><td><p>qcriterion</p></td>
+<td><p>FALSE</p></td>
+<td><p>Q criterion</p></td>
+</tr>
+<tr class="row-odd"><td><p>gradW</p></td>
+<td><p>FALSE</p></td>
+<td><p>Gradient of W</p></td>
+</tr>
+<tr class="row-even"><td><p>wallDistance</p></td>
+<td><p>FALSE</p></td>
+<td><p>wall distance</p></td>
+</tr>
+<tr class="row-odd"><td><p>wallDistanceDir</p></td>
+<td><p>FALSE</p></td>
+<td><p>wall distance direction</p></td>
+</tr>
+<tr class="row-even"><td><p>betMetrics</p></td>
+<td><p>FALSE</p></td>
+<td><p>8 quantities related to BET solvers: velocityX, velocityY and velocityZ in rotating reference frame, alpha angle, Cf in axial direction, Cf in circumferential direction, tip loss factor, local solidity multiplied by integration weight</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="surfaceoutput">
+<span id="surfaceoutputinputparameters"></span><h3><span class="section-number">4.2.6. </span>surfaceOutput<a class="headerlink" href="#surfaceoutput" title="Permalink to this headline"></a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>outputFormat</p></td>
+<td><p>paraview</p></td>
+<td><p>&quot;paraview&quot; or &quot;tecplot&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>animationFrequency</p></td>
+<td><p>-1</p></td>
+<td><p>Frequency (in number of physical time steps) at which surface output is saved. -1 is at end of simulation</p></td>
+</tr>
+<tr class="row-even"><td><p>primitiveVars</p></td>
+<td><p>FALSE</p></td>
+<td><p>rho, u, v, w, p</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cp</p></td>
+<td><p>FALSE</p></td>
+<td><p>Coefficient of pressure</p></td>
+</tr>
+<tr class="row-even"><td><p>Cf</p></td>
+<td><p>FALSE</p></td>
+<td><p>Skin friction coefficient</p></td>
+</tr>
+<tr class="row-odd"><td><p>heatFlux</p></td>
+<td><p>FALSE</p></td>
+<td><p>Heat Flux</p></td>
+</tr>
+<tr class="row-even"><td><p>CfVec</p></td>
+<td><p>FALSE</p></td>
+<td><p>Viscous stress coefficient vector. For example, <span class="math notranslate nohighlight">\(C_{f_{Vec}}[3]=\frac{\tau_{wall}[3]}{\frac{1}{2}\rho_\infty U_{ref}^2}\)</span>. The <span class="math notranslate nohighlight">\(\tau_{wall}\)</span> is the vector of viscous stress on the wall.</p></td>
+</tr>
+<tr class="row-odd"><td><p>yPlus</p></td>
+<td><p>FALSE</p></td>
+<td><p>y+</p></td>
+</tr>
+<tr class="row-even"><td><p>wallDistance</p></td>
+<td><p>FALSE</p></td>
+<td><p>Wall Distance</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mach</p></td>
+<td><p>FALSE</p></td>
+<td><p>Mach number</p></td>
+</tr>
+<tr class="row-even"><td><p>nodeForcesPerUnitArea</p></td>
+<td><p>FALSE</p></td>
+<td><p><span class="math notranslate nohighlight">\(nodeForcesPerUnitArea=\frac{\tau_{wall}[3]-(p-p_\infty)*normal[3]}{\rho_\infty C_\infty^2}\)</span>, where the <span class="math notranslate nohighlight">\(normal[3]\)</span> is the unit normal vector pointing from solid to fluid.</p></td>
+</tr>
+<tr class="row-odd"><td><p>residualSA</p></td>
+<td><p>FALSE</p></td>
+<td><p>Spalart-Allmaras residual magnitude</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sliceoutput">
+<span id="sliceoutputinputparameters"></span><h3><span class="section-number">4.2.7. </span>sliceOutput<a class="headerlink" href="#sliceoutput" title="Permalink to this headline"></a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>outputFormat</p></td>
+<td><p>paraview</p></td>
+<td><p>&quot;paraview&quot; or &quot;tecplot&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>animationFrequency</p></td>
+<td><p>-1</p></td>
+<td><p>Frequency (in number of physical time steps) at which slice output is saved. -1 is at end of simulation</p></td>
+</tr>
+<tr class="row-even"><td><p>primitiveVars</p></td>
+<td><p>TRUE</p></td>
+<td><p>Outputs rho, u, v, w, p</p></td>
+</tr>
+<tr class="row-odd"><td><p>vorticity</p></td>
+<td><p>FALSE</p></td>
+<td><p>Vorticity</p></td>
+</tr>
+<tr class="row-even"><td><p>T</p></td>
+<td><p>FALSE</p></td>
+<td><p>Temperature</p></td>
+</tr>
+<tr class="row-odd"><td><p>s</p></td>
+<td><p>FALSE</p></td>
+<td><p>Entropy</p></td>
+</tr>
+<tr class="row-even"><td><p>Cp</p></td>
+<td><p>FALSE</p></td>
+<td><p>Coefficient of pressure</p></td>
+</tr>
+<tr class="row-odd"><td><p>mut</p></td>
+<td><p>FALSE</p></td>
+<td><p>Turbulent viscosity</p></td>
+</tr>
+<tr class="row-even"><td><p>mutRatio</p></td>
+<td><p>FALSE</p></td>
+<td><p><span class="math notranslate nohighlight">\(mut/mu_\infty\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Mach</p></td>
+<td><p>TRUE</p></td>
+<td><p>Mach number</p></td>
+</tr>
+<tr class="row-even"><td><p>gradW</p></td>
+<td><p>FALSE</p></td>
+<td><p>gradient of W</p></td>
+</tr>
+<tr class="row-odd"><td><p>slices</p></td>
+<td><p>[]</p></td>
+<td><p>List of slices to save after the solver has finished</p></td>
+</tr>
+<tr class="row-even"><td><p>sliceName</p></td>
+<td></td>
+<td><p>string</p></td>
+</tr>
+<tr class="row-odd"><td><p>sliceNormal</p></td>
+<td></td>
+<td><p>[x, y, z]</p></td>
+</tr>
+<tr class="row-even"><td><p>sliceOrigin</p></td>
+<td></td>
+<td><p>[x, y, z]</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="navierstokessolver">
+<h3><span class="section-number">4.2.8. </span>navierStokesSolver<a class="headerlink" href="#navierstokessolver" title="Permalink to this headline"></a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>absoluteTolerance</p></td>
+<td><p>1.00E-10</p></td>
+<td><p>Tolerance for the NS residual, below which the solver goes to the next physical step</p></td>
+</tr>
+<tr class="row-odd"><td><p>relativeTolerance</p></td>
+<td><p>1.00E-02</p></td>
+<td><p>tolerance to the ratio of residual of current pseudoStep to the initial residual, below which the solver goes to the next physical step</p></td>
+</tr>
+<tr class="row-even"><td><p>CFLMultiplier</p></td>
+<td><p>1</p></td>
+<td><p>factor to the CFL definitions defined in “timeStepping” section</p></td>
+</tr>
+<tr class="row-odd"><td><p>linearIterations</p></td>
+<td><p>30</p></td>
+<td><p>Number of linear solver iterations</p></td>
+</tr>
+<tr class="row-even"><td><p>kappaMUSCL</p></td>
+<td><p>-1</p></td>
+<td><p>Kappa for the MUSCL scheme, range from [-1, 1], with 1 being unstable.</p></td>
+</tr>
+<tr class="row-odd"><td><p>updateJacobianFrequency</p></td>
+<td><p>4</p></td>
+<td><p>Frequency at which the jacobian is updated.</p></td>
+</tr>
+<tr class="row-even"><td><p>equationEvalFrequency</p></td>
+<td><p>1</p></td>
+<td><p>Frequency at which to update the NS equation in loosely-coupled simulations</p></td>
+</tr>
+<tr class="row-odd"><td><p>maxForceJacUpdatePhysicalSteps</p></td>
+<td><p>0</p></td>
+<td><p>when which physical steps, the jacobian matrix is updated every pseudo step</p></td>
+</tr>
+<tr class="row-even"><td><p>orderOfAccuracy</p></td>
+<td><p>2</p></td>
+<td><p>order of accuracy in space</p></td>
+</tr>
+<tr class="row-odd"><td><p>extraDissipation</p></td>
+<td><p>0</p></td>
+<td><p>add more dissipation to the NS solver</p></td>
+</tr>
+<tr class="row-even"><td><p>limitVelocity</p></td>
+<td><p>FALSE</p></td>
+<td><p>limiter for velocity</p></td>
+</tr>
+<tr class="row-odd"><td><p>limitPressureDensity</p></td>
+<td><p>FALSE</p></td>
+<td><p>limiter for pressure and density</p></td>
+</tr>
+<tr class="row-even"><td><p>viscousWaveSpeedScale</p></td>
+<td><p>0</p></td>
+<td><p>Scales the wave speed according to a viscous flux. 0.0 is no speed correction, with larger values providing a larger viscous wave speed correction.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="turbulencemodelsolver">
+<span id="turbulencemodelsolverparameters"></span><h3><span class="section-number">4.2.9. </span>turbulenceModelSolver<a class="headerlink" href="#turbulencemodelsolver" title="Permalink to this headline"></a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 15%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>modelType</p></td>
+<td><p>SpalartAllmaras</p></td>
+<td><p>Turbulence model type can be: “SpalartAllmaras” or “kOmegaSST”</p></td>
+</tr>
+<tr class="row-odd"><td><p>absoluteTolerance</p></td>
+<td><p>1.00E-08</p></td>
+<td><p>Tolerance for the turbulence model residual, below which the solver goes to the next physical step</p></td>
+</tr>
+<tr class="row-even"><td><p>relativeTolerance</p></td>
+<td><p>1.00E-02</p></td>
+<td><p>Tolerance to the ratio of residual of current pseudoStep to the initial residual, below which the solver goes to the next physical step</p></td>
+</tr>
+<tr class="row-odd"><td><p>linearIterations</p></td>
+<td><p>20</p></td>
+<td><p>Number of linear iterations for the turbulence moddel linear system</p></td>
+</tr>
+<tr class="row-even"><td><p>updateJacobianFrequency</p></td>
+<td><p>4</p></td>
+<td><p>Frequency at which to update the Jacobian</p></td>
+</tr>
+<tr class="row-odd"><td><p>equationEvalFrequency</p></td>
+<td><p>4</p></td>
+<td><p>Frequency at which to evaluate the turbulence equation in loosely-coupled simulations</p></td>
+</tr>
+<tr class="row-even"><td><p>kappaMUSCL</p></td>
+<td><p>-1</p></td>
+<td><p>Kappa for the muscle scheme, range from [-1, 1] with 1 being unstable.</p></td>
+</tr>
+<tr class="row-odd"><td><p>rotationCorrection</p></td>
+<td><p>FALSE</p></td>
+<td><p>Rotation correction for the turbulence model. Only support for SpalartAllmaras</p></td>
+</tr>
+<tr class="row-even"><td><p>orderOfAccuracy</p></td>
+<td><p>2</p></td>
+<td><p>Order of accuracy in space</p></td>
+</tr>
+<tr class="row-odd"><td><p>maxForceJacUpdatePhysicalSteps</p></td>
+<td><p>0</p></td>
+<td><p>When which physical steps, the jacobian matrix is updated every pseudo step</p></td>
+</tr>
+<tr class="row-even"><td><p>DDES</p></td>
+<td><p>FALSE</p></td>
+<td><p>“true” enables Delayed Detached Eddy Simulation. Supported for both SpalartAllmaras and kOmegaSST turbulence models,
+with and without AmplificationFactorTransport transition model enabled</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="transitionmodelsolver">
+<span id="transitionmodelsolverparameters"></span><h3><span class="section-number">4.2.10. </span>transitionModelSolver<a class="headerlink" href="#transitionmodelsolver" title="Permalink to this headline"></a></h3>
+<p>The laminar to turbulence transition model supported by Flow360 is the 2019b version of the Amplification Factor Transport Model created by James Coder, University of Tennessee.
+This models adds two additional equations to the flow solver in order to solve for the amplification factor and intermittency flow quantities.
+More details about the model can be found at: <a class="reference external" href="https://turbmodels.larc.nasa.gov/aft_transition_3eqn.html">https://turbmodels.larc.nasa.gov/aft_transition_3eqn.html</a>.
+Below are a list of configuration parameters for the transition model.
+Either Ncrit or turbulenceIntensityPercent can be used to tune the location of transition from laminar to turbulent flow.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 15%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>modelType</p></td>
+<td><p>None</p></td>
+<td><p>Transition model type can either be: “None” (disabled) or “AmplificationFactorTransport” (enabled)</p></td>
+</tr>
+<tr class="row-odd"><td><p>absoluteTolerance</p></td>
+<td><p>1.00E-07</p></td>
+<td><p>Tolerance for the transition model residual, below which the solver goes to the next physical step</p></td>
+</tr>
+<tr class="row-even"><td><p>relativeTolerance</p></td>
+<td><p>1.00E-02</p></td>
+<td><p>Tolerance to the ratio of residual of current pseudoStep to the initial residual</p></td>
+</tr>
+<tr class="row-odd"><td><p>linearIterations</p></td>
+<td><p>20</p></td>
+<td><p>Number of linear iterations for the transition model linear system</p></td>
+</tr>
+<tr class="row-even"><td><p>updateJacobianFrequency</p></td>
+<td><p>4</p></td>
+<td><p>Frequency at which to update the Jacobian</p></td>
+</tr>
+<tr class="row-odd"><td><p>equationEvalFrequency</p></td>
+<td><p>4</p></td>
+<td><p>Frequency at which to evaluate the turbulence equation in loosely-coupled simulations</p></td>
+</tr>
+<tr class="row-even"><td><p>orderOfAccuracy</p></td>
+<td><p>2</p></td>
+<td><p>Order of accuracy in space</p></td>
+</tr>
+<tr class="row-odd"><td><p>turbulenceIntensityPercent</p></td>
+<td><p>0.1</p></td>
+<td><p>Used to compute Ncrit parameter for AFT transition model. Range: 0.03 - 2.5. Higher values result in earlier transition</p></td>
+</tr>
+<tr class="row-even"><td><p>Ncrit</p></td>
+<td><p>8.15</p></td>
+<td><p>Scalar parameter for transition model. Range: 1-11. Higher values delays onset of laminar-turbulent transition.
+Only one of “Ncrit” or turbulenceIntensityPercent” can be specified in this section</p></td>
+</tr>
+<tr class="row-odd"><td><p>maxForceJacUpdatePhysicalSteps</p></td>
+<td><p>0</p></td>
+<td><p>When which physical steps, the jacobian matrix is updated every pseudo step</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="initialcondition">
+<h3><span class="section-number">4.2.11. </span>initialCondition<a class="headerlink" href="#initialcondition" title="Permalink to this headline"></a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 15%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>“freestream”</p></td>
+<td><p>Use the flow conditions defined in freestream section to set initial condition.
+Could be “freestream” or an “expression”</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="timestepping">
+<span id="table-timestepping"></span><h3><span class="section-number">4.2.12. </span>timeStepping<a class="headerlink" href="#timestepping" title="Permalink to this headline"></a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>maxPhysicalSteps</p></td>
+<td><p>1</p></td>
+<td><p>Maximum physical steps</p></td>
+</tr>
+<tr class="row-odd"><td><p>timeStepSize</p></td>
+<td><p>&quot;inf&quot;</p></td>
+<td><p>Nondimensional time step size in physical step marching, it is calculated as <span class="math notranslate nohighlight">\(\frac{\Delta t_{physical} C_\infty}{L_{gridUnit}}\)</span>, where the <span class="math notranslate nohighlight">\(\Delta t_{physical}\)</span> is the physical time (in seconds) step size. “inf” means steady solver.</p></td>
+</tr>
+<tr class="row-even"><td><p>maxPseudoSteps</p></td>
+<td><p>2000</p></td>
+<td><p>Maximum pseudo steps within one physical step</p></td>
+</tr>
+<tr class="row-odd"><td><p>CFL-&gt;initial</p></td>
+<td><p>5</p></td>
+<td><p>Initial CFL for solving pseudo time step</p></td>
+</tr>
+<tr class="row-even"><td><p>CFL-&gt;final</p></td>
+<td><p>200</p></td>
+<td><p>Final CFL for solving pseudo time step</p></td>
+</tr>
+<tr class="row-odd"><td><p>CFL-&gt;rampSteps</p></td>
+<td><p>40</p></td>
+<td><p>Number of steps before reaching the final CFL within 1 physical step</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="code docutils literal notranslate"><span class="pre">timeStepSize</span></code> is in solver units (non-dimensional), where time-scale is mesh unit divided by freestream speed of sound. So a time of <code class="code docutils literal notranslate"><span class="pre">timeStepSize=1</span></code> means the time it takes for sound to travel 1 mesh unit at freestream.</p>
+</div>
+</section>
+<section id="slidinginterfaces-list">
+<span id="slidinginterfacesparameters"></span><h3><span class="section-number">4.2.13. </span>slidingInterfaces (list)<a class="headerlink" href="#slidinginterfaces-list" title="Permalink to this headline"></a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>stationaryPatches</p></td>
+<td><p>Empty</p></td>
+<td><p>a list of static patch names of an interface</p></td>
+</tr>
+<tr class="row-odd"><td><p>rotatingPatches</p></td>
+<td><p>Empty</p></td>
+<td><p>a list of dynamic patch names of an interface</p></td>
+</tr>
+<tr class="row-even"><td><p>thetaRadians</p></td>
+<td><p>Empty</p></td>
+<td><p>expression for rotation angle (in radians) as a function of time</p></td>
+</tr>
+<tr class="row-odd"><td><p>thetaDegrees</p></td>
+<td><p>Empty</p></td>
+<td><p>expression for rotation angle (in degrees) as a function of time</p></td>
+</tr>
+<tr class="row-even"><td><p>omegaRadians</p></td>
+<td><p>Empty</p></td>
+<td><p>non-dimensional rotating speed, radians/nondim-unit-time, =
+<span class="math notranslate nohighlight">\(\Omega*L_{gridUnit}/C_\infty\)</span>, where the SI unit of <span class="math notranslate nohighlight">\(\Omega\)</span> is rad/s.</p></td>
+</tr>
+<tr class="row-odd"><td><p>omegaDegrees</p></td>
+<td><p>Empty</p></td>
+<td><p>non-dimensional rotating speed, degrees/nondim-unit-time, = <span class="math notranslate nohighlight">\(\text{omegaRadians}*180/PI\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>centerOfRotation</p></td>
+<td><p>Empty</p></td>
+<td><p>a 3D array, representing the origin of rotation, e.g. [0,0,0]</p></td>
+</tr>
+<tr class="row-odd"><td><p>axisOfRotation</p></td>
+<td><p>Empty</p></td>
+<td><p>a 3D array, representing the rotation axis, e.g. [0,0,1]</p></td>
+</tr>
+<tr class="row-even"><td><p>volumeName</p></td>
+<td><p>Empty</p></td>
+<td><p>a list of dynamic volume zones related to the above {omega, centerOfRotation, axisOfRotation}</p></td>
+</tr>
+<tr class="row-odd"><td><p>parentVolumeName</p></td>
+<td><p>Empty</p></td>
+<td><p>name of the volume zone that the rotating reference frame is contained in,
+used to compute the acceleration in the nested rotating reference frame</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="actuatordisks-list">
+<span id="actuatordisksparameters"></span><h3><span class="section-number">4.2.14. </span>actuatorDisks (list)<a class="headerlink" href="#actuatordisks-list" title="Permalink to this headline"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 6%" />
+<col style="width: 68%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>center</p></td>
+<td><p>Empty</p></td>
+<td><p>center of the actuator disk</p></td>
+</tr>
+<tr class="row-odd"><td><p>axisThrust</p></td>
+<td><p>Empty</p></td>
+<td><p>direction of the thrust, it is an unit vector</p></td>
+</tr>
+<tr class="row-even"><td><p>thickness</p></td>
+<td><p>Empty</p></td>
+<td><p>thickness of the actuator disk</p></td>
+</tr>
+<tr class="row-odd"><td><p>forcePerArea-&gt;radius (list)</p></td>
+<td><p>Empty</p></td>
+<td><p>radius of the sampled locations in grid unit</p></td>
+</tr>
+<tr class="row-even"><td><p>forcePerArea-&gt;thrust (list)</p></td>
+<td><p>Empty</p></td>
+<td><p>force per area along the axisThrust, positive means the axial force follows the same direction of
+“axisThrust”. It is non-dimensional, =
+<span class="math notranslate nohighlight">\(\frac{\text{thrustPerArea}(SI=N/m^2)}{\rho_\infty C^2_\infty}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>forcePerArea-&gt;circumferential (list)</p></td>
+<td><p>Empty</p></td>
+<td><p>force per area in circumferential direction, positive means the circumferential force follows the
+same direction of “axisThrust” based on right hand rule. It is non-dimensional,=
+<span class="math notranslate nohighlight">\(\frac{\text{circumferentialForcePerArea}(SI=N/m^2)}{\rho_\infty C^2_\infty}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="betdisks-list">
+<span id="betdisksinputparameters"></span><h3><span class="section-number">4.2.15. </span>BETDisks (list)<a class="headerlink" href="#betdisks-list" title="Permalink to this headline"></a></h3>
+<p>A introduction of blade element theory model in Flow360 is available at <a class="reference internal" href="../capabilities/bladeElementTheory.html#bladeelementtheory"><span class="std std-ref">BET solver</span></a>. A case study on XV-15 rotor based on steady blade element disk model is available at <a class="reference internal" href="../examples/betDiskSteady_caseStudy.html#xv15betdisk-casestudy"><span class="std std-ref">BET case study</span></a>.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 10%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>rotationDirectionRule</p></td>
+<td><p>rightHand</p></td>
+<td><p>[string] the rule for rotation direction and thrust direction, “rightHand” or “leftHand”. A detailed explanation and some examples are shown at <a class="reference internal" href="../capabilities/bladeElementTheory.html#bet-input"><span class="std std-ref">BET input</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>centerOfRotation</p></td>
+<td><p>Empty</p></td>
+<td><p>[3-array] center of the Blade Element Theory (BET) disk</p></td>
+</tr>
+<tr class="row-even"><td><p>axisOfRotation</p></td>
+<td><p>Empty</p></td>
+<td><p>[3-array] rotational axis of the BET disk</p></td>
+</tr>
+<tr class="row-odd"><td><p>numberOfBlades</p></td>
+<td><p>Empty</p></td>
+<td><p>[int] number of blades to model</p></td>
+</tr>
+<tr class="row-even"><td><p>radius</p></td>
+<td><p>Empty</p></td>
+<td><p>[float] non-dimensional radius of the rotor disk, = <span class="math notranslate nohighlight">\(\text{Radius}_\text{dimensional}/L_{gridUnit}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>omega</p></td>
+<td><p>Empty</p></td>
+<td><p>[float] non-dimensional rotating speed, radians/nondim-unit-time, = <span class="math notranslate nohighlight">\(\Omega*L_{gridUnit}/C_\infty\)</span>, where the SI unit of <span class="math notranslate nohighlight">\(\Omega\)</span> is rad/s. An example can be found at the case study <a class="reference internal" href="../examples/betDiskSteady_caseStudy.html#bet-xv15-hovering-casestudy"><span class="std std-ref">XV15 BET</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>chordRef</p></td>
+<td><p>Empty</p></td>
+<td><p>[float] non-dimensional reference chord used to compute sectional blade loadings.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nLoadingNodes</p></td>
+<td><p>Empty</p></td>
+<td><p>[float] Number of nodes used to compute the sectional thrust and torque coeffcient <span class="math notranslate nohighlight">\(C_t\)</span> and <span class="math notranslate nohighlight">\(C_q\)</span>, defined in <a class="reference internal" href="../capabilities/bladeElementTheory.html#betdiskloadingnote"><span class="std std-ref">BET Loading Output</span></a>. Recomended value is 20.</p></td>
+</tr>
+<tr class="row-even"><td><p>thickness</p></td>
+<td><p>Empty</p></td>
+<td><p>[float] non-dimensional thickness of the BET disk. Should be less than the thickness of the refined region of the disk mesh.</p></td>
+</tr>
+<tr class="row-odd"><td><p>bladeLineChord</p></td>
+<td><p>0.0</p></td>
+<td><p>[float] non-dimensional chord to use if performing an unsteady blade-line (as opposed to steady blade-disk) simulation. Recomended value is 1-2x the physical mean aerodynamic chord (MAC) of the blade for blade line analysis. Default of 0.0 indicates to run blade-disk analysis instead of blade-line.</p></td>
+</tr>
+<tr class="row-even"><td><p>initialBladeDirection</p></td>
+<td><p>Empty</p></td>
+<td><p>[3-array]. Orientation of the first blade in the blade-line model. Must be specified if performing blade-line analysis.</p></td>
+</tr>
+<tr class="row-odd"><td><p>twists</p></td>
+<td><p>Empty</p></td>
+<td><p>[list(dict)] A list of dictionary entries specifying the twist in degrees as a function of radial location. Entries in the list must already be sorted by radius. Example entry in the list would be {“radius” : 5.2, “twist” : 32.5}.</p></td>
+</tr>
+<tr class="row-even"><td><p>chords</p></td>
+<td><p>Empty</p></td>
+<td><p>[list(dict)] A list of dictionary entries specifying the blade chord as a function of the radial location. Entries in the list must already be sorted by radius. Example entry in the list would be {“radius” : 5.2, “chord” : 12.0}.</p></td>
+</tr>
+<tr class="row-odd"><td><p>sectionalPolars</p></td>
+<td><p>Empty</p></td>
+<td><p>[list(dict)] A list of dictionaries for every radial location specified in <em>sectionalRadiuses</em>. Each dict has two entries, “liftCoeffs” and “dragCoeffs”, both of which have the same data storage format: 3D arrays (implemented as nested lists). The first index of the array corresponds to the <em>MachNumbers</em> of the specified polar data. The second index of the array corresponds to the <em>ReynoldsNumbers</em> of the polar data. The third index corresponds to the <em>alphas</em>. The value specifies the lift or drag coefficient, respectively.</p></td>
+</tr>
+<tr class="row-even"><td><p>sectionalRadiuses</p></td>
+<td><p>Empty</p></td>
+<td><p>[list(float)] A list of the radial locations in grid units at which <span class="math notranslate nohighlight">\(C_l\)</span> and <span class="math notranslate nohighlight">\(C_d\)</span> are specified in <em>sectionalPolars</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>alphas</p></td>
+<td><p>Empty</p></td>
+<td><p>[list(float)] alphas associated with airfoil polars provided in <em>sectionalPolars</em> in degrees.</p></td>
+</tr>
+<tr class="row-even"><td><p>MachNumbers</p></td>
+<td><p>Empty</p></td>
+<td><p>[list(float)] Mach numbers associated with airfoil polars provided in <em>sectionalPolars</em>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ReynoldsNumbers</p></td>
+<td><p>Empty</p></td>
+<td><p>[list(float)] Reynolds numbers associated with the airfoil polars provided in <em>sectionalPolars</em>.</p></td>
+</tr>
+<tr class="row-even"><td><p>tipGap</p></td>
+<td><p>inf</p></td>
+<td><p>[float] non-dimensional distance between blade tip and multiple peripheral instances, e.g. duct, shroud, cowling, nacelle, etc. The peripheral structures must be effective at reducing blade tip vortices. This parameter affects the tip loss effect. Being close to a fuselage or to another blade does not affect this parameter, because they won’t effectively reduce tip loss. tipGap=0 means there is no tip loss. It is <span class="math notranslate nohighlight">\(\infty\)</span> (default) for open propellers. An example with finite tipGap would be a <a class="reference external" href="https://en.wikipedia.org/wiki/Ducted_fan">ducted fan</a>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="porousmedia-list">
+<span id="porousmediaparameters"></span><h3><span class="section-number">4.2.16. </span>porousMedia (list)<a class="headerlink" href="#porousmedia-list" title="Permalink to this headline"></a></h3>
+<p>The porous media model supported by Flow360 is the Darcy-Forchheimer model which has two coefficients: Darcy coefficient for viscous losses and Forchheimer coefficient for inertial losses.
+The model acts by adding a sink term to the momentum equations.
+More details about the model can be found at <a class="reference external" href="https://openfoamwiki.net/index.php/DarcyForchheimer">https://openfoamwiki.net/index.php/DarcyForchheimer</a>.
+Below are a list of configuration parameters for the porous media model.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 13%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>DarcyCoefficient</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>[3-array] Darcy cofficient of the porous media model which determines the scaling of the viscous loss term. The 3 values define the coeffiicent for each of the 3 axes defined by the reference frame of the volume zone.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ForchheimerCoefficient</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>[3-array] Forchheimer coefficient of the porous media model which determines the scaling of the inertial loss term.</p></td>
+</tr>
+<tr class="row-even"><td><p>volumeZone</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>Dictionary defining the properties of the region of the grid where the porous media model is applied.</p></td>
+</tr>
+<tr class="row-odd"><td><p>volumeZone-&gt;zoneType</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>Type/Shape of volume zone. Possible values: “box”</p></td>
+</tr>
+<tr class="row-even"><td><p>volumeZone-&gt;center</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>[3-array] For “zoneType”: “box”, it is the center point of the box</p></td>
+</tr>
+<tr class="row-odd"><td><p>volumeZone-&gt;axes</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>[[3-array], [3-array]] For “zoneType”: “box”, it is 2 axes which define the x and y directions of the box. Also, used to define the reference frame of the volume zone.</p></td>
+</tr>
+<tr class="row-even"><td><p>volumeZone-&gt;lengths</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>[3-array] For “zoneType”: “box”, it is the length of the box in each of the x, y, z directions</p></td>
+</tr>
+<tr class="row-odd"><td><p>volumeZone-&gt;windowingLengths</p></td>
+<td><p>[0.02*lengths[0], 0.02*lengths[1], 0.02*lengths[2]]</p></td>
+<td><p>[3-array] For “zoneType”: “box”, it is the total length of the box in each of the x, y, z directions for which a window function is applied on the edges.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="examples-of-flow360-json">
+<span id="examples-flow360json"></span><h2><span class="section-number">4.3. </span>Examples of Flow360.json<a class="headerlink" href="#examples-of-flow360-json" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple" id="wall-vel">
+<li><p>a NoSlipWall boundary with a prescribed velocity</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="s2">&quot;boundary_name&quot;</span><span class="p">:{</span>
+<span class="linenos">2</span>    <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;NoSlipWall&quot;</span><span class="p">,</span>
+<span class="linenos">3</span>    <span class="s2">&quot;Velocity&quot;</span><span class="p">:[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="s2">&quot;0.1*x+exp(y)+z^2&quot;</span><span class="p">,</span><span class="s2">&quot;cos(0.2*x*pi)+sqrt(z^2+1)&quot;</span><span class="p">]</span>
+<span class="linenos">4</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../preprocessing/automatedMeshing.html" class="btn btn-neutral float-left" title="3.2. Automated Meshing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../postprocessing/postprocessing.html" class="btn btn-neutral float-right" title="5. Postprocessing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Flexcompute Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
