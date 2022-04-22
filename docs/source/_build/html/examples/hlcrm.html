@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8.1. High Lift Common Research Model (HL-CRM) &mdash; Flow360 Documentation  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/bugfix.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/logo.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.2. Drag Prediction of Common Research Model" href="dpw4.html" />
+    <link rel="prev" title="8. Case Studies" href="../examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Flow360 Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">1. Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../capabilities/capabilities.html">2. Capabilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preprocessing/preprocessing.html">3. Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solverConfiguration/solverConfiguration.html">4. Solver Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../postprocessing/postprocessing.html">5. Postprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pythonAPI/api.html">6. Python API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">7. Frequently Asked Questions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">8. Case Studies</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8.1. High Lift Common Research Model (HL-CRM)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">8.1.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#problem-description">8.1.2. Problem Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mesh">8.1.3. Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setup-and-solution">8.1.4. Setup and Solution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#upload-the-mesh-file">8.1.4.1. Upload the Mesh File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-the-case">8.1.4.2. Run the Case</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#downloading-the-results">8.1.4.3. Downloading the Results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#grid-convergence">8.1.5. Grid Convergence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results">8.1.6. Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary">8.1.7. Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dpw4.html">8.2. Drag Prediction of Common Research Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="om6_caseStudy.html">8.3. ONERA M6 Wing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="betDiskSteady_caseStudy.html">8.4. XV-15 Rotor Blade by Blade Element Disk Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions/conventions.html">9. Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../publications.html">10. Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releaseNotes.html">11. Release Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Flow360 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../examples.html"><span class="section-number">8. </span>Case Studies</a> &raquo;</li>
+      <li><span class="section-number">8.1. </span>High Lift Common Research Model (HL-CRM)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/hlcrm.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<span class="target" id="hlcrm"></span><section id="high-lift-common-research-model-hl-crm">
+<h1><span class="section-number">8.1. </span>High Lift Common Research Model (HL-CRM)<a class="headerlink" href="#high-lift-common-research-model-hl-crm" title="Permalink to this headline"></a></h1>
+<section id="introduction">
+<h2><span class="section-number">8.1.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>The purpose of this case study is to compute the turbulent flow past a NASA Common Research Model (CRM) with a full flap gap from the AIAA CFD High Lift Prediction Workshop. The goal of the workshop is to research the state-of-the-art in difficult-to predict aircraft configurations, such as take-off and landing scenarios. These cases may be harder to converge, and exhibit complex flow physics. The workshop allows comparisons to be made between different solvers and equation sets, and for performance and accuracy to be assessed.</p>
+<p>In this case study, we will use mesh provided by the workshop committee and run Flow360 CFD solver developed by Flexcompute Inc. We will demonstrate how to upload a mesh, run a case and perform post processing. Performance of results from Flow360 will be compared to flow solutions from other leading open-source and commercial solvers, which are published in the <a class="reference external" href="https://hiliftpw.larc.nasa.gov/index-workshop3.html">3rd AIAA CFD High Lift Prediction Workshop (HiLiftPW-3)</a>.</p>
+</section>
+<section id="problem-description">
+<h2><span class="section-number">8.1.2. </span>Problem Description<a class="headerlink" href="#problem-description" title="Permalink to this headline"></a></h2>
+<p>The problem considers the flow around the HL-CRM at angles of attack α = 8° and 16° and a freestream Mach number of 0.2 (<span class="math notranslate nohighlight">\(M_{\infty} = 0.2\)</span>).  The geometry of the HL-CRM with gapped configuration can be downloaded from <a class="reference external" href="https://hiliftpw.larc.nasa.gov/Workshop3/geometries.html">here</a>, and is shown in <a class="reference internal" href="#fig1-hlcrm"><span class="std std-numref">Fig. 8.1.1</span></a>. The airplane has mirror symmetry. As a common practice, only half of the plane is simulated. Summary of geometry parameters is given below.</p>
+<figure class="align-center" id="id8">
+<span id="fig1-hlcrm"></span><img alt="../_images/GeometryIso.png" src="../_images/GeometryIso.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.1.1 </span><span class="caption-text">Test geometry of the High Lift Prediction Workshop.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Mean aerodynamic chord (MAC) = 275.8 in, located at y = 468.75 in</p></li>
+<li><p>Wing semi-span (b/2) = 1156.75 in</p></li>
+<li><p>Reference area of the semi-span model = Sref/2 = 297,360.0 in<sup>2</sup></p></li>
+<li><p>Moment reference center (MRC): x = 1325.90 in, y = 0.0 in, z = 177.95 in</p></li>
+<li><p>Aspect Ratio (AR) = b<sup>2</sup>/Sref = 9.0</p></li>
+</ul>
+</section>
+<section id="mesh">
+<h2><span class="section-number">8.1.3. </span>Mesh<a class="headerlink" href="#mesh" title="Permalink to this headline"></a></h2>
+<p>Grids have been developed and provided by the workshop to enable a fair comparison across a variety of solvers.  Flow360 supports mesh files formats in AFLR3 and CGNS, or their .gz or .bz2 compressions.  For the purpose of this case study we will use ugrid mesh file, which is of the AFLR3 format.  A medium-resolution mesh, with mixed hexahedral, tetrahedral, prism, and pyramid elements and with about 27M nodes, can be downloaded from <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/hlpw3/Woeber_Pointwise_HLCRM_FullGap_HexPrismPyrTets_Medium.b8.ugrid.gz">here</a>.  The file is already compressed in a .gz format.  Also, download the .mapbc file, to specify the solid wall (no-slip) boundaries, from <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/hlpw3/Woeber_Pointwise_HLCRM_FullGap_HexPrismPyrTets_Medium.mapbc?content_disposition=attachment">here</a>.  Meshes of other resolutions can also be downloaded from <a class="reference external" href="https://hiliftpw-ftp.larc.nasa.gov/HiLiftPW3/HL-CRM_Grids/Committee_Grids/B2-HLCRM_UnstrPrismTet_PW/FullGap/AFLR3/">here</a>.</p>
+<figure class="align-center" id="id9">
+<img alt="../_images/Mesh_medium.png" src="../_images/Mesh_medium.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.1.2 </span><span class="caption-text">Medium-resolution mesh of the HL-CRM; Outboard Flap (bottom-left) and Slat (bottom-right).</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="setup-and-solution">
+<h2><span class="section-number">8.1.4. </span>Setup and Solution<a class="headerlink" href="#setup-and-solution" title="Permalink to this headline"></a></h2>
+<section id="upload-the-mesh-file">
+<h3><span class="section-number">8.1.4.1. </span>Upload the Mesh File<a class="headerlink" href="#upload-the-mesh-file" title="Permalink to this headline"></a></h3>
+<p>Now that the <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/hlpw3/Woeber_Pointwise_HLCRM_FullGap_HexPrismPyrTets_Medium.b8.ugrid.gz">mesh</a> has been downloaded, it can be uploaded to the Flow360 cloud. We will do this using the Python API. Open the Python API and import the Flow360 client.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span>
+<span class="kn">import</span> <span class="nn">flow360client</span>
+</pre></div>
+</div>
+<p>Before we upload the mesh, we need to specify our no-slip boundary conditions. We will do this using the .mapbc file (downloaded from <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/hlpw3/Woeber_Pointwise_HLCRM_FullGap_HexPrismPyrTets_Medium.mapbc?content_disposition=attachment">here</a>). Make sure the boundary names in your .mapbc file do not have any spaces, otherwise the python code will not parse it. To specify the no-slip boundaries, use the following command line:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">noSlipWalls</span> <span class="o">=</span> <span class="n">flow360client</span><span class="o">.</span><span class="n">noSlipWallsFromMapbc</span><span class="p">(</span><span class="s1">&#39;output/path/for/hlcrm.mapbc&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Replace the file path with your own .mapbc file’s path.</p>
+<p>You can also specify the no-slip boundary conditions using the JSON mesh configuration files (download Flow360Mesh.json file form <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/hlpw3/Flow360Mesh.json?content_disposition=attachment">here</a>).  Use the following commands to do so:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="n">meshJson</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/path/to/Flow360Mesh.json&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Again, replace the file path with your own file’s path.  The Flow360Mesh.json file for this tutorial has the following contents:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;boundaries&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;noSlipWalls&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>If using the .mapbc file, use the following command to upload your mesh:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">meshId</span> <span class="o">=</span> <span class="n">flow360client</span><span class="o">.</span><span class="n">NewMesh</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;/path/to/hlcrm.b8.ugrid&#39;</span><span class="p">,</span>
+                               <span class="n">noSlipWalls</span><span class="o">=</span><span class="n">noSlipWalls</span><span class="p">,</span>
+                               <span class="n">meshName</span><span class="o">=</span><span class="s1">&#39;HLCRM_medium&#39;</span><span class="p">,</span>
+                               <span class="n">tags</span><span class="o">=</span><span class="p">[]</span>
+                              <span class="p">)</span>
+</pre></div>
+</div>
+<p>Or, if you choose to use the mesh JSON configuration file, use the following command to upload your mesh:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">meshId</span> <span class="o">=</span> <span class="n">flow360client</span><span class="o">.</span><span class="n">NewMesh</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;/path/to/hlcrm.b8.ugrid&#39;</span><span class="p">,</span>
+                               <span class="n">meshJson</span><span class="o">=</span><span class="n">meshJson</span><span class="p">,</span>
+                               <span class="n">meshName</span><span class="o">=</span><span class="s1">&#39;HLCRM_medium&#39;</span><span class="p">,</span>
+                               <span class="n">tags</span><span class="o">=</span><span class="p">[]</span>
+                              <span class="p">)</span>
+</pre></div>
+</div>
+<p>Replace the path in fname with your own file’s path. Parameter inputs of meshName and tags are optional.  Upon executing this command, it will return the meshId. Use that for the next step.</p>
+</section>
+<section id="run-the-case">
+<h3><span class="section-number">8.1.4.2. </span>Run the Case<a class="headerlink" href="#run-the-case" title="Permalink to this headline"></a></h3>
+<p>To run a case, first prepare a JSON input file, either manually or by using the fun3d_to_flow360.py script:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">flow360</span><span class="o">/</span><span class="n">flow360client</span><span class="o">/</span><span class="n">fun3d_to_flow360</span><span class="o">.</span><span class="n">py</span>
+<span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">fun3d</span><span class="o">.</span><span class="n">nml</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">hlcrm</span><span class="o">.</span><span class="n">mapbc</span> <span class="o">/</span><span class="n">output</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="k">for</span><span class="o">/</span><span class="n">Flow360</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>The Flow360.json configuration file for this case (α = 16°) can be downloaded from <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/hlpw3/Flow360.json?content_disposition=attachment">here</a>.  Be sure to change the flow and solver parameters in JSON configuration file for other cases (e.g. α = 8°).  A full description of the flow configuration parameters can be found <a class="reference internal" href="../solverConfiguration/solverConfiguration.html#flow360json"><span class="std std-ref">here</span></a>.  The case can be submitted using the following command line:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">caseId</span> <span class="o">=</span> <span class="n">flow360client</span><span class="o">.</span><span class="n">NewCase</span><span class="p">(</span><span class="n">meshId</span><span class="o">=</span><span class="n">meshId</span><span class="p">,</span>
+                               <span class="n">config</span><span class="o">=</span><span class="s1">&#39;/output/path/for/Flow360.json&#39;</span><span class="p">,</span>
+                               <span class="n">caseName</span><span class="o">=</span><span class="s1">&#39;HLCRM_case&#39;</span><span class="p">,</span>
+                               <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alpha 16&#39;</span><span class="p">]</span>
+                              <span class="p">)</span>
+</pre></div>
+</div>
+<p>Replace the meshId generated from the above step, and give your own config path. Parameter inputs of caseName and tags are optional. Upon finishing this command, it will return the caseId. Use that for the next step.</p>
+</section>
+<section id="downloading-the-results">
+<h3><span class="section-number">8.1.4.3. </span>Downloading the Results<a class="headerlink" href="#downloading-the-results" title="Permalink to this headline"></a></h3>
+<p>To download the solver log for your case, use the following command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">flow360client</span><span class="o">.</span><span class="n">case</span><span class="o">.</span><span class="n">DownloadSolverOut</span><span class="p">(</span><span class="n">caseId</span><span class="p">,</span> <span class="n">fileName</span><span class="o">=</span><span class="s1">&#39;path/to/log&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The second argument fileName is optional, its default value is ‘solver.out’.</p>
+<p>The surface data (surface distributions and slices) and the entire flow field can be downloaded, respectively, using:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">flow360client</span><span class="o">.</span><span class="n">case</span><span class="o">.</span><span class="n">DownloadSurfaceResults</span><span class="p">(</span><span class="n">caseId</span><span class="p">,</span> <span class="n">fileName</span><span class="o">=</span><span class="s1">&#39;path/to/surfaceSol&#39;</span><span class="p">)</span>
+<span class="n">flow360client</span><span class="o">.</span><span class="n">case</span><span class="o">.</span><span class="n">DownloadVolumetricResults</span><span class="p">(</span><span class="n">caseId</span><span class="p">,</span> <span class="n">fileName</span><span class="o">=</span><span class="s1">&#39;path/to/volumeSol&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The second argument fileName is optional, its default value is “volumes.tar.gz” for volume solution and “surfaces.tar.gz” for surface/slice solution.</p>
+<p>The residuals history and total forces can be downloaded, respectively, using the following commands:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">flow360client</span><span class="o">.</span><span class="n">case</span><span class="o">.</span><span class="n">GetCaseResidual</span><span class="p">(</span><span class="n">caseId</span><span class="p">)</span>
+<span class="n">flow360client</span><span class="o">.</span><span class="n">case</span><span class="o">.</span><span class="n">GetCaseTotalForces</span><span class="p">(</span><span class="n">caseId</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, you can download the surface forces by their component names using the following commands:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">flow360client</span><span class="o">.</span><span class="n">case</span><span class="o">.</span><span class="n">GetCaseSurfaceForcesByNames</span><span class="p">(</span><span class="n">caseId</span><span class="p">,</span> <span class="o">&lt;</span><span class="nb">list</span> <span class="n">of</span> <span class="n">boundaryNames</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Replace the caseId with your own case’s ID and &lt;list of boundaryNames&gt; with names of the boundaries. There is a <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/dpw4/downloadAll.py?content_disposition=attachment">script</a> to download all of the above stuff by: <code class="code docutils literal notranslate"><span class="pre">python3</span> <span class="pre">downloadAll.py</span> <span class="pre">caseId</span></code>.</p>
+</section>
+</section>
+<section id="grid-convergence">
+<h2><span class="section-number">8.1.5. </span>Grid Convergence<a class="headerlink" href="#grid-convergence" title="Permalink to this headline"></a></h2>
+<p>The grid convergence of the chosen mesh in this case study has been done by comparing the coefficients of lift and drag for angle of attacks 8° and 16° obtained through Flow360 with <a class="reference external" href="https://hiliftpw-ftp.larc.nasa.gov/HiLiftPW3/ResultsFromHiLiftPW3/">solutions presented by other solvers at the High Lift workshop</a>.  This grid convergence is presented in <a class="reference internal" href="#fig3-hlcrm"><span class="std std-numref">Fig. 8.1.3</span></a>, and the mesh statistics for a coarse, medium, fine and extra fine grids are presented in <a class="reference internal" href="#tab1-hlcrm"><span class="std std-numref">Table 8.1.1</span></a>.</p>
+<span id="tab1-hlcrm"></span><table class="docutils align-center" id="id10">
+<caption><span class="caption-number">Table 8.1.1 </span><span class="caption-text">Mesh Statistics for different grid sizes</span><a class="headerlink" href="#id10" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 37%" />
+<col style="width: 32%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p># of Nodes</p></th>
+<th class="head"><p># of Cells</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Coarse</p></td>
+<td><p>8.3 M</p></td>
+<td><p>18.9 M</p></td>
+</tr>
+<tr class="row-odd"><td><p>Medium</p></td>
+<td><p>27 M</p></td>
+<td><p>46.8 M</p></td>
+</tr>
+<tr class="row-even"><td><p>Fine</p></td>
+<td><p>70.7 M</p></td>
+<td><p>116.3 M</p></td>
+</tr>
+<tr class="row-odd"><td><p>Extra Fine</p></td>
+<td><p>208 M</p></td>
+<td><p>385.6 M</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-center" id="id11">
+<span id="fig3-hlcrm"></span><img alt="../_images/plots_CLCD_hlpw3.png" src="../_images/plots_CLCD_hlpw3.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.1.3 </span><span class="caption-text">Grid convergence of Flow360 compared to the participants of the 3rd AIAA CFD High Lift Prediction Workshop in 2017. The x-axis is the number of mesh grid points N. The scale of the expected numerical error is also labeled for N^-2/3; the y-axis shows the lift (left plots) and drag (right plots) coefficients computed on various grids, at 8 (upper plots) and 16 (lower plots) degrees angles of attack.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Flow360 performs very well compared to other CFD solvers. Even using coarse mesh, Flow360 obtains results that are very close to results calculated from fine meshes.</p>
+</section>
+<section id="results">
+<h2><span class="section-number">8.1.6. </span>Results<a class="headerlink" href="#results" title="Permalink to this headline"></a></h2>
+<p>The results data obtained from the previous step can be post-processed in either ParaView or Tecplot. We will use ParaView to post-process these results and plot coefficients of skin friction and pressure.</p>
+<p><a class="reference internal" href="#fig4-hlcrm"><span class="std std-numref">Fig. 8.1.4</span></a> shows the contour plots of coefficient of skin friction for angle of attacks 8° and 16°.</p>
+<figure class="align-center">
+<img alt="../_images/Cf_alpha8.png" src="../_images/Cf_alpha8.png" />
+</figure>
+<figure class="align-center" id="id12">
+<span id="fig4-hlcrm"></span><img alt="../_images/Cf_alpha16.png" src="../_images/Cf_alpha16.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.1.4 </span><span class="caption-text">Coefficient of skin friction for angle of attacks 8 (top) and 16 (bottom) degrees.</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p><a class="reference internal" href="#fig5-hlcrm"><span class="std std-numref">Fig. 8.1.5</span></a> shows contour plots of coefficient of pressure angle of attacks 8° and 16° for both the upper and lower surfaces of the wing.</p>
+<figure class="align-center">
+<img alt="../_images/Cp_alpha8.png" src="../_images/Cp_alpha8.png" />
+</figure>
+<figure class="align-center" id="id13">
+<span id="fig5-hlcrm"></span><img alt="../_images/Cp_alpha16.png" src="../_images/Cp_alpha16.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.1.5 </span><span class="caption-text">Coefficient of pressure for angle of attacks 8 (top) and 16 (bottom) degrees.</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p><a class="reference internal" href="#fig6-hlcrm"><span class="std std-numref">Fig. 8.1.6</span></a> shows the Q-criterion plot for Mach number for the coarse grid (8.3M nodes) for the angle of attack 16°.</p>
+<figure class="align-center">
+<img alt="../_images/HLCRM_coarse_Q=1e-7_alpha16.png" src="../_images/HLCRM_coarse_Q=1e-7_alpha16.png" />
+</figure>
+<figure class="align-center">
+<img alt="../_images/HLCRM_coarse_Q=1e-7_Yside_alpha16.png" src="../_images/HLCRM_coarse_Q=1e-7_Yside_alpha16.png" />
+</figure>
+<figure class="align-center" id="id14">
+<span id="fig6-hlcrm"></span><img alt="../_images/HLCRM_coarse_Q=1e-7_Zside_alpha16.png" src="../_images/HLCRM_coarse_Q=1e-7_Zside_alpha16.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.1.6 </span><span class="caption-text">Q-criterion plots of the Mach Number for the coarse grid for angle of attack 16 degrees.</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="summary">
+<h2><span class="section-number">8.1.7. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this headline"></a></h2>
+<p>This case study demonstrated how to set up, solve and present results of an external aerodynamics flow over NASA’s Common Research Model (CRM) from the High Lift Prediction Workshop using Flow360 Python API. The C<sub>L</sub> and C<sub>D</sub> data obtained through Flow360 has been compared with the solutions from various other solvers from the High Lift Prediction Workshop for accuracy.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../examples.html" class="btn btn-neutral float-left" title="8. Case Studies" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dpw4.html" class="btn btn-neutral float-right" title="8.2. Drag Prediction of Common Research Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Flexcompute Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

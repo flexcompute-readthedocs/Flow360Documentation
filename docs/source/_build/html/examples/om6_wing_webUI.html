@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1. Run CFD using Web UI: An example of ONERA M6 Wing &mdash; Flow360 Documentation  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/bugfix.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/logo.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.2. Run CFD using Python API: An example of ONERA M6 Wing" href="om6_wing_pyAPI.html" />
+    <link rel="prev" title="1. Quick Start" href="../quickstart.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Flow360 Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../quickstart.html">1. Quick Start</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.1. Run CFD using Web UI: An example of ONERA M6 Wing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-cfd-results-in-two-simple-steps">1.1.1. Get CFD results in two simple steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#advanced-functions">1.1.2. Advanced Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#visualizing-the-results">1.1.2.1. Visualizing the Results:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#downloading-the-results">1.1.2.2. Downloading the Results:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fork-a-case">1.1.2.3. Fork a Case:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deleting-a-mesh-case">1.1.2.4. Deleting a Mesh/Case:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="om6_wing_pyAPI.html">1.2. Run CFD using Python API: An example of ONERA M6 Wing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rotation_interface.html">1.3. Run CFD on a propeller using a Rotation interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capabilities/capabilities.html">2. Capabilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preprocessing/preprocessing.html">3. Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solverConfiguration/solverConfiguration.html">4. Solver Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../postprocessing/postprocessing.html">5. Postprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pythonAPI/api.html">6. Python API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">7. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">8. Case Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions/conventions.html">9. Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../publications.html">10. Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releaseNotes.html">11. Release Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Flow360 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../quickstart.html"><span class="section-number">1. </span>Quick Start</a> &raquo;</li>
+      <li><span class="section-number">1.1. </span>Run CFD using Web UI: An example of ONERA M6 Wing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/om6_wing_webUI.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<span class="target" id="om6-wing-webui"></span><section id="run-cfd-using-web-ui-an-example-of-onera-m6-wing">
+<h1><span class="section-number">1.1. </span>Run CFD using Web UI: An example of ONERA M6 Wing<a class="headerlink" href="#run-cfd-using-web-ui-an-example-of-onera-m6-wing" title="Permalink to this headline"></a></h1>
+<p>The Onera M6 wing is a classic CFD validation case for external flows because of its simple geometry combined with complexities of transonic flow (i.e. local supersonic flow, shocks, and turbulent boundary layer separation).  It is a swept, semi-span wing with no twist and uses a symmetric airfoil using the ONERA D section.  More information about the geometry can be found at <a class="reference external" href="https://www.grc.nasa.gov/www/wind/valid/m6wing/m6wing.html">NASA’s website</a>.  The geometry parameters are:</p>
+<ul class="simple">
+<li><p>Mean Aerodynamic Chord (MAC) = 0.80167</p></li>
+<li><p>Semi-span = 1.47602</p></li>
+<li><p>Reference area = 1.15315</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/Geometry_Iso.png"><img alt="../_images/Geometry_Iso.png" class="align-center" src="../_images/Geometry_Iso.png" style="width: 373.09999999999997px; height: 311.5px;" /></a>
+<p>The mesh used for this case contains 113K nodes and 663K tetrahedrons, and the flow conditions are:</p>
+<ul class="simple">
+<li><p>Mach Number = 0.84</p></li>
+<li><p>Reynolds Number (based on MAC) = 11.72 Million</p></li>
+<li><p>Alpha = 3.06°.</p></li>
+<li><p>Reference Temperature = 297.78 K</p></li>
+</ul>
+<section id="get-cfd-results-in-two-simple-steps">
+<h2><span class="section-number">1.1.1. </span>Get CFD results in two simple steps<a class="headerlink" href="#get-cfd-results-in-two-simple-steps" title="Permalink to this headline"></a></h2>
+<p>After you <a class="reference external" href="https://client.flexcompute.com/app/login">sign in</a>, visit <a class="reference external" href="https://client.flexcompute.com/app/volumemeshes">https://client.flexcompute.com/app/volumemeshes</a>.</p>
+<p><strong>Step 1. Upload the Volume Mesh File:</strong></p>
+<p>To upload a volumetric mesh file, under the <strong>Volume Mesh</strong> tab click on <strong>Upload</strong> icon as displayed below:</p>
+<a class="reference internal image-reference" href="../_images/UploadMesh.png"><img alt="../_images/UploadMesh.png" class="align-center" src="../_images/UploadMesh.png" style="width: 489.59999999999997px; height: 136.2px;" /></a>
+<p>This will open a window.  You need to upload two files here.  The first is the volume mesh.  Download an example mesh of  M6 Wing <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/om6/wing_tetra.1.lb8.ugrid">here</a>.  The second is the mesh configuration json.  Download one <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/om6/Flow360Mesh.json?content_disposition=attachment">here</a>.  When uploading the mesh, be sure to set the Endianness to ‘little endian’ for this tutorial.  More information on endianness can be found <a class="reference external" href="https://en.wikipedia.org/wiki/Endianness">here</a>.  (<strong>Note</strong>: Mesh Name and Tags are optional. For Release History, the latest solver version will be used here by default.)  Then click submit to upload and process your mesh. You can see the status of the mesh under the <strong>Status</strong> tab.</p>
+<p><strong>Step 2. Launch a CFD Case:</strong></p>
+<p>You do not have to wait for your mesh to be processed. Once your mesh is uploaded you can start the case submission process. To start a new case, click on the airplane icon under the <strong>Actions</strong> tab as shown below.</p>
+<a class="reference internal image-reference" href="../_images/NewCase.png"><img alt="../_images/NewCase.png" class="align-center" src="../_images/NewCase.png" style="width: 264.59999999999997px; height: 90.0px;" /></a>
+<p>Once you click the airplane icon, the webpage will re-direct you to an interactive interface to either generate a case configuration json online or upload a pre-configured json file.  Please use this <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/om6/Flow360.json?content_disposition=attachment">Flow360.json</a> file for the current case. A full dictionary of configuration parameters for the JSON input file can be found <a class="reference internal" href="../solverConfiguration/solverConfiguration.html#flow360json"><span class="std std-ref">here</span></a>.  You may also provide a Case Name and Tags to track your case later on. Hit <strong>Submit</strong> to run your case.  Once the case is submitted, you can check the case status by clicking the <strong>Case</strong> tab.</p>
+<a class="reference internal image-reference" href="../_images/CaseStatus.png"><img alt="../_images/CaseStatus.png" class="align-center" src="../_images/CaseStatus.png" style="width: 488.4px; height: 129.6px;" /></a>
+<hr style="display: block;
+           margin-top: 5em;
+           margin-bottom: 5em;
+           margin-left: auto;
+           margin-right: auto;
+           border-style: inset;
+           border-width: 10px;
+           border-top-color: #FF2400;
+           border-bottom-color: black"></section>
+<section id="advanced-functions">
+<h2><span class="section-number">1.1.2. </span>Advanced Functions<a class="headerlink" href="#advanced-functions" title="Permalink to this headline"></a></h2>
+<section id="visualizing-the-results">
+<h3><span class="section-number">1.1.2.1. </span>Visualizing the Results:<a class="headerlink" href="#visualizing-the-results" title="Permalink to this headline"></a></h3>
+<p>While your case is running, or after that, you can visualize the Residuals and Forces plot by clicking on your case name and viewing them under the <strong>Convergence</strong> and <strong>Forces</strong> tabs, respectively.</p>
+<a class="reference internal image-reference" href="../_images/ConvergenceTab.png"><img alt="../_images/ConvergenceTab.png" class="align-center" src="../_images/ConvergenceTab.png" style="width: 462.0px; height: 70.2px;" /></a>
+<p>For example, the Forces plots for this case are:</p>
+<img alt="../_images/CD_CL.png" class="align-center" src="../_images/CD_CL.png" />
+<img alt="../_images/CF.png" class="align-center" src="../_images/CF.png" />
+<img alt="../_images/CM.png" class="align-center" src="../_images/CM.png" />
+<p>Once your case has completed running, you can also visualize the contour plots of the results under the <strong>Visualization</strong> tab.  Currently, contour plots for Coefficient of Pressure (C<sub>p</sub>), Coefficient of Skin Friction (C<sub>f</sub>), Y+, and C<sub>f</sub> with streamlines are provided.</p>
+<a class="reference internal image-reference" href="../_images/VisResults.png"><img alt="../_images/VisResults.png" class="align-center" src="../_images/VisResults.png" style="width: 942.9px; height: 732.1999999999999px;" /></a>
+</section>
+<section id="downloading-the-results">
+<h3><span class="section-number">1.1.2.2. </span>Downloading the Results:<a class="headerlink" href="#downloading-the-results" title="Permalink to this headline"></a></h3>
+<p>Once your case has finished running, you can download the results (Surfaces, Volume and Log) by clicking the download arrow under the <strong>Actions</strong> tab.</p>
+<a class="reference internal image-reference" href="../_images/DownloadResults.png"><img alt="../_images/DownloadResults.png" class="align-center" src="../_images/DownloadResults.png" style="width: 325.5px; height: 94.5px;" /></a>
+<p>The Volume and Surface data can be post-processed in either ParaView or Tecplot, based on your selection of outputFormat in the Flow360.json file. And the Log file (solver.out) can be used to view the solver time and other run details.</p>
+</section>
+<section id="fork-a-case">
+<h3><span class="section-number">1.1.2.3. </span>Fork a Case:<a class="headerlink" href="#fork-a-case" title="Permalink to this headline"></a></h3>
+<p>You can also restart a case, to continue from the last point of the previous run, by clicking the <strong>Fork a Case</strong> icon under the <strong>Actions</strong> tab and change the parameters of your Flow360.json configuration file according to your needs or upload an entirely new configuration file.</p>
+<a class="reference internal image-reference" href="../_images/ForkCase1.png"><img alt="../_images/ForkCase1.png" class="align-center" src="../_images/ForkCase1.png" style="width: 324.79999999999995px; height: 86.1px;" /></a>
+<a class="reference internal image-reference" href="../_images/ForkCase2.png"><img alt="../_images/ForkCase2.png" class="align-center" src="../_images/ForkCase2.png" style="width: 412.8px; height: 484.2px;" /></a>
+</section>
+<section id="deleting-a-mesh-case">
+<h3><span class="section-number">1.1.2.4. </span>Deleting a Mesh/Case:<a class="headerlink" href="#deleting-a-mesh-case" title="Permalink to this headline"></a></h3>
+<p>You can delete a mesh/case by clicking on the trash can icon under the <strong>Actions</strong> tab. (<em>Caution</em>: You will not be able to recover your deleted case or mesh files including its results after your deletion.)</p>
+<a class="reference internal image-reference" href="../_images/DeleteMeshCase_1.png"><img alt="../_images/DeleteMeshCase_1.png" class="align-center" src="../_images/DeleteMeshCase_1.png" style="width: 346.5px; height: 81.89999999999999px;" /></a>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../quickstart.html" class="btn btn-neutral float-left" title="1. Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="om6_wing_pyAPI.html" class="btn btn-neutral float-right" title="1.2. Run CFD using Python API: An example of ONERA M6 Wing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Flexcompute Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

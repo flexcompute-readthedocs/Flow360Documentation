@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8.2. Drag Prediction of Common Research Model &mdash; Flow360 Documentation  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/bugfix.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/logo.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.3. ONERA M6 Wing" href="om6_caseStudy.html" />
+    <link rel="prev" title="8.1. High Lift Common Research Model (HL-CRM)" href="hlcrm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Flow360 Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">1. Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../capabilities/capabilities.html">2. Capabilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preprocessing/preprocessing.html">3. Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solverConfiguration/solverConfiguration.html">4. Solver Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../postprocessing/postprocessing.html">5. Postprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pythonAPI/api.html">6. Python API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">7. Frequently Asked Questions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">8. Case Studies</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hlcrm.html">8.1. High Lift Common Research Model (HL-CRM)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8.2. Drag Prediction of Common Research Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">8.2.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#problem-description">8.2.2. Problem Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mesh">8.2.3. Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setup-and-solution">8.2.4. Setup and Solution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#upload-the-mesh-file">8.2.4.1. Upload the Mesh File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-the-case">8.2.4.2. Run the Case</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#downloading-the-results">8.2.4.3. Downloading the Results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#grid-convergence">8.2.5. Grid Convergence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results">8.2.6. Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary">8.2.7. Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="om6_caseStudy.html">8.3. ONERA M6 Wing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="betDiskSteady_caseStudy.html">8.4. XV-15 Rotor Blade by Blade Element Disk Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions/conventions.html">9. Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../publications.html">10. Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releaseNotes.html">11. Release Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Flow360 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../examples.html"><span class="section-number">8. </span>Case Studies</a> &raquo;</li>
+      <li><span class="section-number">8.2. </span>Drag Prediction of Common Research Model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/dpw4.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<span class="target" id="dpw4"></span><section id="drag-prediction-of-common-research-model">
+<h1><span class="section-number">8.2. </span>Drag Prediction of Common Research Model<a class="headerlink" href="#drag-prediction-of-common-research-model" title="Permalink to this headline"></a></h1>
+<section id="introduction">
+<h2><span class="section-number">8.2.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>The purpose of this case study is to compute the turbulent flow past NASA’s Common Research Model (CRM) (a transonic wing-body-tail model) from the 4th AIAA CFD Drag Prediction Workshop.  The goal of the workshop is to assess the state-of-the-art computational methods as practical aerodynamic tools for aircraft force and moment prediction of industry relevant geometries.  The workshop allows comparisons to be made between different solvers and equation sets, and for performance and accuracy to be assessed.</p>
+<p>In this case study, we will use mesh created in Pointwise and run it through the Flow360 CFD solver developed by Flexcompute Inc. We will demonstrate how to upload a mesh, run a case and view results. Performance of results from Flow360 will be compared with flow solutions from <a class="reference external" href="https://aiaa-dpw.larc.nasa.gov/Workshop4/presentations/DPW4_Presentations_files/D1-16_FUN3D_DPW_IV_2.pdf">FUN3D</a>, which were presented at the <a class="reference external" href="https://aiaa-dpw.larc.nasa.gov/Workshop4/workshop4.html">4th AIAA CFD Drag Prediction Workshop (DPW-4)</a>.</p>
+</section>
+<section id="problem-description">
+<h2><span class="section-number">8.2.2. </span>Problem Description<a class="headerlink" href="#problem-description" title="Permalink to this headline"></a></h2>
+<p>The problem considers the flow around the CRM at a freestream Mach number of 0.85 (<span class="math notranslate nohighlight">\(M_{\infty} = 0.85\)</span>) to achieve a target lift coefficient of 0.5 (C<sub>L</sub>= 0.5).  The geometry of the CRM with a wing-body-tail configuration can be downloaded from <a class="reference external" href="https://aiaa-dpw.larc.nasa.gov/Workshop4/DPW4-geom.html">here</a>, and is shown in <a class="reference internal" href="#fig1-dpw4"><span class="std std-numref">Fig. 8.2.1</span></a>.  The aircraft has a mirror symmetry.  Summary of the geometric parameters is given below.</p>
+<figure class="align-center" id="id3">
+<span id="fig1-dpw4"></span><img alt="../_images/dpw4_geometry.png" src="../_images/dpw4_geometry.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.2.1 </span><span class="caption-text">Test geometry of the Drag Prediction Workshop</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Mean aerodynamic chord (MAC) = 275.8 in, located at y=468.75 in.</p></li>
+<li><p>Wing semi-span (b/2) = 1156.75 in.</p></li>
+<li><p>Reference area of the semi-span model = Sref/2 = 297,360.0 in<sup>2</sup>.</p></li>
+<li><p>Moment reference center (MRC): x = 1325.90 in, y = 468.75 in, z = 177.95 in.</p></li>
+<li><p>Aspect Ratio (AR) = b<sup>2</sup>/Sref = 9.0.</p></li>
+</ul>
+<p>And the corresponding flow conditions are:</p>
+<ul class="simple">
+<li><p>Freestream Mach Number, <span class="math notranslate nohighlight">\(M_{\infty} = 0.85\)</span>.</p></li>
+<li><p>Target Lift Coefficient, C<sub>L</sub>= 0.5.</p></li>
+<li><p>Tail Incidence angle = 0°.</p></li>
+<li><p>Reynolds Number (based on MAC) = 5 Million.</p></li>
+<li><p>Reference Temperature = 310.93 K.</p></li>
+</ul>
+</section>
+<section id="mesh">
+<h2><span class="section-number">8.2.3. </span>Mesh<a class="headerlink" href="#mesh" title="Permalink to this headline"></a></h2>
+<p>Grids were developed using Pointwise.  Flow360 supports mesh file formats in ugrid, cgns, and their .gz or .bz2 compressions.  For the purpose of this case study a cgns mesh file format and a medium-resolution mesh, with mixed hexahedral, tetrahedral, prism, and pyramid elements and with about 11.3M nodes was used.</p>
+<figure class="align-center" id="id4">
+<span id="fig2-dpw4"></span><img alt="../_images/dpw4_meshMedium.png" src="../_images/dpw4_meshMedium.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.2.2 </span><span class="caption-text">Medium-resolution mesh of the CRM</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="setup-and-solution">
+<h2><span class="section-number">8.2.4. </span>Setup and Solution<a class="headerlink" href="#setup-and-solution" title="Permalink to this headline"></a></h2>
+<section id="upload-the-mesh-file">
+<h3><span class="section-number">8.2.4.1. </span>Upload the Mesh File<a class="headerlink" href="#upload-the-mesh-file" title="Permalink to this headline"></a></h3>
+<p>The first thing you need to do is to upload the mesh file and the mesh configuration file to Flow360 cloud. These files can be obtained from here:</p>
+<ul class="simple">
+<li><p>Mesh file: <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/dpw4/nasa_crm_pointwise_ds_0.001_medium_11.3M.cgns">mesh</a></p></li>
+<li><p>Mesh configuration file: <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/dpw4/Flow360Mesh.json?content_disposition=attachment">Flow360Mesh.json</a></p></li>
+</ul>
+<p>We will do this step-by-step using the Python API.  Open your Python interpreter and import the Flow360 client, json module and read the configuration of mesh.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span>
+<span class="kn">import</span> <span class="nn">flow360client</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">meshJson</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/path/to/Flow360Mesh.json&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now upload the mesh using the following command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">meshId</span> <span class="o">=</span> <span class="n">flow360client</span><span class="o">.</span><span class="n">NewMesh</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;/path/to/dpw4.cgns&#39;</span><span class="p">,</span>
+                               <span class="n">meshJson</span><span class="o">=</span><span class="n">meshJson</span><span class="p">,</span>
+                               <span class="n">meshName</span><span class="o">=</span><span class="s1">&#39;DPW4_medium&#39;</span><span class="p">,</span>
+                               <span class="n">tags</span><span class="o">=</span><span class="p">[]</span>
+                              <span class="p">)</span>
+</pre></div>
+</div>
+<p>Replace the file paths in meshJson and NewMesh with your own file paths.  Mesh name and tags are optional.  Executing this command will return a meshId, which can be used in the next step to run the case.</p>
+</section>
+<section id="run-the-case">
+<h3><span class="section-number">8.2.4.2. </span>Run the Case<a class="headerlink" href="#run-the-case" title="Permalink to this headline"></a></h3>
+<p>To run a case, first download the the configuration file, named Flow360.json, of the CFD solver from <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/dpw4/Flow360.json?content_disposition=attachment">here</a>.  This file has been configured to run for this medium-resolution mesh.  If you decide to run a case with another mesh or flow condition, the configuration parameters need to be adjusted accordingly.  A detailed description of the configuration parameters can be found in our <a class="reference internal" href="../solverConfiguration/solverConfiguration.html#flow360json"><span class="std std-ref">API Reference</span></a> section.  The case can be submitted using the following command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">caseId</span> <span class="o">=</span> <span class="n">flow360client</span><span class="o">.</span><span class="n">NewCase</span><span class="p">(</span><span class="n">meshId</span><span class="o">=</span><span class="n">meshId</span><span class="p">,</span>
+                               <span class="n">config</span><span class="o">=</span><span class="s1">&#39;/output/path/for/Flow360.json&#39;</span><span class="p">,</span>
+                               <span class="n">caseName</span><span class="o">=</span><span class="s1">&#39;DPW4_case&#39;</span><span class="p">,</span>
+                               <span class="n">tags</span><span class="o">=</span><span class="p">[]</span>
+                              <span class="p">)</span>
+</pre></div>
+</div>
+<p>Replace the file path in config with your own. You could provide a caseName, which is “Flow360” by default. The tags are optional.</p>
+</section>
+<section id="downloading-the-results">
+<h3><span class="section-number">8.2.4.3. </span>Downloading the Results<a class="headerlink" href="#downloading-the-results" title="Permalink to this headline"></a></h3>
+<p>To download the solver log for your case, use the following command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">flow360client</span><span class="o">.</span><span class="n">case</span><span class="o">.</span><span class="n">DownloadSolverOut</span><span class="p">(</span><span class="n">caseId</span><span class="p">,</span> <span class="n">fileName</span><span class="o">=</span><span class="s1">&#39;path/to/log&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The second argument fileName is optional, its default value is ‘solver.out’.</p>
+<p>The surface data (surface distributions and slices) and the entire flow field can be downloaded, respectively, using:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">flow360client</span><span class="o">.</span><span class="n">case</span><span class="o">.</span><span class="n">DownloadSurfaceResults</span><span class="p">(</span><span class="n">caseId</span><span class="p">,</span> <span class="n">fileName</span><span class="o">=</span><span class="s1">&#39;path/to/surfaceSol&#39;</span><span class="p">)</span>
+<span class="n">flow360client</span><span class="o">.</span><span class="n">case</span><span class="o">.</span><span class="n">DownloadVolumetricResults</span><span class="p">(</span><span class="n">caseId</span><span class="p">,</span> <span class="n">fileName</span><span class="o">=</span><span class="s1">&#39;path/to/volumeSol&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The second argument fileName is optional, its default value is “volumes.tar.gz” for volume solution and “surfaces.tar.gz” for surface/slice solution.</p>
+<p>The residuals history and total forces can be downloaded, respectively, using the following commands:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">flow360client</span><span class="o">.</span><span class="n">case</span><span class="o">.</span><span class="n">GetCaseResidual</span><span class="p">(</span><span class="n">caseId</span><span class="p">)</span>
+<span class="n">flow360client</span><span class="o">.</span><span class="n">case</span><span class="o">.</span><span class="n">GetCaseTotalForces</span><span class="p">(</span><span class="n">caseId</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, you can download the surface forces by their component names using the following commands:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">flow360client</span><span class="o">.</span><span class="n">case</span><span class="o">.</span><span class="n">GetCaseSurfaceForcesByNames</span><span class="p">(</span><span class="n">caseId</span><span class="p">,</span> <span class="o">&lt;</span><span class="nb">list</span> <span class="n">of</span> <span class="n">boundaryNames</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Replace the caseId with your own case’s ID and &lt;list of boundaryNames&gt; with names of the boundaries. There is a <a class="reference external" href="https://simcloud-public-1.s3.amazonaws.com/dpw4/downloadAll.py?content_disposition=attachment">script</a> to download all of the above stuff by: <code class="code docutils literal notranslate"><span class="pre">python3</span> <span class="pre">downloadAll.py</span> <span class="pre">caseId</span></code>.</p>
+</section>
+</section>
+<section id="grid-convergence">
+<h2><span class="section-number">8.2.5. </span>Grid Convergence<a class="headerlink" href="#grid-convergence" title="Permalink to this headline"></a></h2>
+<p>The grid convergence of the chosen mesh in this case study has been done by comparing the angles of attack, coefficients of total drag, pressure drag, skin friction drag and pitching moment obtained from Flow360 with solutions presented by FUN3D at the Drag Prediction Workshop.  This grid convergence is presented in <a class="reference internal" href="#fig3-dpw4"><span class="std std-numref">Fig. 8.2.3</span></a>, and the number of nodes and cells for a coarse, medium and fine grids are presented in <a class="reference internal" href="#tab1-dpw4"><span class="std std-numref">Table 8.2.1</span></a>.</p>
+<span id="tab1-dpw4"></span><table class="docutils align-center" id="id5">
+<caption><span class="caption-number">Table 8.2.1 </span><span class="caption-text">Mesh Statistics for different grid sizes</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 38%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p># of Nodes</p></th>
+<th class="head"><p># of Cells</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Coarse</p></td>
+<td><p>5.5 M</p></td>
+<td><p>10.2 M</p></td>
+</tr>
+<tr class="row-odd"><td><p>Medium</p></td>
+<td><p>11.3 M</p></td>
+<td><p>18.7 M</p></td>
+</tr>
+<tr class="row-even"><td><p>Fine</p></td>
+<td><p>43 M</p></td>
+<td><p>84.4 M</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-center" id="id6">
+<span id="fig3-dpw4"></span><img alt="../_images/dpw4_gridConvergence.png" src="../_images/dpw4_gridConvergence.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.2.3 </span><span class="caption-text">Grid convergence of Flow360 compared with FUN3D results from the 4th AIAA CFD Drag Prediction Workshop in 2009. The x-axis is the number of mesh grid points N. The scale of the expected numerical error is also labeled for N^-2/3; the y-axis shows the total drag (top-left plot), pressure and skin friction drag (top-right plot), pitching moment (bottom-left plot) coefficients and angles of attack (bottom-right plot).</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="results">
+<h2><span class="section-number">8.2.6. </span>Results<a class="headerlink" href="#results" title="Permalink to this headline"></a></h2>
+<p>The results data obtained from the previous step can be post-processed in either ParaView or Tecplot.  You may specify your preference in the Flow360.json configuration file under the outputFormat argument.  The coefficients of skin friction (C<sub>f</sub>) and pressure (C<sub>p</sub>) can be viewed on our <a class="reference external" href="https://client.flexcompute.com/app/case/all">Web UI</a> under the visualization tab.</p>
+<p><a class="reference internal" href="#fig4-dpw4"><span class="std std-numref">Fig. 8.2.4</span></a> shows the contour plots of coefficient of skin friction</p>
+<figure class="align-center" id="id7">
+<span id="fig4-dpw4"></span><img alt="../_images/cf_dpw4.png" src="../_images/cf_dpw4.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.2.4 </span><span class="caption-text">Coefficient of Skin Friction</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p><a class="reference internal" href="#fig5-dpw4"><span class="std std-numref">Fig. 8.2.5</span></a> shows contour plots of coefficient of pressure</p>
+<figure class="align-center" id="id8">
+<span id="fig5-dpw4"></span><img alt="../_images/cp_dpw4.png" src="../_images/cp_dpw4.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.2.5 </span><span class="caption-text">Coefficient of Pressure</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p><a class="reference internal" href="#fig6-dpw4"><span class="std std-numref">Fig. 8.2.6</span></a> shows the Q-criterion plot, colored by Mach number.  The threshold for Q-criterion for this case is 1.35e-7, which can be calculated using:</p>
+<div class="math notranslate nohighlight" id="equation-examples-dpw4-0">
+<span class="eqno">(8.2.1)<a class="headerlink" href="#equation-examples-dpw4-0" title="Permalink to this equation"></a></span>\[Q_{threshold} = (\frac{Freestream\ Mach\ Number}{Wing\ Span})^2 = (\frac{M_{\infty}}{b})^2\]</div>
+<figure class="align-center" id="id9">
+<span id="fig6-dpw4"></span><img alt="../_images/dpw4_q_1.35e-7.png" src="../_images/dpw4_q_1.35e-7.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.2.6 </span><span class="caption-text">Q-criterion plot, colored by Mach Number</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="summary">
+<h2><span class="section-number">8.2.7. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this headline"></a></h2>
+<p>This tutorial demonstrated how to set up, solve and present results of an external aerodynamics flow over NASA’s Common Research Model (CRM) from the Drag Prediction Workshop using Flow360’s Python API.  The Angle of Attack, C<sub>D</sub>, C<sub>D,p</sub>, C<sub>D,vis</sub>, and C<sub>My</sub> data for a target C<sub>L</sub> of 0.5 obtained through Flow360 has been compared with the FUN3D solutions presented at the 4th Drag Prediction Workshop for accuracy.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hlcrm.html" class="btn btn-neutral float-left" title="8.1. High Lift Common Research Model (HL-CRM)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="om6_caseStudy.html" class="btn btn-neutral float-right" title="8.3. ONERA M6 Wing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Flexcompute Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.2. Automated Meshing &mdash; Flow360 Documentation  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/bugfix.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/logo.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Solver Configuration" href="../solverConfiguration/solverConfiguration.html" />
+    <link rel="prev" title="3.1. Manual Meshing" href="manualMeshing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Flow360 Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">1. Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../capabilities/capabilities.html">2. Capabilities</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="preprocessing.html">3. Preprocessing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manualMeshing.html">3.1. Manual Meshing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.2. Automated Meshing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">3.2.1. Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry">3.2.2. Geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#surface-meshing">3.2.3. Surface Meshing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#volume-meshing">3.2.4. Volume Meshing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#json-surface-mesher">3.2.5. JSON surface mesher</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#edges">3.2.5.1. edges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#faces">3.2.5.2. faces</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#json-volume-mesher">3.2.6. JSON volume mesher</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sources-list">3.2.6.1. sources (list)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#actuatordisks-list">3.2.6.2. actuatorDisks (list)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../solverConfiguration/solverConfiguration.html">4. Solver Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../postprocessing/postprocessing.html">5. Postprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pythonAPI/api.html">6. Python API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">7. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">8. Case Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions/conventions.html">9. Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../publications.html">10. Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releaseNotes.html">11. Release Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Flow360 Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="preprocessing.html"><span class="section-number">3. </span>Preprocessing</a> &raquo;</li>
+      <li><span class="section-number">3.2. </span>Automated Meshing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/preprocessing/automatedMeshing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="automated-meshing">
+<span id="automatedmeshing"></span><h1><span class="section-number">3.2. </span>Automated Meshing<a class="headerlink" href="#automated-meshing" title="Permalink to this headline"></a></h1>
+<section id="overview">
+<h2><span class="section-number">3.2.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p>Flow360 offers automated meshing, from CAD geometry to a surface mesh and finally to a volume mesh. The supported CAD format is *.csm file which is Engineering Sketch Pad (EPS) format. The generated volume format is CGNS.</p>
+</section>
+<section id="geometry">
+<h2><span class="section-number">3.2.2. </span>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline"></a></h2>
+<p>The Engineering Sketch Pad is a solid-modeling, feature-based, web-enabled system for building parametric geometry.
+It can be downloaded from <a class="reference external" href="https://acdl.mit.edu/ESP/">ESP’s website</a>.
+Please check out pre-built ESP, you don’t need to compile software from source.
+The geometry in ESP is described in a text *.csm file containing all CAD instructions. See csm example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Branches:
+sphere    0   0   0   1
+
+attribute groupName $mysphere
+
+end
+</pre></div>
+</div>
+<p>which will create a sphere of radius = 1 at (0, 0, 0). The face of the sphere will be labelled as <cite>mysphere</cite>.</p>
+<figure class="align-center" id="id3">
+<span id="fig1-geometry"></span><a class="reference internal image-reference" href="../_images/sphere_csm.png"><img alt="../_images/sphere_csm.png" src="../_images/sphere_csm.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.2.1 </span><span class="caption-text">Engineering Sketch Pad view of the geometry.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="surface-meshing">
+<span id="esptosurfacemeshsection"></span><h2><span class="section-number">3.2.3. </span>Surface Meshing<a class="headerlink" href="#surface-meshing" title="Permalink to this headline"></a></h2>
+<p>The surface mesher takes the geometry file and configuration JSON file as input parameters and generates a surface mesh. The meshing configuration file (or dict in python), also called surfaceMesh.json, contains information such as maximum element edge length, curvature resolution angle or growth rate of 2D layers. See JSON example:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;maxEdgeLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;curvatureResolutionAngle&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;growthRate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;faces&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;mysphere&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;maxEdgeLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;adapt&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The surface mesh is created by submitting a geometry file and JSON file using <code class="code docutils literal notranslate"><span class="pre">NewSurfaceMeshFromGeometry()</span></code> function. See the example below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">flow360client</span>
+<span class="n">surfaceMeshId</span> <span class="o">=</span> <span class="n">flow360client</span><span class="o">.</span><span class="n">NewSurfaceMeshFromGeometry</span><span class="p">(</span><span class="s2">&quot;path/to/geometry.csm&quot;</span><span class="p">,</span> <span class="s2">&quot;surfaceMesh.json&quot;</span><span class="p">,</span> <span class="n">surfaceMeshName</span><span class="o">=</span><span class="s2">&quot;my_surface_mesh&quot;</span><span class="p">,</span> <span class="n">solverVersion</span><span class="o">=</span><span class="s1">&#39;release-21.4.1.0&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The above code will create a surface mesh of geometry using <code class="code docutils literal notranslate"><span class="pre">&quot;maxEdgeLength&quot;:</span> <span class="pre">0.05</span></code> on a surface labelled as <cite>mysphere</cite>, see line 4 of the *.csm file.</p>
+<figure class="align-center" id="id4">
+<span id="fig1-surfmesh"></span><a class="reference internal image-reference" href="../_images/sphere_surfMesh.png"><img alt="../_images/sphere_surfMesh.png" src="../_images/sphere_surfMesh.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.2.2 </span><span class="caption-text">Auto-generated surface mesh.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Inputs:</p>
+<ul class="simple">
+<li><p>geometry.csm file</p></li>
+<li><p>surface mesh config.json or python dict</p></li>
+</ul>
+<p>Outputs:</p>
+<ul class="simple">
+<li><p>surface mesh</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">surfaceMeshId</span></code></p></li>
+</ul>
+<p>For a full description of config.json for surface mesher see <a class="reference internal" href="#json-surface-mesher"><span class="std std-ref">here.</span></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using web interface make sure to select version during New Surface Mesh upload</p>
+</div>
+</section>
+<section id="volume-meshing">
+<span id="surfacetovolumemeshsection"></span><h2><span class="section-number">3.2.4. </span>Volume Meshing<a class="headerlink" href="#volume-meshing" title="Permalink to this headline"></a></h2>
+<p>The volume mesher takes a <code class="code docutils literal notranslate"><span class="pre">surfaceMeshId</span></code> and config JSON as arguments and generates a CGNS mesh suitable for the Flow360 solver. The JSON configuration file (or dict in python) specifies the first layer thickness, growth rate, sizes and location of refinement zones (sources) and actuator disks. All geometry from ESP is treated as a no-slip wall therefore prism layers will be grown off geometry surfaces.</p>
+<p>The farfield will be created automatically:</p>
+<ul class="simple">
+<li><p>semi-spherical if the geometry is bounded by <code class="code docutils literal notranslate"><span class="pre">y=0</span></code> plane. The <code class="code docutils literal notranslate"><span class="pre">y=0</span></code> plane will be set as a symmetry plane boundary condition.</p></li>
+<li><p>spherical otherwise.</p></li>
+</ul>
+<p>Below is an example of a JSON configuration file:</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w">   </span>
+<span class="w">    </span><span class="nt">&quot;sources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">                                                                 </span>
+<span class="w">        </span><span class="p">{</span><span class="w">                                                                        </span>
+<span class="w">            </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w">                                                                                                              </span>
+<span class="w">            </span><span class="nt">&quot;axisOfRotation&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">],</span><span class="w">               </span>
+<span class="w">            </span><span class="nt">&quot;angleOfRotation&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">                                               </span>
+<span class="w">            </span><span class="nt">&quot;center&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="w">                 </span>
+<span class="w">            </span><span class="nt">&quot;spacing&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="w">                                               </span>
+<span class="w">        </span><span class="p">}</span><span class="w">                                                                                                                                                 </span>
+<span class="w">    </span><span class="p">],</span><span class="w">                                                                                                                                                      </span>
+<span class="w">    </span><span class="nt">&quot;volume&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">                                                                  </span>
+<span class="w">        </span><span class="nt">&quot;firstLayerThickness&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1e-3</span><span class="p">,</span><span class="w">                                             </span>
+<span class="w">        </span><span class="nt">&quot;TRexGrowthRate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="w">                                                    </span>
+<span class="w">    </span><span class="p">}</span><span class="w">                                                                            </span>
+<span class="p">}</span><span class="w">                   </span>
+</pre></div>
+</div>
+<p>The volume mesh is created by <code class="code docutils literal notranslate"><span class="pre">NewMeshFromSurface()</span></code> function using <code class="code docutils literal notranslate"><span class="pre">surfaceMeshId</span></code> and config.json. See the example below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">volumeMeshId</span> <span class="o">=</span> <span class="n">flow360client</span><span class="o">.</span><span class="n">NewMeshFromSurface</span><span class="p">(</span><span class="n">surfaceMeshId</span><span class="p">,</span> <span class="s2">&quot;volumeMesh.json&quot;</span><span class="p">,</span> <span class="n">meshName</span><span class="o">=</span><span class="s2">&quot;my_volume_mesh&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The above code will create a volume mesh out of the surface mesh. The refinement zone (source) of size=4x3x2 will be placed with its centre at (2,0,0). Additionally, it will be rotated by 45 degrees around the [0,0,1] axis. Spacing of 0.05 will be applied in this zone.</p>
+<figure class="align-center" id="id5">
+<span id="fig1-volmesh"></span><a class="reference internal image-reference" href="../_images/sphere_volMesh.png"><img alt="../_images/sphere_volMesh.png" src="../_images/sphere_volMesh.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.2.3 </span><span class="caption-text">Auto-generated volume mesh.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Inputs:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">surfaceMeshId</span></code></p></li>
+<li><p>volume mesh config.json or python dict</p></li>
+</ul>
+<p>Outputs:</p>
+<ul class="simple">
+<li><p>volume CGNS mesh</p></li>
+<li><p>Flow360Mesh.json</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">volumeMeshId</span></code></p></li>
+</ul>
+<p>For a full description of config.json for volume mesher see <a class="reference internal" href="#json-volume-mesher"><span class="std std-ref">here.</span></a></p>
+</section>
+<section id="json-surface-mesher">
+<span id="id1"></span><h2><span class="section-number">3.2.5. </span>JSON surface mesher<a class="headerlink" href="#json-surface-mesher" title="Permalink to this headline"></a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>maxEdgeLength</p></td>
+<td><p>float</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>0.1</p></td>
+<td><p>Maximum length of element edge.</p></td>
+</tr>
+<tr class="row-odd"><td><p>curvatureResolutionAngle</p></td>
+<td><p>float</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>15</p></td>
+<td><p>Maximum angular deviation in degrees. If the angle between the normal line segment and the normal to the underlying geometry curve at a grid point is larger than the specified angle, a new grid point will be added in the middle of the segment.</p></td>
+</tr>
+<tr class="row-even"><td><p>growthRate</p></td>
+<td><p>float</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>1.2</p></td>
+<td><p>Growth rate of layers being grown from edges</p></td>
+</tr>
+<tr class="row-odd"><td><p>edges</p></td>
+<td><p>dict</p></td>
+<td><p>{}</p></td>
+<td></td>
+<td><p>&lt;edgeName&gt;: {…} sets parameters for the edge named &lt;edgeName&gt;. The edge must be labelled in ESP (*.csm file). For details see <a class="reference internal" href="#json-surface-mesher-edges"><span class="std std-ref">here</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>faces</p></td>
+<td><p>dict</p></td>
+<td><p>{}</p></td>
+<td></td>
+<td><p>&lt;faceName&gt;: {…} sets parameters for the face named &lt;faceName&gt;. The face must be labelled in ESP (*.csm file). For details see <a class="reference internal" href="#json-surface-mesher-faces"><span class="std std-ref">here</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="edges">
+<span id="json-surface-mesher-edges"></span><h3><span class="section-number">3.2.5.1. </span>edges<a class="headerlink" href="#edges" title="Permalink to this headline"></a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>&lt;edgeName&gt;-&gt; firstLayerThickness</p></td>
+<td><p>float</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>1e-3</p></td>
+<td><p>First layer thickness of the anisotropic surface cells growing along the orthogonal direction to the edge named &lt;edgeName&gt;. See <a class="reference internal" href="#fig1-surfmesh-edges"><span class="std std-numref">Fig. 3.2.4</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;edges&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;leadingEdge&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;firstLayerThickness&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1e-3</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;trailingEdge&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;firstLayerThickness&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1e-3</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<figure class="align-center" id="id6">
+<span id="fig1-surfmesh-edges"></span><a class="reference internal image-reference" href="../_images/surfaceMesh_firstLayerThickness.png"><img alt="../_images/surfaceMesh_firstLayerThickness.png" src="../_images/surfaceMesh_firstLayerThickness.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.2.4 </span><span class="caption-text">Surface mesh of a wing. Leading edge and trailing edge are labelled and first layer thickness is applied to the layers grown from the edges.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="faces">
+<span id="json-surface-mesher-faces"></span><h3><span class="section-number">3.2.5.2. </span>faces<a class="headerlink" href="#faces" title="Permalink to this headline"></a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>&lt;faceName&gt;-&gt; maxEdgeLength</p></td>
+<td><p>float</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>0.05</p></td>
+<td><p>Maximum length of element edge for the face named &lt;faceName&gt;.</p></td>
+</tr>
+<tr class="row-odd"><td><p>&lt;faceName&gt;-&gt; adapt</p></td>
+<td><p>boolean</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>FALSE</p></td>
+<td><p>Turn on/off the extra refinement based on surface proximity. [This argument will be removed in the next release and the proximity refinement will be automatically decided.]</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;faces&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;rightWing&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;maxEdgeLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;adapt&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;fuselage&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;maxEdgeLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;adapt&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="json-volume-mesher">
+<span id="id2"></span><h2><span class="section-number">3.2.6. </span>JSON volume mesher<a class="headerlink" href="#json-volume-mesher" title="Permalink to this headline"></a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>refinementFactor</p></td>
+<td><p>float</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>If refinementFactor=r is provided all spacings will be adjusted to generate r-times finer mesh everywhere. For example, if refinementFactor=2, all spacings will be divided by <span class="math notranslate nohighlight">\(2^{1/3}\approx 1.26\)</span> , so the resulting mesh will have approximately 2 times more nodes.</p></td>
+</tr>
+<tr class="row-odd"><td><p>volume</p></td>
+<td><p>dict</p></td>
+<td><p>REQUIRED</p></td>
+<td></td>
+<td><p>First layer thickness and growth rate for prism layers being grown out of the surface. It is applied to all surface mesh faces.</p></td>
+</tr>
+<tr class="row-even"><td><p>volume-&gt; firstLayerThickness</p></td>
+<td><p>float</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>1e-5</p></td>
+<td><p>First layer thickness for volume prism layers.</p></td>
+</tr>
+<tr class="row-odd"><td><p>volume-&gt; TRexGrowthRate</p></td>
+<td><p>float</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>1.2</p></td>
+<td><p>Growth rate for volume prism layers.</p></td>
+</tr>
+<tr class="row-even"><td><p>sources</p></td>
+<td><p>list(dict)</p></td>
+<td><p>[]</p></td>
+<td></td>
+<td><p>Description of refinement zones. For details see <a class="reference internal" href="#json-volume-mesher-sources"><span class="std std-ref">here</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>actuatorDisks</p></td>
+<td><p>list(dict)</p></td>
+<td><p>[]</p></td>
+<td></td>
+<td><p>Description of actuator disks. This generates a cylindrical shape (hollowed or not) with structured mesh in it. Used for actuator disks. For details see <a class="reference internal" href="#json-volume-mesher-actuatordisks"><span class="std std-ref">here</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="sources-list">
+<span id="json-volume-mesher-sources"></span><h3><span class="section-number">3.2.6.1. </span>sources (list)<a class="headerlink" href="#sources-list" title="Permalink to this headline"></a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>[“box”, “cylinder”]</p></td>
+<td><p>“box”</p></td>
+<td><p>“box”</p></td>
+<td><p>Type of source. Supported source shapes: box and cylinder. Cylinder’s axis is along the z-direction.</p></td>
+</tr>
+<tr class="row-odd"><td><p>size</p></td>
+<td><p>3-array</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>[4, 3, 2]</p></td>
+<td><p>For type: box. Refinement zone size in x, y and z directions.</p></td>
+</tr>
+<tr class="row-even"><td><p>radius</p></td>
+<td><p>float</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>4</p></td>
+<td><p>For type: cylinder. Radius of the cylinder.</p></td>
+</tr>
+<tr class="row-odd"><td><p>lengthZ</p></td>
+<td><p>float</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>5</p></td>
+<td><p>For type: cylinder. Length of the cylinder. Cylinder’s axis is along the z-direction.</p></td>
+</tr>
+<tr class="row-even"><td><p>center</p></td>
+<td><p>3-array</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>[2, 0, 0]</p></td>
+<td><p>Position of geometrical center of the primitive, i.e., box or cylinder.</p></td>
+</tr>
+<tr class="row-odd"><td><p>spacing</p></td>
+<td><p>float</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>0.05</p></td>
+<td><p>Cell spacing applied in the refinement zone.</p></td>
+</tr>
+<tr class="row-even"><td><p>axisOfRotation</p></td>
+<td><p>3-array</p></td>
+<td></td>
+<td><p>[0, 0, 1]</p></td>
+<td><p>Axis of rotation for rotation transform of the primitive (box or cylinder). Requires angleOfRotation.</p></td>
+</tr>
+<tr class="row-odd"><td><p>angleOfRotation</p></td>
+<td><p>float</p></td>
+<td></td>
+<td><p>45</p></td>
+<td><p>The angle of rotation (in degrees) for rotation transform of the primitive (box or cylinder). Requires axisOfRotation.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;sources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;center&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;spacing&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;axisOfRotation&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">],</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;angleOfRotation&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="w"></span>
+<span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cylinder&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;radius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;lengthZ&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;center&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;spacing&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;axisOfRotation&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;angleOfRotation&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="w"></span>
+<span class="w"> </span><span class="p">}]</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="actuatordisks-list">
+<span id="json-volume-mesher-actuatordisks"></span><h3><span class="section-number">3.2.6.2. </span>actuatorDisks (list)<a class="headerlink" href="#actuatordisks-list" title="Permalink to this headline"></a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>innerRadius</p></td>
+<td><p>float</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>0</p></td>
+<td><p>Inner radius of actuator disk, if greater than 0 then “donut” shape is created.</p></td>
+</tr>
+<tr class="row-odd"><td><p>outerRadius</p></td>
+<td><p>float</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>10</p></td>
+<td><p>Outer radius of actuator disk.</p></td>
+</tr>
+<tr class="row-even"><td><p>thickness</p></td>
+<td><p>float</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>0.5</p></td>
+<td><p>Thickness of actuator disk.</p></td>
+</tr>
+<tr class="row-odd"><td><p>axisThrust</p></td>
+<td><p>3-array</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>[1, 0, 0]</p></td>
+<td><p>Axis of thrust of actuator disk. The cylindrical shape is rotated such its axis is aligned with axisThrust.</p></td>
+</tr>
+<tr class="row-even"><td><p>center</p></td>
+<td><p>3-array</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>[0, 0, 0]</p></td>
+<td><p>Position of center of the actuator disk.</p></td>
+</tr>
+<tr class="row-odd"><td><p>spacingAxial</p></td>
+<td><p>float</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>0.01</p></td>
+<td><p>Spacing along the axial direction.</p></td>
+</tr>
+<tr class="row-even"><td><p>spacingRadial</p></td>
+<td><p>float</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>0.03</p></td>
+<td><p>Spacing along the radial direction.</p></td>
+</tr>
+<tr class="row-odd"><td><p>spacingCircumferential</p></td>
+<td><p>float</p></td>
+<td><p>REQUIRED</p></td>
+<td><p>0.03</p></td>
+<td><p>Spacing along the circumferential direction.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;actuatorDisks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;innerRadius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;outerRadius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;thickness&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;axisThrust&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;center&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;spacingAxial&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;spacingRadial&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.03</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;spacingCircumferential&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.03</span><span class="w"></span>
+<span class="w"> </span><span class="p">}]</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manualMeshing.html" class="btn btn-neutral float-left" title="3.1. Manual Meshing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../solverConfiguration/solverConfiguration.html" class="btn btn-neutral float-right" title="4. Solver Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Flexcompute Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
