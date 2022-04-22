@@ -7,7 +7,7 @@ Flow360 is the next-generation Navier-Stokes solver.  It is 100 times faster tha
    :numbered:
    :maxdepth: 1
    :caption: Table of Contents
-   
+
    quickstart
    capabilities/capabilities
    preprocessing/preprocessing
@@ -16,6 +16,7 @@ Flow360 is the next-generation Navier-Stokes solver.  It is 100 times faster tha
    pythonAPI/api
    faq
    examples
+   tutorials
    conventions/conventions
    publications
    releaseNotes
