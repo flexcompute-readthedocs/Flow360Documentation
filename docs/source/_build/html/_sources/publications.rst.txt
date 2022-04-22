@@ -1,9 +1,0 @@
-Publications
-============
-
-
-.. toctree::
-    
-    webinar
-    papers
-
