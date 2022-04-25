@@ -35,11 +35,7 @@ To upload a volumetric mesh file, under the **Volume Mesh** tab click on **Uploa
    :scale: 60%
    :align: center
 
-This will open a window as shown in the next figure.  You need to upload two files here.  The first is the volume mesh.  Download an example mesh of  M6 Wing `here <https://simcloud-public-1.s3.amazonaws.com/om6/wing_tetra.1.lb8.ugrid>`_.  The second is the mesh configuration json.  Download one `here <https://simcloud-public-1.s3.amazonaws.com/om6/Flow360Mesh.json?content_disposition=attachment>`_.  When uploading the mesh, be sure to set the Endianness to 'little endian' for this tutorial.  More information on endianness can be found `here <https://en.wikipedia.org/wiki/Endianness>`_.  (**Note**: Mesh Name and Tags are optional. For Release History, the latest solver version will be used here by default.)  Then click submit to upload and process your mesh. You can see the status of the mesh under the **Status** tab.
-
-.. image:: figures_OM6_Tutorial/UploadMeshJsonFile.png
-   :scale: 60%
-   :align: center
+This will open a window.  You need to upload two files here.  The first is the volume mesh.  Download an example mesh of  M6 Wing `here <https://simcloud-public-1.s3.amazonaws.com/om6/wing_tetra.1.lb8.ugrid>`_.  The second is the mesh configuration json.  Download one `here <https://simcloud-public-1.s3.amazonaws.com/om6/Flow360Mesh.json?content_disposition=attachment>`_.  When uploading the mesh, be sure to set the Endianness to 'little endian' for this tutorial.  More information on endianness can be found `here <https://en.wikipedia.org/wiki/Endianness>`_.  (**Note**: Mesh Name and Tags are optional. For Release History, the latest solver version will be used here by default.)  Then click submit to upload and process your mesh. You can see the status of the mesh under the **Status** tab.
 
 **Step 2. Launch a CFD Case:**
 
@@ -49,19 +45,7 @@ You do not have to wait for your mesh to be processed. Once your mesh is uploade
    :scale: 60%
    :align: center
 
-Once you click the airplane icon, the webpage will re-direct you to an interactive interface as shown below, to either generate a case configuration json online or upload a pre-configured json file.  
-
-.. image:: figures_OM6_Tutorial/StartNewCase.png
-   :scale: 60%
-   :align: center
-
-Please use this `Flow360.json <https://simcloud-public-1.s3.amazonaws.com/om6/Flow360.json?content_disposition=attachment>`_ file for the current case, and upload it through the window as displayed below. 
-
-.. image:: figures_OM6_Tutorial/UploadCaseJsonFile.png
-   :scale: 60%
-   :align: center
-
-A full dictionary of configuration parameters for the JSON input file can be found :ref:`here <Flow360json>`.  You may also provide a Case Name and Tags to track your case later on. Hit **Submit** to run your case.  Once the case is submitted, you can check the case status by clicking the **Case** tab.
+Once you click the airplane icon, the webpage will re-direct you to an interactive interface to either generate a case configuration json online or upload a pre-configured json file.  Please use this `Flow360.json <https://simcloud-public-1.s3.amazonaws.com/om6/Flow360.json?content_disposition=attachment>`_ file for the current case. A full dictionary of configuration parameters for the JSON input file can be found :ref:`here <Flow360json>`.  You may also provide a Case Name and Tags to track your case later on. Hit **Submit** to run your case.  Once the case is submitted, you can check the case status by clicking the **Case** tab.
 
 .. image:: figures_OM6_Tutorial/CaseStatus.png
    :scale: 60%
