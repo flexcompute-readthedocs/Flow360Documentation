@@ -16,21 +16,21 @@ The `XV15 tiltotor airplane <https://en.wikipedia.org/wiki/Bell_XV-15>`__ is a c
 Basic description
 -----------------
 
-In order to simulate the flow around a rotating geometry, we need to set up a mesh with two regions, an inner “rotational volume” and an outer “stationary volume”. The interface between those two regions needs to have a shape of revolution, i.e. sphere/cylinder/etc..
+In order to simulate the flow around a rotating geometry, we need to set up a mesh with two regions, an inner “rotational volume” and an outer “stationary volume”. The interface between those two regions needs to be a solid of revolution, i.e. sphere/cylinder/etc..
 
 .. figure:: rotationInterfaceFigs/rotInterfaceView.png
     :width: 600px
     :align: center
-    :alt: Inner dynamic region enclosing the XV15 three-blade prop
+    :alt: Inner, rotating, mesh volume enclosing the XV15 three-blade prop
 
-    Inner dynamic region enclosing the XV15 three-blade prop
+    Inner mesh volume enclosing the XV15 three-bladed prop
 
 .. figure:: rotationInterfaceFigs/farfieldView.png
         :width: 600px
         :align: center
-        :alt: Farfield stationary region enclosing the above inner block
+        :alt: Farfield stationary mesh volume enclosing the above inner block
 
-        Farfield stationary region enclosing the above inner block
+        Farfield stationary mesh volume enclosing the above inner block
 
 .. figure:: rotationInterfaceFigs/fig4.png
         :width: 600px
@@ -39,12 +39,12 @@ In order to simulate the flow around a rotating geometry, we need to set up a me
 
         body fitted cylinder blocks inside a larger nearfield domain
 
-Please note that it is possible, just like in the figure above, to set up nested rotational interfaces to simulate for example a rotating propeller with blades those pitch as they rotate (i.e. a helicopter\'s cyclical ). We could also enclose more rotating regions within the outer stationary farfield domain to simulate multiple rotors.
+Please note that it is possible, just like in the figure above, to set up nested rotational interfaces to simulate for example a rotating propeller with blades that pitch as they rotate (i.e. a helicopter\'s cyclical ). We could also enclose more rotating regions within the outer stationary farfield domain to simulate multiple rotors.
 
 Rotation interface
 ~~~~~~~~~~~~~~~~~~
 
-The rotation interface needs to have a shape of revolution (sphere, cylinder etc.) which encloses the entire rotor blades. The grid points on the rotation interface can not be arbitrary. It is mandatory that they form a set of concentric rings. 
+The rotation interface needs to be a body of revolution (sphere, cylinder etc.) which encloses the entire rotor blades. The grid points on the rotation interface can not be arbitrary. It is mandatory that they form a set of concentric rings. 
 
 .. figure:: rotationInterfaceFigs/notConcentricMod.png
         :width: 500px
@@ -53,7 +53,7 @@ The rotation interface needs to have a shape of revolution (sphere, cylinder etc
 
         Non concentric circle mesh on rotation interface
 
-As shown in the above figure, the grid points on the rotation interface do not satisfy the concentric requirement. Certain points slightly deviate from the perfect concentric circle.
+As shown in the above figure, the grid points on the rotation interface do not satisfy the concentricity requirement. Certain points slightly deviate from the perfect concentric circle.
 
 .. figure:: rotationInterfaceFigs/concentric.png
         :width: 500px
@@ -62,13 +62,13 @@ As shown in the above figure, the grid points on the rotation interface do not s
 
         Concentric circle mesh on rotation interface
 
-This figure shows a improved grid that does satisfy the above requirement. It is worth noting the pattern how all the nodes are located on concentric circles.
-The reason for this grid restriction is that it greatly speeds up the interpolation process. Since this interpolation occurs twice (inner and outer domains) for every interface node and at every pseudo timestep, it is of significant efficiency when prior knowing where the neighbors are without having to run a search algorithm every time to find the closest node.
+This figure shows a slightly different grid that does satisfy that requirement. Notice how all the nodes are on concentric circles.
+The reason for that requirement is that it greatly speeds up the interpolation process. Since this interpolation happens twice for every interface node (inner and outer domain) and for every pseudo timestep, already knowing where the neighbors are without having to run a search algorithm every time to find the closest node is very efficient.
 
 Creating an interface with concentric mesh rings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For this case study we will provide the mesh. But for your own cases, knowing that we have this concentric mesh requirement, the easiest way to create the meshes for the interface regions is to do it programmatically. We have a lot of scripts to generate various revolutionary shapes that will allow you to generate an interface region no matter what your geometry looks like. Just contact us and we will assist you to get a mesh setup with the scripts you need.
+For this case study we will provide the mesh. But for your own cases, knowing that we have this concentric mesh requirement, the easiest way to create the meshes for the interface regions is to do it programmatically. We have a lot of scripts to generate various body of revolution interface shapes that will allow you to generate an interface region no matter what your geometry. Just contact us and we will help you get setup with the scripts you need.
 
 For plain cylindrical or spherical interfaces we have some pre-generated interfaces in CGNS format ready for you to download from `this link <https://simcloud-public-1.s3.amazonaws.com/rotationInterface/CGNS_rotation_interfaces.tgz>`__.
 You will notice that they come in various height to radius ratios, as well as various resolutions. Please choose the version that best fits your needs, then rotate/scale the imported mesh to align the interface around your geometry.
@@ -97,7 +97,7 @@ If you are comfortable with the CGNS format, you can run the "cgnslist" command 
 
     *innerRotating/rotationInterface*
 
-This tells us that we have two mesh regions (*farField* and *innerRotating*). Inside *innerRotating* we have some *blades*, and as a part of *farField* we have the *farField* boundaries.
+This tells us that we have two mesh regions (*farField* and *innerRotating*). Inside *innerRotating* we have some *blades* and as a part of *farField* we have the *farField* boundaries.
 
 .. _defMeshJson:
 
@@ -106,12 +106,13 @@ Defining a Mesh.json file
 
 The Mesh.json file contains the information the mesh preprocessor needs
 in order to perform its job.
-We need to provide accurate information as to which domains are the
-“NoSlipWalls” applied, as well as the “rotationInterfaces”, along with some key parameters of the latter, namely the rotation axis vector and the center of rotation.
+We need to give it the information as to which domains are the
+“NoSlipWalls” and which are the “rotationInterfaces” along with some key
+rotation interface geometry information, namely the rotation axis vector and the center of rotation.
 
-You do NOT need to provide any information on the “FarField” and “SlipWall”.
+You do NOT need to give it any “FarField”, “SlipWall” domain informations.
 
-For example, the **XV15_quick_start_mesh.json** file looks like:
+In our case, our XV15_quick_start_mesh.json file looks like:
 
 .. code-block:: javascript
 
@@ -141,7 +142,7 @@ Defining a Flow360.json file.
 
 Once your mesh has been uploaded, the last step before launching a simulation is to create a Flow360.json file with all the information needed by Flow360 solver to run your case.
 
-For this example we have provided you with two different Flow360 json input files. Please download the one for the `initial 1st order run <https://simcloud-public-1.s3.amazonaws.com/xv15/XV15_quick_start_flow360_1st.json>`__ and the other for the `final 2nd order runs <https://simcloud-public-1.s3.amazonaws.com/xv15/XV15_quick_start_flow360_2nd.json>`__. More descriptions on the 1st order vs the 2nd order scenarios are given :ref:`below <1st2ndorder>`
+For this example we have provided you with two different Flow360 json input files. Please download the one for the `initial 1st order run <https://simcloud-public-1.s3.amazonaws.com/xv15/XV15_quick_start_flow360_1st.json>`__ and the other for the `final 2nd order runs <https://simcloud-public-1.s3.amazonaws.com/xv15/XV15_quick_start_flow360_2nd.json>`__. More on 1st order vs 2nd order :ref:`below <1st2ndorder>`
 
 For this case, our Flow360 solver input json files have 11 sections:
 
@@ -157,15 +158,14 @@ For this case, our Flow360 solver input json files have 11 sections:
 -   "slidingInterfaces"
 -   "timeStepping"
 
-Most of those categories are self evident, please have a look at the downloaded json files and refer to our documentation page on :ref:`solver configuration <Flow360Meshjson>` , to see what each section does. 
-For more detailed descriptions on the configuration of our Flow360 solver, please read through our dedicated :ref:`Case Studies <examples>`
+Most of those categories are self evident and won’t be discussed here, just take a look at the downloaded json files or go to our documentation page on :ref:`solver configuration <Flow360Meshjson>`  to see what each sections does. Or for a more detailed description on how to setup your Flow360.json file for your configuration please see our dedicated :ref:`Case Studies <examples>`
 
 .. _1st2ndorder:
 
 1st vs 2nd order CFD runs:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The two Flow360.json files show you something like:
+If you look through most Flow360.json files you will see the "navierStokesSolver" section showing:
 
 "navierStokesSolver" : {
 
@@ -175,25 +175,26 @@ The two Flow360.json files show you something like:
 
 "orderOfAccuracy" : 1 or 2 }
 
-This dictates whether the code will run using the 1st or the 2nd order interpolation in spatial algorithms. The 1st order scheme provokes less arithmetic operations, hence much faster and more robust.
+This dictates whether the code will run using 1st or 2nd order interpolation in space
+algorithms. 1st order accuracy is much faster and much more robust.
 
-For time accurate solutions, involving rotating components, we recommend to start the flow simulation using the 1st "orderOfAccuracy" evolving at least 1 revolution, to help establish the flow with the minimum computational cost. Then, continue with however many 2nd order accurate revolutions, needed for the flow to properly establish itself and for the forces to stabilize. Please note that if you have some parts of your vehicle downstream to your propellers, it may take many more revolutions for the propeller wakes to reach the downstream components. If this is the case, you may run a first set of the 2nd order revolutions with a large time step to quickly develop the flow. Then, perform a more precise, better converged, 2nd order run with smaller time steps to get more accurate forces. This consecutive operation may be easily done in Flow360 through our "fork" function that launches a new job using the flow solution of the parent run as the current initial condition. 
+For time accurate solutions, involving rotating components, we recommend to start the flow simulation using the 1st "orderOfAccuracy" for at least 1 revolution, to help quickly establish the flow. Then continue with however many 2nd order accurate revolutions needed for the flow to properly establish itself and for the forces to stabilize. Please note that if you have some parts of your vehicle downstream of your propellers, it may take many more revolutions for the propeller's wake to reach the downstream components. If that is the case, you could run a first set of the 2nd order revolutions with a larger time step to help the flow establish itself quicker. Then perform a more precise, better converged, 2nd order run with smaller time steps to get more accurate forces. These consecutive operations are easily done in Flow360 through our "fork" function that launches a new job using the flow solution of the parent run as the initial condition of the child run. 
 
-Also, for the 1st order run, the following values of "timeStepping" parameters are recommended:
+Also, for 1st order we recommend using the following "timeStepping" values:
 
 -   max Pseudo Steps =12
 -   CFL initial=1
 -   CFL final = 1000
 -   rampSteps= 10 (i.e. rampSteps is 2 steps less then maxPseudoSteps)
 
-For the 2nd order, the recommendations are as follows:
+For the 2nd order run, the recommendations are as follows:
 
 -   max Pseudo Steps =35
 -   CFL initial=1
 -   CFL final = 1e7
 -   rampSteps= 33 (i.e. rampSteps is 2 steps less then maxPseudoSteps)
 
-The above descriptions are general guidelines to start with. Most likely, proper revisions are needed for your specific cases.
+These are just guidelines to get your started and will most likely need to be revised for your specific cases.
 
 
 Case input conditions
@@ -209,11 +210,11 @@ For the current case, the input flow conditions are:
 
 Other key values are :
 
-- The reference Mach value is arbitrarily set to be the tip Mach number for the blades.
-- For the 1st order run, we will compute through 1 revolution at 6 |deg| per time step. Hence the "maxPhysicalSteps" : 60 value (60*6 |deg| =360 |deg| )
-- For the 2nd order run, we will continue the computation through 5 revolutions at 3 |deg| per time step.
+- The reference Mach value is arbitrarily set to the Tip mach number for the blades.
+- For the 1st order run we will do 1 revolution at 6 |deg| per time step. Hence the "maxPhysicalSteps" : 60 value (60*6 |deg| =360 |deg| )
+- for the 2nd order run we will do 5 revolutions at 3 |deg| per time step.
 
-As described in the :ref:`conventions<nondimensionalization_Flow360>` part of this documentation, using the non-dimensionalization equations, we get the following flow conditions and timeStepping values in our 1st order Flow360.json file.
+Using the Non-dimensionalization equations described in the  :ref:`conventions<nondimensionalization_Flow360>`  part of the documentation we get the following flow conditions and timeStepping values in our 1st order Flow360.json file.
 
 
 
@@ -259,11 +260,11 @@ As described in the :ref:`conventions<nondimensionalization_Flow360>` part of th
 Case running
 ~~~~~~~~~~~~~~~~~~~~~~
 
-The first order case should finish in less then a minute on this fairly coarse mesh with 915K nodes.
+The first order case should finish in less then a minute on this fairly coarse 915K nodes mesh.
 
-The second order run will take 3.5 to 4 minutes to evolve its 5 revolutions. Please note that at the end of the 2nd order run you will have done 6 revolutions in total (1 for the 1st order run and 5 for the 2nd order run).
+The second order run takes about 3.5 to 4 minutes to complete its 5 revolutions. Please note that at the end of the 2nd order run you will have done 6 revolutions in total (1 for the 1st order run and 5 for the 2nd order run).
 
-For time accuracy, a case may be considered well converged, when the residuals descend at least two orders of magnitude within each time step.
+For a time accurate case to be considered well converged we like to have at least 2 orders of magnitude reduction in the residuals within each time step.
 
 .. figure:: rotationInterfaceFigs/residuals_convergence.png
     :width: 600px
@@ -272,7 +273,7 @@ For time accuracy, a case may be considered well converged, when the residuals d
 
     2nd order convergence plot showing more then 2 orders of magnitude decrease in the residuals for each subiterations.
 
-In this circumstance, the forces are also stabilized after 6 revolutions.
+The forces also seem to have stabilized after completing 6 revolutions.
 
 .. figure:: rotationInterfaceFigs/force_convergence.png
     :width: 600px
@@ -281,4 +282,4 @@ In this circumstance, the forces are also stabilized after 6 revolutions.
 
     2nd order run's force history plot showing good stabilization of the forces.
 
-Congratulations! You have now accomplished your first Flow360 simulation for a rotating propeller using the rotational interface.
+Congratulations! You have now finished your first Flow360 simulation for a rotating propeller using a rotational interface.
