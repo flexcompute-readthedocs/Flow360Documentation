@@ -105,13 +105,13 @@ For some data storage we do not charge, but for some data we do. See details:
 
 .. warning::
 
-   The minimum archived data cost is 6 months. Archiving operation is fast, but restoring can take up to 48 hours. When you restore your data from archived before the six months period, you will see a pro-rata charge added to your transaction history for the remaining period.
+   The minimum archived data cost is 6 months. Archiving operation is fast, but restoring can take up to 48 hours. When you restore your data from archive before the six month period, you will see a pro-rata charge added to your transaction history for the remaining period.
 
 To reduce data storage costs we encourage to\:
 
 1. Delete case if results will no longer be needed.
 2. Download results to local drive and delete case on FlexCompute.
-3. Archive case to reduce storage costs by 10 and still be able to revisit the case in the future.
+3. Archive case to reduce storage costs by 10x and still be able to revisit the case in the future.
 
 What is storage type?
 ---------------------
@@ -128,12 +128,12 @@ We have two storage types\: **standard** and **archived**. You can check storge 
 
 **Standard** storage allows for all operations: retry case, fork case, download all results including surface results and volumetric results.
 
-**Archived** storage disallow these operations: fork case, retry direct child case, download surface and volume results.
+**Archived** storage disables these operations: fork case, retry direct child case, download surface and volume results.
 
 How can I archive my case?
 --------------------------
 
-You can only archive case which status is **completed** and storage type is **standard**.
+You can only archive a case with status **completed** and storage type **standard**.
 
 To archive an individual case follow these steps\:
 
@@ -153,7 +153,7 @@ To archive an individual case follow these steps\:
 
 .. warning::
 
-   The minimum archived data cost is 6 months. Archiving operation is fast, but restoring can take up to 48 hours. When you restore your data from archived before the six months period, you will see a pro-rata charge added to your transaction history for the remaining period.
+   The minimum archived data cost is 6 months. Archiving operation is fast, but restoring can take up to 48 hours. When you restore your data from archive before the six month period, you will see a pro-rata charge added to your transaction history for the remaining period.
 
 
 5. Select "Archive". The icon next to storage size will change:
@@ -184,7 +184,7 @@ How can I restore my archived case?
 
 .. warning::
 
-   When you restore your data from archived before the six months period, you will see a pro-rata charge added to your transaction history for the remaining period.
+   When you restore your data from archive before the six month period, you will see a pro-rata charge added to your transaction history for the remaining period.
 
 5. Select "Restore". The icon next to storage size will change:
 
