@@ -5,5 +5,5 @@ constants@ Empty@ [list(dict)] A list of dictionary entries specifying the const
 outputVars@ REQUIRED@ [list(string)] Name of the outputs for the defined dynamics. Allowable outputs are: :code:`"alphaAngle"`, :code:`"betaAngle"`, :code:`"bet_NUM_omega"` (NUM is the index of the BET disk starting from 0)
 stateVarsInitialValue@ Empty@ [list(string)] The initial value of state variables are specified here. The entries could be either values (in the form of strings, e.g., :code:`"0.0"`) or name of the variables specified in the configuration file (e.g., :code:`"alphaAngle"`). The list entries correspond to the intital values for :code:`state[0]`, :code:`state[1]`, ..., respectively.
 updateLaw@ Empty@ [list(string)] List of equations for updating state variables. The list entries correspond to the update laws for :code:`state[0]`, :code:`state[1]`, ..., respectively.
-ouputLaw@ REQUIRED@ [list(string)] List of equations specifying the relation between the output variables and input variables / state variables.
+ouputLaw@ REQUIRED@ [list(string)] List of equations specifying the relation between the output variables and input/state variables.
 inputBoundaryPatches@ Empty@ [list(string)] List of boundary names (if any) related to the input variables.
