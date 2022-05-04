@@ -453,6 +453,19 @@ Below are a list of configuration parameters for the porous media model.
 
 .. _examples_Flow360json:
 
+.. _userDefinedDynamicsParameters:
+
+userDefinedDynamics
+--------------------
+
+An example of using the userDefinedDynamics is available :ref:`here <userDefinedDynamics>`.
+
+.. csv-table::
+   :file: ./userDefinedDynamicsTable.csv
+   :widths: 20, 10, 70
+   :header-rows: 1
+   :delim: @
+
 Examples of Flow360.json
 ========================
 

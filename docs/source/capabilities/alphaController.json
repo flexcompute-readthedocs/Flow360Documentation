@@ -1,0 +1,16 @@
+"userDefinedDynamics" : [
+    {
+        "dynamicsName" : "alphaController",
+        "inputVars" : ["CL"],
+        "constants" : {"CLTarget": 0.4,
+                       "Kp": 0.2,
+                       "Ki": 0.002
+        },
+        "outputVars" : ["alphaAngle"],
+        "stateVarsInitialValue" : ["alphaAngle", "0.0"],
+        "updateLaw" : ["if (pseudoStep > 500) state[0] + Kp * (CLTarget - CL) + Ki * state[1]; else state[0];",
+                        "if (pseudoStep > 500) state[1] + (CLTarget - CL); else state[1];"],
+        "outputLaw" : ["if (pseudoStep > 500) state[0]; else alphaAngle;"],
+        "inputBoundaryPatches" : ["1"]
+    }
+]
