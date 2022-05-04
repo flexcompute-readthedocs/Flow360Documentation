@@ -1,6 +1,9 @@
 Options@ Default@ Description
 outputFormat@ paraview@ \"paraview\" or \"tecplot\"
 animationFrequency@ -1@ Frequency (in number of physical time steps) at which volume output is saved. -1 is at end of simulation
+animationFrequencyOffset@ 0@ Offset of phyiscal time step upon animationFrequency at which volume output is saved. e.g. if animationFrequency = 10 and animationFrequencyOffset = 6, the volumetric visualization files will be saved at physical time step = 16, 26, 36, 46...
+animationFrequencyTimeAverage@ -1@ Frequency (in number of physical time steps) at which time-averaged volume output is saved. -1 is at end of simulation
+animationFrequencyTimeAverageOffset@ 0@ Offset of phyiscal time step upon animationFrequencyTimeAverage at which time-averaged volume output is saved. e.g. if animationFrequencyTimeAverage = 10 and animationFrequencyTimeAverageOffset = 6, the time-averaged volumetric visualization files will be saved at physical time step = 16, 26, 36, 46...
 startAverageIntegrationStep@ 0@ Physical time step to start averaging forces/moments, only if computeTimeAverages is True. Fields that can be averaged: primitiveVars, vorticity, T, s, Cp, mut, Mach, qcriterion
 computeTimeAverages@ FALSE@ Whether or not to compute time-averaged quantities
 primitiveVars@ TRUE@ Outputs rho, u, v, w, p
