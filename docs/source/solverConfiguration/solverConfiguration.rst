@@ -444,7 +444,7 @@ Below are a list of configuration parameters for the porous media model.
 userDefinedDynamics
 --------------------
 
-An example of using the userDefinedDynamics is available :ref:`here <userDefinedDynamics>`.
+An example of how to use the userDefinedDynamics is available :ref:`here <userDefinedDynamics>`.
 
 .. csv-table::
    :file: ./userDefinedDynamicsTable.csv

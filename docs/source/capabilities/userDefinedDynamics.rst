@@ -3,7 +3,7 @@
 User Defined Dynamics
 =============================
 
-In Flow360, users are now able to specify arbitrary dynamics. In what follows, an example for a PI controller is given.
+In Flow360, users are now able to specify arbitrary dynamics. In what follows, an example for a Proportional-Integral (PI) controller is given.
 
 PI controller for angle of attack to control lift coefficient
 --------------------------------------------------------------------------
@@ -12,7 +12,7 @@ In this example, we add a controller to :ref:`om6Wing case study <om6_caseStudy>
 .. literalinclude:: alphaController.json
    :linenos:
 
-The complete configuration file can be downloaded here: `Flow360AlphaController.json <https://simcloud-public-1.s3.amazonaws.com/alphaController/Flow360AlphaController.json.config>`_
+The complete case configuration file can be downloaded here: `Flow360.json <https://simcloud-public-1.s3.amazonaws.com/alphaController/Flow360.json>`_.
 
 Some of the parameters are dicussed in more detail here:
 
