@@ -52,7 +52,6 @@ You do not have to wait for your mesh to be processed. Once your mesh is uploade
 Once you click the airplane icon, the webpage will re-direct you to an interactive interface as shown below, to either generate a case configuration json online or upload a pre-configured json file.  
 
 .. image:: figures_OM6_Tutorial/StartNewCase.png
-   :scale: 60%
    :align: center
 
 Please use this `Flow360.json <https://simcloud-public-1.s3.amazonaws.com/om6/Flow360.json?content_disposition=attachment>`_ file for the current case, and upload it through the window as displayed below. 
