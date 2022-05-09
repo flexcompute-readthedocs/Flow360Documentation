@@ -265,7 +265,7 @@ This means that your rotation interface grid does not satisfy the Flow360 concen
 
 The rotation interface needs to be a body of revolution (e.g., sphere, cylinder, etc.) which encloses the entire rotating geometry. The grid points on the rotation interface can not be arbitrary. **It is mandatory that they form a set of concentric rings**. 
 
-.. figure:: figures/notConcentricMod.png
+.. figure:: figs/notConcentricMod.png
         :width: 500px
         :align: center
         :alt: Non concentric mesh on rotation interface
@@ -274,7 +274,7 @@ The rotation interface needs to be a body of revolution (e.g., sphere, cylinder,
 
 The grid points on the rotation interface shown in the figure above do not satisfy the concentricity requirement. Certain points deviate slightly from a perfectly concentric circle.
 
-.. figure:: figures/concentric.png
+.. figure:: figs/concentric.png
         :width: 500px
         :align: center
         :alt: concentric mesh on rotation interface
