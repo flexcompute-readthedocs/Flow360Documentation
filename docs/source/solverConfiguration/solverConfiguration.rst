@@ -67,20 +67,6 @@ geometry
    | momentLength | [1.0, 1.0, 1.0] | The x, y, z moment reference lengths                    |
    +--------------+-----------------+---------------------------------------------------------+
 
-runControl
-----------
-
-.. table::
-   :widths: 25 10 65
-
-   +-----------------------------+---------+--------------------------------------------------------------------------------------+
-   | Options                     | Default | Description                                                                          |
-   +=============================+=========+======================================================================================+
-   | startAlphaControlPseudoStep |    -1   | pseudo step at which to start targetCL control. -1 is no trim control. (steady only) |
-   +-----------------------------+---------+--------------------------------------------------------------------------------------+
-   | targetCL                    |    -1   | The desired trim CL to achieve (assocated with startAlphaControlPseudoStep)          |
-   +-----------------------------+---------+--------------------------------------------------------------------------------------+
-
 freestream
 ----------
 
@@ -452,6 +438,19 @@ Below are a list of configuration parameters for the porous media model.
    :delim: @
 
 .. _examples_Flow360json:
+
+.. _userDefinedDynamicsParameters:
+
+userDefinedDynamics
+--------------------
+
+An example of how to use the userDefinedDynamics is available :ref:`here <userDefinedDynamics>`.
+
+.. csv-table::
+   :file: ./userDefinedDynamicsTable.csv
+   :widths: 20, 10, 70
+   :header-rows: 1
+   :delim: @
 
 Examples of Flow360.json
 ========================
