@@ -8,4 +8,4 @@ Quick Start
 
     examples/om6_wing_webUI
     examples/om6_wing_pyAPI
-    examples/rotation_interface
+    examples/rotation_interface_quickstart
