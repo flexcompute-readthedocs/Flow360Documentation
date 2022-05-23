@@ -19,7 +19,7 @@ The mesh used for this case contains 113K nodes and 663K tetrahedrons, and the f
 
 - Mach Number = 0.84
 - Reynolds Number (based on MAC) = 11.72 Million
-- Alpha = 3.06 |deg|.
+- Alpha = 3.06 |deg|
 - Reference Temperature = 297.78 K
 
 Get CFD results in two simple steps
