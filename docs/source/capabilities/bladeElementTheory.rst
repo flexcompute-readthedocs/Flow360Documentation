@@ -193,7 +193,7 @@ BET Loading Output
 
 After the simulation is completed, a “bet_forces_v2.csv” file is created for the case, which contains the time history of the following quantities:
 
-1. Integrated x-, y-, z-component of non-dimensional forces and non-dimensional moments acted on each disk, represented by "Disk[diskID]_Force_x,_y,_z" and "Disk[diskID]_Moment_x,_y,_z" in the "bet_forces_v2.csv file" respectively. The non-dimensional force is defined as
+1. Integrated x-, y-, z-component of non-dimensional forces and non-dimensional moments acted on each disk, represented by "Disk[diskID]_Force_x,_y,_z" and "Disk[diskID]_Moment_x,_y,_z" in the "bet_forces_v2.csv file" respectively. The "xyz" axis is based on the inertial frame of reference. The non-dimensional force is defined as
 
 .. math::
    :label: defBETForce
@@ -212,6 +212,10 @@ where the moment center is the :code:`centerOfRotation` of each disk, defined in
 .. note::
 
    The above Force and Moment values mean the force and moment acted on **solid**. If you want to know the force and moment acted on **fluid**, just add a negative sign in front of it. 
+
+.. attention::
+
+   The x-, y-, z-component of Disk[diskID]_Force and Disk[diskID]_Moment is based on the inertial frame of reference, which is defined in the mesh file. The inertial frame of reference is fixed at the ground.
 
 2. Sectional thrust coefficient :math:`C_t` and sectional torque coefficient :math:`C_q` on each blade at several radial locations, represented by "Disk[diskID]_Blade[bladeID]_R[radialID]" with suffix "_Radius" (non-dimensional), "_ThrustCoeff" and "_TorqueCoeff". The number of radial locations is specified in :code:`nLoadingNodes`. 
    
