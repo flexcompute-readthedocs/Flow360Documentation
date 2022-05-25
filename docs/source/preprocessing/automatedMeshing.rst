@@ -40,7 +40,7 @@ which will create a sphere of radius = 1 at (0, 0, 0). The face of the sphere wi
 Surface Meshing
 ===============
 
-The surface mesher takes the geometry file and configuration JSON file as input parameters and generates a surface mesh. The meshing configuration file (or dict in python), also called surfaceMesh.json, contains information such as maximum element edge length, curvature resolution angle or growth rate of 2D layers. See JSON example:
+The surface mesher takes the geometry file and configuration `JSON <https://en.wikipedia.org/wiki/JSON>`_ file as input parameters and generates a surface mesh. The meshing configuration file (or dict in python), also called surfaceMesh.json, contains information such as maximum element edge length, curvature resolution angle or growth rate of 2D layers. See JSON example:
 
 .. literalinclude:: surfaceMesh.example.json
     :language: JSON
@@ -82,11 +82,11 @@ For a full description of config.json for surface mesher see :ref:`here.<JSON su
 Volume Meshing
 ==============
 
-The volume mesher takes a :code:`surfaceMeshId` and config JSON as arguments and generates a CGNS mesh suitable for the Flow360 solver. The JSON configuration file (or dict in python) specifies the first layer thickness, growth rate, sizes and location of refinement zones (sources) and actuator disks. All geometry from ESP is treated as a no-slip wall therefore prism layers will be grown off geometry surfaces. 
+The volume mesher takes a :code:`surfaceMeshId` and config JSON as arguments and generates a CGNS mesh suitable for the Flow360 solver. The JSON configuration file (or dict in python) specifies the first layer thickness, growth rate, sizes and location of refinement zones (sources) and actuator disks. All geometry from ESP is treated as a no-slip wall therefore prism layers will be grown off geometry surfaces.
 
-The farfield will be created automatically\: 
+The farfield will be created automatically\:
 
-- semi-spherical if the geometry is bounded by :code:`y=0` plane. The :code:`y=0` plane will be set as a symmetry plane boundary condition.  
+- semi-spherical if the geometry is bounded by :code:`y=0` plane. The :code:`y=0` plane will be set as a symmetry plane boundary condition.
 - spherical otherwise.
 
 Below is an example of a JSON configuration file:
@@ -152,15 +152,15 @@ Example\:
 
 .. code-block:: json
 
-    "edges": {                               
-        "leadingEdge":  {              
-            "firstLayerThickness": 1e-3   
-        },                             
-        "trailingEdge":  {             
-            "firstLayerThickness": 1e-3   
-        }                              
-    }                                                                                                                                                                                                                                                                                                        
-   
+    "edges": {
+        "leadingEdge":  {
+            "firstLayerThickness": 1e-3
+        },
+        "trailingEdge":  {
+            "firstLayerThickness": 1e-3
+        }
+    }
+
 
 .. _fig1_surfMesh_edges:
 .. figure:: ../figures/autoMeshing/surfaceMesh_firstLayerThickness.png
@@ -174,28 +174,28 @@ Example\:
 .. _JSON surface mesher faces:
 
 faces
------  
-                           
+-----
+
 .. csv-table::
    :file: ./surfaceMesherFaces.csv
    :header-rows: 1
    :delim: @
-   :widths: 20 10 10 10 50  
+   :widths: 20 10 10 10 50
 
 Example\:
 
-.. code-block:: json 
+.. code-block:: json
 
-    "faces": {                         
-        "rightWing": {           
-            "maxEdgeLength": 0.05,  
-            "adapt": false          
-        },                       
-        "fuselage": {            
-            "maxEdgeLength": 0.05,  
-            "adapt": false          
-        }                        
-    }  
+    "faces": {
+        "rightWing": {
+            "maxEdgeLength": 0.05,
+            "adapt": false
+        },
+        "fuselage": {
+            "maxEdgeLength": 0.05,
+            "adapt": false
+        }
+    }
 
 
 .. _JSON volume mesher:
@@ -224,28 +224,28 @@ Example\:
 
 .. code-block:: json
 
-   "sources": [                                                                                                                                                                                                                                                                                                            
-    {                                                                                                                                                                                                                                                                                                           
+   "sources": [
+    {
         "size": [4, 3, 2],
-        "center": [2, 0, 0],                                                                                                                                                                                                                                                                                       
-        "spacing": 0.05,                                                                                                                                                                                                                                                                                    
-        "axisOfRotation": [ 0, 0, 1 ],                                                                                                                                                                                                                                                                             
-        "angleOfRotation": 45                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-    },                                                                                                                                                                                                                                                                                                          
-    {                                                                                                                                                                                                                                                                                                           
-        "type": "cylinder",                                                                                                                                                                                                                                                                                        
-        "radius": 4,                                                                                                                                                                                                                                                                                            
+        "center": [2, 0, 0],
+        "spacing": 0.05,
+        "axisOfRotation": [ 0, 0, 1 ],
+        "angleOfRotation": 45
+    },
+    {
+        "type": "cylinder",
+        "radius": 4,
         "lengthZ": 5,
         "center": [5, 0, 0],
-        "spacing": 0.05,                                                                                                                                                                                                                                                                                            
-        "axisOfRotation": [0, 1, 0],                                                                                                                                                                                                                                                                               
-        "angleOfRotation": 90                                                                                                                                                                                                                                                                                                                                                            
-    }]                                                                                                                                                                                                                                                                                                          
-   
+        "spacing": 0.05,
+        "axisOfRotation": [0, 1, 0],
+        "angleOfRotation": 90
+    }]
+
 
 .. _JSON volume mesher actuatorDisks:
 
-actuatorDisks (list)
+`actuatorDisks <https://www.e-education.psu.edu/aersp583/node/470>`_ (list)
 --------------------  
                                   
 .. csv-table::
