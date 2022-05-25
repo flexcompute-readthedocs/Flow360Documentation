@@ -165,8 +165,8 @@ Flow360
 
 -   CGNS considerations:
 
-    -   CGNS mesh should be exported as an HDF5 file type
-    -   Boundaries **must** be exported as “Elements_t” type, which contains connectivity information necessary in Flow360
+    -   CGNS mesh should be exported as an `HDF5 <https://en.wikipedia.org/wiki/Hierarchical_Data_Format#HDF5>`_ file type
+    -   Boundaries **must** be exported as `“Elements_t” <https://cgns.github.io/CGNS_docs_current/sids/gridflow.html>`_ type, which contains connectivity information necessary in Flow360
     -   The CGNS tree structure should be of the form base > block > boundary
 
         -   Multiple blocks (domains) should be at the same level, 2\ :sup:`nd`\
@@ -212,6 +212,7 @@ Definitions:
 -   c = local chord length (component chord for flap, tip chord for wing)
 -   b = local span length (semi-span for wing, component span for flap)
 -   t = thickness (trailing edge for wing, fore-aft distance for rotor disk)
+-   `HLPW4 <https://hiliftpw.larc.nasa.gov/Workshop4/Mesh-Generation-Guidelines-V11-3-Final.pdf>`_ = 4th AIAA CFD High Lift Prediction Workshop
 
 
 Directions:
