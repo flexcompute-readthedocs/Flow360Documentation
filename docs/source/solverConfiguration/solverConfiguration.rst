@@ -272,6 +272,8 @@ turbulenceModelSolver
    +--------------------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------+
    | rotationCorrection             |      FALSE      | Rotation correction for the turbulence model. Only support for SpalartAllmaras                                                            |
    +--------------------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+   | quadrativeConstitutiveRelation |      FALSE      | Use quadratic constitutive relation for turbulence shear stress tensor instead of Boussinesq Approximation                                |
+   +--------------------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------+
    | orderOfAccuracy                |        2        | Order of accuracy in space                                                                                                                |
    +--------------------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------+
    | maxForceJacUpdatePhysicalSteps |        0        | When which physical steps, the jacobian matrix is updated every pseudo step                                                               |
