@@ -109,7 +109,6 @@ For this example we have provided you with two different Flow360 json input file
 For this case, our Flow360 input json files have 11 sections:
 
 -   "geometry"
--   "runControl"
 -   "volumeOutput"
 -   "surfaceOutput"
 -   "sliceOutput"
