@@ -5,10 +5,7 @@
         "momentCenter" : [0.0, 0.0, 0.0],
         "momentLength" : [1.47602, 0.801672958512342, 1.47602]
     },
-    "runControl" : {
-        "restart" : false
-    },
-    "volumeOutput" : {
+        "volumeOutput" : {
         "outputFormat" : "tecplot",
         "animationFrequency" : -1,
         "primitiveVars" : true,
