@@ -16,7 +16,7 @@ The complete case configuration file can be downloaded here: `Flow360.json <http
 
 Some of the parameters are dicussed in more detail here:
 
-1. **dynamicsName**: This is an arbitrary name selected by the user for the dynamics. The results of each user-defined dynamics are saved to *udd_dynamicsName_v2.csv*.
+1. **dynamicsName**: This is a name selected by the user for the dynamics. The results of each user-defined dynamics are saved to *udd_dynamicsName_v2.csv*.
 
 2. **constants**: This includes a list of all the constants related to this dynamics. These constants will be used in the equations for :code:`updateLaw` and :code:`inputLaw`. In the above-mentioned example, :code:`CLTarget`, :code:`Kp`, and :code:`Ki` are the target value of the lift coefficient, the proportional gain of the controller, and the integral gain of the controller, respectively.
 
