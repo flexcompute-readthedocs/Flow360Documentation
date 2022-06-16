@@ -3,7 +3,7 @@
 .. |deg|    unicode:: U+000B0 .. DEGREE SIGN
    :ltrim:
 
-XV-15 Rotor Blade by Blade Element Disk Method 
+XV-15 Rotor Blade by Blade Element Disk Method
 ==============================================
 
 Highlights
@@ -58,9 +58,11 @@ The radial distribution of chord and twist is shown in :numref:`fig_xv15_twist_c
 
    XV-15 rotor blade's twist and chord radial distribution
 
-More information about the geometry and the high-fidelity detached eddy simulation using Flow360 can be found at 
+More information about the geometry and the high-fidelity detached eddy simulation using Flow360 can be found at
 
 `Feilin Jia, John Moore and Qiqi Wang, 2022 Assessment of Detached Eddy Simulation and Sliding Mesh Interface in Predicting Tiltrotor Performance in Helicopter and Airplane Modes <https://arxiv.org/pdf/2201.11560.pdf>`_
+
+.. _xv15betMesh: 
 
 In this case study, the steady Navier-Stokes solver coupled with the Blade Element Theory Disk method is used to simulate the XV-15 rotor blades under two flight conditions: helicopter hovering mode and airplane mode. Compared to the high fidelity unsteady simulations with full rotor geometry in the above paper, the mesh of BET Disk solver is much coarser. The mesh used in the current case study contains 592K nodes. An overview of a slice of the mesh is shown below
 
@@ -81,10 +83,10 @@ In this case study, the steady Navier-Stokes solver coupled with the Blade Eleme
 
    .. |mesh4| image:: figures_BET_Tutorial/mesh_592K_zoom4.png
       :width: 49%
-   
+
    .. rst-class:: center1
 
-   Overview of volume mesh used in BET Disk simulations of XV-15 rotor, successively zooming in from top left->top right->bottom left->bottom right. 
+   Overview of volume mesh used in BET Disk simulations of XV-15 rotor, successively zooming in from top left->top right->bottom left->bottom right.
 
 The freestream quantities are shown below. These quantities are needed to set up the non-dimensional variables in case configuration and translate the non-dimensional output variables into dimensional values. More information on non-dimensionalization in Flow360 can be found at :ref:`nondimensionalization_Flow360`. The grid unit :math:`L_{gridUnit}=1\,\text{inch}=0.0254\,\text{meter}` in the above mesh. In this case study, the freestream conditions are set to standard sea level values as shown in :numref:`tab_air_isa`
 
@@ -97,8 +99,8 @@ The freestream quantities are shown below. These quantities are needed to set up
    :delim: @
 
 .. caution::
-   
-   In some simulations, the freestream is not treated to be in sea level standard on purpose. For example, in the "case 1a" from `3rd AIAA CFD High Lift Prediction Workshop <https://hiliftpw.larc.nasa.gov/Workshop3/testcases.html>`_, the viscosity of the freestream is adjusted to analyze the full-scale geometry at wind tunnel conditions, so please set the freestream properties based on your requirements. 
+
+   In some simulations, the freestream is not treated to be in sea level standard on purpose. For example, in the "case 1a" from `3rd AIAA CFD High Lift Prediction Workshop <https://hiliftpw.larc.nasa.gov/Workshop3/testcases.html>`_, the viscosity of the freestream is adjusted to analyze the full-scale geometry at wind tunnel conditions, so please set the freestream properties based on your requirements.
 
 .. _BET_XV15_hovering_caseStudy:
 
@@ -116,14 +118,14 @@ Here are some points to set up the case configuration file:
 1. :code:`freestream::Mach` is set to 0, because freestream velocity is zero.
 2. :code:`freestream::MachRef` has to be a non-zero number because the above "Mach" is 0. This value could be arbitrary theoretically, but we let it equal to the tip Mach number (0.69) for convenience.
 3. Either :code:`freestream::Reynolds` or :code:`freestream::muRef` should be given to set a proper freestream viscosity. Both options are explained below:
-   
+
    * **Option 1**: set :code:`freestream::Reynolds`. The :code:`freestream::Reynolds` is based on grid unit as reference length, thus it is mesh dependent. It's definition is :math:`\rho_\infty U_\text{ref} L_\text{gridUnit}/{\mu_\infty}`. In the case description, we know the Reynolds number based on tip speed and reference chord is :math:`4.95\times 10^6`, so
 
    .. math::
       :label: hoverReynoldsChord
 
       \frac{\rho_\infty U_\text{tip} \text{chord}_\text{ref}}{\mu_\infty} = \frac{\rho_\infty \left(0.69 C_\infty\right) \text{chord}_\text{ref}}{\mu_\infty} = 4.95\times 10^6
-   
+
 then the "freestream::Reynolds" is calculated:
 
    .. math::
@@ -148,8 +150,8 @@ If you already know the Reynolds number then you could use the following equatio
       :label: muRefEq
 
       \text{freestream::muRef} &= \frac{\rho_\infty U_\text{tip}\text{Chord}_\text{ref}/Re}{\rho_\infty C_\infty L_\text{gridUnit}} =\frac{\rho_\infty \left(0.69 C_\infty\right) \text{14 inch}}{\rho_\infty C_\infty \text{1 inch} \cdot 4.95\times10^6}  \\
-      &=\frac{0.69\cdot \text{14 inch}}{\text{1 inch} \cdot 4.95\times 10^6} = 1.95152\times10^{-6} 
-     
+      &=\frac{0.69\cdot \text{14 inch}}{\text{1 inch} \cdot 4.95\times 10^6} = 1.95152\times10^{-6}
+
 Therefore, the "freestream::muRef" is :math:`1.95152\times10^{-6}`
 
 4. "BETDisks::omega". This is the non-dimensional angular speed of the rotor blades. Its definition is
@@ -194,14 +196,14 @@ Some tips on setting the input quantities related to BET can be found at :ref:`b
 
       \text{Thrust} &= \text{Disk0_Force_z}\cdot \rho_\infty C^2_\infty L^2_\text{gridUnit} \\
       &= \text{Disk0_Force_z}\cdot 1.225 kg/m^3 \times 340.3^2 m^2/s^2 \times 0.0254^2 m^2 \\
-      &= \text{Disk0_Force_z}\cdot 91.5224 N 
+      &= \text{Disk0_Force_z}\cdot 91.5224 N
 
    .. math::
       :label: torque_convert
 
       \text{Torque} &= \text{Disk0_Moment_z}\cdot \rho_\infty C^2_\infty L^3_\text{gridUnit} \\
       &= \text{Disk0_Moment_z}\cdot 1.225 kg/m^3 \times 340.3^2 m^2/s^2 \times 0.0254^3 m^3 \\
-      &= \text{Disk0_Moment_z}\cdot 2.324669 N\cdot m 
+      &= \text{Disk0_Moment_z}\cdot 2.324669 N\cdot m
 
 The convergence history of dimensional thrust and torque using steady BET Disk solver is shown in following figures:
 
@@ -214,7 +216,7 @@ The convergence history of dimensional thrust and torque using steady BET Disk s
 
    .. |hover_history_torque| image:: figures_BET_Tutorial/xv15_BETDisk_history_torque_hover.svg
       :width: 49%
-   
+
    .. rst-class:: center1
 
    Loading convergence of BET Disk simulation in hovering helicopter mode at various pitch angles.
@@ -237,7 +239,7 @@ Assume we want to calculate the sectional thrust and torque at the first disk's 
    &r = \text{Disk0_Blade0_R1_Radius}*L_\text{gridUnit}
 
    &\text{Thrust per unit blade span}_\text{Disk0_Blade_R1} = C_t\times\frac{1}{2}\rho_\infty\times\Omega^2 r^2 \text{chord}_\text{ref}\times R/r
-   
+
    &\text{Torque per unit blade span}_\text{Disk0_Blade_R1} = C_q\times\frac{1}{2}\rho_\infty\times\Omega^2 r^2 \text{chrod}_\text{ref} R\times R/r
 
 To show a closer comparison between high fidelity full-rotor unsteady simulation and BET Disk steady simulation, the physical sectional thrust, of :math:`\theta_{75}=10^o` case as an example, on a blade per unit span is shown below
@@ -251,12 +253,12 @@ To show a closer comparison between high fidelity full-rotor unsteady simulation
 
    .. |hover_history_thrust_compare| image:: figures_BET_Tutorial/xv15_BETDisk_hover_pitch10_thrust_history.svg
       :width: 49%
-   
+
    .. rst-class:: center1
 
    Sectional thrust distribution and history of total thrust in hovering mode, :math:`\theta_{75}=10^o`.
 
-The biggest difference between high fidelity simulation and BET Disk simulation is near the tip region, where blade-vortex interaction is strong. The flow around the tip can be highly dimensional, making BET Disk locally inaccurate. This normally happens at hovering or near-hovering conditions. From the total thrust of the three blades, compared to the Flow360 high fidelity unsteady simulation, the thrust predicted by BET Disk is ~8% different. This level of accuracy makes the BET Disk a useful tool in the preliminary design stages. 
+The biggest difference between high fidelity simulation and BET Disk simulation is near the tip region, where blade-vortex interaction is strong. The flow around the tip can be highly dimensional, making BET Disk locally inaccurate. This normally happens at hovering or near-hovering conditions. From the total thrust of the three blades, compared to the Flow360 high fidelity unsteady simulation, the thrust predicted by BET Disk is ~8% different. This level of accuracy makes the BET Disk a useful tool in the preliminary design stages.
 
 To provide an overview of the propeller efficiency in hovering mode, the thrust coefficient, torque coefficient and figure of merit defined in :eq:`CT_CQ_definition` are calculated and compared with several experimental data and numerical prediction of high-fidelity DES simulations:
 
@@ -280,7 +282,7 @@ where :math:`R` is rotor disk radius and :math:`A` is rotor disk area, i.e. :mat
 
    .. |hover_CT_FOM| image:: figures_BET_Tutorial/xv15_BETDisk_CT_FOM_hover.svg
       :width: 49%
-   
+
    .. rst-class:: center1
 
    Comparison on thrust and torque coefficient and figure of merit in hovering mode at various pitch angles.
@@ -314,12 +316,12 @@ The convergence history of the thrust coefficient and torque coefficient using t
 
    .. |airplane_Q_history| image:: figures_BET_Tutorial/xv15_BETDisk_history_torque_airplane.svg
       :width: 49%
-   
+
    .. rst-class:: center1
 
    Convergence history of thrust coefficient and torque coefficient in airplane mode at various pitch angles.
 
-As an example, similar to the helicopter hovering mode shown above, the physical sectional thrust for the :math:`\theta_{75}=26^o` case is shown below. We have comparisons to the high fidelity DES simulation both on a blade per unit span basis and for the total force. Please note the non-zero origin of the Y axis on the right plot of total force. 
+As an example, similar to the helicopter hovering mode shown above, the physical sectional thrust for the :math:`\theta_{75}=26^o` case is shown below. We have comparisons to the high fidelity DES simulation both on a blade per unit span basis and for the total force. Please note the non-zero origin of the Y axis on the right plot of total force.
    Similar to the helicopter hovering mode, the physica sectional thrust, of :math:`\theta_{75}=26^o` case as an example, on a blade per unit span and the total force compared to the high fidelity simulation is shown below
 
 .. container::
@@ -331,7 +333,7 @@ As an example, similar to the helicopter hovering mode shown above, the physical
 
    .. |airplane_thrust_history| image:: figures_BET_Tutorial/xv15_BETDisk_airplane_pitch26_thrust_history.svg
       :width: 49%
-   
+
    .. rst-class:: center1
 
    Sectional thrust distribution and thrust history in airplane mode at :math:`\theta_{75}=26^o`.
@@ -353,8 +355,7 @@ To provide an overview of power efficiency in airplane mode at various pitching 
 
    .. |airplane_CTeta| image:: figures_BET_Tutorial/xv15_BETDisk_CT_eta_airplane.svg
       :width: 49%
-   
+
    .. rst-class:: center1
 
    Comparison of thrust coefficient, torque coefficient and propulsive efficiency in airplane mode at various pitch angles.
-

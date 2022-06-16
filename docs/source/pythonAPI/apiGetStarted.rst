@@ -1,3 +1,5 @@
+.. _FLOW360pip3Install:
+
 Installing Flow360 Client
 *************************
 
@@ -22,7 +24,3 @@ An account can be created at https://client.flexcompute.com/app/signup.
         Do you want to keep logged in on this machine ([Y]es / [N]o)Y
 
 Once you have installed the Flow360 client and signed into it, you can run your first case using the ONERA M6 Wing tutorial in the `Quick Start <quickstart.rst>`_ section of this document.
-
-
-
-
