@@ -33,7 +33,7 @@ As suggested by NASA-LaRC-TMR and ONERA-elsA, for this essentially incompressibl
 .. _Tab1_FlowConfig:
 .. csv-table:: Basic solver configuration parameters
    :file: ./naca0012_tab1_keyflowconfig.csv
-   :widths: 28, 6, 10, 30
+   :widths: 13, 6, 10, 45
    :align: center
    :header-rows: 1
    :delim: @
