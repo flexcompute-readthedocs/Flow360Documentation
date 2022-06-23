@@ -75,6 +75,17 @@ freestream
    :widths: 20, 20, 70
    :header-rows: 1
    :delim: @
+   
+According to Flow360's definitions of the angle of attack :math:`\alpha` and the sideslip angle :math:`\beta`, with respect to the grid coordinates, the following values of velocity components are imposed at a “Freestream” farfield boundary as defined in the next subsection.
+
+.. math::
+      :label: FreestreamBC
+	  
+	  U^*_{\infty} &= M_{\infty} \cdot cos(\beta) \cdot cos(\alpha) \\
+      V^*_{\infty} &= - M_{\infty} \cdot sin(\beta) \\
+      W^*_{\infty} &= M_{\infty} \cdot cos(\beta) \cdot sin(\alpha) 
+	  
+Where, the velocity components are non-dimensionalized by the freestream speed of sound :math:`C_{\infty}`. Also, the effects of these two angles are intrinsically taken into account by the solver in the computed :math:`C_l` and :math:`C_d` values, etc.
 
 .. _boundariesParameters:
 

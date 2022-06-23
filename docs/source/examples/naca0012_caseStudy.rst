@@ -32,7 +32,7 @@ As suggested by NASA-LaRC-TMR and ONERA-elsA, for this essentially incompressibl
 
 .. _Tab1_FlowConfig:
 .. csv-table:: Basic solver configuration parameters
-   :file: ./naca0012_tab1_keyflowconfig.csv
+   :file: ./naca0012_tab1_keyFlowConfig.csv
    :widths: 13, 6, 10, 45
    :align: center
    :header-rows: 1
@@ -40,18 +40,7 @@ As suggested by NASA-LaRC-TMR and ONERA-elsA, for this essentially incompressibl
    
 “NoSlipWall” boundary condition is applied to the adiabatic viscous surface of the airfoil, and “SlipWall” is used as the symmetry condition in the spanwise. “Freestream” boundary condition is utilized for the upstream and the downstream farfields, together with the default value of the freestream “turbulentViscosityRatio”, i.e. :math:`\frac{\mu_t}{\mu_{\infty}} = 0.210438` for the S-A model. This is equivalent to the boundary value based on the S-A approximate turbulent kinematic viscosity :math:`\tilde{\nu}`, i.e. :math:`\frac{\tilde{\nu}}{\nu_{\infty}} = 3`, as used in the CFL3D predictions. More descriptions about these freestream turbulence boundary conditions can be found from this NASA webpage on `the Spalart-Allmaras turbulence model <https://turbmodels.larc.nasa.gov/spalart.html>`_.
 
-Steady-state solutions were computed iteratively, utilizing 2nd-order schemes for both the RANS equations and the turbulence model equation. For the former, the CFL number was gradually ramped up to 100. Detailed Flow360 solver and mesh configuration files, `<Flow360.json> <https://simcloud-public-1.s3.amazonaws.com/validation/naca0012/NACA0012_FMLY2GL4_AOA15_SARC_2ndOrd_CFL100_Flow360.json>`_ and `<Flow360Mesh.json> <https://simcloud-public-1.s3.amazonaws.com/validation/naca0012/NACA0012_FMLY2_Flow360Mesh.json>`_, are given here as an example for the case with the S-A model and its Rotation/Curvature (R/C) correction at :math:`\alpha = 15^o`.
-
-Besides, according to :ref:`Flow360's definitions<Flow360json>` of the angle of attack :math:`\alpha`, the sideslip angle :math:`\beta` and the grid coordinates, the following correlations are imposed at the “Freestream” farfield boundaries.
-
-.. math::
-      :label: FreestreamBC
-	  
-	  U^*_{\infty} &= M_{\infty} \cdot cos(\beta) \cdot cos(\alpha) \\
-      V^*_{\infty} &= - M_{\infty} \cdot sin(\beta) \\
-      W^*_{\infty} &= M_{\infty} \cdot cos(\beta) \cdot sin(\alpha) 
-	  
-Where, the components of the velocity are non-dimensionalized by the freestream speed of sound :math:`C_{\infty}`. Also, the effects of these two angles are intrinsically taken into account by the solver in the computed :math:`C_l` and :math:`C_d` values, etc.
+Steady-state solutions were computed iteratively, utilizing 2nd-order schemes for both the RANS equations and the turbulence model equation. For the former, the CFL number was gradually ramped up to 100. Detailed Flow360 solver and mesh configuration files, `<Flow360.json> <https://simcloud-public-1.s3.amazonaws.com/validation/naca0012/NACA0012_FMLY2GL4_AOA15_SARC_2ndOrd_CFL100_Flow360.json>`_ and `<Flow360Mesh.json> <https://simcloud-public-1.s3.amazonaws.com/validation/naca0012/NACA0012_FMLY2_Flow360Mesh.json>`_, are given here as an example for the case with the S-A model and its Rotation/Curvature (R/C) correction at :math:`\alpha = 15^o`. Besides, the definitions of the angle of attack :math:`\alpha` and the sideslip angle :math:`\beta`, with respect to the grid coordinates, are given in :ref:`the solver configuration<Flow360json>` section of this documentation.
 
 Numerical Results
 -----------------
@@ -148,5 +137,5 @@ The corresponding :math:`C_l` and :math:`C_d` data given in the above tables are
 Remarks
 -------
 
-Through this validation study, the flow field, the surface data and the representative aerodynamic quantities predicted by Flow360 were carefully examined. With respect to the latest reference numerical results computed on the same grid as used here, the available agreement on :math:`C_l` and :math:`C_d` reaches the third significant digit.
+Through this validation study, the flow field, the surface data and the representative aerodynamic quantities predicted by Flow360 were carefully examined. With respect to the latest reference numerical results computed on the same grid as used here, the available agreement on :math:`C_l` and :math:`C_d` reaches the third significant digit. The solver of this version :ref:`release-22.1.3.0<release-22.1.3.0>` was used throughout this case study.
 
