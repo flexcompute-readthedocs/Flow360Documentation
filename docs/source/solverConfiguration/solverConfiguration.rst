@@ -76,10 +76,10 @@ freestream
    :header-rows: 1
    :delim: @
    
-According to Flow360's definitions of the angle of attack :math:`\alpha` and the sideslip angle :math:`\beta`, with respect to the grid coordinates, the following values of velocity components are imposed at a “Freestream” farfield boundary as defined in the next subsection.
+According to Flow360's definitions of the angle of attack :math:`\alpha` and the sideslip angle :math:`\beta`, as given in the above table, with respect to the grid coordinates, the following values of velocity components are imposed at a “Freestream” farfield boundary as defined in the next subsection.
 
 .. math::
-      :label: FreestreamBC
+      :label: EQ_FreestreamBC
 	  
 	  U^*_{\infty} &= M_{\infty} \cdot cos(\beta) \cdot cos(\alpha) \\
       V^*_{\infty} &= - M_{\infty} \cdot sin(\beta) \\

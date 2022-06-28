@@ -1,4 +1,4 @@
-Codes@  Turb Mdl@ :math:`\alpha (deg)`@       :math:`C_l`@  :math:`C_d`@   :math:`C_{d,v}`@ :math:`C_{d,p}` 
+Codes@  Turb Mdl@ :math:`\alpha (deg)`@       :math:`C_L`@  :math:`C_D`@   :math:`C_{D,v}`@ :math:`C_{D,p}` 
 
 CFL3D@        SA@                    0@        -0.685E-05@      0.00819@                  @  
 FUN3D@        SA@                    0@  :math:`\simeq 0`@      0.00812@                  @  
