@@ -2,7 +2,6 @@ Options@ Default@ Description
 rotationDirectionRule@ "rightHand"@ [string] the rule for rotation direction and thrust direction, "rightHand" or "leftHand". A detailed explanation and some examples are shown at :ref:`bet_input`.
 centerOfRotation@ Empty@ [3-array] center of the Blade Element Theory (BET) disk
 axisOfRotation@ Empty@ [3-array] rotational axis of the BET disk, i.e. (+) thrust axis
-volumeName@ Empty@ [string] Name of the mesh-block in which the BET-Disk is located. If unspecified, default will be the highest-level mesh-block. Used for specifying a BET-disk within a moving reference frame.
 numberOfBlades@ Empty@ [int] number of blades to model
 radius@ Empty@ [float] non-dimensional radius of the rotor disk, = :math:`\text{Radius}_\text{dimensional}/L_{gridUnit}`
 omega@ Empty@ [float] non-dimensional rotating speed, radians/nondim-unit-time, = :math:`\Omega*L_{gridUnit}/C_\infty`, where the SI unit of :math:`\Omega` is rad/s. An example can be found at the case study :ref:`XV15 BET <BET_XV15_hovering_caseStudy>`
