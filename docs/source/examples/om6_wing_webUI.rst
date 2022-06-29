@@ -5,11 +5,11 @@
 Run CFD using Web UI: An example of ONERA M6 Wing
 *************************************************
 
-The Onera M6 wing is a classic CFD validation case for external flows because of its simple geometry combined with complexities of transonic flow (i.e. local supersonic flow, shocks, and turbulent boundary layer separation).  It is a swept, semi-span wing with no twist and uses a symmetric airfoil using the ONERA D section.  More information about the geometry can be found at `NASA's website <https://www.grc.nasa.gov/www/wind/valid/m6wing/m6wing.html>`_.  The geometry parameters are:
+The Onera M6 wing is a classic CFD validation case for external flows because of its simple geometry combined with complexities of transonic flow (i.e. local supersonic flow, shocks, and turbulent boundary layer separation).  It is a swept, semi-span wing with no twist and uses a symmetric airfoil using the ONERA D section.  More information about the geometry can be found at `NASA's website <https://www.grc.nasa.gov/www/wind/valid/m6wing/m6wing.html>`_.  The geometry parameters of the model are:
 
-- Mean Aerodynamic Chord (MAC) = 0.80167
+- Mean Aerodynamic Chord (MAC) = 0.80167 m
 - Semi-span = 1.47602 m
-- Reference area = 1.15315 m^2
+- Reference area = 1.15315 m\ :sup:`2`
 
 
 
