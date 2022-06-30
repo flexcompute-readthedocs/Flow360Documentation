@@ -40,7 +40,7 @@ which will create a sphere of radius = 1 at (0, 0, 0). The face of the sphere wi
 Surface Meshing
 ===============
 
-The surface mesher takes the geometry file and configuration `JSON <https://en.wikipedia.org/wiki/JSON>`_ file as input parameters and generates a surface mesh. The meshing configuration file (or dict in python), also called surfaceMesh.json, contains information such as maximum element edge length, curvature resolution angle or growth rate of 2D layers. See JSON example:
+The surface mesher takes the geometry file and configuration JSON file as input parameters and generates a surface mesh. The meshing configuration file (or dict in python), also called surfaceMesh.json, contains information such as maximum element edge length, curvature resolution angle or growth rate of 2D layers. See JSON example:
 
 .. literalinclude:: surfaceMesh.example.json
     :language: JSON
@@ -245,7 +245,7 @@ Example\:
 
 .. _JSON volume mesher actuatorDisks:
 
-`actuatorDisks <https://www.e-education.psu.edu/aersp583/node/470>`_ (list)
+ actuatorDisks (list)
 --------------------  
                                   
 .. csv-table::
