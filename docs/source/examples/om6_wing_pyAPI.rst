@@ -161,7 +161,7 @@ To download the solver.out file, use the following command:
 
 .. code-block:: python
 
-   flow360client.case.DownloadSolverOut('case_Id', fileName='solver.out')
+   flow360client.case.DownloadSolverOut('case_Id', fileName='flow360_case.user.log')
 
 You can also download the nonlinear residuals, surface forces and total forces by using the following command line:
 
@@ -192,7 +192,7 @@ For example, the Forces plots for this case are:
 .. image:: figures_OM6_Tutorial/CM.png
    :align: center
 
-Once your case has completed running, you can also visualize the contour plots of the results under the **Visualization** tab.  Currently, contour plots for Coefficient of Pressure (C\ :sub:`p`\), Coefficient of Skin Friction (C\ :sub:`f`\), Y+, and C\ :sub:`f`\  with streamlines are provided.
+Once your case has completed running, you can also visualize the contour plots of the results under the **Visualization** tab.  Currently, contour plots for Coefficient of Pressure (C\ :sub:`p`\), Coefficient of Skin Friction (C\ :sub:`f`\), y\ :sup:`+`\, and C\ :sub:`f`\  with streamlines are provided.
 
 .. image:: figures_OM6_Tutorial/VisResults.png
    :align: center
