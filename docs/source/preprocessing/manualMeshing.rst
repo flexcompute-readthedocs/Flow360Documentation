@@ -165,7 +165,7 @@ Flow360
 
 -   CGNS considerations:
 
-    -   CGNS mesh should be exported as an `HDF5 <https://en.wikipedia.org/wiki/Hierarchical_Data_Format#HDF5>`_ file type
+    -   CGNS mesh should be exported as an HDF5 file type
     -   Boundaries **must** be exported as `“Elements_t” <https://cgns.github.io/CGNS_docs_current/sids/gridflow.html>`_ type, which contains connectivity information necessary in Flow360
     -   The CGNS tree structure should be of the form base > block > boundary
 
