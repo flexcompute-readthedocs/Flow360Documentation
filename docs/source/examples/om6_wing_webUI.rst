@@ -5,21 +5,23 @@
 Run CFD using Web UI: An example of ONERA M6 Wing
 *************************************************
 
-The Onera M6 wing is a classic CFD validation case for external flows because of its simple geometry combined with complexities of transonic flow (i.e. local supersonic flow, shocks, and turbulent boundary layer separation).  It is a swept, semi-span wing with no twist and uses a symmetric airfoil using the ONERA D section.  More information about the geometry can be found at `NASA's website <https://www.grc.nasa.gov/www/wind/valid/m6wing/m6wing.html>`_.  The geometry parameters are:
+The Onera M6 wing is a classic CFD validation case for external flows because of its simple geometry combined with complexities of transonic flow (i.e. local supersonic flow, shocks, and turbulent boundary layer separation).  It is a swept, semi-span wing with no twist and uses a symmetric airfoil using the ONERA D section.  More information about the geometry can be found at `NASA's website <https://www.grc.nasa.gov/www/wind/valid/m6wing/m6wing.html>`_.  The geometry parameters of the model are:
 
-- Mean Aerodynamic Chord (MAC) = 0.80167
-- Semi-span = 1.47602
-- Reference area = 1.15315
+- Mean Aerodynamic Chord (MAC) = 0.80167 m
+- Semi-span = 1.47602 m
+- Reference area = 1.15315 m\ :sup:`2`
+
+
 
 .. image:: figures_OM6_Tutorial/Geometry_Iso.png
    :scale: 70%
    :align: center
 
-The mesh used for this case contains 113K nodes and 663K tetrahedrons, and the flow conditions are:
+The mesh used for this case contains 113k nodes and 663k tetrahedrons, and the flow conditions are:
 
 - Mach Number = 0.84
 - Reynolds Number (based on MAC) = 11.72 Million
-- Alpha = 3.06 |deg|.
+- Alpha = 3.06 |deg|
 - Reference Temperature = 297.78 K
 
 Get CFD results in two simple steps
@@ -35,7 +37,7 @@ To upload a volumetric mesh file, under the **Volume Mesh** tab click on **Uploa
    :scale: 60%
    :align: center
 
-This will open a window as shown in the next figure.  You need to upload two files here.  The first is the volume mesh.  Download an example mesh of  M6 Wing `here <https://simcloud-public-1.s3.amazonaws.com/om6/wing_tetra.1.lb8.ugrid>`_.  The second is the mesh configuration json.  Download one `here <https://simcloud-public-1.s3.amazonaws.com/om6/Flow360Mesh.json?content_disposition=attachment>`_.  When uploading the mesh, be sure to set the Endianness to 'little endian' for this tutorial.  More information on endianness can be found `here <https://en.wikipedia.org/wiki/Endianness>`_.  (**Note**: Mesh Name and Tags are optional. For Release History, the latest solver version will be used here by default.)  Then click submit to upload and process your mesh. You can see the status of the mesh under the **Status** tab.
+This will open a window as shown in the next figure.  You need to upload two files here.  The first is the volume mesh.  Download an example mesh of  M6 Wing `here <https://simcloud-public-1.s3.amazonaws.com/om6/wing_tetra.1.lb8.ugrid>`_.  The second is the mesh configuration JSON.  Download one `here <https://simcloud-public-1.s3.amazonaws.com/om6/Flow360Mesh.json?content_disposition=attachment>`_.  When uploading the mesh, be sure to set the Endianness to 'little endian' for this tutorial.  More information on endianness can be found `here <https://en.wikipedia.org/wiki/Endianness>`_.  (**Note**: Mesh Name and Tags are optional. For Release History, the latest solver version will be used here by default.)  Then click submit to upload and process your mesh. You can see the status of the mesh under the **Status** tab.
 
 .. image:: figures_OM6_Tutorial/UploadMeshJsonFile.png
    :scale: 60%
@@ -49,12 +51,12 @@ You do not have to wait for your mesh to be processed. Once your mesh is uploade
    :scale: 60%
    :align: center
 
-Once you click the airplane icon, the webpage will re-direct you to an interactive interface as shown below, to either generate a case configuration json online or upload a pre-configured json file.  
+Once you click the airplane icon, the webpage will re-direct you to an interactive interface to either generate a case configuration json online or upload a pre-configured JSON file via **Upload JSON file**.  
 
 .. image:: figures_OM6_Tutorial/StartNewCase.png
    :align: center
 
-Please use this `Flow360.json <https://simcloud-public-1.s3.amazonaws.com/om6/Flow360.json?content_disposition=attachment>`_ file for the current case, and upload it through the window as displayed below. 
+Please use this `Flow360.json <https://simcloud-public-1.s3.amazonaws.com/om6/Flow360.json?content_disposition=attachment>`_ file for the current case and upload it via the pop-up window prompt. 
 
 .. image:: figures_OM6_Tutorial/UploadCaseJsonFile.png
    :scale: 60%
@@ -101,7 +103,7 @@ For example, the Forces plots for this case are:
 .. image:: figures_OM6_Tutorial/CM.png
    :align: center
 
-Once your case has completed running, you can also visualize the contour plots of the results under the **Visualization** tab.  Currently, contour plots for Coefficient of Pressure (C\ :sub:`p`\), Coefficient of Skin Friction (C\ :sub:`f`\), Y+, and C\ :sub:`f`\  with streamlines are provided.
+Once your case has completed running, you can also visualize the contour plots of the results under the **Visualization** tab.  Currently, contour plots for coefficient of pressure (C\ :sub:`p`\), coefficient of skin friction (C\ :sub:`f`\), y\ :sup:`+`\, and C\ :sub:`f`\  with streamlines are provided.
 
 .. image:: figures_OM6_Tutorial/VisResults.png
    :scale: 70%
@@ -116,12 +118,12 @@ Once your case has finished running, you can download the results (Surfaces, Vol
    :scale: 70%
    :align: center
 
-The Volume and Surface data can be post-processed in either ParaView or Tecplot, based on your selection of outputFormat in the Flow360.json file. And the Log file (solver.out) can be used to view the solver time and other run details.
+The Volume and Surface data can be post-processed in either ParaView or Tecplot, based on your selection of outputFormat in the Flow360.json file. And the Log file (flow360_case.user.log) can be used to view the solver progression and other run details.
 
 Fork a Case:
 ^^^^^^^^^^^^
 
-You can also restart a case, to continue from the last point of the previous run, by clicking the **Fork a Case** icon under the **Actions** tab and change the parameters of your Flow360.json configuration file according to your needs or upload an entirely new configuration file.
+You can also continue a case from the last point of the previous run, by clicking the **Fork a Case** icon under the **Actions** tab and change the parameters of your Flow360.json configuration file according to your needs or upload an entirely new configuration file.
 
 .. image:: figures_OM6_Tutorial/ForkCase1.png
    :scale: 70%

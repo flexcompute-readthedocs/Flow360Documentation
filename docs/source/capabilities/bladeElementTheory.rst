@@ -215,7 +215,7 @@ where the moment center is the :code:`centerOfRotation` of each disk, defined in
 
 .. attention::
 
-   The x-, y-, z-component of Disk[diskID]_Force and Disk[diskID]_Moment is based on the inertial frame of reference, which is defined in the mesh file. The inertial frame of reference is fixed at the ground.
+   The x-, y-, z-component of Disk[diskID]_Force and Disk[diskID]_Moment is reported in the global inertial reference frame. This reference frame is defined in the mesh file.
 
 2. Sectional thrust coefficient :math:`C_t` and sectional torque coefficient :math:`C_q` on each blade at several radial locations, represented by "Disk[diskID]_Blade[bladeID]_R[radialID]" with suffix "_Radius" (non-dimensional), "_ThrustCoeff" and "_TorqueCoeff". The number of radial locations is specified in :code:`nLoadingNodes`. 
    

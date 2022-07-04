@@ -5,11 +5,11 @@
 Run CFD using Python API: An example of ONERA M6 Wing
 *****************************************************
 
-The Onera M6 wing is a classic CFD validation case for external flows because of its simple geometry combined with complexities of transonic flow (i.e. local supersonic flow, shocks, and turbulent boundary layer separation).  It is a swept, semi-span wing with no twist and uses a symmetric airfoil using the ONERA D section.  More information about the geometry can be found at `NASA's website <https://www.grc.nasa.gov/www/wind/valid/m6wing/m6wing.html>`_.  The geometry parameters are:
+The Onera M6 wing is a classic CFD validation case for external flows because of its simple geometry combined with complexities of transonic flow (i.e. local supersonic flow, shocks, and turbulent boundary layer separation).  It is a swept, semi-span wing with no twist and uses a symmetric airfoil using the ONERA D section.  More information about the geometry can be found at `NASA's website <https://www.grc.nasa.gov/www/wind/valid/m6wing/m6wing.html>`_.  The geometry parameters of the model are:
 
-- Mean Aerodynamic Chord (MAC) = 0.80167
-- Semi-span = 1.47602
-- Reference area = 1.15315
+- Mean Aerodynamic Chord (MAC) = 0.80167 m
+- Semi-span = 1.47602 m
+- Reference area = 1.15315 m\ :sup:`2`
 
 .. image:: figures_OM6_Tutorial/Geometry_Iso.png
    :scale: 70%
@@ -19,7 +19,7 @@ The mesh used for this case contains 113K nodes and 663K tetrahedrons, and the f
 
 - Mach Number = 0.84
 - Reynolds Number (based on MAC) = 11.72 Million
-- Alpha = 3.06 |deg|.
+- Alpha = 3.06 |deg|
 - Reference Temperature = 297.78 K
 
 Upload the Mesh File
@@ -161,7 +161,7 @@ To download the solver.out file, use the following command:
 
 .. code-block:: python
 
-   flow360client.case.DownloadSolverOut('case_Id', fileName='solver.out')
+   flow360client.case.DownloadSolverOut('case_Id', fileName='flow360_case.user.log')
 
 You can also download the nonlinear residuals, surface forces and total forces by using the following command line:
 
@@ -192,7 +192,7 @@ For example, the Forces plots for this case are:
 .. image:: figures_OM6_Tutorial/CM.png
    :align: center
 
-Once your case has completed running, you can also visualize the contour plots of the results under the **Visualization** tab.  Currently, contour plots for Coefficient of Pressure (C\ :sub:`p`\), Coefficient of Skin Friction (C\ :sub:`f`\), Y+, and C\ :sub:`f`\  with streamlines are provided.
+Once your case has completed running, you can also visualize the contour plots of the results under the **Visualization** tab.  Currently, contour plots for Coefficient of Pressure (C\ :sub:`p`\), Coefficient of Skin Friction (C\ :sub:`f`\), y\ :sup:`+`\, and C\ :sub:`f`\  with streamlines are provided.
 
 .. image:: figures_OM6_Tutorial/VisResults.png
    :align: center
