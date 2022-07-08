@@ -130,6 +130,8 @@ We have two storage types\: **standard** and **archived**. You can check storge 
 
 **Archived** storage disables these operations: fork case, retry direct child case, download surface and volume results.
 
+.. _how-can-i-archive-my-case:
+
 How can I archive my case?
 --------------------------
 

@@ -1,6 +1,6 @@
-.. _release-22.1.3.0:
+.. _release-22.2.3.0:
 
-release-22.1.3.0
+release-22.2.3.0
 ================
 
 Released: 11th July 2022
@@ -40,6 +40,14 @@ Solver
 
 1. Alpha controller json input has been changed to use the new :ref:`user defined dynamics<userDefinedDynamics>` feature.
 
+
+Automated Meshing
+------
+
+*New features*
+
+1. Added rotational interface support for automated meshing
+
 flow360client
 -------------
 
@@ -64,4 +72,8 @@ Web UI
 
 *New features*
 
-1. Added an interactive case configuration json generator.
+1. Added archive functionality for cases: see :ref:`how can I archive my case<how-can-i-archive-my-case>`.
+2. Added multi-select and batch process: delete/archive/restore.
+3. Added interactive 3D view for surface mesh
+4. Added interactive 3D view for surface to volume mesh generation. Shows refinement zones and actuator disks. 
+5. Introduced new billing system
