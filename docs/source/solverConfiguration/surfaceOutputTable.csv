@@ -1,6 +1,9 @@
 Options@  Default@ Description
 outputFormat@ paraview@ \"paraview\" or \"tecplot\"
-animationFrequency@    -1@ Frequency (in number of physical time steps) at which surface output is saved. -1 is at end of simulation
+animationFrequency@ -1@ Frequency (in number of physical time steps) at which surface output is saved. -1 is at end of simulation
+animationFrequencyOffset@ 0@ Offset (in number of physical time steps) at which surface output animation is started. 0 is at beginning of simulation
+animationFrequencyTimeAverage@ -1@ Frequency (in number of physical time steps) at which time averaged surface output is saved. -1 is at end of simulation
+animationFrequencyTimeAverageOffset@ 0@ Offset (in number of physical time steps) at which time averaged surface output animation is started. 0 is at beginning of simulation
 primitiveVars@   FALSE@ rho, u, v, w, p
 Cp@   FALSE@ Coefficient of pressure
 Cf@   FALSE@ Skin friction coefficient

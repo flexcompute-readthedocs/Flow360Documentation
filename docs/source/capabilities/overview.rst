@@ -26,14 +26,17 @@ Equations
 - :ref:`Blade Element Theory model <bladeElementTheory>`
 - :ref:`Actuator Disk model. <actuatorDisksParameters>`
 - :ref:`Porous Media model. <porousMediaParameters>`
+- :ref:`User Defined Dynamics. <userDefinedDynamics>`
 
 
 Turbulence Models
 -----------------
 
-- Spalart-Allmaras (sa-neg).
-- Spalart-Allmaras with Rotation-Curvature correction.
+- Spalart-Allmaras (SA-neg).
+- Spalart-Allmaras with Rotation-Curvature correction (SA-RC).
+- Spalart-Allmaras with Quadratic Constitutive Relation (SA-QCR).
 - k- |omega| SST. 
+- k- |omega| SST with Quadratic Constitutive Relation (SST-QCR).
 
 See :ref:`here <turbulenceModelSolverParameters>` for details.
 
@@ -45,10 +48,12 @@ Boundary Conditions
 - Slip Wall.
 - No-slip Wall (with optional tangential wall velocity).
 - Isothermal Wall.
+- Wall Model.
 - Subsonic Inflow (total pressure, total temperature).
 - Subsonic Outflow (back pressure).
 - Subsonic Outflow (Mach).
 - Mass Flow In.
 - Mass Flow Out.
+- Periodic.
 
 See :ref:`here <boundariesParameters>` for details.
