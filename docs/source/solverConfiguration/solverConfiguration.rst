@@ -67,6 +67,8 @@ geometry
    | momentLength | [1.0, 1.0, 1.0] | The x, y, z moment reference lengths                    |
    +--------------+-----------------+---------------------------------------------------------+
 
+.. _solverConfiguration-freestream:
+
 freestream
 ----------
 
