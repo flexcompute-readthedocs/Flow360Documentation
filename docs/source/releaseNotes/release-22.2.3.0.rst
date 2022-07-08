@@ -46,7 +46,7 @@ Automated Meshing
 
 *New features*
 
-1. Added rotational interface support for automated meshing
+1. Added rotational interface support for automated meshing.
 
 flow360client
 -------------
@@ -74,6 +74,6 @@ Web UI
 
 1. Added archive functionality for cases: see :ref:`how can I archive my case<how-can-i-archive-my-case>`.
 2. Added multi-select and batch process: delete/archive/restore.
-3. Added interactive 3D view for surface mesh
+3. Added interactive 3D view for surface mesh.
 4. Added interactive 3D view for surface to volume mesh generation. Shows refinement zones and actuator disks. 
-5. Introduced new billing system
+5. Introduced new billing system.
