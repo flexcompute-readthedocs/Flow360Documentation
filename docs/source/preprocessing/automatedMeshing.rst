@@ -50,7 +50,7 @@ The surface mesh is created by submitting a geometry file and JSON file using :c
 .. code-block:: python
 
     import flow360client
-    surfaceMeshId = flow360client.NewSurfaceMeshFromGeometry("path/to/geometry.csm", "surfaceMesh.json", surfaceMeshName="my_surface_mesh", solverVersion='release-21.4.1.0')
+    surfaceMeshId = flow360client.NewSurfaceMeshFromGeometry("path/to/geometry.csm", "surfaceMesh.json", surfaceMeshName="my_surface_mesh", solverVersion='release-22.2.3.0')
 
 The above code will create a surface mesh of geometry using :code:`"maxEdgeLength": 0.05` on a surface labelled as `mysphere`, see line 4 of the \*.csm file.
 
@@ -154,11 +154,18 @@ Example\:
 
     "edges": {
         "leadingEdge":  {
-            "firstLayerThickness": 1e-3
+            "type": "aniso",
+            "method": "angle",
+            "value": 1
         },
         "trailingEdge":  {
-            "firstLayerThickness": 1e-3
-        }
+            "type": "aniso",
+            "method": "height",
+            "value": 1e-3
+        },
+        "hubEdge": {
+            "type": "projectAnisoSpacing"
+        },
     }
 
 
@@ -235,21 +242,20 @@ Example\:
     {
         "type": "cylinder",
         "radius": 4,
-        "lengthZ": 5,
+        "length": 5,
         "center": [5, 0, 0],
         "spacing": 0.05,
-        "axisOfRotation": [0, 1, 0],
-        "angleOfRotation": 90
+        "axis": [1, 0, 0]
     }]
 
 
-.. _JSON volume mesher actuatorDisks:
+.. _JSON volume mesher rotorDisks:
 
- actuatorDisks (list)
---------------------  
+rotorDisks (list)
+------------------
                                   
 .. csv-table::
-   :file: ./volumeMesherActuatorDisks.csv
+   :file: ./volumeMesherRotorDisks.csv
    :header-rows: 1
    :delim: @
    :widths: 20 10 10 10 50   
@@ -258,7 +264,7 @@ Example\:
 
 .. code-block:: json 
 
-   "actuatorDisks": [                                
+   "rotorDisks": [                                
     {                               
         "innerRadius": 0,            
         "outerRadius": 10,              
@@ -269,3 +275,77 @@ Example\:
         "spacingRadial": 0.03,         
         "spacingCircumferential": 0.03 
     }] 
+
+
+
+.. _JSON volume mesher slidingInterfaces:
+
+slidingInterfaces (list)
+------------------------  
+                                  
+.. csv-table::
+   :file: ./volumeMesherSlidingInterfaces.csv
+   :header-rows: 1
+   :delim: @
+   :widths: 20 10 10 10 50   
+
+Example\:
+
+.. code-block:: json 
+
+    "slidingInterfaces": [
+        {                       
+            "name": "inner",
+            "innerRadius": 0,
+            "outerRadius": 0.75,
+            "thickness": 0.5,        
+            "axisOfRotation": [0, 0, 1],          
+            "center": [0, 0, 0],
+            "spacingAxial": 0.2,
+            "spacingRadial": 0.2,
+            "spacingCircumferential": 0.2,
+            "enclosedObjects": ["hub", "blade1", "blade2", "blade3"]                      
+        }, {        
+            "name": "mid",
+            "innerRadius": 0,
+            "outerRadius": 2.0,
+            "thickness": 2.0,        
+            "axisOfRotation": [0, 1, 0],          
+            "center": [0, 0, 0],
+            "spacingAxial": 0.2,
+            "spacingRadial": 0.2,
+            "spacingCircumferential": 0.2,
+            "enclosedObjects": ["slidingInterface-inner"]                      
+        }, {
+            "innerRadius": 0,
+            "outerRadius": 2.0,
+            "thickness": 2.0,
+            "axisOfRotation": [0, 1, 0],          
+            "center": [0, 5, 0],
+            "spacingAxial": 0.2,
+            "spacingRadial": 0.2,
+            "spacingCircumferential": 0.2,
+            "enclosedObjects": ["rotorDisk-enclosed-a", "rotorDisk-enclosed-b"]
+        }, {
+            "innerRadius": 1.5,
+            "outerRadius": 2.0,
+            "thickness": 2.0,
+            "axisOfRotation": [0, 1, 0],          
+            "center": [0, -5, 0],
+            "spacingAxial": 0.2,
+            "spacingRadial": 0.2,
+            "spacingCircumferential": 0.2,
+            "enclosedObjects": []
+        }, {
+            "name": "outer",
+            "innerRadius": 0,
+            "outerRadius": 8,
+            "thickness": 6,
+            "axisOfRotation": [1, 0, 0],          
+            "center": [0, 0, 0],
+            "spacingAxial": 0.4,
+            "spacingRadial": 0.4,
+            "spacingCircumferential": 0.4,
+            "enclosedObjects": ["slidingInterface-mid", "rotorDisk-2", "slidingInterface-2", "slidingInterface-3"]
+        }
+    ]
