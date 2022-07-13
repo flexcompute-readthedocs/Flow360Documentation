@@ -1,5 +1,5 @@
 Option@ Type@ Default@ Example@ Description
-<edgeName>-> type@ [“aniso“, “projectAnisoSpacing“]@ REQUIRED@ “aniso“@ type=“aniso“: anisotropic surface cells growing along the orthogonal direction to the edge named <edgeName>. See :numref:`fig1_surfMesh_edges`. type=“projectAnisoSpacing“: project spacing.
-<edgeName>-> method@ [“angle“, “height“, “aspectRatio“]@ REQUIRED@ “height“@ For type=“aniso“: how anisotropic surface cells grow. “angle“: first layer thickness resolves surface curvature angle provided by “value“; “height“: provide absolute value for first layer thickness; “aspectRatio“: provide aspect ratio of the first surface cell grown from the edge.
-<edgeName>-> value@ float@ REQUIRED@ 1e-3@ For type=“aniso“: value used in “method“ of growing surface cells from the edge.
+<edgeName>-> type@ ["aniso", "projectAnisoSpacing"]@ REQUIRED@ "aniso"@ type="aniso": anisotropic surface cells growing along the orthogonal direction to the edge named <edgeName>. See :numref:`fig1_surfMesh_edges`. type="projectAnisoSpacing": project spacing.
+<edgeName>-> method@ ["angle", "height", "aspectRatio"]@ REQUIRED@ "height"@ For type="aniso": how anisotropic surface cells grow. "angle": first layer thickness resolves surface curvature angle (in degree) provided by "value"; "height": provide absolute value for first layer thickness; "aspectRatio": provide aspect ratio of the first surface cell grown from the edge.
+<edgeName>-> value@ float@ REQUIRED@ 1e-3@ For type="aniso": value used in "method" of growing surface cells from the edge.
 <edgeName>-> adapt@ boolean@ FALSE@ @ Turn on/off the extra refinement based on surface proximity.
