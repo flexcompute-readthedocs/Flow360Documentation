@@ -287,12 +287,36 @@ slidingInterfaces (list)
    :file: ./volumeMesherSlidingInterfaces.csv
    :header-rows: 1
    :delim: @
-   :widths: 20 10 10 10 50   
+   :widths: 20 12 10 10 48   
 
 Example\:
 
 .. code-block:: json 
 
+
+    "rotorDisks": [
+        {
+            "name": "enclosed-a",
+            "innerRadius": 0,
+            "outerRadius": 0.25,
+            "thickness": 0.1,        
+            "axisThrust": [0, 0, 1],          
+            "center": [0, 5.5, 0],
+            "spacingAxial": 0.1,
+            "spacingRadial": 0.1,
+            "spacingCircumferential": 0.1
+        },
+        {
+            "innerRadius": 0,
+            "outerRadius": 0.75,
+            "thickness": 0.5,        
+            "axisThrust": [0, 0, 1],          
+            "center": [0, -5, 0],
+            "spacingAxial": 0.1,
+            "spacingRadial": 0.1,
+            "spacingCircumferential": 0.1
+        }
+    ], 
     "slidingInterfaces": [
         {                       
             "name": "inner",
@@ -325,7 +349,7 @@ Example\:
             "spacingAxial": 0.2,
             "spacingRadial": 0.2,
             "spacingCircumferential": 0.2,
-            "enclosedObjects": ["rotorDisk-enclosed-a", "rotorDisk-enclosed-b"]
+            "enclosedObjects": ["rotorDisk-enclosed-a"]
         }, {
             "innerRadius": 1.5,
             "outerRadius": 2.0,
@@ -346,6 +370,14 @@ Example\:
             "spacingAxial": 0.4,
             "spacingRadial": 0.4,
             "spacingCircumferential": 0.4,
-            "enclosedObjects": ["slidingInterface-mid", "rotorDisk-2", "slidingInterface-2", "slidingInterface-3"]
+            "enclosedObjects": ["slidingInterface-mid", "rotorDisk-1", "slidingInterface-2", "slidingInterface-3"]
         }
     ]
+
+.. _fig_slidingInterfaces:
+.. figure:: ../figures/autoMeshing/slidingInterfaces.png
+   :width: 90%
+   :align: center
+
+   Sliding interfaces generated according to the above configuration.
+
