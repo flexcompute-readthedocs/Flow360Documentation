@@ -168,7 +168,7 @@ Example\:
             "method": "height",
             "value": 0.1
         },
-        "hubEdge": {
+        "hubSplitEdge": {
             "type": "projectAnisoSpacing"
         }
     }
@@ -187,7 +187,7 @@ Example\:
    :width: 70%
    :align: center
 
-   Example of edge type "projectAnisoSpacing". See the above JSON example: "hubCircle" colored green, "hubEdge" colored red. The anisotropic spacing on the neighboring patches will be “projected” to the edge, i.e., the nodes distribution along the edge will be updated.
+   Example of edge type "projectAnisoSpacing". See the above JSON example: "hubCircle" colored green, "hubSplitEdge" colored red. The anisotropic spacing on the neighboring patches will be “projected” to the edge, i.e., the nodes distribution along the edge will be updated.
 
 
 
