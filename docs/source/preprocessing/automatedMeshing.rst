@@ -393,5 +393,5 @@ Example\:
    :width: 90%
    :align: center
 
-   Sliding interfaces generated according to the above configuration.
+   Rotor disks and sliding interfaces generated according to the above configuration.
 
