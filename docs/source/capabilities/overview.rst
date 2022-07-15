@@ -13,7 +13,8 @@ Meshing
 - :ref:`Surface Mesh to Volume Mesh.<SurfaceToVolumeMeshSection>`
 - Automatic labelling, automatic edge and faces refinement.
 - :ref:`Refinement sources: box and cylinder.<JSON volume mesher sources>`
-- :ref:`Actuator Disk meshing.<JSON volume mesher actuatorDisks>`
+- :ref:`Rotor Disk meshing.<JSON volume mesher rotorDisks>`
+- :ref:`Sliding Interfaces.<JSON volume mesher slidingInterfaces>`
 
 Equations
 ---------

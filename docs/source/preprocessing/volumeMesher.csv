@@ -4,4 +4,5 @@ volume@ dict@ REQUIRED@ @ First layer thickness and growth rate for prism layers
 volume-> firstLayerThickness@ float@ REQUIRED@ 1e-5@ First layer thickness for volume prism layers.
 volume-> TRexGrowthRate@ float@ REQUIRED@ 1.2@ Growth rate for volume prism layers.
 sources@ list(dict)@ []@ @ Description of refinement zones. For details see :ref:`here<JSON volume mesher sources>`.
-actuatorDisks@ list(dict)@ []@ @ Description of actuator disks. This generates a cylindrical shape (hollowed or not) with structured mesh in it. Used for actuator disks. For details see :ref:`here<JSON volume mesher actuatorDisks>`.
+rotorDisks@ list(dict)@ []@ @ Description of rotor disks. This generates a cylindrical shape (hollowed or not) with structured mesh in it. Used for actuator disks or BET disks. For details see :ref:`here<JSON volume mesher rotorDisks>`.
+slidingInterfaces@ list(dict)@ []@ @ Description of sliding interfaces. This generates a cylindrical shape (hollowed or not) with concentric mesh. For details see :ref:`here<JSON volume mesher slidingInterfaces>`.

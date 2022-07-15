@@ -1,0 +1,10 @@
+Option@ Type@ Default@ Example@ Description
+name@ string@ index (0, 1, 2...) @ \"rotor\"@ Name for the rotor disk. The boundary name will become: rotorDisk-<name>.
+innerRadius@ float@ REQUIRED@ 0@ Inner radius of rotor disk, if greater than 0 then \"donut\" shape is created.
+outerRadius@ float@ REQUIRED@ 10@ Outer radius of rotor disk.
+thickness@ float@ REQUIRED@ 0.5@ Thickness of rotor disk.
+axisThrust@ 3-array@ REQUIRED@ [1, 0, 0]@ Axis of thrust of rotor disk. The cylindrical shape is rotated such its axis is aligned with axisThrust.
+center@ 3-array@ REQUIRED@ [0, 0, 0]@ Position of center of the rotor disk.
+spacingAxial@ float@ REQUIRED@ 0.01@ Spacing along the axial direction.
+spacingRadial@ float@ REQUIRED@ 0.03@ Spacing along the radial direction.
+spacingCircumferential@ float@ REQUIRED@ 0.03@ Spacing along the circumferential direction.

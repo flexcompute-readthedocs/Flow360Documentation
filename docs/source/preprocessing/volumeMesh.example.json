@@ -10,6 +10,6 @@
     ],                                                                                                                                                      
     "volume": {                                                                  
         "firstLayerThickness": 1e-3,                                             
-        "TRexGrowthRate": 1.2                                                    
+        "growthRate": 1.2                                                    
     }                                                                            
 }                   
