@@ -163,9 +163,14 @@ Example\:
             "method": "height",
             "value": 1e-3
         },
+        "hubCircle": {
+            "type": "aniso",
+            "method": "height",
+            "value": 0.1
+        },
         "hubEdge": {
             "type": "projectAnisoSpacing"
-        },
+        }
     }
 
 
@@ -175,6 +180,15 @@ Example\:
    :align: center
 
    Surface mesh of a wing. Leading edge and trailing edge are labelled and first layer thickness is applied to the layers grown from the edges.
+
+
+.. _fig_surfMesh_edges_projectAnisoSpacing:
+.. figure:: ../figures/autoMeshing/projectAnisoSpacing.png
+   :width: 70%
+   :align: center
+
+   Example of edge type "projectAnisoSpacing". See the above JSON example: "hubCircle" colored green, "hubEdge" colored red. The anisotropic spacing on the neighboring patches will be “projected” to the edge, i.e., the nodes distribution along the edge will be updated.
+
 
 
 
