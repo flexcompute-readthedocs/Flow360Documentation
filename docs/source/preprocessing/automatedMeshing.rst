@@ -278,36 +278,7 @@ Example\:
 
 .. code-block:: json 
 
-   "rotorDisks": [                                
-    {                               
-        "innerRadius": 0,            
-        "outerRadius": 10,              
-        "thickness": 0.5,             
-        "axisThrust": [1, 0, 0],      
-        "center": [0, 0, 0],         
-        "spacingAxial": 0.01,          
-        "spacingRadial": 0.03,         
-        "spacingCircumferential": 0.03 
-    }] 
-
-
-
-.. _JSON volume mesher slidingInterfaces:
-
-slidingInterfaces (list)
-------------------------  
-                                  
-.. csv-table::
-   :file: ./volumeMesherSlidingInterfaces.csv
-   :header-rows: 1
-   :delim: @
-   :widths: 20 12 10 10 48   
-
-Example\:
-
-.. code-block:: json 
-
-    "rotorDisks": [
+   "rotorDisks": [
         {
             "name": "enclosed",
             "innerRadius": 0,
@@ -329,7 +300,23 @@ Example\:
             "spacingRadial": 0.1,
             "spacingCircumferential": 0.1
         }
-    ],                             
+    ],                      
+
+.. _JSON volume mesher slidingInterfaces:
+
+slidingInterfaces (list)
+------------------------  
+                                  
+.. csv-table::
+   :file: ./volumeMesherSlidingInterfaces.csv
+   :header-rows: 1
+   :delim: @
+   :widths: 20 12 10 10 48   
+
+Example\:
+
+.. code-block:: json 
+       
     "slidingInterfaces": [          
         {                       
             "name": "inner",
