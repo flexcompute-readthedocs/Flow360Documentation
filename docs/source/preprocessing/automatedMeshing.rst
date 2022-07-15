@@ -307,31 +307,30 @@ Example\:
 
 .. code-block:: json 
 
-
     "rotorDisks": [
         {
-            "name": "enclosed-a",
+            "name": "enclosed",
             "innerRadius": 0,
-            "outerRadius": 0.25,
+            "outerRadius": 0.75,
             "thickness": 0.1,        
-            "axisThrust": [0, 0, 1],          
-            "center": [0, 5.5, 0],
+            "axisThrust": [1, 0, 0],          
+            "center": [0, 5.0, 0],
             "spacingAxial": 0.1,
             "spacingRadial": 0.1,
             "spacingCircumferential": 0.1
-        },
+        }, 
         {
             "innerRadius": 0,
             "outerRadius": 0.75,
-            "thickness": 0.5,        
+            "thickness": 0.1,        
             "axisThrust": [0, 0, 1],          
             "center": [0, -5, 0],
             "spacingAxial": 0.1,
             "spacingRadial": 0.1,
             "spacingCircumferential": 0.1
         }
-    ], 
-    "slidingInterfaces": [
+    ],                             
+    "slidingInterfaces": [          
         {                       
             "name": "inner",
             "innerRadius": 0,
@@ -363,7 +362,7 @@ Example\:
             "spacingAxial": 0.2,
             "spacingRadial": 0.2,
             "spacingCircumferential": 0.2,
-            "enclosedObjects": ["rotorDisk-enclosed-a"]
+            "enclosedObjects": ["rotorDisk-enclosed"]
         }, {
             "innerRadius": 1.5,
             "outerRadius": 2.0,
@@ -386,7 +385,8 @@ Example\:
             "spacingCircumferential": 0.4,
             "enclosedObjects": ["slidingInterface-mid", "rotorDisk-1", "slidingInterface-2", "slidingInterface-3"]
         }
-    ]
+    ],
+
 
 .. _fig_slidingInterfaces:
 .. figure:: ../figures/autoMeshing/slidingInterfaces.png
