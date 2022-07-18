@@ -1,0 +1,15 @@
+Global parameters                             @
+maxEdgeLength                                 @ 0.05
+curvatureResolutionAngle                      @ 15
+growthRate                                    @ 1.2
+
+Edges                                         @
+Leading edge curvature resolution angle       @ 1
+Trailing edge 1st layer thickness             @ 0.05
+Tip edge of the blade 1st layer thickness     @ 0.05
+Hub circle 1st layer thickness                @ 0.1
+
+Faces (maxEdgeLength)                         @
+Tip                                           @ 0.05
+Blade                                         @ 0.1
+Hub                                           @ 0.1

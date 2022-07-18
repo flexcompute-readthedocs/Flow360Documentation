@@ -18,5 +18,6 @@ Flow360 is the next-generation Navier-Stokes solver.  It is 100 times faster tha
    examples
    tutorials
    conventions/conventions
+   rotor5/rotor5
    publications
    releaseNotes
