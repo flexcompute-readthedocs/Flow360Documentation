@@ -11,9 +11,9 @@ NACA 0012 Low Speed Airfoil
 Introduction
 ------------
 
-The purpose of this case study is to verify and validate the functionality of the Flow360 solver and the implementation of the Spalart-Allmaras (S-A) turbulence model, with respect to the NACA 0012 low speed airfoil validation case. This is one of the cases originally provided by `the NASA Langley Turbulence Modeling Resource database <https://turbmodels.larc.nasa.gov/naca0012_val.html>`_ with accurate and up-to-date information on widely-used turbulence models, as also described by `the ONERA-elsA website <http://elsa.onera.fr/TMR-0001/GENERATED.html#academic-naca0012-lowspeed>`_. Recent high-accuracy numerical investigations on asymptotic grid convergence behaviors over three families of nested grids are described on this `NASA-LaRC-TMR webpage <https://turbmodels.larc.nasa.gov/naca0012numerics_val.html>`_. Similar validation results from OVERFLOW were documented by `Jespersen et al <https://turbmodels.larc.nasa.gov/Papers/NAS_Technical_Report_NAS-2016-01.pdf>`_.
+The purpose of this case study is to verify and validate the functionality of the Flow360 solver and the implementation of the Spalart-Allmaras (SA) and the Menter's :math:`k - \omega` shear stress transport (SST) turbulence models, with respect to the NACA 0012 low speed airfoil validation case. This is one of the cases originally provided by `the NASA Langley Turbulence Modeling Resource database <https://turbmodels.larc.nasa.gov/naca0012_val.html>`_ with accurate and up-to-date information on widely-used turbulence models, as also described by `the ONERA-elsA website <http://elsa.onera.fr/TMR-0001/GENERATED.html#academic-naca0012-lowspeed>`_. Recent high-accuracy numerical investigations on asymptotic grid convergence behaviors over three families of nested grids are described on this `NASA-LaRC-TMR webpage <https://turbmodels.larc.nasa.gov/naca0012numerics_val.html>`_. Similar validation results from OVERFLOW were documented by `Jespersen et al <https://turbmodels.larc.nasa.gov/Papers/NAS_Technical_Report_NAS-2016-01.pdf>`_.
 
-In this study, Reynolds-averaged Navier-Stokes (RANS) simulations utilizing the S-A turbulence model were performed at the same operating conditions as above for the airfoil. According to `these major conclusions <https://turbmodels.larc.nasa.gov/naca0012numerics_val_sa_withoutpv.html>`_: 1st, the trailing edge streamwise spacing has profound influence on the airfoil lift and moment results, and the grid of Family II yields the most accurate results; 2nd, numerical schemes incorporated with 2nd-order accuracy for turbulence advection are desirable for better asymptotic grid convergence; in the current validation cases, the grid of Family II at Level-4 and 2nd-order accuracy for turbulence model equation were utilized. This grid resolution is comparable to that used in the reference validation cases. Current numerical results were validated with respect to available experimental data, as well as other CFD results where appropriate.
+In this study, Reynolds-averaged Navier-Stokes (RANS) simulations utilizing the SA and the SST turbulence models were performed at the same operating conditions as above for the airfoil. According to `these major conclusions <https://turbmodels.larc.nasa.gov/naca0012numerics_val_sa_withoutpv.html>`_: 1st, the trailing edge streamwise spacing has profound influence on the airfoil lift and moment results, and the grid of Family II yields the most accurate results; 2nd, numerical schemes incorporated with 2nd-order accuracy for turbulence advection are desirable for better asymptotic grid convergence; in the current validation cases, the grid of Family II at Level-4 and 2nd-order accuracy for turbulence model equation were utilized. This grid resolution is comparable to that used in the reference validation cases. Current numerical results were validated with respect to available experimental data, as well as other CFD results where appropriate.
 
 Mesh and Flow Configuration
 ---------------------------
@@ -38,14 +38,16 @@ As suggested by NASA-LaRC-TMR and ONERA-elsA, for this essentially incompressibl
    :header-rows: 1
    :delim: @
    
-“NoSlipWall” boundary condition is applied to the adiabatic viscous surface of the airfoil, and “SlipWall” is used as the symmetry condition in the spanwise. “Freestream” boundary condition is utilized for the upstream and the downstream farfields, together with the default value of the freestream “turbulentViscosityRatio”, i.e. :math:`\frac{\mu_t}{\mu_{\infty}} = 0.210438` for the S-A model. This is equivalent to the boundary value based on the S-A approximate turbulent kinematic viscosity :math:`\tilde{\nu}`, i.e. :math:`\frac{\tilde{\nu}}{\nu_{\infty}} = 3`, as used in the CFL3D predictions. More descriptions about these freestream turbulence boundary conditions can be found from this NASA webpage on `the Spalart-Allmaras turbulence model <https://turbmodels.larc.nasa.gov/spalart.html>`_.
+“NoSlipWall” boundary condition is applied to the adiabatic viscous surface of the airfoil, and “SlipWall” is used as the symmetry condition in the spanwise. “Freestream” boundary condition is utilized for the upstream and the downstream farfields, together with the default value of the freestream “turbulentViscosityRatio”, i.e. :math:`\frac{\mu_t}{\mu_{\infty}} = 0.210438` for the SA model. This is equivalent to the boundary value based on the SA approximate turbulent kinematic viscosity :math:`\tilde{\nu}`, i.e. :math:`\frac{\tilde{\nu}}{\nu_{\infty}} = 3`, as used in the CFL3D predictions. More descriptions about these freestream turbulence boundary conditions can be found from this NASA webpage on `the Spalart-Allmaras turbulence model <https://turbmodels.larc.nasa.gov/spalart.html>`_.
 
-Steady-state solutions were computed iteratively, utilizing 2nd-order schemes for both the RANS equations and the turbulence model equation. For the former, the CFL number was gradually ramped up to 100. Detailed Flow360 solver and mesh configuration files, `Flow360.json <https://simcloud-public-1.s3.amazonaws.com/validation/naca0012/NACA0012_FMLY2GL4_AOA15_SARC_2ndOrd_CFL100_Flow360.json>`_ and `Flow360Mesh.json <https://simcloud-public-1.s3.amazonaws.com/validation/naca0012/NACA0012_FMLY2_Flow360Mesh.json>`_, are given here as an example for the case with the S-A model and its Rotation/Curvature (R/C) correction at :math:`\alpha = 15^o`. The definitions of the angle of attack :math:`\alpha` and the sideslip angle :math:`\beta`, with respect to the grid coordinates, are given as :eq:`EQ_FreestreamBC` in :ref:`the freestream configuration<solverConfiguration-freestream>` section of this documentation.
+Similarly, for the SST model, the value of :math:`0.009` is used for the freestream “turbulentViscosityRatio”, i.e. :math:`\frac{\mu_t}{\mu_{\infty}} = 0.009`. The same value is used in the reference results, such as those CFL3D predictions, where a freestream turbulence intensity, i.e. :math:`T_u = \frac{u_{rms}}{U_{\infty}} = 0.052\%` was also specified. More descriptions about these freestream turbulence boundary conditions can be found from this NASA webpage on `the Menter's SST turbulence model <https://turbmodels.larc.nasa.gov/sst.html#sst-std>`_.
 
-Numerical Results
------------------
+Steady-state solutions were computed iteratively, utilizing 2nd-order schemes for both the RANS and the turbulence model  equations. For the former, the CFL number was gradually ramped up to 100. Typically, the values of the absolute nonlinear residual convergence tolerances were set to be :math:`1 \times 10^{-12}` and :math:`1 \times 10^{-10}` for the RANS and the turbulence model equations, respectively. Detailed Flow360 solver and mesh configuration files, `Flow360.json <https://simcloud-public-1.s3.amazonaws.com/validation/naca0012/NACA0012_FMLY2GL4_AOA15_SARC_2ndOrd_CFL100_Flow360.json>`_ and `Flow360Mesh.json <https://simcloud-public-1.s3.amazonaws.com/validation/naca0012/NACA0012_FMLY2_Flow360Mesh.json>`_, are given here as an example for the case with the SA model and its Rotation/Curvature (R/C) correction at :math:`\alpha = 15^o`. For the same case with the SST model, the solver configuration file is `available here <https://simcloud-public-1.s3.amazonaws.com/validation/naca0012/NACA0012_FMLY2GL4_AOA15_SST_2ndOrd_CFL100_Flow360.json>`_. The definitions of the angle of attack :math:`\alpha` and the sideslip angle :math:`\beta`, with respect to the grid coordinates, are given as :eq:`EQ_FreestreamBC` in :ref:`the freestream configuration<solverConfiguration-freestream>` section of this documentation.
 
-Two-dimensional steady viscous mean flows past the NACA 0012 airfoil were simulated at the aforementioned operating conditions. Aerodynamic characteristics were visualized through contour plots of Mach number and turbulent viscosity ratio on the longitudinal cut-plane at :math:`y = -0.5`. Typical results of current RANS simulations, based on the S-A model with the R/C correction, are shown in :numref:`Fig2a_Ma_mutRatio_AOA00`, :numref:`Fig2b_Ma_mutRatio_AOA10` and :numref:`Fig2c_Ma_mutRatio_AOA15` for the three angles of attack, respectively. 
+SA/SA-RC Model Results
+----------------------
+
+Two-dimensional steady viscous mean flows past the NACA 0012 airfoil were simulated at the aforementioned operating conditions. Aerodynamic characteristics were visualized through contour plots of Mach number and turbulent viscosity ratio on the longitudinal cut-plane at :math:`y = -0.5`. Typical results of current RANS simulations, based on the SA model with the R/C correction, are shown in :numref:`Fig2a_Ma_mutRatio_AOA00`, :numref:`Fig2b_Ma_mutRatio_AOA10` and :numref:`Fig2c_Ma_mutRatio_AOA15` for the three angles of attack, respectively. 
 
 .. _Fig2a_Ma_mutRatio_AOA00:
 .. figure:: figures_NACA0012/NACA0012_FMLY2GL4_AOA00_SARC_Contours_Ma_mutRatio_upd2a.png
@@ -72,7 +74,7 @@ For a relatively high lift condition at :math:`\alpha = 10^o`, large wake region
 Also, as expected, at a higher angle of attack :math:`\alpha = 15^o` towards the operating condition for :math:`C_{L,max}`, the flow starts separating from the upper surface near the trailing edge. This is shown in the above figure where detachment of the contour line of :math:`M = 0` occurs at a more detailed level.
 
    
-For these operating conditions, surface distributions of pressure and skin friction coefficients, i.e. :math:`C_p = \frac{p - p_{\infty}}{0.5 \cdot \rho_{\infty} \cdot U^2_{ref}}` and :math:`C_f = \frac{\tau_w}{0.5 \cdot \rho_{\infty} \cdot U^2_{ref}}`, are examined in :numref:`Fig3a_CpCf_AOA00`, :numref:`Fig3b_CpCf_AOA10` and :numref:`Fig3c_CpCf_AOA15`, with respect to reference data. In these figures, Flow360 results are indicated as the red solid and the green dashed lines for the S-A model without and with the R/C correction, respectively. The corresponding CFL3D results are shown as the blue dashed and dash-dot lines. Experimental data are given as symbols. Notably, these measurements of :math:`C_p` were made at a lower Reynolds number :math:`Re_c = 2.88 \times 10^6` by `Gregory and O'Reilly <https://reports.aerade.cranfield.ac.uk/bitstream/handle/1826.2/3003/arc-rm-3726.pdf>`_.  
+For these operating conditions, surface distributions of pressure and skin friction coefficients, i.e. :math:`C_p = \frac{p - p_{\infty}}{0.5 \cdot \rho_{\infty} \cdot U^2_{ref}}` and :math:`C_f = \frac{\tau_w}{0.5 \cdot \rho_{\infty} \cdot U^2_{ref}}`, are examined in :numref:`Fig3a_CpCf_AOA00`, :numref:`Fig3b_CpCf_AOA10` and :numref:`Fig3c_CpCf_AOA15`, with respect to reference data. In these figures, Flow360 results are indicated as the red solid and the green dashed lines for the SA model without and with the R/C correction, respectively. The corresponding CFL3D results are shown as the blue dashed and dash-dot lines. Experimental data are given as symbols. Notably, these measurements of :math:`C_p` were made at a lower Reynolds number :math:`Re_c = 2.88 \times 10^6` by `Gregory and O'Reilly <https://reports.aerade.cranfield.ac.uk/bitstream/handle/1826.2/3003/arc-rm-3726.pdf>`_.  
 
 .. _Fig3a_CpCf_AOA00:
 .. figure:: figures_NACA0012/NACA0012_Cp_Cf_Flow360_SA_Fig001_AOA00_upd2.png
@@ -92,22 +94,22 @@ For these operating conditions, surface distributions of pressure and skin frict
 
    Surface distributions of :math:`C_p` and :math:`C_f`, NACA 0012, :math:`\alpha = 15^o`.
    
-As seen from these above figures, at all the three distinct lift conditions, Flow360 predictions accurately capture the experimental data, and closely match the counterparts of the reference numerical results. Notably, as shown in :numref:`Fig3c_CpCf_AOA15` associated with :math:`\alpha = 15^o`, the :math:`C_f` value of the current result with the S-A model approaches zero around :math:`x/c = 0.9078` on the upper surface of the airfoil near the trailing edge. This indicates separated mean flow occurs as observed from the previous :numref:`Fig2c_Ma_mutRatio_AOA15`. For the current result with the SA-RC model, the separation point emerges around :math:`x/c = 0.8992`. These locations are at the upstream bounds of the suggested intervals as given on the NASA webpages.
+As seen from these above figures, at all the three distinct lift conditions, Flow360 predictions accurately capture the experimental data, and closely match the counterparts of the reference numerical results. Notably, as shown in :numref:`Fig3c_CpCf_AOA15` associated with :math:`\alpha = 15^o`, the :math:`C_f` value of the current result with the SA model approaches zero around :math:`x/c = 0.9078` on the upper surface of the airfoil near the trailing edge. This indicates separated mean flow occurs as observed from the previous :numref:`Fig2c_Ma_mutRatio_AOA15`. For the current result with the SA-RC model, the separation point emerges around :math:`x/c = 0.8992`. These locations are at the upstream bounds of the suggested intervals as given on the NASA webpages. For the same operating condition, CFL3D predicted that the separation point emerged around :math:`x/c = 0.9163` or :math:`0.9046` for the cases with the SA or the SA-RC models, respectively.
    
 The integrated :math:`C_L` and :math:`C_D` values of the current predictions are summarized in :numref:`Tab2a_ClCd`, :numref:`Tab2b_ClCd` and :numref:`Tab2c_ClCd` for :math:`\alpha = 0^o`, :math:`10^o` and :math:`15^o`, respectively, together with available reference CFD data. As seen, for all the tested operating conditions, the accuracy of Flow360 results are comparable.  
 
 .. _Tab2a_ClCd:
-.. csv-table:: Lift and drag coefficients for the NACA 0012 airfoil with the S-A model
+.. csv-table:: Lift and drag coefficients for the NACA 0012 airfoil with the SA model
    :file: ./naca0012_tab2a_ClCd_AOA00.csv
    :widths: 10, 8, 6, 10, 8, 8, 8
    :align: center
    :header-rows: 1
    :delim: @
    
-It is noted that, for most of these representative aerodynamic quantities, the results of Flow360 are at either the upper or the lower bounds of the reference intervals. It is suspected that this is due to the differences in the discretization, such as node-centered or cell-centered schemes, as well as convergence criteria, at least as seen from the :math:`C_L` values at :math:`\alpha = 0^o`. It is also noted that the reference data such as those CFL3D results were computed with the farfield point vortex (PV) correction based on inviscid characteristic methods as given by `Thomas and Salas <https://doi.org/10.2514/3.9394>`_. At the current accuracy level for validation with farfield boundaries about 500 chords away, its effects would be inappreciable. 
+It is noted that, for some of these representative aerodynamic quantities, the results of Flow360 are at either the upper or the lower bounds of the reference intervals. It is suspected that this is due to the differences in the discretization, such as node-centered or cell-centered schemes, as well as convergence criteria, at least as seen from the :math:`C_L` values at :math:`\alpha = 0^o`. It is also noted that the reference data such as those CFL3D results were computed with the farfield point vortex (PV) correction based on inviscid characteristic methods as given by `Thomas and Salas <https://doi.org/10.2514/3.9394>`_. At the current accuracy level for validation with farfield boundaries about 500 chords away, its effects would be inappreciable. 
    
 .. _Tab2b_ClCd:
-.. csv-table:: Lift and drag coefficients for the NACA 0012 airfoil with the S-A model
+.. csv-table:: Lift and drag coefficients for the NACA 0012 airfoil with the SA model
    :file: ./naca0012_tab2b_ClCd_AOA10.csv
    :widths: 14, 8, 6, 8, 8, 8, 8
    :align: center
@@ -119,14 +121,14 @@ Importantly, a different computational grid with substantially finer trailing ed
 Since the typo discovered, thorough high-accuracy numerical analysis had been performed to reveal scenarios such as grid convergence, etc. Details of these updated investigations are given on this `turbulence model numerical analysis (TMNA) <https://turbmodels.larc.nasa.gov/naca0012numerics_val.html>`_ webpage of NASA, as well as `the ONERA-elsA webpage <http://elsa.onera.fr/TMR-0001/GENERATED.html#academic-naca0012-lowspeed>`_.  These updated data of :math:`C_L` and :math:`C_D` computed on the same grid as used in this study without the farfield PV correction, available only at :math:`\alpha = 10^o`, are also given in :numref:`Tab2b_ClCd`. These are at the bottom of the table and denoted by (TMNA, noPV). As seen, the agreement of Flow360 results with respect to these updates are closer.
    
 .. _Tab2c_ClCd:
-.. csv-table:: Lift and drag coefficients for the NACA 0012 airfoil with the S-A model
+.. csv-table:: Lift and drag coefficients for the NACA 0012 airfoil with the SA model
    :file: ./naca0012_tab2c_ClCd_AOA15.csv
    :widths: 10, 8, 6, 8, 8, 8, 8
    :align: center
    :header-rows: 1
    :delim: @
 
-The corresponding :math:`C_L` and :math:`C_D` data given in the above tables are also displayed in this following figure, together with the experimental data measured by `Ladson <https://ntrs.nasa.gov/citations/19880019495>`_. Notably, in this figure, at low-to-moderate angles of attack, linear variation of :math:`C_L` with the best fit lift slope provided by `McCroskey <https://ntrs.nasa.gov/citations/19880002254>`_ is also shown. As seen, the current results agree well with these references. More discussions about the experimental data compared in this and the above figures are given on `this NASA webpage <https://turbmodels.larc.nasa.gov/naca0012_val.html>`_.
+The corresponding :math:`C_L` and :math:`C_D` data given in the above tables are also displayed in :numref:`Fig4_ClCd`, together with the experimental data measured by `Ladson <https://ntrs.nasa.gov/citations/19880019495>`_. Notably, in this figure, at low-to-moderate angles of attack, linear variation of :math:`C_L` with the best fit lift slope provided by `McCroskey <https://ntrs.nasa.gov/citations/19880002254>`_ is also shown. As seen, the current results agree well with these references. More discussions about the experimental data compared in this and the above figures are given on `this NASA-LaRC-TMR webpage <https://turbmodels.larc.nasa.gov/naca0012_val.html>`_.
    
 .. _Fig4_ClCd:
 .. figure:: figures_NACA0012/NACA0012_Cl_Cd_Flow360_SA_upd1.png
@@ -134,8 +136,73 @@ The corresponding :math:`C_L` and :math:`C_D` data given in the above tables are
 
    Comparisons of :math:`C_L` and :math:`C_D` at :math:`\alpha = 0^o`, :math:`10^o` and :math:`15^o`.
    
+SST Model Results
+-----------------
+
+Similar to the above sub-section, Flow360 results computed with the SST model are examined in this sub-section. Aerodynamic characteristics were visualized through contour plots of Mach number and turbulent viscosity ratio on the longitudinal cut-plane at :math:`y = -0.5`. Typical results are shown in :numref:`Fig5a_Ma_mutRatio_AOA00`, :numref:`Fig5b_Ma_mutRatio_AOA10` and :numref:`Fig5c_Ma_mutRatio_AOA15` for the three angles of attack, respectively. Similar flow characteristics as discussed earlier are observed.
+
+.. _Fig5a_Ma_mutRatio_AOA00:
+.. figure:: figures_NACA0012/NACA0012_FMLY2GL4_AOA00_SST_Contours_Ma_mutRatio.png
+   :align: center
+   
+   Contours of Mach number and turbulent viscosity ratio, NACA 0012, SST, :math:`\alpha = 0^o`.
+
+.. _Fig5b_Ma_mutRatio_AOA10:
+.. figure:: figures_NACA0012/NACA0012_FMLY2GL4_AOA10_SST_Contours_Ma_mutRatio.png
+   :align: center
+   
+   Contours of Mach number and turbulent viscosity ratio, NACA 0012, SST, :math:`\alpha = 10^o`.
+   
+.. _Fig5c_Ma_mutRatio_AOA15:
+.. figure:: figures_NACA0012/NACA0012_FMLY2GL4_AOA15_SST_Contours_Ma_mutRatio.png
+   :align: center
+   
+   Contours of Mach number and turbulent viscosity ratio, NACA 0012, SST, :math:`\alpha = 15^o`.
+   
+   
+For these operating conditions, surface distributions of pressure and skin friction coefficients are examined in :numref:`Fig6a_CpCf_AOA00`, :numref:`Fig6b_CpCf_AOA10` and :numref:`Fig6c_CpCf_AOA15`, with respect to reference data. In these figures, Flow360 results are indicated as the red solid lines. The corresponding CFL3D results are shown as the blue dashed lines, where a modified version of the SST turbulence model was used. This is denoted as the SST(m) in the figures. As described on `the NASA webpage for SST model <https://turbmodels.larc.nasa.gov/sst.html#sst-std>`_, this simplified version is strictly valid for incompressible flows and is typically considered a very good approximation, except perhaps for very high Mach numbers. Also, in these figures, experimental data are given as symbols. These are the same measurements of :math:`C_p` made by `Gregory and O'Reilly <https://reports.aerade.cranfield.ac.uk/bitstream/handle/1826.2/3003/arc-rm-3726.pdf>`_ as given in the previous :numref:`Fig3a_CpCf_AOA00`, etc. 
+
+.. _Fig6a_CpCf_AOA00:
+.. figure:: figures_NACA0012/NACA0012_Cp_Cf_Flow360_SST_Beta22226_Fig001_AOA00_upd1.png
+   :align: center
+   
+   Surface distributions of :math:`C_p` and :math:`C_f`, NACA 0012, :math:`\alpha = 0^o`.
+   
+.. _Fig6b_CpCf_AOA10:
+.. figure:: figures_NACA0012/NACA0012_Cp_Cf_Flow360_SST_Beta22226_Fig002_AOA10_upd1.png
+   :align: center
+   
+   Surface distributions of :math:`C_p` and :math:`C_f`, NACA 0012, :math:`\alpha = 10^o`.
+   
+.. _Fig6c_CpCf_AOA15:
+.. figure:: figures_NACA0012/NACA0012_Cp_Cf_Flow360_SST_Beta22226_Fig003_AOA15_upd1.png
+   :align: center
+   
+   Surface distributions of :math:`C_p` and :math:`C_f`, NACA 0012, :math:`\alpha = 15^o`.
+   
+As seen from these above figures, at all the three distinct lift conditions, Flow360 predictions accurately capture the experimental data, and closely match the counterparts of the reference numerical results. Notably, as shown in :numref:`Fig6c_CpCf_AOA15` associated with :math:`\alpha = 15^o`, the :math:`C_f` value of the current result with the SST model approaches zero around :math:`x/c = 0.9834` on the upper surface of the airfoil near the trailing edge. This indicates separated mean flow occurs as observed from :numref:`Fig5c_Ma_mutRatio_AOA15`. For the same operating condition, CFL3D predicted that the separation point emerged around :math:`x/c = 0.9868`. Similarly, this is located at around :math:`x/c = 0.9882` as predicted by `OVERFLOW <https://turbmodels.larc.nasa.gov/Papers/NAS_Technical_Report_NAS-2016-01.pdf>`_.
+
+The integrated :math:`C_L` and :math:`C_D` values of the current predictions are summarized in :numref:`Tab3_ClCd_SST`, together with available reference CFD data. As seen, for all the tested operating conditions, the accuracy of Flow360 results are comparable. The discrepancies are perhaps attributed to the same aspects as discussed in the previous section.
+
+.. _Tab3_ClCd_SST:
+.. csv-table:: Lift and drag coefficients for the NACA 0012 airfoil with the SST model
+   :file: ./naca0012_tab3_ClCd_SST.csv
+   :widths: 10, 8, 6, 8, 8, 8, 8
+   :align: center
+   :header-rows: 1
+   :delim: @
+   
+The corresponding :math:`C_L` and :math:`C_D` data given in the above table are also displayed in :numref:`Fig7_ClCd`, together with the experimental data measured by `Ladson <https://ntrs.nasa.gov/citations/19880019495>`_. Notably, in this figure, at low-to-moderate angles of attack, linear variation of :math:`C_L` with the best fit lift slope provided by `McCroskey <https://ntrs.nasa.gov/citations/19880002254>`_ is also shown. As seen, the current results agree well with these references.
+
+.. _Fig7_ClCd:
+.. figure:: figures_NACA0012/NACA0012_Cl_Cd_Flow360_SST_upd1.png
+   :align: center
+
+   Comparisons of :math:`C_L` and :math:`C_D` at :math:`\alpha = 0^o`, :math:`10^o` and :math:`15^o`.
+
+   
 Remarks
 -------
 
-Through this validation study, the flow field, the surface data and the representative aerodynamic quantities predicted by Flow360 were carefully examined. With respect to the latest reference numerical results computed on the same grid as used here, the available agreement on :math:`C_L` and :math:`C_D` reaches the third significant digit. The solver of this version :ref:`release-22.1.3.0<release-22.1.3.0>` was used throughout this case study.
+Through this validation study, the flow field, the surface data and the representative aerodynamic quantities predicted by Flow360 were carefully examined. With respect to the latest reference numerical results computed on the same grid as used here, the available agreement on :math:`C_L` and :math:`C_D` reaches the third significant digit. The solver of this version :ref:`release-22.1.3.0<release-22.1.3.0>` was used for the cases with the SA model, whereas that of :ref:`beta-22.2.2.6<release-22.2.3.0>` was used where with the SST.
 
