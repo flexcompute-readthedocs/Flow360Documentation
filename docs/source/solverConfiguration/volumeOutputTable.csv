@@ -5,7 +5,7 @@ animationFrequencyOffset@ 0@ Offset (in number of physical time steps) at which 
 animationFrequencyTimeAverage@ -1@ Frequency (in number of physical time steps) at which time averaged volume output is saved. -1 is at end of simulation
 animationFrequencyTimeAverageOffset@ 0@ Offset (in number of physical time steps) at which time averaged volume output animation is started. 0 is at beginning of simulation
 startAverageIntegrationStep@ 0@ Physical time step to start averaging forces/moments, only if computeTimeAverages is True. Fields that can be averaged: primitiveVars, vorticity, T, s, Cp, mut, Mach, qcriterion
-computeTimeAverages@ FALSE@ Whether or not to compute time-averaged quantities
+computeTimeAverages@ FALSE@ Whether or not to compute time-averaged quantities (**time averaging is not supported for cases with rotating domains for now**)
 primitiveVars@ TRUE@ Outputs rho, u, v, w, p
 vorticity@ FALSE@ Vorticity
 residualNavierStokes@ FALSE@ 5 components of the N-S residual

@@ -26,7 +26,7 @@ Solver
 
 5. Added output of maximum residual location in solver log and as a csv file.
 
-6. Added support for importing CGNS meshes from ANSA.
+6. Added support for importing CGNS meshes from ANSA. For CGNS meshes, the new release of Flow360 fetches the boundary patches from the ZoneBC section of the mesh files. It avoids the "tri\_" and "quad\_" prefix in the boundary names in config json files in previous releases. To use this new release version, the two previous boundaries named "blk-1/tri_wing" and "blk-1/quad_wing" could be merged into one single boundary named "blk-1/wing" in both config json files of meshes and cases. Note: If your CGNS mesh is based on the v2.5 or earlier version of CGNS library, it is not supported due to the deprecated *ElementRange* section in `CGNS library <https://cgns.github.io/CGNS_docs_current/midlevel/bc.html>`_. If you want to run it, please let us know.
 
 *Resolved issues*
 
@@ -42,7 +42,7 @@ Solver
 
 
 Automated Meshing
-------
+-------------------
 
 *New features*
 
