@@ -30,11 +30,11 @@ Solver
 
 *Resolved issues*
 
-1. Added sliding interface boundary condition to kOmegaSST turbulence model.
+1. Improved sliding interface implementation for kOmegaSST turbulence model.
 
 2. Significantly reduced grid sensitivity of AFT transition model.
 
-3. Improved solution accuracy of Spalart Allmaras, kOmegaSST turbulence models and AFT transition model.
+3. Improved numerical robustness and convergence behavior of Spalart Allmaras, kOmegaSST turbulence models and AFT transition model.
 
 *Documentation updates*
 
