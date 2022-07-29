@@ -3,8 +3,10 @@ Parameters                           @        Units @                Values @  N
 :math:`Re_{L_{gridUnit}}`            @              @ :math:`6 \times 10^6` @  Reynolds number
 :math:`M_{\infty}`                   @              @          :math:`0.15` @  Freestream Mach number
 :math:`T_{ref}`                      @    :math:`K` @           :math:`300` @  Reference temperature
-:math:`\frac{\mu_{t}}{\mu_{\infty}}` @              @      :math:`0.210438` @  Freestream turbulent viscosity ratio, default for S-A model within Flow360
+:math:`\frac{\mu_{t}}{\mu_{\infty}}` @              @                       @  Freestream turbulent viscosity ratio 
+                                     @              @      :math:`0.210438` @  default for SA model within Flow360
+                                     @              @      :math:`0.009`    @  the default value is :math:`0.01` for SST model within Flow360
 :math:`\alpha`                       @  :math:`deg` @     :math:`0, 10, 15` @  Angle of attack
 :math:`\text{CFL}`                   @              @           :math:`100` @  CFL number
-:math:`\text{AbsTol(NS)}`            @              @  :math:`\text{1E-10}` @  Residual convergence tolerance for NS equations
-:math:`\text{AbsTol(SA)}`            @              @  :math:`\text{1E-08}` @  Residual convergence tolerance for SA equation
+:math:`\text{AbsTol(NS)}`            @              @  :math:`\text{1E-12}` @  Residual convergence tolerance for NS equations
+:math:`\text{AbsTol(SA)}`            @              @  :math:`\text{1E-10}` @  Residual convergence tolerance for SA/SST equations
