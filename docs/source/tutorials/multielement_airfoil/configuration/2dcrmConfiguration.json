@@ -1,0 +1,15 @@
+{
+    "coordinates": {
+        "wing": "data/crmwing.dat",
+        "concave": "data/crmconcave.dat",
+        "flap": "data/crmflap.dat",
+        "slat": "data/crmslat.dat"
+    },
+    "configuration": {
+        "span": 0.01, 
+        "flapDeflection": 0,
+        "deflectionAxis": [0.76,0.0,-0.1],
+        "slat": true,
+        "flap": true
+    }
+}

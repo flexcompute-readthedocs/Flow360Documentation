@@ -7,3 +7,4 @@ Tutorials
    :maxdepth: 2
 
    tutorials/rotation_interface
+   tutorials/multielement_airfoil

@@ -1,0 +1,12 @@
+{
+    "geometry": {
+        "csm": "path/to/s809.csm"
+    },
+    "mesh": {
+        "surface": "path/to/s809SurfaceMesh.json",
+        "volume": "path/to/s809VolumeMesh.json"
+    },
+    "flow360": {
+        "case": "path/to/s809Case.json"
+    }
+}
