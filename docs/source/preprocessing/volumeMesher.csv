@@ -2,7 +2,7 @@ Option@ Type@ Default@ Example@ Description
 refinementFactor@ float@ 1@ 2@ If refinementFactor=r is provided all spacings will be adjusted to generate r-times finer mesh everywhere. For example, if refinementFactor=2, all spacings will be divided by :math:`2^{1/3}\approx 1.26` , so the resulting mesh will have approximately 2 times more nodes.
 volume@ dict@ REQUIRED@ @ First layer thickness and growth rate for prism layers being grown out of the surface. It is applied to all surface mesh faces.
 volume-> firstLayerThickness@ float@ REQUIRED@ 1e-5@ First layer thickness for volume prism layers.
-volume-> TRexGrowthRate@ float@ REQUIRED@ 1.2@ Growth rate for volume prism layers.
+volume-> GrowthRate@ float@ REQUIRED@ 1.2@ Growth rate for volume prism layers.
 sources@ list(dict)@ []@ @ Description of refinement zones. For details see :ref:`here<JSON volume mesher sources>`.
 rotorDisks@ list(dict)@ []@ @ Description of rotor disks. This generates a cylindrical shape (hollowed or not) with structured mesh in it. Used for actuator disks or BET disks. For details see :ref:`here<JSON volume mesher rotorDisks>`.
 slidingInterfaces@ list(dict)@ []@ @ Description of sliding interfaces. This generates a cylindrical shape (hollowed or not) with concentric mesh. For details see :ref:`here<JSON volume mesher slidingInterfaces>`.
